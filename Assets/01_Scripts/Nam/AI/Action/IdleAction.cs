@@ -10,10 +10,11 @@ public class IdleAction : AIAction
 
     public override void TakeAction()
     {
-        _aiActionData.isIdle = true;
-        _aiMovementData.pointOfInterest = transform.position;
-        //_aiMovementData.speed = _brain.Enemy.EnemyData.BeforeDetectSpeed();
+        Debug.Log("IDleAction");
+        //_aiActionData.isIdle = true;
+        //_aiMovementData.pointOfInterest = transform.position;
+        ////_aiMovementData.speed = _brain.Enemy.EnemyData.BeforeDetectSpeed();
             
-        _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
+        //_brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
     }
 }
