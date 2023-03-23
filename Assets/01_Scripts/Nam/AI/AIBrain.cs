@@ -19,8 +19,8 @@ public class AIBrain : MonoBehaviour
     public AIActionData AIActionData { get; private set; }
     public AIMovementData AIMovementData { get; private set; }
 
-    //Enemy enemy;
-    //public Enemy Enemy => enemy;
+    Enemy enemy;
+    public Enemy Enemy => enemy;
 
     public EnemyAgentAnim _enemyAnim { get; private set; }
     //public GroundEnemyAnim GroundEnemyAnim { get => _groundEnemyAnim; }
