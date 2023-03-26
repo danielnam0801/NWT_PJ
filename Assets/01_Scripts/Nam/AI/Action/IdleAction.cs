@@ -16,23 +16,34 @@ public class IdleAction : AIAction
         if (_aiActionData.isCanThinking)
         {
             _aiMovementData.direction = new Vector2(NextMoveX(), _aiMovementData.direction.y);
+            _aiActionData.isCanThinking = false;
         }
     }
 
     private int NextMoveX()
     {
         int rand = UnityEngine.Random.Range(-1, 2);
-
+        float waitTime = 0f;
         switch (rand)
         {
             case -1:
+                waitTime = UnityEngine.Random.Range(thinkTime, thinkTime + 1f);
                 break;
             case 0:
+                waitTime = UnityEngine.Random.Range(thinkTime-2f, thinkTime);
                 break;
             case 1:
+                waitTime = UnityEngine.Random.Range(thinkTime, thinkTime + 1f);
                 break;
         }
 
+        StartCoroutine(ThinkWait(waitTime));
         return rand;
+    }
+
+    IEnumerator ThinkWait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _aiActionData.isCanThinking = true;
     }
 }
