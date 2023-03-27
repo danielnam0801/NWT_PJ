@@ -15,8 +15,9 @@ public class IdleAction : AIAction
         _aiMovementData.speed = _brain.Enemy.EnemyDataSO.GetBeforeSpeed;
         if (_aiActionData.isCanThinking)
         {
-            _aiMovementData.direction = new Vector2(NextMoveX(), _aiMovementData.direction.y);
             _aiActionData.isCanThinking = false;
+            _aiMovementData.direction = new Vector2(NextMoveX(), _aiMovementData.direction.y);
+            _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
         }
     }
 

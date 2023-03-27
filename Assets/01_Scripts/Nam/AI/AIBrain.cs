@@ -30,7 +30,7 @@ public class AIBrain : MonoBehaviour
         //_target = GameManager.instance.Target;
         AIActionData = transform.Find("AI").GetComponent<AIActionData>();
         AIMovementData = transform.Find("AI").GetComponent<AIMovementData>();
-        //enemy = transform.GetComponent<Enemy>();
+        enemy = transform.GetComponent<Enemy>();
         //_groundEnemyAnim = transform.Find("VisualSprite").GetComponent<GroundEnemyAnim>();
     }
 
