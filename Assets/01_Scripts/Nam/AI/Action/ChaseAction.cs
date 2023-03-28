@@ -6,14 +6,20 @@ public class ChaseAction : AIAction
 {
     public override void TakeAction()
     {
+        Debug.Log("Chase");
+        if (_aiActionData.isAttack)
+        {
+            _aiActionData.isAttack = false;
+        }
+
+        Vector2 dir = (_brain.Target.position.x - transform.position.x > 0) ? new Vector2(1, 0) : new Vector2(-1, 0);
+        Debug.Log(dir);
         _aiActionData.isIdle = false;
-        _aiActionData.isCanThinking = true;
+        _aiMovementData.direction = dir;
         _aiMovementData.pointOfInterest = _brain.Target.position;
-        _aiMovementData.speed = _brain.Enemy.EnemyDataSO.GetAfterSpeed;
+        _aiMovementData.speed = _brain.Enemy.EnemyData.GetAfterSpeed;
 
-        float dir = (transform.position - _brain.Target.position).normalized.x;
-        _aiMovementData.direction = new Vector2(dir,transform.position.y);
-
-        _brain.Move(_aiMovementData.direction, _brain.Target.position);
+        _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
     }
+
 }

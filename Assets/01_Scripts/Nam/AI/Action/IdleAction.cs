@@ -5,46 +5,42 @@ using UnityEngine;
 
 public class IdleAction : AIAction
 {
-    [SerializeField] float thinkTime = 4f;
-    float t = 0;
 
     public override void TakeAction()
     {
         _aiActionData.isIdle = true;
         _aiMovementData.pointOfInterest = transform.position;
-        _aiMovementData.speed = _brain.Enemy.EnemyDataSO.GetBeforeSpeed;
+        _aiMovementData.speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
+
         if (_aiActionData.isCanThinking)
         {
+            Debug.Log("EnemyThink " + _brain.gameObject.name);
+            _aiMovementData.direction = new Vector2(NextMove(), 0);
             _aiActionData.isCanThinking = false;
-            _aiMovementData.direction = new Vector2(NextMoveX(), _aiMovementData.direction.y);
-            _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
         }
+        _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
+
     }
 
-    private int NextMoveX()
+    public int NextMove()
     {
-        int rand = UnityEngine.Random.Range(-1, 2);
-        float waitTime = 0f;
-        switch (rand)
-        {
-            case -1:
-                waitTime = UnityEngine.Random.Range(thinkTime, thinkTime + 1f);
-                break;
-            case 0:
-                waitTime = UnityEngine.Random.Range(thinkTime-2f, thinkTime);
-                break;
-            case 1:
-                waitTime = UnityEngine.Random.Range(thinkTime, thinkTime + 1f);
-                break;
-        }
 
-        StartCoroutine(ThinkWait(waitTime));
-        return rand;
+        int nextMove = UnityEngine.Random.Range(-1, 2);
+
+        Debug.Log("NextMove : " + nextMove);
+
+        _aiMovementData.thinkTime = UnityEngine.Random.Range(4.5f, 5.5f);
+
+        if (nextMove == 0) _aiMovementData.thinkTime -= UnityEngine.Random.Range(3f, 3.5f);
+
+        StartCoroutine("EnemyThink", _aiMovementData.thinkTime);
+        return nextMove;
     }
 
-    IEnumerator ThinkWait(float time)
+    IEnumerator EnemyThink(float thinkTime)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(5f);
         _aiActionData.isCanThinking = true;
+        _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
     }
 }

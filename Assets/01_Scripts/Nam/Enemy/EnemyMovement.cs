@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     Enemy _enemy;
 
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
     private int nextMove = 0;
 
@@ -26,16 +26,9 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void MoveAgent(Vector2 moveInput)
-    {
+    {   
         _currentVelocity = _data.speed;
         _movementdirection = moveInput;
-    }
-
-
-    private void FixedUpdate()
-    {
-        onVelocityChange?.Invoke(_movementdirection.x);
-        rb.velocity = new Vector2(_movementdirection.x * _currentVelocity, rb.velocity.y);
     }
 
     public void StopImmediatelly()

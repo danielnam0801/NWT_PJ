@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     public Vector3 HitPoint { get; set; }
 
     [SerializeField] EnemyDataSO _enemyDataSO;
-    public EnemyDataSO EnemyDataSO => _enemyDataSO;
+    public EnemyDataSO EnemyData => _enemyDataSO;
     
     [field : SerializeField]
     public float Health { get; set; }
@@ -32,7 +32,8 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
 
     void Awake()
     {
-
+        _attack = GetComponent<EnemyAttack>();
+        SetEnemyData();
     }
 
     public virtual void PerformAttack()
@@ -43,8 +44,40 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
         }
     }
 
+    private void SetEnemyData()
+    {
+        _attack.AttackDelay = _enemyDataSO.AttackSpeed;
+
+        Health = _enemyDataSO.HP;
+    }
+
     public void GetHit(float damage, GameObject damageDealer)
     {
-        
+        Debug.Log("PlayerÇÑÅ× ¸Â¾ÒÂÇ¿°");
+        if (_isDead == true) return;
+
+
+        Health -= damage;
+
+        HitPoint = damageDealer.transform.position;
+
+        OnGetHit?.Invoke();
+
+        if (Health <= 0)
+            DeadProcess();
     }
+
+    private void DeadProcess()
+    {
+        Health = 0;
+        _isDead = true;
+        //_enemyAnim.PlayDeadAnimation();
+        OnDie?.Invoke();
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
 }

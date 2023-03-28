@@ -14,7 +14,7 @@ public class DecisionInner : AIDecision
         //Debug.Log("calc : " + calc);
         if (calc < _distance)
         {
-            RaycastHit2D playerCheck = BoxCast(transform.position, new Vector2(Distance, 2), 0, _aiMovementData.direction, 1, 1 << 6);
+            RaycastHit2D playerCheck = BoxCast(transform.position, new Vector2(Distance, 2), 0, new Vector2(_aiMovementData.direction.x,0), 1, 1 << 6);
             if (playerCheck.collider != null)
             {
                 return true;
