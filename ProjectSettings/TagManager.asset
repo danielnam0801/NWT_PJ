@@ -41,3 +41,33 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4172040149
+    locked: 0
+  - name: BK+3
+    uniqueID: 3597365581
+    locked: 0
+  - name: BK+2
+    uniqueID: 2166896183
+    locked: 0
+  - name: BK+1
+    uniqueID: 3123506705
+    locked: 0
+  - name: Ground
+    uniqueID: 1442957223
+    locked: 0
+  - name: Agent
+    uniqueID: 766165865
+    locked: 0
+  - name: Front + 3
+    uniqueID: 3511251255
+    locked: 0
+  - name: Front + 2
+    uniqueID: 1649473269
+    locked: 0
+  - name: Front + 1
+    uniqueID: 1647433673
+    locked: 0
+  - name: Front
+    uniqueID: 1269622111
+    locked: 0
