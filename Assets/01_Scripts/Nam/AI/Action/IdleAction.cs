@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class IdleAction : AIAction
 {
+    public override void Init()
+    {
+
+    }
 
     public override void TakeAction()
     {

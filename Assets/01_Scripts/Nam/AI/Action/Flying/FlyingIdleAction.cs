@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class FlyingIdleAction : AIAction
 {
+    public override void Init()
+    {
+        Debug.Log(gameObject.name + "changeState");
+    }
+
     public override void TakeAction()
     {
         _aiActionData.isIdle = true;

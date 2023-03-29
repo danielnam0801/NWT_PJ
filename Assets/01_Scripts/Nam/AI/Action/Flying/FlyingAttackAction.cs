@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class FlyingAttackAction : AIAction
 {
+    public override void Init()
+    {
+        Debug.Log(name + "changeState");
+    }
+
     public override void TakeAction()
     {
         Debug.Log("AttackAction");

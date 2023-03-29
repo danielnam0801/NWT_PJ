@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AttackAction : AIAction
 {
+    public override void Init()
+    {
+
+    }
+
     public override void TakeAction()
     {
         Debug.Log("AttackAction");

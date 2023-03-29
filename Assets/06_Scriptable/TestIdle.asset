@@ -15,6 +15,8 @@ MonoBehaviour:
   m_BeforeSpeed: 1
   m_AfterSpeed: 3
   attackSpeed: 0.5
-  attackRange: 2
+  attackRange: 10
   detectRange: 10
   damage: 1
+  hp: 5
+  thinkTime: 5

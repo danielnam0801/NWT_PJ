@@ -15,5 +15,6 @@ public abstract class AIAction : MonoBehaviour
         _aiMovementData = transform.parent.GetComponent<AIMovementData>();
     }
 
+    public abstract void Init();
     public abstract void TakeAction();
 }

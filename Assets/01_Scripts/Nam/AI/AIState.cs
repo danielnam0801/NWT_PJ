@@ -14,6 +14,15 @@ public class AIState : MonoBehaviour
         _brain = transform.parent.parent.GetComponent<AIBrain>();
     }
 
+    public void InitState()
+    {
+        foreach (AIAction action in _actions)
+        {
+            //Debug.Log(action.name + " : actionName");
+            action.Init();
+        }
+    }
+
     public void UpdateState()
     {
         foreach (AIAction action in _actions)

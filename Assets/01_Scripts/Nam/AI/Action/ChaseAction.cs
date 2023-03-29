@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ChaseAction : AIAction
 {
+    public override void Init()
+    {
+
+    }
+
     public override void TakeAction()
     {
-        Debug.Log("Chase");
         if (_aiActionData.isAttack)
         {
             _aiActionData.isAttack = false;
