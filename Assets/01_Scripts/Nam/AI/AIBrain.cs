@@ -25,7 +25,7 @@ public class AIBrain : MonoBehaviour
     public EnemyAgentAnim _enemyAnim { get; private set; }
     //public GroundEnemyAnim GroundEnemyAnim { get => _groundEnemyAnim; }
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         //_target = GameManager.instance.Target;
         AIActionData = transform.Find("AI").GetComponent<AIActionData>();

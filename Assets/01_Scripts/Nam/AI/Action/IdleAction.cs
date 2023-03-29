@@ -39,7 +39,7 @@ public class IdleAction : AIAction
 
     IEnumerator EnemyThink(float thinkTime)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(thinkTime);
         _aiActionData.isCanThinking = true;
         _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
     }

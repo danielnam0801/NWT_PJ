@@ -18,7 +18,6 @@ public class WallCheck : MonoBehaviour
         if (sideWalkCheck.collider != null)
         {
             _movement.direction.x = -_movement.direction.x;
-            _movement.thinkTime = 0;
         }
     }
 }

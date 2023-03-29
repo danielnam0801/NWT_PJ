@@ -33,6 +33,11 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     void Awake()
     {
         _attack = GetComponent<EnemyAttack>();
+        _brain  = GetComponent<AIBrain>();
+    }
+
+    void Start()
+    {
         SetEnemyData();
     }
 
@@ -47,8 +52,9 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     private void SetEnemyData()
     {
         _attack.AttackDelay = _enemyDataSO.AttackSpeed;
-
+        Debug.Log(_brain.gameObject.name +_brain.AIMovementData +  " + !");
         Health = _enemyDataSO.HP;
+        _brain.AIMovementData.thinkTime = _enemyDataSO.ThinkTime;
     }
 
     public void GetHit(float damage, GameObject damageDealer)

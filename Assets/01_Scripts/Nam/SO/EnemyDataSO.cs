@@ -17,6 +17,7 @@ public class EnemyDataSO : ScriptableObject
     [SerializeField] float detectRange = 10f;
     [SerializeField] float damage = 1f;
     [SerializeField] float hp = 5f;
+    [SerializeField] float thinkTime = 5f;
 
     public float GetBeforeSpeed => m_BeforeSpeed;
     public float GetAfterSpeed => m_AfterSpeed;
@@ -25,5 +26,6 @@ public class EnemyDataSO : ScriptableObject
     public float DetectRange => detectRange;
     public float Damage => damage;
     public float HP => hp;
+    public float ThinkTime => thinkTime;
     
 }
