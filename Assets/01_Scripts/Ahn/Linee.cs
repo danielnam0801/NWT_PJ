@@ -47,8 +47,9 @@ public class Linee : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (Vector2.Distance(points[points.Count - 1], pos) > 0.1f)
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 5;
+            if (Vector2.Distance(points[points.Count - 1], pos) > 0.3f)
             {
                 points.Add(pos);
                 lr.positionCount++;
@@ -79,7 +80,8 @@ public class Linee : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < points.Count; i++)
         {
-            sword.transform.DOMove(points[i], 0.01f);
+            Vector3 pos = new Vector3(points[i].x, points[i].y, 5);
+            sword.transform.DOMove(pos, 0.01f);
             yield return new WaitForSeconds(0.01f);
         }
         Debug.Log(points.Count);

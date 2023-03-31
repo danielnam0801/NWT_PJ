@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     void Start()
     {
         SetEnemyData();
+        OnDie.AddListener(Die);
     }
 
     public virtual void PerformAttack()
@@ -64,6 +65,7 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
 
 
         Health -= damage;
+        Debug.Log(Health);
 
         HitPoint = damageDealer.transform.position;
 
@@ -77,13 +79,14 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     {
         Health = 0;
         _isDead = true;
+        Debug.Log("die");
         //_enemyAnim.PlayDeadAnimation();
         OnDie?.Invoke();
     }
 
     public void Die()
     {
+        Debug.Log("die2");
         Destroy(gameObject);
     }
-
 }
