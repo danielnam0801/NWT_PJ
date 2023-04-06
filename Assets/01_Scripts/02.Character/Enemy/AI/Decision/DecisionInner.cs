@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DecisionInner : AIDecision
 {
+    [SerializeField] Transform RayPoint;
     [SerializeField]
     [Range(0.1f, 30f)] private float _distance = 5f;
     [SerializeField] bool boxCastUse = true;
@@ -17,7 +18,7 @@ public class DecisionInner : AIDecision
         {
             if (boxCastUse)
             {
-                RaycastHit2D playerCheck = BoxCast(transform.position, new Vector2(Distance, 2), 0, new Vector2(_aiMovementData.direction.x, 0), 1, 1 << 6);
+                RaycastHit2D playerCheck = BoxCast(RayPoint.position, new Vector2(Distance, 2), 0, new Vector2(_aiMovementData.direction.x, 0), 1, 1 << 6);
                 if (playerCheck.collider != null)
                 {
                     return true;
