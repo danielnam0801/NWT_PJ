@@ -6,20 +6,25 @@ public class JumpAttackAction : AIAction
 {
     [SerializeField] float _jumpSpeed = 5f;
     [SerializeField] float _gravity = -9.81f;
+    [SerializeField] float _jumpCool = 3f;
+
     [SerializeField]
     private bool isJumping;
     public bool IsJumping => isJumping;
+    bool canJump = true;
     public override void Init()
     {
         _brain.EnemyMovement.StopImmediatelly();
         isJumping = false;
+        canJump = true;
     }
 
     public override void TakeAction()
     {
-        if(isJumping == false)
+        if(canJump && !isJumping)
         {
             Debug.Log("JUmp");
+            canJump = false;
             isJumping=true;
             StartCoroutine("JumpTo");
         }
@@ -53,5 +58,12 @@ public class JumpAttackAction : AIAction
         }
 
         isJumping = false;
+
+        StartCoroutine(DelayCoroutine(_jumpCool, CanJumpingCheck));
+    }
+
+    private void CanJumpingCheck()
+    {
+        canJump = true;
     }
 }

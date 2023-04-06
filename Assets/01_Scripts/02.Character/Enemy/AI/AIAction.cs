@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,4 +18,10 @@ public abstract class AIAction : MonoBehaviour
 
     public abstract void Init();
     public abstract void TakeAction();
+
+    protected IEnumerator DelayCoroutine(float delayTime ,Action action)
+    {
+        yield return new WaitForSeconds(delayTime);
+        action?.Invoke();
+    }
 }

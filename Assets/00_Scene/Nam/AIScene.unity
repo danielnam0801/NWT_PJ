@@ -1725,6 +1725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpSpeed: 5
   _gravity: -9.81
+  isJumping: 0
 --- !u!1 &2124701796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1832,10 @@ PrefabInstance:
     - target: {fileID: 151023312357043422, guid: fb1e4b23da39b9e488a4b37e6fe67ca7, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 151023314129195041, guid: fb1e4b23da39b9e488a4b37e6fe67ca7, type: 3}
+      propertyPath: _distance
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb1e4b23da39b9e488a4b37e6fe67ca7, type: 3}
