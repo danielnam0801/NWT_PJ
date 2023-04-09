@@ -20,3 +20,4 @@ MonoBehaviour:
   damage: 1
   hp: 5
   thinkTime: 5
+  enemyAttackData: {fileID: 11400000, guid: 998b0d5d38415564681c5fb02e170c9f, type: 2}

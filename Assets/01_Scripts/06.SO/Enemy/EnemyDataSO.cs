@@ -7,7 +7,7 @@ public enum EnemyType
 
 }
 
-[CreateAssetMenu(menuName = "Assets/SO")]
+[CreateAssetMenu(menuName = "Assets/Enemy")]
 public class EnemyDataSO : ScriptableObject
 {
     [SerializeField] float m_BeforeSpeed = 1f;
@@ -18,6 +18,7 @@ public class EnemyDataSO : ScriptableObject
     [SerializeField] float damage = 1f;
     [SerializeField] float hp = 5f;
     [SerializeField] float thinkTime = 5f;
+    [SerializeField] EnemyAttackData enemyAttackData;
 
     public float GetBeforeSpeed => m_BeforeSpeed;
     public float GetAfterSpeed => m_AfterSpeed;
