@@ -16998,7 +16998,7 @@ GameObject:
   - component: {fileID: 1637575093}
   - component: {fileID: 1637575092}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17019,6 +17019,7 @@ MonoBehaviour:
   linePrefab: {fileID: 2436233251681274465, guid: 49b0b8be4f4c19e4697a79b352545462, type: 3}
   sword: {fileID: 1028454208}
   player: {fileID: 1040910759}
+  disableTime: 3
 --- !u!4 &1637575093
 Transform:
   m_ObjectHideFlags: 0

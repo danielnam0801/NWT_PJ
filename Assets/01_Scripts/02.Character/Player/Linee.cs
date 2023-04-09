@@ -11,19 +11,24 @@ public class Linee : MonoBehaviour
     public GameObject sword;
     public GameObject player;
 
+    [SerializeField]
+    private float fadeTime = 1f;
+
     LineRenderer lr;
     EdgeCollider2D col;
     List<Vector2> points = new List<Vector2>();
 
     private bool isDraw = false; //검이 움직이는중
-    private bool isCanSwordmove = false; //마우스로 그리는중
+    private bool isSwordmove = false; //마우스로 그리는중
+    private GameObject go;
 
     private void Update()
     {
-        if (!isDraw)
+        if (isSwordmove == false)
         {
             FollowPlayer();
         }
+
         Draw();
     }
 
@@ -31,19 +36,22 @@ public class Linee : MonoBehaviour
     {
         sword.transform.DOMove(player.transform.position + new Vector3(-1, 1, 0), 1f);
     }
+
     private void Draw()
     {
         //그리는 도중 그리면 멈춤
         if (Input.GetMouseButtonDown(0))
         {
             points.Clear();
-            GameObject go = Instantiate(linePrefab);
+            go = Instantiate(linePrefab);
             lr = go.GetComponent<LineRenderer>();
             col = go.GetComponent<EdgeCollider2D>();
+            isDraw = true;
             points.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             lr.positionCount = 1;
             lr.SetPosition(0, points[0]);
             DOTween.KillAll(lr);
+            
         }
         else if (Input.GetMouseButton(0))
         {
@@ -59,23 +67,19 @@ public class Linee : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            isDraw = true;
-            isCanSwordmove = false;
+            isDraw = false;
 
             if (points.Count > 5)
             {
-                isCanSwordmove = true;
+                isSwordmove = true;
+                DOTween.KillAll(sword);
                 StartCoroutine(SwordMove());
-                isDraw = true;
             }
-            isDraw = false;
         }
     }
 
     private IEnumerator SwordMove()
     {
-        isDraw = false;
-        //isCanSwordmove = false;
         //draw and delay
         yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < points.Count; i++)
@@ -84,8 +88,34 @@ public class Linee : MonoBehaviour
             sword.transform.DOMove(pos, 0.01f);
             yield return new WaitForSeconds(0.01f);
         }
+
         Debug.Log(points.Count);
+        isSwordmove = false;
         points.Clear();
-        yield return new WaitForSeconds(0.2f);
+
+        float currentFadeTime = 0;
+        float alpha = 0;
+        Gradient gradient = new Gradient();
+
+        //라인 페이드
+        while (currentFadeTime <= fadeTime)
+        {
+            currentFadeTime += Time.deltaTime;
+            alpha = 1 - (currentFadeTime / fadeTime);
+
+            GradientAlphaKey[] _alphaKeys = new GradientAlphaKey[2]
+            {
+                new GradientAlphaKey(alpha, 0),
+                new GradientAlphaKey(alpha, .8f)
+            };
+
+            gradient.SetKeys(gradient.colorKeys, _alphaKeys);
+
+            lr.colorGradient = gradient;
+
+            yield return null;
+        }
+
+        Destroy(go);
     }
 }
