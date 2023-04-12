@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Linee : MonoBehaviour
+public class DrawLine : MonoBehaviour
 {
     public GameObject linePrefab;
     public GameObject sword;
@@ -39,6 +39,9 @@ public class Linee : MonoBehaviour
 
     private void Draw()
     {
+        if (isSwordmove)
+            return;
+
         //그리는 도중 그리면 멈춤
         if (Input.GetMouseButtonDown(0))
         {
@@ -93,29 +96,6 @@ public class Linee : MonoBehaviour
         isSwordmove = false;
         points.Clear();
 
-        float currentFadeTime = 0;
-        float alpha = 0;
-        Gradient gradient = new Gradient();
-
-        //라인 페이드
-        while (currentFadeTime <= fadeTime)
-        {
-            currentFadeTime += Time.deltaTime;
-            alpha = 1 - (currentFadeTime / fadeTime);
-
-            GradientAlphaKey[] _alphaKeys = new GradientAlphaKey[2]
-            {
-                new GradientAlphaKey(alpha, 0),
-                new GradientAlphaKey(alpha, .8f)
-            };
-
-            gradient.SetKeys(gradient.colorKeys, _alphaKeys);
-
-            lr.colorGradient = gradient;
-
-            yield return null;
-        }
-
-        Destroy(go);
+        StartCoroutine(go.GetComponent<Line>().Fade(fadeTime));
     }
 }

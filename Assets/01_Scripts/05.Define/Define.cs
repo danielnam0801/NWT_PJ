@@ -4,3 +4,9 @@ public enum PoolType
     SFX,
     VFX
 }
+
+public enum PlayerStateType
+{
+    Idle = 0,
+    Move,
+}
