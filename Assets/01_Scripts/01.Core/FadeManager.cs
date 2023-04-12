@@ -20,11 +20,6 @@ public class FadeManager : MonoBehaviour
         fadePanel = transform.Find("FadePanel").GetComponent<Image>();
     }
 
-    private void Start()
-    {
-        Fade(0, 3);
-    }
-
     public void Fade(float endValue, float duration)
     {
         fadePanel.gameObject.SetActive(true);
