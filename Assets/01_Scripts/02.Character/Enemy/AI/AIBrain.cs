@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,9 @@ public class AIBrain : MonoBehaviour
     public Transform Target => _target;
     public AIActionData AIActionData { get; private set; }
     public AIMovementData AIMovementData { get; private set; }
+   
+    private EnemyMovement _enemyMovement;
+    public EnemyMovement EnemyMovement => _enemyMovement;
 
     Enemy enemy;
     public Enemy Enemy => enemy;
@@ -31,6 +35,7 @@ public class AIBrain : MonoBehaviour
         AIActionData = transform.Find("AI").GetComponent<AIActionData>();
         AIMovementData = transform.Find("AI").GetComponent<AIMovementData>();
         enemy = transform.GetComponent<Enemy>();
+        _enemyMovement = GetComponent<EnemyMovement>();
         //_groundEnemyAnim = transform.Find("VisualSprite").GetComponent<GroundEnemyAnim>();
     }
 
