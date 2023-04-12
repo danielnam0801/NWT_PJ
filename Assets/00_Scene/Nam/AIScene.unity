@@ -1861,10 +1861,14 @@ PrefabInstance:
     - target: {fileID: 151023312357043416, guid: fb1e4b23da39b9e488a4b37e6fe67ca7, type: 3}
       propertyPath: _target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1647468938}
     - target: {fileID: 151023312357043422, guid: fb1e4b23da39b9e488a4b37e6fe67ca7, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 151023312357043422, guid: fb1e4b23da39b9e488a4b37e6fe67ca7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 151023314129195041, guid: fb1e4b23da39b9e488a4b37e6fe67ca7, type: 3}
       propertyPath: _distance
