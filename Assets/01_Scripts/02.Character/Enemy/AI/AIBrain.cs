@@ -23,6 +23,8 @@ public class AIBrain : MonoBehaviour
     private EnemyMovement _enemyMovement;
     public EnemyMovement EnemyMovement => _enemyMovement;
 
+    protected AttackCoolController _attackCoolController;
+    public AttackCoolController AttackCoolController => _attackCoolController;
     Enemy enemy;
     public Enemy Enemy => enemy;
 
@@ -36,6 +38,7 @@ public class AIBrain : MonoBehaviour
         AIMovementData = transform.Find("AI").GetComponent<AIMovementData>();
         enemy = transform.GetComponent<Enemy>();
         _enemyMovement = GetComponent<EnemyMovement>();
+        _attackCoolController = GetComponent<AttackCoolController>();
         //_groundEnemyAnim = transform.Find("VisualSprite").GetComponent<GroundEnemyAnim>();
     }
 
@@ -67,8 +70,8 @@ public class AIBrain : MonoBehaviour
             IdleStateStateChanged?.Invoke(AIMovementData.direction, AIMovementData.beforeDirection);
     }
 
-    public virtual void Attack()
+    public virtual void Attack(SkillName skillName)
     {
-        OnFireButtonPress?.Invoke();
+        _attackCoolController.Attack(skillName);
     }
 }

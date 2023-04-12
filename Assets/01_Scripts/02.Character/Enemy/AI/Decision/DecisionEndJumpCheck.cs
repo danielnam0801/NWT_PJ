@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DecisionEndJumpCheck : AIDecision
 {
-    JumpAttackAction jumpAction;
+    JumpAttack jumpAction;
         
     protected override void Awake()
     {
         base.Awake();
-        jumpAction = transform.parent.GetComponent<JumpAttackAction>();
+        jumpAction = transform.parent.GetComponent<JumpAttack>();
     }
 
     public override bool MakeADecision()

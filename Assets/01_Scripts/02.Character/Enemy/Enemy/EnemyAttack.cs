@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,11 +28,11 @@ public abstract class EnemyAttack : MonoBehaviour
 
     public abstract void Attack(float damage);
 
-    protected IEnumerator WaitBeforeAttackCoroutine()
+    protected IEnumerator WaitBeforeAttackCoroutine(float time, Action action)
     {
         Debug.Log(_attackDelay + ": AttackDel");
         _waitBeforeNextAttack = true;
-        yield return new WaitForSeconds(_attackDelay);
+        yield return new WaitForSeconds(time);
         Debug.Log("Del");
 
         _waitBeforeNextAttack = false;

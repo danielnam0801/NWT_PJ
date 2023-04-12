@@ -15,17 +15,15 @@ public class EnemyDataSO : ScriptableObject
     [SerializeField] float attackSpeed = 0.5f;
     [SerializeField] float attackRange = 2f;
     [SerializeField] float detectRange = 10f;
-    [SerializeField] float damage = 1f;
     [SerializeField] float hp = 5f;
     [SerializeField] float thinkTime = 5f;
-    [SerializeField] EnemyAttackData enemyAttackData;
+    public List<EnemyAttackData> _EnemyAttackDatas;
 
     public float GetBeforeSpeed => m_BeforeSpeed;
     public float GetAfterSpeed => m_AfterSpeed;
     public float AttackSpeed => attackSpeed;
     public float AttackRange => attackRange;
     public float DetectRange => detectRange;
-    public float Damage => damage;
     public float HP => hp;
     public float ThinkTime => thinkTime;
     

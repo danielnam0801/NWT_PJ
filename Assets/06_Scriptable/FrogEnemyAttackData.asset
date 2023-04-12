@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5efdd9e2326ecf5469d9bae27f1a86ee, type: 3}
-  m_Name: New Enemy Attack Data
+  m_Name: FrogEnemyAttackData
   m_EditorClassIdentifier: 
   atk: {fileID: 0}
   coolTime: 0

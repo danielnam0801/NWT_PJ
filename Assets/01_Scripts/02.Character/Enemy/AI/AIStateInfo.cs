@@ -4,13 +4,9 @@ using UnityEngine;
 
 public enum SkillName
 {
-    Melee = 0,
-    Range = 1
+    FlyingNormalAttack, FrogJumpAttack, FrogTongueAttack, NormalMeleeAttack
 }
 public class AIStateInfo : MonoBehaviour
 {
-    public float MeleeCool = 0f;
-    public float RangeCool = 0f;
-
     public bool IsAttack = false;
 }

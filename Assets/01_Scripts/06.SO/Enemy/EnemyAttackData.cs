@@ -6,7 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Assets/EnemyAttackData")]
 public class EnemyAttackData : ScriptableObject
 {
-    public List<EnemyAttack> atk;
-    public Action<bool> action;
+    public EnemyAttack atk;
+    public SkillName AttackName;
     public float coolTime;
+    public float damage;    
 }

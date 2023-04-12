@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpAttackAction : AIAction
+public class JumpAttack : EnemyAttack
 {
     [SerializeField] float _jumpSpeed = 5f;
     [SerializeField] float _gravity = -9.81f;
@@ -12,23 +12,6 @@ public class JumpAttackAction : AIAction
     private bool isJumping;
     public bool IsJumping => isJumping;
     bool canJump = true;
-    public override void Init()
-    {
-        _brain.EnemyMovement.StopImmediatelly();
-        isJumping = false;
-        canJump = true;
-    }
-
-    public override void TakeAction()
-    {
-        if(canJump && !isJumping)
-        {
-            Debug.Log("JUmp");
-            canJump = false;
-            isJumping=true;
-            StartCoroutine("JumpTo");
-        }
-    }
 
     private IEnumerator JumpTo()
     {
@@ -59,11 +42,16 @@ public class JumpAttackAction : AIAction
 
         isJumping = false;
 
-        StartCoroutine(DelayCoroutine(_jumpCool, CanJumpingCheck));
+        //_brain.AttackCoolController.SetCoolDown(SkillName.FrogJumpAttack, _jumpCool);
     }
 
     private void CanJumpingCheck()
     {
         canJump = true;
+    }
+
+    public override void Attack(float damage)
+    {
+        
     }
 }

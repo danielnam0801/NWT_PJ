@@ -42,14 +42,6 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
         OnDie.AddListener(Die);
     }
 
-    public virtual void PerformAttack()
-    {
-        if (_isDead == false && _isActive == true)
-        {
-            _attack.Attack(_enemyDataSO.Damage);
-        }
-    }
-
     private void SetEnemyData()
     {
         _attack.AttackDelay = _enemyDataSO.AttackSpeed;
