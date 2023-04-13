@@ -78,6 +78,8 @@ public class DrawLine : MonoBehaviour
                 DOTween.KillAll(sword);
                 StartCoroutine(SwordMove());
             }
+
+            StartCoroutine(go.GetComponent<Line>().Fade(fadeTime));
         }
     }
 
@@ -95,7 +97,5 @@ public class DrawLine : MonoBehaviour
         Debug.Log(points.Count);
         isSwordmove = false;
         points.Clear();
-
-        StartCoroutine(go.GetComponent<Line>().Fade(fadeTime));
     }
 }
