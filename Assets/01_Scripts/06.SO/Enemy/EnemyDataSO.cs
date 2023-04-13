@@ -17,7 +17,6 @@ public class EnemyDataSO : ScriptableObject
     [SerializeField] float detectRange = 10f;
     [SerializeField] float hp = 5f;
     [SerializeField] float thinkTime = 5f;
-    public List<EnemyAttackData> _EnemyAttackDatas;
 
     public float GetBeforeSpeed => m_BeforeSpeed;
     public float GetAfterSpeed => m_AfterSpeed;

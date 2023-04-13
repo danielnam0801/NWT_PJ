@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,12 @@ public class JumpAttack : EnemyAttack
     private bool isJumping;
     public bool IsJumping => isJumping;
 
-    public override void Attack(float damage)
+    public override void Attack(Action CallBack)
     {
-        StartCoroutine(JumpTo());
+        StartCoroutine(JumpTo(CallBack));
     }
 
-    private IEnumerator JumpTo()
+    private IEnumerator JumpTo(Action CallBack)
     {
         Debug.Log("Jumping");
    
@@ -44,7 +45,7 @@ public class JumpAttack : EnemyAttack
             yield return null;
         }
 
-        _stateInfo.IsFrogJumpAttack = false;
+        CallBack();
         //_brain.AttackCoolController.SetCoolDown(SkillName.FrogJumpAttack, _jumpCool);
     }
 }

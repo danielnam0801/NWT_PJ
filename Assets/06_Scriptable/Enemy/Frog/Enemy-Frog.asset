@@ -17,7 +17,8 @@ MonoBehaviour:
   attackSpeed: 0.5
   attackRange: 5
   detectRange: 10
-  damage: 1
   hp: 5
   thinkTime: 5
-  enemyAttackData: {fileID: 11400000, guid: 998b0d5d38415564681c5fb02e170c9f, type: 2}
+  _EnemyAttackDatas:
+  - {fileID: 11400000, guid: 998b0d5d38415564681c5fb02e170c9f, type: 2}
+  - {fileID: 11400000, guid: be865b04f4e03854c824577962d54c06, type: 2}

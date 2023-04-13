@@ -8,7 +8,7 @@ public class FlyingShootAttack : EnemyAttack
     [SerializeField] GameObject enemyBullet;
     [SerializeField] Transform shootPoint;
     [SerializeField] float shootingPower = 5f;
-    public override void Attack(float damage)
+    public override void Attack(Action CallBack)
     {
         //Debug.Log("AttackSS");
         //if (_waitBeforeNextAttack == false)

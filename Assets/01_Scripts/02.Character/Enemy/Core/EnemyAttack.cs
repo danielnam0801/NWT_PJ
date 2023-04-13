@@ -20,7 +20,7 @@ public abstract class EnemyAttack : MonoBehaviour
         _stateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();
     }
 
-    public abstract void Attack(float damage);
+    public abstract void Attack(Action CallBack);
 
     protected IEnumerator AttackDamageDelayCoroutine(float afterAttackDelay, Action action)
     {

@@ -9,47 +9,54 @@ public class AttackCoolController : MonoBehaviour
     Enemy _enemy;
     EnemyMovement _movement;
     Dictionary<SkillName, float> attackCoolList;
-    Dictionary<SkillName, bool> endCoolAttackList; //쿨타임 끝난 스킬들은 true저장
-    Dictionary<SkillName, EnemyAttack> attackActionList;
+    Dictionary<SkillName, EnemyAttackData> _attackDictionary;
     AIStateInfo _stateInfo;
 
     private void Awake()
     {
         Init();
+        MakeAttackTypeAction();
     }
 
     private void Init()
     {
         _enemy = GetComponent<Enemy>();
         _movement = GetComponent<EnemyMovement>();
-        _stateInfo = transform.Find("AttackType").GetComponent<AIStateInfo>();
+        _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
         attackCoolList = new Dictionary<SkillName, float>();
-        endCoolAttackList = new Dictionary<SkillName, bool>();
-        attackActionList = new Dictionary<SkillName, EnemyAttack>();
-
-        _enemy.EnemyData._EnemyAttackDatas.ForEach((enemy) =>
-        {
-            attackCoolList.Add(enemy.AttackName, enemy.coolTime);
-            endCoolAttackList.Add(enemy.AttackName, false);
-            attackActionList.Add(enemy.AttackName, enemy.atk);
-        });
-
-    
+        _attackDictionary = new Dictionary<SkillName, EnemyAttackData>();
     }
 
-    Tuple<float,float> SearchSkillData(SkillName skillname)
+    private void MakeAttackTypeAction()
     {
-        foreach(var enemy in _enemy.EnemyData._EnemyAttackDatas)
+        Transform atkTrm = transform.Find("AttackType");
+        EnemyAttackData jumpAttack = new EnemyAttackData()
         {
-            if (enemy.AttackName == skillname)
-            {
-                float damage = enemy.damage;
-                float coolTime = enemy.coolTime;
-                return new Tuple<float, float>(damage, coolTime) ;
-            }
-        }
-        Debug.LogError("Skill이름이 다르게 되어있음 : " + skillname);
-        return new Tuple<float,float>(0,0);
+            atk = atkTrm.GetComponent<JumpAttack>(),
+            AttackName = SkillName.FrogJumpAttack,
+            action = () => {
+                _stateInfo.IsFrogJumpAttack = false;
+                _stateInfo.IsAttack = false;
+            },
+            coolTime = 3f,
+            damage = 1
+        };
+        EnemyAttackData tongueAttack = new EnemyAttackData()
+        {
+            atk = atkTrm.GetComponent<JumpAttack>(),
+            AttackName = SkillName.FrogTongueAttack,
+            action = () => {
+                _stateInfo.IsFrogTongueAttack = false;
+                _stateInfo.IsAttack = false;
+            },
+            coolTime = 2f,
+            damage = 1
+        };
+
+        _attackDictionary.Add(SkillName.FrogJumpAttack, jumpAttack);
+        _attackDictionary.Add(SkillName.FrogTongueAttack, tongueAttack);
+        
+
     }
 
     public virtual void Attack(SkillName skillname)
@@ -59,25 +66,21 @@ public class AttackCoolController : MonoBehaviour
             return;
         }
 
-        endCoolAttackList[skillname] = isCoolDown(skillname);
-        if(endCoolAttackList[skillname] == true)
-        {
-            Tuple<float, float> skillData = SearchSkillData(skillname);
-            float damage = skillData.Item1; // skill별 damage가 다름으로 찾아줌
-            float cooltime = skillData.Item2;
-
-            FieldInfo fInfoBool = typeof(AIStateInfo)
-            .GetField($"Is{skillname.ToString()}", BindingFlags.Public | BindingFlags.Instance);
-           
-            _movement.StopImmediatelly();
-            _stateInfo.IsAttack = true;
-            fInfoBool.SetValue(_stateInfo, true);
-            attackActionList[skillname].Attack(damage);
-            SetCoolDown(skillname, cooltime);
-        }
+        if (!isCoolDown(skillname)) return;
         else
         {
-            Debug.Log($"{skillname} 공격 쿨타임 대기중");
+            FieldInfo fInfoBool = typeof(AIStateInfo)
+            .GetField($"Is{skillname.ToString()}", BindingFlags.Public | BindingFlags.Instance);
+            
+            EnemyAttackData atkData = null;
+            if(_attackDictionary.TryGetValue(skillname, out atkData)){
+                _movement.StopImmediatelly();
+                _stateInfo.IsAttack = true;
+                fInfoBool.SetValue(_stateInfo, true);
+                attackCoolList[skillname] = atkData.coolTime;
+                atkData.atk.Attack(atkData.action);
+                SetCoolDown(skillname, atkData.coolTime);
+            }
         }
     }
 
