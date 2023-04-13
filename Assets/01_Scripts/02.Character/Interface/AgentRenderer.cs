@@ -6,16 +6,16 @@ public class AgentRenderer : MonoBehaviour
 {
 
     AIMovementData _movementData;
-    AIActionData _actionData;
+    AIStateInfo _aiStateInfo;
 
     private void Awake()
     {
-        _actionData = transform.parent.Find("AI").GetComponent<AIActionData>();
+        _aiStateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();;
     }
 
     public void ChaseAttackFaceDirection(Vector2 pointerInput)
     {
-        if (_actionData.isAttack == false)
+        if (_aiStateInfo.IsAttack == false)
         {
             Vector3 direction = (Vector3)pointerInput - transform.position;
             transform.parent.localScale = (direction.x < 0) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);

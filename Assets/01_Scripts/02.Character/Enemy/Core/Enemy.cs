@@ -23,7 +23,6 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     [SerializeField] protected bool _isActive = false;
     
     protected AIBrain _brain;
-    protected EnemyAttack _attack;
     protected EnemyMovement _enemyMovement;
     protected CapsuleCollider2D _bodyColider;
     protected SpriteRenderer _spriteRenderer = null;
@@ -32,7 +31,6 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
 
     void Awake()
     {
-        _attack = GetComponent<EnemyAttack>();
         _brain  = GetComponent<AIBrain>();
     }
 
@@ -44,7 +42,6 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
 
     private void SetEnemyData()
     {
-        _attack.AttackDelay = _enemyDataSO.AttackSpeed;
         Debug.Log(_brain.gameObject.name +_brain.AIMovementData +  " + !");
         Health = _enemyDataSO.HP;
         _brain.AIMovementData.thinkTime = _enemyDataSO.ThinkTime;

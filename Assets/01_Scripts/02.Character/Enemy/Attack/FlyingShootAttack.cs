@@ -10,14 +10,14 @@ public class FlyingShootAttack : EnemyAttack
     [SerializeField] float shootingPower = 5f;
     public override void Attack(float damage)
     {
-        Debug.Log("AttackSS");
-        if (_waitBeforeNextAttack == false)
-        {
-            Debug.Log("Attack");
-            _brain.AIActionData.isAttack = true;
-            Shooting();
-            StartCoroutine(WaitBeforeAttackCoroutine());
-        }
+        //Debug.Log("AttackSS");
+        //if (_waitBeforeNextAttack == false)
+        //{
+        //    Debug.Log("Attack");
+        //    _brain.AIActionData.isAttack = true;
+        //    Shooting();
+        //    StartCoroutine(WaitBeforeAttackCoroutine());
+        //}
     }
 
     private void Shooting()

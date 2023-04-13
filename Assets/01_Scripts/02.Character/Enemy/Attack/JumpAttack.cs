@@ -11,7 +11,11 @@ public class JumpAttack : EnemyAttack
     [SerializeField]
     private bool isJumping;
     public bool IsJumping => isJumping;
-    bool canJump = true;
+
+    public override void Attack(float damage)
+    {
+        StartCoroutine(JumpTo());
+    }
 
     private IEnumerator JumpTo()
     {
@@ -40,18 +44,7 @@ public class JumpAttack : EnemyAttack
             yield return null;
         }
 
-        isJumping = false;
-
+        _stateInfo.IsFrogJumpAttack = false;
         //_brain.AttackCoolController.SetCoolDown(SkillName.FrogJumpAttack, _jumpCool);
-    }
-
-    private void CanJumpingCheck()
-    {
-        canJump = true;
-    }
-
-    public override void Attack(float damage)
-    {
-        
     }
 }

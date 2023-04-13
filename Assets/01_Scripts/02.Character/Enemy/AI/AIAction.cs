@@ -6,12 +6,14 @@ using UnityEngine;
 public abstract class AIAction : MonoBehaviour
 {
     protected AIBrain _brain;
+    protected AIStateInfo _stateInfo;
     protected AIActionData _aiActionData;
     protected AIMovementData _aiMovementData;
 
     protected virtual void Awake()
     {
         _brain = transform.parent.parent.GetComponent<AIBrain>();
+        _stateInfo = transform.parent.GetComponent<AIStateInfo>();
         _aiActionData = transform.parent.GetComponent<AIActionData>();
         _aiMovementData = transform.parent.GetComponent<AIMovementData>();
     }

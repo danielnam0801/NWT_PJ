@@ -12,6 +12,8 @@ public class AIState : MonoBehaviour
     private void Awake()
     {
         _brain = transform.parent.parent.GetComponent<AIBrain>();
+        GetComponents<AIAction>(_actions);
+        GetComponentsInChildren<AITransition>(_transition);
     }
 
     public void InitState()
@@ -35,27 +37,13 @@ public class AIState : MonoBehaviour
             bool result = false;
             foreach (AIDecision d in tr.decisions)
             {
-                Debug.Log("Decision : " + d);
                 result = d.MakeADecision();
+                if (d.isReverse == true) result = !result;
                 if (result == false) break;
+                else
+                    _brain.ChangeState(tr.NextState);
             }
-
-            if (result == true)
-            {
-                if (tr.positiveState != null)
-                {
-                    _brain.ChangeState(tr.positiveState);
-                    return;
-                }
-            }
-            else
-            {
-                if (tr.negativeState != null)
-                {
-                    _brain.ChangeState(tr.negativeState);
-                    return;
-                }
-            }
+            
         }
     }
 

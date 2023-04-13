@@ -9,4 +9,6 @@ public enum SkillName
 public class AIStateInfo : MonoBehaviour
 {
     public bool IsAttack = false;
+    public bool IsFrogTongueAttack = false;
+    public bool IsFrogJumpAttack = false;
 }

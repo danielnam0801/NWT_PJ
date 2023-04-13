@@ -12,7 +12,6 @@ public class AttackCoolController : MonoBehaviour
     Dictionary<SkillName, bool> endCoolAttackList; //쿨타임 끝난 스킬들은 true저장
     Dictionary<SkillName, EnemyAttack> attackActionList;
     AIStateInfo _stateInfo;
-    
 
     private void Awake()
     {
@@ -65,8 +64,14 @@ public class AttackCoolController : MonoBehaviour
         {
             Tuple<float, float> skillData = SearchSkillData(skillname);
             float damage = skillData.Item1; // skill별 damage가 다름으로 찾아줌
-            float cooltime = skillData.Item2; 
+            float cooltime = skillData.Item2;
 
+            FieldInfo fInfoBool = typeof(AIStateInfo)
+            .GetField($"Is{skillname.ToString()}", BindingFlags.Public | BindingFlags.Instance);
+           
+            _movement.StopImmediatelly();
+            _stateInfo.IsAttack = true;
+            fInfoBool.SetValue(_stateInfo, true);
             attackActionList[skillname].Attack(damage);
             SetCoolDown(skillname, cooltime);
         }

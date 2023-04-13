@@ -5,7 +5,12 @@ using UnityEngine;
 public class AITransition : MonoBehaviour
 {
     public List<AIDecision> decisions;
-    public AIState positiveState;
-    public AIState negativeState;
+    [SerializeField]
+    private AIState nextState;
+    public AIState NextState => nextState;
 
+    protected virtual void Awake()
+    {
+        GetComponents<AIDecision>(decisions);
+    }
 }
