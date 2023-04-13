@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private PlayerState state;
+
     private Dictionary<PlayerStateType, PlayerState> stateDictionary = new Dictionary<PlayerStateType, PlayerState>();
 
     private void Awake()
@@ -16,37 +17,32 @@ public class PlayerController : MonoBehaviour
 
         foreach(PlayerStateType state in Enum.GetValues(typeof(PlayerStateType)))
         {
-            PlayerState stateScript = stateTrm.GetComponent($"{state}State") as PlayerState;
+            PlayerState stateScript = stateTrm.GetComponent($"Player{state}State") as PlayerState;
 
             if (stateScript == null)
             {
                 Debug.Log($"{state}스크립트 없음");
+                continue;
             }
 
+            stateScript.Init(transform);
             stateDictionary.Add(state, stateScript);
         }
     }
 
     private void Start()
     {
-        ChangeState(PlayerStateType.Idle);
+        ChangeState(PlayerStateType.Movement);
     }
 
     void Update()
     {
-        //Vector3 moveInput = new Vector3(Input.GetAxis("Horizontal"), 0);
-        //GetComponent<PlayerMovement>().Move(moveInput);
-
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    GetComponent<PlayerMovement>().Jump();
-        //}
         state.UpdateState();
     }
 
     public void ChangeState(PlayerStateType newState)
     {
-        state.ExitState();
+        if(state != null) state.ExitState();
         state = stateDictionary[newState];
         state.EnterState();
     }

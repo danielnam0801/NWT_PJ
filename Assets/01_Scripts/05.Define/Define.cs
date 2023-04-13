@@ -7,6 +7,6 @@ public enum PoolType
 
 public enum PlayerStateType
 {
-    Idle = 0,
-    Move,
+    Movement = 0,
+    //Attack,
 }
