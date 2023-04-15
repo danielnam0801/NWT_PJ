@@ -42,7 +42,6 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
 
     private void SetEnemyData()
     {
-        Debug.Log(_brain.gameObject.name +_brain.AIMovementData +  " + !");
         Health = _enemyDataSO.HP;
         _brain.AIMovementData.thinkTime = _enemyDataSO.ThinkTime;
     }

@@ -155,7 +155,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 185763886}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &21831755
 MonoBehaviour:
@@ -200,6 +200,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
+  Skill: 4
+--- !u!1 &98461676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4700059250572986609, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+  m_PrefabInstance: {fileID: 1372810122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &98461680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5904763542899937426, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+  m_PrefabInstance: {fileID: 1372810122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &185763885
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,8 +242,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1549394059}
-  - {fileID: 1502071438}
   - {fileID: 21831754}
+  - {fileID: 1502071438}
   m_Father: {fileID: 273091895}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -347,8 +358,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAttack: 0
-  IsFrogTongueAttack: 0
-  IsFrogJumpAttack: 0
+  IsNormal: 0
+  IsSpecial: 0
+  IsJump: 0
+  IsMelee: 0
+  IsRange: 0
 --- !u!1 &280762617
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,8 +637,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAttack: 0
-  IsFrogTongueAttack: 0
-  IsFrogJumpAttack: 0
+  IsNormal: 0
+  IsSpecial: 0
+  IsJump: 0
+  IsMelee: 0
+  IsRange: 0
 --- !u!1 &817679371
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +785,7 @@ MonoBehaviour:
   AttackFeedBack:
     m_PersistentCalls:
       m_Calls: []
-  playTime: 0.5
+  playTime: 1
 --- !u!1 &1177958452
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  skill: 2
+  skill: 4
 --- !u!1 &1239449156
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +996,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1445338982}
     m_Modifications:
+    - target: {fileID: 44809526459987247, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.4095397
+      objectReference: {fileID: 0}
+    - target: {fileID: 44809526459987247, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0.03621316
+      objectReference: {fileID: 0}
+    - target: {fileID: 44809526459987247, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.502072
+      objectReference: {fileID: 0}
+    - target: {fileID: 537368157781128382, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.4072219
+      objectReference: {fileID: 0}
+    - target: {fileID: 537368157781128382, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0.06267446
+      objectReference: {fileID: 0}
+    - target: {fileID: 537368157781128382, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.22145599
+      objectReference: {fileID: 0}
+    - target: {fileID: 537368157781128382, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.29132023
+      objectReference: {fileID: 0}
+    - target: {fileID: 720466128799500745, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0.2053567
+      objectReference: {fileID: 0}
+    - target: {fileID: 720466128799500745, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.23611002
+      objectReference: {fileID: 0}
     - target: {fileID: 794517823734911228, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.82448304
@@ -994,6 +1047,18 @@ PrefabInstance:
     - target: {fileID: 1279467950095852600, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.1390783
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838967702724013440, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.4016111
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838967702724013440, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.9579997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838967702724013440, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.7933839
       objectReference: {fileID: 0}
     - target: {fileID: 3320914421615022402, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1038,6 +1103,22 @@ PrefabInstance:
     - target: {fileID: 4700059250572986609, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
       propertyPath: m_Name
       value: Big frog Original
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111105611141894019, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.2795153
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111105611141894019, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0.08445498
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111105611141894019, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.26486
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111105611141894019, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.3673904
       objectReference: {fileID: 0}
     - target: {fileID: 5217817661385126986, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1095,6 +1176,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6755847220458645428, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.40552366
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755847220458645428, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0.040510625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755847220458645428, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.3049799
+      objectReference: {fileID: 0}
     - target: {fileID: 6904616839675067469, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9901328
@@ -1117,23 +1210,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
---- !u!4 &1372810123 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5904763542899937426, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
-  m_PrefabInstance: {fileID: 1372810122}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1372810124 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4700059250572986609, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
-  m_PrefabInstance: {fileID: 1372810122}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1372810125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372810124}
+  m_GameObject: {fileID: 98461676}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e45af6053d5811478c052842b3c505e, type: 3}
@@ -1239,7 +1322,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1372810123}
+  - {fileID: 98461680}
   - {fileID: 273091895}
   - {fileID: 2124701797}
   - {fileID: 1239449157}
@@ -1306,19 +1389,7 @@ MonoBehaviour:
         m_CallState: 2
   OnFireButtonPress:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1445338984}
-        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
-        m_MethodName: PerformAttack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _currentState: {fileID: 817679373}
   _target: {fileID: 1647468938}
 --- !u!114 &1445338984
@@ -1500,7 +1571,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 185763886}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1502071439
 MonoBehaviour:
@@ -1545,6 +1616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
+  Skill: 2
 --- !u!1 &1549394058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f99055932b544b92fbadcc3c27bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 2
+  skillName: 4
 --- !u!114 &1625120206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,8 +1786,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAttack: 0
-  IsFrogTongueAttack: 0
-  IsFrogJumpAttack: 0
+  IsNormal: 0
+  IsSpecial: 0
+  IsJump: 0
+  IsMelee: 0
+  IsRange: 0
 --- !u!1 &1647468932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,7 +2003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  skill: 1
+  skill: 2
 --- !u!1 &1769928408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,7 +2209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f99055932b544b92fbadcc3c27bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 1
+  skillName: 2
 --- !u!1 &2124701796
 GameObject:
   m_ObjectHideFlags: 0

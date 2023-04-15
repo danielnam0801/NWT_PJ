@@ -15,7 +15,6 @@ public class ThinkAction : AIAction
     {
         if (_aiActionData.isCanThinking)
         {
-            Debug.Log("EnemyThink " + _brain.gameObject.name);
             _aiMovementData.direction = new Vector2(NextMove(), 0);
             _aiActionData.isCanThinking = false;
         }
@@ -24,8 +23,6 @@ public class ThinkAction : AIAction
     {
 
         int nextMove = UnityEngine.Random.Range(-1, 2);
-
-        Debug.Log("NextMove : " + nextMove);
 
         _aiMovementData.thinkTime = UnityEngine.Random.Range(this.thinkTime-1f, this.thinkTime + 1f);
 

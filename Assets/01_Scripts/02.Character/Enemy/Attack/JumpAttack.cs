@@ -12,16 +12,21 @@ public class JumpAttack : EnemyAttack
     [SerializeField]
     private bool isJumping;
     public bool IsJumping => isJumping;
+    private Action callBack = null;
 
     public override void Attack(Action CallBack)
     {
-        StartCoroutine(JumpTo(CallBack));
+        this.callBack = CallBack;
+        StartCoroutine(AttackDamageDelayCoroutine(JumpAct, PlayTime, callBack));
     }
 
-    private IEnumerator JumpTo(Action CallBack)
+    void JumpAct()
     {
-        Debug.Log("Jumping");
-   
+        StartCoroutine(JumpTo());
+    }
+
+    private IEnumerator JumpTo()
+    {
         Vector2 start = _brain.transform.position;
         Vector2 end = _brain.Target.position;
 
@@ -44,8 +49,5 @@ public class JumpAttack : EnemyAttack
 
             yield return null;
         }
-
-        CallBack();
-        //_brain.AttackCoolController.SetCoolDown(SkillName.FrogJumpAttack, _jumpCool);
     }
 }

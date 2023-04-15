@@ -8,7 +8,7 @@ public class AttackCoolController : MonoBehaviour
 {
     Enemy _enemy;
     EnemyMovement _movement;
-    Dictionary<SkillName, float> attackCoolList;
+    Dictionary<SkillName, float> _attackCoolList;
     Dictionary<SkillName, EnemyAttackData> _attackDictionary;
     AIStateInfo _stateInfo;
 
@@ -23,7 +23,7 @@ public class AttackCoolController : MonoBehaviour
         _enemy = GetComponent<Enemy>();
         _movement = GetComponent<EnemyMovement>();
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
-        attackCoolList = new Dictionary<SkillName, float>();
+        _attackCoolList = new Dictionary<SkillName, float>();
         _attackDictionary = new Dictionary<SkillName, EnemyAttackData>();
     }
 
@@ -33,9 +33,9 @@ public class AttackCoolController : MonoBehaviour
         EnemyAttackData jumpAttack = new EnemyAttackData()
         {
             atk = atkTrm.GetComponent<JumpAttack>(),
-            AttackName = SkillName.FrogJumpAttack,
+            AttackName = SkillName.Jump,
             action = () => {
-                _stateInfo.IsFrogJumpAttack = false;
+                _stateInfo.IsJump = false;
                 _stateInfo.IsAttack = false;
             },
             coolTime = 3f,
@@ -43,53 +43,51 @@ public class AttackCoolController : MonoBehaviour
         };
         EnemyAttackData tongueAttack = new EnemyAttackData()
         {
-            atk = atkTrm.GetComponent<JumpAttack>(),
-            AttackName = SkillName.FrogTongueAttack,
+            atk = atkTrm.GetComponent<FrogTongueAttack>(),
+            AttackName = SkillName.Range,
             action = () => {
-                _stateInfo.IsFrogTongueAttack = false;
+                _stateInfo.IsRange = false;
                 _stateInfo.IsAttack = false;
             },
-            coolTime = 2f,
+            coolTime = 5f,
             damage = 1
         };
 
-        _attackDictionary.Add(SkillName.FrogJumpAttack, jumpAttack);
-        _attackDictionary.Add(SkillName.FrogTongueAttack, tongueAttack);
-        
+        _attackDictionary.Add(jumpAttack.AttackName, jumpAttack);
+        _attackDictionary.Add(tongueAttack.AttackName, tongueAttack);
 
+        foreach(var skill in _attackDictionary.Values)
+        {
+            _attackCoolList.Add(skill.AttackName, skill.coolTime);
+        }
     }
 
     public virtual void Attack(SkillName skillname)
     {
-        if (_stateInfo.IsAttack)
-        {
-            return;
-        }
+        if (_stateInfo.IsAttack) return;
+        if (isCoolDown(skillname) == false) return;
 
-        if (!isCoolDown(skillname)) return;
-        else
-        {
-            FieldInfo fInfoBool = typeof(AIStateInfo)
-            .GetField($"Is{skillname.ToString()}", BindingFlags.Public | BindingFlags.Instance);
+        FieldInfo fInfoBool = typeof(AIStateInfo)
+        .GetField($"Is{skillname.ToString()}", BindingFlags.Public | BindingFlags.Instance);
             
-            EnemyAttackData atkData = null;
-            if(_attackDictionary.TryGetValue(skillname, out atkData)){
-                _movement.StopImmediatelly();
-                _stateInfo.IsAttack = true;
-                fInfoBool.SetValue(_stateInfo, true);
-                attackCoolList[skillname] = atkData.coolTime;
-                atkData.atk.Attack(atkData.action);
-                SetCoolDown(skillname, atkData.coolTime);
-            }
+        EnemyAttackData atkData = null;
+        if(_attackDictionary.TryGetValue(skillname, out atkData)){
+            _movement.StopImmediatelly();
+            _stateInfo.IsAttack = true;
+            fInfoBool.SetValue(_stateInfo, true); //??? ??? ?????????? ????
+            SetCoolDown(atkData.AttackName, atkData.coolTime);
+            atkData.atk.Attack(atkData.action);
+            
         }
     }
-
     public bool isCoolDown(SkillName key)
     {
         float coolDown;
-        if (attackCoolList.TryGetValue(key, out coolDown))
+        if (_attackCoolList.TryGetValue(key, out coolDown))
         {
-            return Time.time > coolDown; // 쿨타임 다 지나면 true
+            Debug.Log(
+                $"{key.ToString()} : {Time.time > coolDown}");
+            return Time.time > coolDown;
         }
         else
         {
@@ -100,14 +98,13 @@ public class AttackCoolController : MonoBehaviour
     public void SetCoolDown(SkillName key, float duration)
     {
         float coolDown = Time.time + duration;
-        if (attackCoolList.ContainsKey(key))
+        if (_attackCoolList.ContainsKey(key))
         {
-            attackCoolList[key] = coolDown;
+            _attackCoolList[key] = coolDown;
         }
         else
         {
-            attackCoolList.Add(key, coolDown);
+            _attackCoolList.Add(key, coolDown);
         }
     }
-
 }

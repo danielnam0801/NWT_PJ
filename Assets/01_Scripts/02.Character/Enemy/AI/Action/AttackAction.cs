@@ -13,5 +13,6 @@ public class AttackAction : AIAction
     public override void TakeAction()
     {
         _brain.Attack(skillName);
+        Debug.Log("name : " + skillName);
     }
 }

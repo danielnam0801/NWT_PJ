@@ -5,5 +5,10 @@ using UnityEngine;
 
 public class CanAttackDecision : AIDecision
 {
-    public override bool MakeADecision() => !_state.IsAttack;
+    [SerializeField] SkillName Skill;
+    FieldInfo fInfo;
+    public override bool MakeADecision()
+    {
+        return (!_state.IsAttack &&_brain.AttackCoolController.isCoolDown(Skill));
+    }
 }

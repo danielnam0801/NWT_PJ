@@ -34,16 +34,16 @@ public class AIState : MonoBehaviour
 
         foreach (AITransition tr in _transition)
         {
+            if (tr.gameObject.activeSelf == false) continue;
             bool result = false;
             foreach (AIDecision d in tr.decisions)
             {
                 result = d.MakeADecision();
                 if (d.isReverse == true) result = !result;
                 if (result == false) break;
-                else
-                    _brain.ChangeState(tr.NextState);
             }
-            
+            if(result == true)
+                _brain.ChangeState(tr.NextState);
         }
     }
 

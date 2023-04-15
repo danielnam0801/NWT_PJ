@@ -22,9 +22,10 @@ public abstract class EnemyAttack : MonoBehaviour
 
     public abstract void Attack(Action CallBack);
 
-    protected IEnumerator AttackDamageDelayCoroutine(float afterAttackDelay, Action action)
+    protected IEnumerator AttackDamageDelayCoroutine(Action MainAction, float afterAttackDelay, Action afterPlayAction)
     {
+        MainAction?.Invoke();
         yield return new WaitForSeconds(afterAttackDelay);
-        action?.Invoke();
+        afterPlayAction?.Invoke();
     }
 }
