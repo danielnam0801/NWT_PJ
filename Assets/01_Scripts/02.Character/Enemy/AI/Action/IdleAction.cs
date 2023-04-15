@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class IdleAction : AIAction
 {
-    public override void Init()
+    public override void InitAction()
     {
-
+        
     }
 
     public override void TakeAction()
@@ -17,6 +17,11 @@ public class IdleAction : AIAction
         _aiMovementData.speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
 
         _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
+
+    }
+
+    public override void ExitAction()
+    {
 
     }
 }

@@ -57,6 +57,7 @@ public class AIBrain : MonoBehaviour
 
     public void ChangeState(AIState state)
     {
+        state.ExitState();
         _currentState = state;
         state.InitState();
     }

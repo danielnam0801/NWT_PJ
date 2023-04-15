@@ -85,8 +85,8 @@ public class AttackCoolController : MonoBehaviour
         float coolDown;
         if (_attackCoolList.TryGetValue(key, out coolDown))
         {
-            Debug.Log(
-                $"{key.ToString()} : {Time.time > coolDown}");
+            //Debug.Log(
+            //    $"{key.ToString()} : {Time.time > coolDown}");
             return Time.time > coolDown;
         }
         else

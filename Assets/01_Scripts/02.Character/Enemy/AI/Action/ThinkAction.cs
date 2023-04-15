@@ -6,7 +6,7 @@ public class ThinkAction : AIAction
 {
     [SerializeField] float thinkTime = 5f; // +- 1씩 랜덤으로 해줄껀
     [SerializeField] float idleThinkTime = 3f; // +- 1씩 랜덤으로 해줄꺼 (Idle상태일때 
-    public override void Init()
+    public override void InitAction()
     {
         _brain.OnMovementKeyPress?.Invoke(Vector2.zero);
     }
@@ -37,5 +37,10 @@ public class ThinkAction : AIAction
         yield return new WaitForSeconds(thinkTime);
         _aiActionData.isCanThinking = true;
         _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
+    }
+
+    public override void ExitAction()
+    {
+    
     }
 }

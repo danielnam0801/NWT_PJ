@@ -21,7 +21,7 @@ public class AIState : MonoBehaviour
         foreach (AIAction action in _actions)
         {
             //Debug.Log(action.name + " : actionName");
-            action.Init();
+            action.InitAction();
         }
     }
 
@@ -42,10 +42,17 @@ public class AIState : MonoBehaviour
                 if (d.isReverse == true) result = !result;
                 if (result == false) break;
             }
-            if(result == true)
+            if (result == true)
                 _brain.ChangeState(tr.NextState);
         }
     }
 
+    public void ExitState()
+    {
+        foreach(AIAction action in _actions)
+        {
+            action.ExitAction();
+        }
+    }
 
 }

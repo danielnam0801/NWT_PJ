@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChaseAction : AIAction
 {
-    public override void Init()
+    public override void InitAction()
     {
 
     }
@@ -18,6 +18,11 @@ public class ChaseAction : AIAction
         _aiMovementData.speed = _brain.Enemy.EnemyData.GetAfterSpeed;
 
         _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
+    }
+
+    public override void ExitAction()
+    {
+
     }
 
 }

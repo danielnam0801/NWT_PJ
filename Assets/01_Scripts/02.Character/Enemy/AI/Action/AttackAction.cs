@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackAction : AIAction
 {
     public SkillName skillName;
-    public override void Init()
+    public override void InitAction()
     {
 
     }
@@ -14,5 +14,10 @@ public class AttackAction : AIAction
     {
         _brain.Attack(skillName);
         Debug.Log("name : " + skillName);
+    }
+
+    public override void ExitAction()
+    {
+
     }
 }

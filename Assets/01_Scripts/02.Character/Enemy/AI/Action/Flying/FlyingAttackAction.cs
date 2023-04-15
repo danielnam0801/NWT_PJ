@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlyingAttackAction : AIAction
 {
     public SkillName skillName;
-    public override void Init()
+    public override void InitAction()
     {
         
     }
@@ -17,5 +17,10 @@ public class FlyingAttackAction : AIAction
         _aiActionData.isIdle = false;
         _brain.Attack(skillName);
         _aiMovementData.pointOfInterest = _brain.Target.position;
+    }
+
+    public override void ExitAction()
+    {
+
     }
 }
