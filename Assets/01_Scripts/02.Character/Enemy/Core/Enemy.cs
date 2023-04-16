@@ -26,18 +26,20 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     protected EnemyMovement _enemyMovement;
     protected CapsuleCollider2D _bodyColider;
     protected SpriteRenderer _spriteRenderer = null;
-    protected EnemyAgentAnim _enemyAnim;
+    protected EnemyAgentAnimator _enemyAnim;
+    public EnemyAgentAnimator EnemyAnimator => _enemyAnim;
     Rigidbody2D rb;
 
     void Awake()
     {
         _brain  = GetComponent<AIBrain>();
+        _enemyAnim = transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
     }
 
     void Start()
     {
         SetEnemyData();
-        OnDie.AddListener(Die);
+        //OnDie.AddListener(Die);
     }
 
     private void SetEnemyData()
@@ -61,6 +63,7 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
 
         if (Health <= 0)
             DeadProcess();
+        _enemyAnim.SetDamageHash(Health);
     }
 
     private void DeadProcess()
@@ -68,13 +71,16 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
         Health = 0;
         _isDead = true;
         Debug.Log("die");
-        //_enemyAnim.PlayDeadAnimation();
+        _enemyAnim.SetDeadHash(true);
+        _enemyAnim.OnAnimaitionEndTrigger += Die;
         OnDie?.Invoke();
+
     }
 
     public void Die()
     {
         Debug.Log("die2");
+        _enemyAnim.OnAnimaitionEndTrigger -= Die;
         Destroy(gameObject);
     }
 }

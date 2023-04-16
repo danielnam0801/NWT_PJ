@@ -38,7 +38,7 @@ public class AttackCoolController : MonoBehaviour
                 _stateInfo.IsJump = false;
                 _stateInfo.IsAttack = false;
             },
-            coolTime = 3f,
+            coolTime = 10f,
             damage = 1
         };
         EnemyAttackData tongueAttack = new EnemyAttackData()

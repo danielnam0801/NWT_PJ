@@ -29,10 +29,12 @@ public class EnemyMovement : MonoBehaviour
     {   
         _currentVelocity = _data.speed;
         _movementdirection = moveInput;
+        _enemy.EnemyAnimator.SetSpeed(_currentVelocity);
     }
 
     public void StopImmediatelly()
     {
+        _enemy.EnemyAnimator.SetSpeed(0);
         _currentVelocity = 0;
         rb.velocity = Vector2.zero;
     }

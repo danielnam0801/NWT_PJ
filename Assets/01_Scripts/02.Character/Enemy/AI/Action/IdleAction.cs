@@ -14,7 +14,14 @@ public class IdleAction : AIAction
     {
         _aiActionData.isIdle = true;
         _aiMovementData.pointOfInterest = transform.position;
-        _aiMovementData.speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
+        if(_aiMovementData.direction.x == 0 && _aiMovementData.direction.y == 0)
+        {
+            _aiMovementData.speed = 0;
+        }
+        else
+        {
+            _aiMovementData.speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
+        }
 
         _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
 

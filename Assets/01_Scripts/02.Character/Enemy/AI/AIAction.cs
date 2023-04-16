@@ -9,7 +9,7 @@ public abstract class AIAction : MonoBehaviour
     protected AIStateInfo _stateInfo;
     protected AIActionData _aiActionData;
     protected AIMovementData _aiMovementData;
-    protected AgentRenderer _animator;
+    protected EnemyAgentAnimator _animator;
 
     protected virtual void Awake()
     {
@@ -17,7 +17,7 @@ public abstract class AIAction : MonoBehaviour
         _stateInfo = transform.parent.GetComponent<AIStateInfo>();
         _aiActionData = transform.parent.GetComponent<AIActionData>();
         _aiMovementData = transform.parent.GetComponent<AIMovementData>();
-        _animator = _brain.transform.Find("Visual").GetComponent<AgentRenderer>();
+        _animator = _brain.transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
     }
 
     public abstract void InitAction();
