@@ -937,27 +937,18 @@ MonoBehaviour:
   AttackFeedBack:
     m_PersistentCalls:
       m_Calls: []
-  afterAttackDelayTime: 0.3
+  playTime: 1
   _bezeirResolution: 50
-  _jumpSpeed: 0.5
+  _jumpSpeed: 2
   _jumpDelay: 0.4
   _impactRadius: 2
   isJumping: 0
+  PlayJumpAnimation:
+    m_PersistentCalls:
+      m_Calls: []
   PlayLandingAnimation:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1372810125}
-        m_TargetAssemblyTypeName: EnemyAgentAnimator, Assembly-CSharp
-        m_MethodName: PlayLandAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &879657785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,7 +964,7 @@ MonoBehaviour:
   AttackFeedBack:
     m_PersistentCalls:
       m_Calls: []
-  afterAttackDelayTime: 0.5
+  playTime: 0.5
 --- !u!120 &879657786
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1721,9 +1712,6 @@ MonoBehaviour:
   _currentState: {fileID: 817679373}
   _target: {fileID: 531390416}
   _basePos: {fileID: 938881268}
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &1445338984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1869,7 +1857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReverse: 0
   RayPoint: {fileID: 1239449157}
-  _distance: 10
+  _distance: 5
   boxCastUse: 1
 --- !u!1 &1502071437
 GameObject:
@@ -1933,7 +1921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReverse: 0
   RayPoint: {fileID: 1239449157}
-  _distance: 13.4
+  _distance: 5
   boxCastUse: 0
 --- !u!114 &1502071441
 MonoBehaviour:
@@ -2010,7 +1998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReverse: 1
   RayPoint: {fileID: 1239449157}
-  _distance: 10
+  _distance: 5
   boxCastUse: 1
 --- !u!1 &1625120203
 GameObject:

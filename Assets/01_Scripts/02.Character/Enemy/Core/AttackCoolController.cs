@@ -35,7 +35,6 @@ public class AttackCoolController : MonoBehaviour
             atk = atkTrm.GetComponent<JumpAttack>(),
             AttackName = SkillName.Jump,
             action = () => {
-                Debug.Log("Call");
                 _stateInfo.IsJump = false;
                 _stateInfo.IsAttack = false;
             },

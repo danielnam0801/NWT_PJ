@@ -23,6 +23,7 @@ public class JumpAttack : EnemyAttack
 
     Rigidbody2D rb2d;
 
+    public UnityEvent PlayJumpAnimation; //점프 시작 애니메이션 재생
     public UnityEvent PlayLandingAnimation; //착지 애니메이션 재생
 
     protected override void Awake()
@@ -55,7 +56,7 @@ public class JumpAttack : EnemyAttack
         float angle = targetPos.x - transform.position.x < 0 ? -45f : 45f;
 
         Vector3 cp1 = Quaternion.Euler(0, 0, angle) * startControl;  // 1/4지점
-        Vector3 cp2 = Quaternion.Euler(0, 0, angle) * (startControl * 4);  // 3/4지점uu
+        Vector3 cp2 = Quaternion.Euler(0, 0, angle) * (startControl * 3);  // 3/4지점uu
 
 
         _bezierPoints = DOCurve.CubicBezier.GetSegmentPointCloud(transform.position,
@@ -81,7 +82,7 @@ public class JumpAttack : EnemyAttack
         {
             
             yield return new WaitForSeconds(_frameSpeed);
-            //Debug.Log("Bezier + " + i);
+            Debug.Log("Bezier + " + i);
             _brain.transform.position = _bezierPoints[i];
             if (i == _bezierPoints.Length - 5)  //종료 5프레임 전이면 랜딩 애니메이션 재생
             {
@@ -124,10 +125,10 @@ public class JumpAttack : EnemyAttack
             //IKnockBack targetKnockback = GetTarget().GetComponent<IKnockBack>();
             //targetKnockback?.KnockBack(dir.normalized, 5f, 1f);
         }
-        //DelayCoroutine(AfterAttackDelayTime, callBack);
-        StartCoroutine(DelayCoroutine(AfterAttackDelayTime, callBack));
-        Debug.Log("1");
+
+        callBack();
     }
+
 
     private void OnDisable()
     {

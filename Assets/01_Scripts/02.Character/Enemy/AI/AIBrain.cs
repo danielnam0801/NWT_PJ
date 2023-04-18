@@ -19,8 +19,6 @@ public class AIBrain : MonoBehaviour
     public Transform Target => _target;
     [SerializeField]
     private Transform _basePos;
-    [SerializeField]
-    LayerMask GroundLayer;
     public Transform BasePos => _basePos;
     public AIActionData AIActionData { get; private set; }
     public AIMovementData AIMovementData { get; private set; }
@@ -58,15 +56,21 @@ public class AIBrain : MonoBehaviour
         {
             _currentState.UpdateState();
         }
-        Debug.DrawRay(_target.position, Vector2.down * 5f, Color.green);
     }
 
     public Vector3 GetTargetUnderPosition()
     {
-        RaycastHit2D ray = Physics2D.Raycast(_target.position, Vector2.down, 5f, GroundLayer);
-        if (ray.collider != null) return ray.point;
-        else return _target.position;
+        RaycastHit2D ray = Physics2D.Raycast(_target.position, Vector2.down, 5f, LayerMask.NameToLayer("BG"));
+        if(ray.collider != null)
+        {
+            return ray.point;
+        }
+        else
+        {
+            return _target.position;
+        }
     }
+
     public void ChangeState(AIState state)
     {
         state.ExitState();

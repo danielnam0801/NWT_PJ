@@ -11,7 +11,7 @@ public class FrogTongueAttack : EnemyAttack
     {
         //혀 공격 애니메이션 실행시켜줘야함;
         this.callBack = CallBack;
-        StartCoroutine(DelayCoroutine(AfterAttackDelayTime, DamageCaster));
+        StartCoroutine(AttackDamageDelayCoroutine(FrogAttack,PlayTime, DamageCaster));
     }
 
     void FrogAttack()

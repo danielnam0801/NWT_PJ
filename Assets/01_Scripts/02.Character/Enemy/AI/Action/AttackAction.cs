@@ -6,22 +6,27 @@ public class AttackAction : AIAction
 {
     public SkillName skillName;
 
+    private bool firstIn = false;
     public override void InitAction()
     {
+        firstIn = false;
         _animator.SetSpeed(0);
         _animator.OnAnimaitionEndTrigger += SetEnd;
-        SetAnimAttack();
     }
 
 
     public override void TakeAction()
     {
+        if (!firstIn)
+        {
+            firstIn = true;
+            DelayCoroutine(0.2f,SetAnimAttack);
+        }
         _brain.Attack(skillName);
     }
 
     public override void ExitAction()
     {
-        Debug.Log("EndAttack");
         _animator.OnAnimaitionEndTrigger -= SetEnd;
     }
     void SetAnimAttack()
@@ -34,6 +39,6 @@ public class AttackAction : AIAction
     {
         _animator.SetAttackState(false);
         _animator.SetAttackTrigger(false, skillName);
-        //_stateInfo.IsAttack = false;
+        _stateInfo.IsAttack = false;
     }
 }
