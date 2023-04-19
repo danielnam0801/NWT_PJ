@@ -11,8 +11,8 @@ public abstract class EnemyAttack : MonoBehaviour
 
     public UnityEvent AttackFeedBack;
 
-    [SerializeField] private float playTime;
-    public float PlayTime => playTime;
+    [SerializeField] private float afterAttackDelayTime;
+    public float AfterAttackDelayTime => afterAttackDelayTime;
 
     protected virtual void Awake()
     {
@@ -22,10 +22,9 @@ public abstract class EnemyAttack : MonoBehaviour
 
     public abstract void Attack(Action CallBack);
 
-    protected IEnumerator AttackDamageDelayCoroutine(Action MainAction, float afterAttackDelay, Action afterPlayAction)
+    protected IEnumerator DelayCoroutine(float afterAttackDelay, Action afterPlayAction)
     {
-        MainAction?.Invoke();
         yield return new WaitForSeconds(afterAttackDelay);
-        afterPlayAction?.Invoke();
+        afterPlayAction();
     }
 }
