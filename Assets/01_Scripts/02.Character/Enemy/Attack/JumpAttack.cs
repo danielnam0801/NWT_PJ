@@ -47,15 +47,15 @@ public class JumpAttack : EnemyAttack
     private void Jump()
     {
         Vector3 deltaPos = transform.position - _brain.BasePos.position;
-        Vector3 targetPos = _brain.GetTargetUnderPosition() + deltaPos; //점프 지점 구하고
+        Vector3 targetPos = _brain.GetTargetUnderPosition() + deltaPos; //점프 지점
         Vector3 startControl = (targetPos - transform.position) / 4;
-        Debug.Log("DeltaPos + " + deltaPos);
-        Debug.Log("targetPOs + " + targetPos);
+        //Debug.Log("DeltaPos + " + deltaPos);
+        //Debug.Log("targetPOs + " + targetPos);
 
         float angle = targetPos.x - transform.position.x < 0 ? -45f : 45f;
 
-        Vector3 cp1 = Quaternion.Euler(0, 0, angle) * startControl;  // 1/4지점
-        Vector3 cp2 = Quaternion.Euler(0, 0, angle) * (startControl * 4);  // 3/4지점uu
+        Vector3 cp1 = Quaternion.Euler(0, 0, angle) * startControl;
+        Vector3 cp2 = Quaternion.Euler(0, 0, angle) * (startControl * 4); 
 
 
         _bezierPoints = DOCurve.CubicBezier.GetSegmentPointCloud(transform.position,
@@ -79,9 +79,7 @@ public class JumpAttack : EnemyAttack
         
         for (int i = 0; i < _bezierPoints.Length; i++)
         {
-            
             yield return new WaitForSeconds(_frameSpeed);
-            //Debug.Log("Bezier + " + i);
             _brain.transform.position = _bezierPoints[i];
             if (i == _bezierPoints.Length - 5)  //종료 5프레임 전이면 랜딩 애니메이션 재생
             {
@@ -126,7 +124,6 @@ public class JumpAttack : EnemyAttack
         }
         //DelayCoroutine(AfterAttackDelayTime, callBack);
         StartCoroutine(DelayCoroutine(AfterAttackDelayTime, callBack));
-        Debug.Log("1");
     }
 
     private void OnDisable()

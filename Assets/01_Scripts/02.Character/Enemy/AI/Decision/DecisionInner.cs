@@ -13,8 +13,6 @@ public class DecisionInner : AIDecision
     {
         float calc = Vector2.Distance(_brain.Target.position, transform.position);
 
-        //Debug.Log("calc : " + calc)
-        Debug.Log("DIstance + " + _distance);
         if (calc < _distance)
         {
             if (boxCastUse)

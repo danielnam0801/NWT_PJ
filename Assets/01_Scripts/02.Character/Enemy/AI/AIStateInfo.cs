@@ -19,7 +19,6 @@ public class AIStateInfo : MonoBehaviour
     //public float MeleeCool = 0f;
     //public float RangeCool = 0f;
 
-
     [Header("bool")]
     public bool IsAttack = false;
     public bool IsNormal = false;

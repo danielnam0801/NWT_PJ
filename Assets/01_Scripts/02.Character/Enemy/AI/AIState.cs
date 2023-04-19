@@ -20,7 +20,6 @@ public class AIState : MonoBehaviour
     {
         foreach (AIAction action in _actions)
         {
-            //Debug.Log(action.name + " : actionName");
             action.InitAction();
         }
     }

@@ -85,7 +85,7 @@ public class EnemyAgentAnimator : MonoBehaviour
         }
         else
         {
-            //_animator.ResetTrigger(currentSkillHash);
+            _animator.ResetTrigger(currentSkillHash);
         }
     }
 
