@@ -6,6 +6,11 @@ public class FeedbackPlayer : MonoBehaviour
 {
     [SerializeField] List<Feedback> feedbacks;
 
+    private void Awake()
+    {
+        GetComponents<Feedback>(feedbacks);
+    }
+
     public virtual void PlayFeedback()
     { 
         foreach(Feedback feedback in feedbacks)
