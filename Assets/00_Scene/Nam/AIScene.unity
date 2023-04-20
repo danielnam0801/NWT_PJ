@@ -973,7 +973,7 @@ MonoBehaviour:
   AttackFeedBack:
     m_PersistentCalls:
       m_Calls: []
-  afterAttackDelayTime: 0.6
+  afterAttackDelayTime: 0
 --- !u!120 &879657786
 LineRenderer:
   m_ObjectHideFlags: 0

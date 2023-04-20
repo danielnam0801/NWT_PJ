@@ -24,7 +24,7 @@ public abstract class AIAction : MonoBehaviour
     public abstract void TakeAction();
     public abstract void ExitAction();
 
-    protected IEnumerator DelayCoroutine(float delayTime ,Action action)
+    protected IEnumerator DelayCoroutine(float delayTime , Action action)
     {
         yield return new WaitForSeconds(delayTime);
         action?.Invoke();

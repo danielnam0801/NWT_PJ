@@ -81,11 +81,10 @@ public class EnemyAgentAnimator : MonoBehaviour
                     Debug.LogError("존재하지 않는 스킬");
                     break;
             }
-            //_animator.SetTrigger(currentSkillHash);
         }
         else
         {
-            _animator.ResetTrigger(currentSkillHash);
+            
         }
     }
 

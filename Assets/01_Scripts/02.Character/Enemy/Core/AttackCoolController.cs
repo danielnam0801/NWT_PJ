@@ -39,7 +39,7 @@ public class AttackCoolController : MonoBehaviour
                 _stateInfo.IsJump = false;
                 _stateInfo.IsAttack = false;
             },
-            coolTime = 6f,
+            coolTime = 3f,
             damage = 1
         };
         EnemyAttackData tongueAttack = new EnemyAttackData()
@@ -50,7 +50,7 @@ public class AttackCoolController : MonoBehaviour
                 _stateInfo.IsRange = false;
                 _stateInfo.IsAttack = false;
             },
-            coolTime = 5f,
+            coolTime = 2f,
             damage = 1
         };
 
@@ -70,7 +70,7 @@ public class AttackCoolController : MonoBehaviour
 
         FieldInfo fInfoBool = typeof(AIStateInfo)
         .GetField($"Is{skillname.ToString()}", BindingFlags.Public | BindingFlags.Instance);
-            
+
         EnemyAttackData atkData = null;
         if(_attackDictionary.TryGetValue(skillname, out atkData)){
             _movement.StopImmediatelly();
@@ -78,7 +78,6 @@ public class AttackCoolController : MonoBehaviour
             fInfoBool.SetValue(_stateInfo, true); //??? ??? ?????????? ????
             SetCoolDown(atkData.AttackName, atkData.coolTime);
             atkData.atk.Attack(atkData.action);
-            
         }
     }
     public bool isCoolDown(SkillName key)

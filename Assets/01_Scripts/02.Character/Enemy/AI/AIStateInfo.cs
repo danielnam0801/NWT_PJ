@@ -12,13 +12,6 @@ public enum SkillName
 }
 public class AIStateInfo : MonoBehaviour
 {
-    //[Header("cooltime")]
-    //public float NormalCool = 0f;
-    //public float SpecialCool = 0f;
-    //public float JumpCool = 0f;
-    //public float MeleeCool = 0f;
-    //public float RangeCool = 0f;
-
     [Header("bool")]
     public bool IsAttack = false;
     public bool IsNormal = false;
@@ -26,4 +19,17 @@ public class AIStateInfo : MonoBehaviour
     public bool IsJump = false;
     public bool IsMelee = false;
     public bool IsRange = false;
+
+    EnemyAgentAnimator animator;
+
+    private void Awake()
+    {
+        animator = transform.parent.Find("Visual").GetComponent<EnemyAgentAnimator>();   
+    }
+    private void LateUpdate()
+    {
+        animator.SetAttackState(IsAttack);
+    }
 }
+
+

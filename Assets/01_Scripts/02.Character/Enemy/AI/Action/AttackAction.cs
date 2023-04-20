@@ -26,15 +26,11 @@ public class AttackAction : AIAction
     }
     void SetAnimAttack()
     {
-        _animator.SetAttackState(true);
         _animator.SetAttackTrigger(true, skillName);
     }
 
     void SetEnd()
     {
-        Debug.Log("SetEnd");
-        _animator.SetAttackState(false);
         _animator.SetAttackTrigger(false, skillName);
-        //_stateInfo.IsAttack = false;
     }
 }
