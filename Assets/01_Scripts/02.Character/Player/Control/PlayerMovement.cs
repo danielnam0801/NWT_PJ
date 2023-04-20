@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         Vector2 move = moveVector + rigid.velocity.y * Vector2.up;
-        Debug.Log(move);
         rigid.velocity = move;
     }
 }

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class PlayerWeapon : MonoBehaviour
 {
-    public float damage = 10;
+    protected float damage;
+    protected float attackDelay;
+    protected float moveSpeed;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,5 +17,20 @@ public class Sword : MonoBehaviour
         {
             hit.GetHit(damage, gameObject);
         }
+    }
+
+    private void Move()
+    {
+
+    }
+
+    protected virtual void SetRotation()
+    {
+
+    }
+
+    public void SetRotation(Vector2 dir)
+    {
+        transform.up = -dir;
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 public class DrawLine : MonoBehaviour
 {
     public GameObject linePrefab;
-    public GameObject sword;
+    public PlayerWeapon sword;
     public GameObject player;
 
     [SerializeField]
@@ -78,8 +78,6 @@ public class DrawLine : MonoBehaviour
                 DOTween.KillAll(sword);
                 StartCoroutine(SwordMove());
             }
-
-            StartCoroutine(go.GetComponent<Line>().Fade(fadeTime));
         }
     }
 
@@ -91,11 +89,17 @@ public class DrawLine : MonoBehaviour
         {
             Vector3 pos = new Vector3(points[i].x, points[i].y, 5);
             sword.transform.DOMove(pos, 0.01f);
+            if(i == points.Count - 1)
+                sword.SetRotation(points[i]);
+            else
+                sword.SetRotation(points[i + 1] - points[i]);
             yield return new WaitForSeconds(0.01f);
         }
 
-        Debug.Log(points.Count);
         isSwordmove = false;
+
         points.Clear();
+
+        yield return StartCoroutine(go.GetComponent<Line>().Fade(fadeTime));
     }
 }

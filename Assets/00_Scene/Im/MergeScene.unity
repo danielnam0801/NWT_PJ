@@ -10633,10 +10633,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1028454208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0189f93e39bcb4b42913455da393cb6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 630a3d582b3b27943aa8dc0b36a9a3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
 --- !u!1 &1029886219
 GameObject:
   m_ObjectHideFlags: 0
@@ -17056,7 +17055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 2436233251681274465, guid: 49b0b8be4f4c19e4697a79b352545462, type: 3}
-  sword: {fileID: 1028454208}
+  sword: {fileID: 1028454213}
   player: {fileID: 1040910759}
   fadeTime: 1
 --- !u!4 &1637575093
