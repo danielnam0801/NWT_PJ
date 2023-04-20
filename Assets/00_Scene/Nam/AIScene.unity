@@ -973,7 +973,7 @@ MonoBehaviour:
   AttackFeedBack:
     m_PersistentCalls:
       m_Calls: []
-  afterAttackDelayTime: 0
+  afterAttackDelayTime: 0.6
 --- !u!120 &879657786
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1382,6 +1382,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 0.7933839
       objectReference: {fileID: 0}
+    - target: {fileID: 2005248787310538179, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3320914421615022402, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.93392164
@@ -1533,6 +1537,10 @@ PrefabInstance:
     - target: {fileID: 7956210309509938690, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.45363858
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190029072697957504, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 084f2f29cd1f81a499596b95144afeda, type: 3}
