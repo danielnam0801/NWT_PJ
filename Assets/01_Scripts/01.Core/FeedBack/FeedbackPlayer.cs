@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FeedbackPlayer : MonoBehaviour
 {
-    [SerializeField] List<Feedback> feedbacks;
+    List<Feedback> feedbacks;
 
     private void Awake()
     {

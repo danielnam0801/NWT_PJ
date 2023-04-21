@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReverse: 0
   RayPoint: {fileID: 1239449157}
-  _distance: 3
+  _distance: 4
   boxCastUse: 1
 --- !u!114 &21831756
 MonoBehaviour:
@@ -933,6 +933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 721503451}
+  - component: {fileID: 721503452}
   m_Layer: 8
   m_Name: HitFeedback
   m_TagString: Untagged
@@ -955,6 +956,18 @@ Transform:
   m_Father: {fileID: 1445338982}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &721503452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721503450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c5fdcdf64a05c428fe3584b2230b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &817679371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,7 +2177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReverse: 0
   RayPoint: {fileID: 1239449157}
-  _distance: 10
+  _distance: 12
   boxCastUse: 1
 --- !u!1 &1486424694
 GameObject:
@@ -2176,6 +2189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1486424695}
   - component: {fileID: 1486424696}
+  - component: {fileID: 1486424697}
   m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
@@ -2277,6 +2291,22 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1486424697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486424694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea98a87e7785a7449879ddd5e968ffee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsLightUse: 1
+  isLightOn: 0
+  lightTwinkleType: 1
+  lightSpeed: 2
 --- !u!1 &1502071437
 GameObject:
   m_ObjectHideFlags: 0

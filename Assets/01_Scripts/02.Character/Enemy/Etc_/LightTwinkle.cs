@@ -11,9 +11,16 @@ public enum LightTwinkleType
 
 public class LightTwinkle : MonoBehaviour
 {
-    public bool IsLightUse { get; set; }
-    public bool IsLightOn { get; set; }
-    
+    [SerializeField]
+    private bool IsLightUse = false;
+    [SerializeField]
+    private bool isLightOn = false;
+    public bool IsLightOn
+    {
+        get { return isLightOn; }
+        set { isLightOn = value; }
+    }
+
     public LightTwinkleType lightTwinkleType;
     Light2D _light;
 
@@ -23,6 +30,7 @@ public class LightTwinkle : MonoBehaviour
     private void Awake()
     {
         _light = GetComponent<Light2D>();
+        firstIntensity = _light.intensity;
     }
 
     private void Start()
@@ -55,18 +63,21 @@ public class LightTwinkle : MonoBehaviour
         }
     }
 
+
+
     IEnumerator ShakeLight()
     {
         while (true) { 
-
+            
             yield return null;
         }
     }
-
     IEnumerator TwinkleLight()
     {
-        while (true) {
-            _light.intensity = firstIntensity * (Mathf.Sin(Time.time) + 1) / 2;
+        while(true)
+        {
+            float value = (firstIntensity * (Mathf.Sin(Time.time * lightSpeed) + 1) / 2);
+            _light.intensity = Mathf.Clamp(value, 0, firstIntensity);
             yield return null;
         }
     }
@@ -75,11 +86,16 @@ public class LightTwinkle : MonoBehaviour
     {
         while (true)
         {
-            float value = firstIntensity * (Mathf.Sin(Time.time));
+            float value = firstIntensity * (Mathf.Sin(Time.time * lightSpeed));
             _light.intensity = Mathf.Clamp(value, 0, firstIntensity);
 
             yield return null;
         }
+    }
+    
+    public void StopAll()
+    {
+        StopAllCoroutines();
     }
 
     public void LightOn()
