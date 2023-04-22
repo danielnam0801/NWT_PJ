@@ -2,27 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FrogTongueAttack : EnemyAttack
 {
-    private Action callBack = null;
-
     public override void Attack(Action CallBack)
     {
-        //혀 공격 애니메이션 실행시켜줘야함;
-        this.callBack = CallBack;
-        StartCoroutine(DelayCoroutine(AfterAttackDelayTime, DamageCaster));
+        //혀 공격 애니메이션 실행시켜줘야함
+        callBack = CallBack;
     }
 
-    void FrogAttack()
-    {
-
-    }
-
-    void DamageCaster()
+    public void DamageCaster()
     {
         //Damage체크해줘얗ㅁ
-
-        callBack();
+        //GameManager.Boxcast()로 체크해줄 예정;
     }
 }

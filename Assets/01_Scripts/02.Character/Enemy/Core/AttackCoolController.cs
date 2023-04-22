@@ -30,16 +30,16 @@ public class AttackCoolController : MonoBehaviour
     private void MakeAttackTypeAction()
     {
         Transform atkTrm = transform.Find("AttackType");
+        #region GreenFrogEnemy
         EnemyAttackData jumpAttack = new EnemyAttackData()
         {
             atk = atkTrm.GetComponent<JumpAttack>(),
             AttackName = SkillName.Jump,
             action = () => {
-                Debug.Log("Call");
                 _stateInfo.IsJump = false;
                 _stateInfo.IsAttack = false;
             },
-            coolTime = 3f,
+            coolTime = 5f,
             damage = 1
         };
         EnemyAttackData tongueAttack = new EnemyAttackData()
@@ -50,14 +50,15 @@ public class AttackCoolController : MonoBehaviour
                 _stateInfo.IsRange = false;
                 _stateInfo.IsAttack = false;
             },
-            coolTime = 2f,
+            coolTime = 3f,
             damage = 1
         };
 
         _attackDictionary.Add(jumpAttack.AttackName, jumpAttack);
         _attackDictionary.Add(tongueAttack.AttackName, tongueAttack);
+        #endregion
 
-        foreach(var skill in _attackDictionary.Values)
+        foreach (var skill in _attackDictionary.Values)
         {
             _attackCoolList.Add(skill.AttackName, skill.coolTime);
         }

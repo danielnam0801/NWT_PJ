@@ -116,6 +116,7 @@ public class EnemyAgentAnimator : MonoBehaviour
 
     public void OnAnimationEvent()
     {
+        Debug.Log("Event0");
         OnAnimaitionEventTrigger?.Invoke();
     }
 }

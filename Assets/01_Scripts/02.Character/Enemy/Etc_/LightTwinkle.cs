@@ -40,8 +40,10 @@ public class LightTwinkle : MonoBehaviour
             LightOn();
             TypeCheck();
         }
-        else LightOff();
-
+        else
+        {
+            LightOff();
+        }
     }
 
     private void TypeCheck()
@@ -62,8 +64,6 @@ public class LightTwinkle : MonoBehaviour
                 break;
         }
     }
-
-
 
     IEnumerator ShakeLight()
     {
@@ -92,7 +92,13 @@ public class LightTwinkle : MonoBehaviour
             yield return null;
         }
     }
+
+    public void SetLightIntensity(float lightintensity)
+    {
+        _light.intensity = lightintensity;
+    }
     
+
     public void StopAll()
     {
         StopAllCoroutines();
@@ -101,13 +107,13 @@ public class LightTwinkle : MonoBehaviour
     public void LightOn()
     {
         IsLightOn = true;
-        _light.enabled = true;
+        SetLightIntensity(firstIntensity);
     }
 
     public void LightOff()
     {
         IsLightOn = false;
-        _light.enabled = false;
+        SetLightIntensity(0);
     }
 
 

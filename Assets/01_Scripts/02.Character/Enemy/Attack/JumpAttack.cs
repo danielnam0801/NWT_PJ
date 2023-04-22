@@ -19,7 +19,6 @@ public class JumpAttack : EnemyAttack
     [SerializeField]
     private bool isJumping;
     public bool IsJumping => isJumping;
-    private Action callBack = null;
 
     Rigidbody2D rb2d;
 
@@ -74,7 +73,7 @@ public class JumpAttack : EnemyAttack
 
     IEnumerator JumpCoroutine()
     {
-        AttackFeedBack?.Invoke(); //공격사운드 재생후 0.4초후 점프
+        AttackStartFeedback?.Invoke(); //공격사운드 재생후 0.4초후 점프
         yield return new WaitForSeconds(_jumpDelay);
         
         for (int i = 0; i < _bezierPoints.Length; i++)
@@ -122,8 +121,6 @@ public class JumpAttack : EnemyAttack
             //IKnockBack targetKnockback = GetTarget().GetComponent<IKnockBack>();
             //targetKnockback?.KnockBack(dir.normalized, 5f, 1f);
         }
-        //DelayCoroutine(AfterAttackDelayTime, callBack);
-        StartCoroutine(DelayCoroutine(AfterAttackDelayTime, callBack));
     }
 
     private void OnDisable()

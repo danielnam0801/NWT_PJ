@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class FeedbackPlayer : MonoBehaviour
 {
-    List<Feedback> feedbacks;
+    List<Feedback> _feedbackList;
 
     private void Awake()
     {
-        GetComponents<Feedback>(feedbacks);
+        _feedbackList = new List<Feedback>();
+        GetComponents<Feedback>(_feedbackList);
     }
 
-    public virtual void PlayFeedback()
-    { 
-        foreach(Feedback feedback in feedbacks)
+    public void PlayFeedback()
+    {
+        FinishFeedback();
+        foreach (Feedback f in _feedbackList)
         {
-            feedback.CreateFeedback();
+            f.CreateFeedBack();
         }
     }
 
     public void FinishFeedback()
     {
-        foreach(Feedback feedback in feedbacks)
+        foreach (Feedback f in _feedbackList)
         {
-            feedback.DestroyFeedback();
+            f.FinishFeedBack();
         }
     }
 }

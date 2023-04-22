@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f5bba9f8e938a4688a30693701a3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackFeedBack:
+  AttackStartFeedback:
     m_PersistentCalls:
       m_Calls: []
   afterAttackDelayTime: 0.4
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6933c720e7d504887750a0d2e40555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackFeedBack:
+  AttackStartFeedback:
     m_PersistentCalls:
       m_Calls: []
   afterAttackDelayTime: 0.6
@@ -2303,10 +2303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea98a87e7785a7449879ddd5e968ffee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsLightUse: 1
+  IsLightUse: 0
   isLightOn: 0
   lightTwinkleType: 1
-  lightSpeed: 2
+  lightSpeed: 3
 --- !u!1 &1502071437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,6 +2495,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 4
+  AttackFeedback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1486424697}
+        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
+        m_MethodName: LightOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1486424697}
+        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
+        m_MethodName: LightOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 879657785}
+        m_TargetAssemblyTypeName: EnemyAttack, Assembly-CSharp
+        m_MethodName: CallbackPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1625120206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2826,6 +2868,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 2
+  AttackFeedback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1486424697}
+        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
+        m_MethodName: LightOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1486424697}
+        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
+        m_MethodName: LightOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 879657784}
+        m_TargetAssemblyTypeName: EnemyAttack, Assembly-CSharp
+        m_MethodName: CallbackPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2124701796
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,9 +69,9 @@ public class AIBrain : MonoBehaviour
     }
     public void ChangeState(AIState state)
     {
-        state.ExitState();
+        _currentState.ExitState();
         _currentState = state;
-        state.InitState();
+        _currentState.InitState();
     }
 
     public void Move(Vector2 direction, Vector3 targetPos)

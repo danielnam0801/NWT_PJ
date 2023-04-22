@@ -7,17 +7,21 @@ using UnityEngine.Events;
 public abstract class EnemyAttack : MonoBehaviour
 {
     protected AIBrain _brain;
-    protected AIStateInfo _stateInfo;   
+    protected EnemyAgentAnimator _animator;
+    protected AIStateInfo _stateInfo;
 
-    public UnityEvent AttackFeedBack;
+    public UnityEvent AttackStartFeedback;
 
     [SerializeField] private float afterAttackDelayTime;
     public float AfterAttackDelayTime => afterAttackDelayTime;
+
+    protected Action callBack = null;
 
     protected virtual void Awake()
     {
         _brain = transform.parent.GetComponent<AIBrain>();
         _stateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();
+        _animator = _brain.transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
     }
 
     public abstract void Attack(Action CallBack);
@@ -26,5 +30,10 @@ public abstract class EnemyAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(afterAttackDelay);
         afterPlayAction();
+    }
+    
+    public void CallbackPlay()
+    {
+        callBack?.Invoke();
     }
 }

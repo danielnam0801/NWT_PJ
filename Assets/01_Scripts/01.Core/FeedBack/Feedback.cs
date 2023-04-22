@@ -4,6 +4,16 @@ using UnityEngine;
 
 public abstract class Feedback : MonoBehaviour
 {
-    public abstract void CreateFeedback();
-    public abstract void DestroyFeedback();
+    public abstract void CreateFeedBack();
+    public abstract void FinishFeedBack();
+
+    protected virtual void OnDestroy()
+    {
+        FinishFeedBack();
+    }
+
+    protected virtual void OnDisable()
+    {
+        FinishFeedBack();
+    }
 }
