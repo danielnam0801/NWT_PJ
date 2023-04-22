@@ -9,6 +9,14 @@ public class AttackAction : AIAction
     public UnityEvent AttackFeedback;
     public UnityEvent EndEvent;
 
+    protected AttackCoolController attackCoolController;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        attackCoolController = _brain.transform.GetComponent<AttackCoolController>();
+    }
+
     public override void InitAction()
     {
         _animator.SetSpeed(0);
@@ -41,6 +49,7 @@ public class AttackAction : AIAction
 
     void SetEnd()
     {
+        attackCoolController.PlayCallbackAct(skillName); //stateInfo에 있는 isAttack을 false로 만들고 skill도 false
         _animator.SetAttackTrigger(false, skillName);
         EndEvent?.Invoke();
     }

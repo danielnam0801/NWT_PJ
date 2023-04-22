@@ -10,6 +10,7 @@ public class AttackCoolController : MonoBehaviour
     EnemyMovement _movement;
     Dictionary<SkillName, float> _attackCoolList;
     Dictionary<SkillName, EnemyAttackData> _attackDictionary;
+    Dictionary<SkillName, Action> _callbackList;
     AIStateInfo _stateInfo;
 
     private void Awake()
@@ -25,6 +26,7 @@ public class AttackCoolController : MonoBehaviour
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
         _attackCoolList = new Dictionary<SkillName, float>();
         _attackDictionary = new Dictionary<SkillName, EnemyAttackData>();
+        _callbackList = new Dictionary<SkillName, Action>();
     }
 
     private void MakeAttackTypeAction()
@@ -61,7 +63,9 @@ public class AttackCoolController : MonoBehaviour
         foreach (var skill in _attackDictionary.Values)
         {
             _attackCoolList.Add(skill.AttackName, skill.coolTime);
+            _callbackList.Add(skill.AttackName, skill.action);
         }
+
     }
 
     public virtual void Attack(SkillName skillname)
@@ -107,5 +111,10 @@ public class AttackCoolController : MonoBehaviour
         {
             _attackCoolList.Add(key, coolDown);
         }
+    }
+
+    public void PlayCallbackAct(SkillName key)
+    {
+        _callbackList[key]?.Invoke();
     }
 }

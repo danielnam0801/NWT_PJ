@@ -14,6 +14,7 @@ public class EnemyAgentAnimator : MonoBehaviour
     private readonly int _deadHash = Animator.StringToHash("isDead");
     private readonly int _deadTriggerHash = Animator.StringToHash("death");
     private readonly int _damageTriggerHash = Animator.StringToHash("damaged");
+    private readonly int _EndHitTriggerHash = Animator.StringToHash("EndHit");
 
     public event Action OnAnimaitionEndTrigger = null;
     public event Action OnAnimaitionEventTrigger = null;
@@ -102,6 +103,10 @@ public class EnemyAgentAnimator : MonoBehaviour
     {
         _animator.SetTrigger(_deadTriggerHash);
     }
+    public void SetEndHit()
+    {
+        _animator.SetTrigger(_EndHitTriggerHash);
+    }
 
     public void SetDamageHash(float currentHp)
     {
@@ -111,9 +116,16 @@ public class EnemyAgentAnimator : MonoBehaviour
 
     public void OnAnimationEnd()
     {
+        if (OnAnimaitionEndTrigger == null) 
+            Debug.LogError("sdfdsf");
+        Debug.Log("Methods : " + OnAnimaitionEndTrigger.Method);
         OnAnimaitionEndTrigger?.Invoke();
     }
 
+    public void DebugEnd()
+    {
+        Debug.Log(OnAnimaitionEndTrigger.Method);
+    }
     public void OnAnimationEvent()
     {
         Debug.Log("Event0");

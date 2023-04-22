@@ -3,34 +3,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using DG.Tweening;
 
 public enum LightTwinkleType
 {
-    constant, twinkle, shake
+    Fixed, Constant, Twinkle, Shake
 }
 
 public class LightTwinkle : MonoBehaviour
 {
+    [Header("사용여부 체크")]
     [SerializeField]
     private bool IsLightUse = false;
     [SerializeField]
+    private bool ColorChangeEffect = true, IntensityChangeEffect = true, RadiusChangeEffect = true;
+
+    [Header("속성값")]
+    public LightTwinkleType lightTwinkleType;
+    [SerializeField] private float lightSpeed = 1f;
+    [SerializeField] private float impactIntensityValue = 3f;
+    [SerializeField] private float impactRadiusValue = 3f;
+    [SerializeField] private Color attackColor = Color.red;
+
+    [Space(30)]
+    [SerializeField]
     private bool isLightOn = false;
+    [SerializeField] private float valueChangeSpeed = 0.2f;
+
     public bool IsLightOn
     {
         get { return isLightOn; }
-        set { isLightOn = value; }
+        private set { isLightOn = value; }
     }
 
-    public LightTwinkleType lightTwinkleType;
+    
     Light2D _light;
-
-    [SerializeField] private float lightSpeed = 1f;
     private float firstIntensity;
+    private float firstRadius;
+    private Color firstInColor;
 
     private void Awake()
     {
         _light = GetComponent<Light2D>();
         firstIntensity = _light.intensity;
+        firstRadius = _light.pointLightOuterRadius;
+        firstInColor = _light.color;
     }
 
     private void Start()
@@ -50,13 +67,17 @@ public class LightTwinkle : MonoBehaviour
     {
         switch (lightTwinkleType)
         {
-            case LightTwinkleType.constant:
+            case LightTwinkleType.Fixed:
+                FixedTypeSetIntensity(firstIntensity, firstInColor, firstRadius); // 그냥 켜놓는거
+                break;
+            case LightTwinkleType.Constant:
                 StartCoroutine("ConstantLight");
                 break;
-            case LightTwinkleType.twinkle:
+            case LightTwinkleType.Twinkle:
                 StartCoroutine("TwinkleLight");
                 break;
-            case LightTwinkleType.shake:
+            case LightTwinkleType.Shake:
+                Debug.LogError("아직 미구현");
                 StartCoroutine("ShakeLight");
                 break;
             default:
@@ -93,11 +114,21 @@ public class LightTwinkle : MonoBehaviour
         }
     }
 
-    public void SetLightIntensity(float lightintensity)
+    public void FixedTypeSetIntensity(float lightintensity, Color color, float radius)
     {
-        _light.intensity = lightintensity;
+        if(ColorChangeEffect)
+            DOVirtual.Color(_light.color, color, valueChangeSpeed, v => _light.color = v);
+        else 
+            _light.color = color;
+      
+        if(IntensityChangeEffect)
+            DOVirtual.Float(_light.intensity, lightintensity, valueChangeSpeed, v => _light.intensity = v);
+        else 
+            _light.intensity = lightintensity;
+
+        if (RadiusChangeEffect)
+            DOVirtual.Float(_light.pointLightOuterRadius, radius, valueChangeSpeed, v=> _light.pointLightOuterRadius = v);
     }
-    
 
     public void StopAll()
     {
@@ -106,14 +137,21 @@ public class LightTwinkle : MonoBehaviour
 
     public void LightOn()
     {
+        StopAll();
         IsLightOn = true;
-        SetLightIntensity(firstIntensity);
+        FixedTypeSetIntensity(impactIntensityValue, attackColor, impactRadiusValue);
     }
 
     public void LightOff()
     {
         IsLightOn = false;
-        SetLightIntensity(0);
+        //SetLightIntensity(firstIntensity, firstInColor, firstRadius);
+        TypeCheck();
+    }
+
+    public void EnemyDieLightOff()
+    {
+        DOVirtual.Float(_light.intensity, 0, 1.5f, v => _light.intensity = v);
     }
 
 

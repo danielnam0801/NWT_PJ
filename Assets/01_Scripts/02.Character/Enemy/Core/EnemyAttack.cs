@@ -11,10 +11,6 @@ public abstract class EnemyAttack : MonoBehaviour
     protected AIStateInfo _stateInfo;
 
     public UnityEvent AttackStartFeedback;
-
-    [SerializeField] private float afterAttackDelayTime;
-    public float AfterAttackDelayTime => afterAttackDelayTime;
-
     protected Action callBack = null;
 
     protected virtual void Awake()

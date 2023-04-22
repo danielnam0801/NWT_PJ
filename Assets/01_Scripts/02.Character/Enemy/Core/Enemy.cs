@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ClipperLib;
 using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour, IHitable, IAgent
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     {
         _brain  = GetComponent<AIBrain>();
         _enemyAnim = transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
+        _spriteRenderer = transform.Find("Visual").GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -54,17 +56,19 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
         Debug.Log("PlayerÇÑÅ× ¸Â¾ÒÂÇ¿°");
         if (_isDead == true) return;
 
-
         Health -= damage;
         Debug.Log(Health);
 
         HitPoint = damageDealer.transform.position;
 
-        OnGetHit?.Invoke();
 
         if (Health <= 0)
+        {
             DeadProcess();
-        _enemyAnim.SetDamageHash(Health);
+            return;
+        }
+        
+        OnGetHit?.Invoke();
     }
 
     private void DeadProcess()
@@ -72,29 +76,31 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
         Health = 0;
         _isDead = true;
         Debug.Log("die");
+        _enemyAnim.OnAnimaitionEndTrigger += DieEvent;
+        _enemyAnim.DebugEnd();
+        OnDie?.Invoke();    
         _enemyAnim.SetDeadHash(true);
-        _enemyAnim.OnAnimaitionEndTrigger += Die;
-        OnDie?.Invoke();
+        _enemyAnim.SetDeathTriggerHash();
 
     }
 
     public void Die()
     {
-        Debug.Log("die2");
-        _enemyAnim.OnAnimaitionEndTrigger -= Die;
-        Destroy(gameObject);
+        _enemyAnim.OnAnimaitionEndTrigger -= DieEvent;
     }
 
-    public void DieMaterial()
+    public void DieEvent()
     {
-        Sequence seq = DOTween.Sequence();
-        Tween dissolve = DOTween.To(
-            () => _spriteRenderer.material.GetFloat("_Dissolve"),
-            x => _spriteRenderer.material.SetFloat("_Dissolve", x),
-            0f,
-            1.5f);
+        
+        //Sequence seq = DOTween.Sequence();
+        //Tween dissolve = DOTween.To(
+        //    () => _spriteRenderer.material.GetFloat("_Dissolve"),
+        //    x => _spriteRenderer.material.SetFloat("_Dissolve", x),
+        //    0f,
+        //    1.5f);
 
-        seq.Append(dissolve);
-        seq.OnComplete(() => Die());
+        //seq.Append(dissolve);
+        //seq.OnComplete(() => Die());
+
     }
 }

@@ -35,6 +35,7 @@ public class AIBrain : MonoBehaviour
 
     public EnemyAgentAnimator _enemyAnim { get; private set; }
     //public GroundEnemyAnim GroundEnemyAnim { get => _groundEnemyAnim; }
+    AIState hitState;
 
     protected virtual void Awake()
     {
@@ -44,6 +45,7 @@ public class AIBrain : MonoBehaviour
         enemy = transform.GetComponent<Enemy>();
         _enemyMovement = GetComponent<EnemyMovement>();
         _attackCoolController = GetComponent<AttackCoolController>();
+        hitState = transform.Find("AI").Find("HitState").GetComponent<AIState>();
         //_groundEnemyAnim = transform.Find("VisualSprite").GetComponent<GroundEnemyAnim>();
     }
 
@@ -86,5 +88,13 @@ public class AIBrain : MonoBehaviour
     public virtual void Attack(SkillName skillName)
     {
         _attackCoolController.Attack(skillName);
+    }
+    
+    public void ChangeToHitState()
+    {
+        if(_currentState != hitState)
+        {
+            ChangeState(hitState);
+        }
     }
 }
