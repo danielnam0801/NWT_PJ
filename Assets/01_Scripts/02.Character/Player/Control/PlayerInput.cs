@@ -6,10 +6,14 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     public event Action<Vector2> OnMovementInput;
+    public event Action OnSpaceInput;
+    public event Action OnShiftInput;
 
     private void Update()
     {
         UpdateMovementInput();
+        UpdateSpaceInput();
+        UpdateShiftInput();
     }
 
     private void UpdateMovementInput()
@@ -17,5 +21,17 @@ public class PlayerInput : MonoBehaviour
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         
         OnMovementInput?.Invoke(input);
+    }
+
+    private void UpdateSpaceInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            OnSpaceInput?.Invoke();
+    }
+
+    private void UpdateShiftInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            OnShiftInput?.Invoke();
     }
 }
