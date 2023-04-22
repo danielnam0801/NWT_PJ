@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Line : MonoBehaviour
 {
-    LineRenderer _lineRenderer;
+    [SerializeField]
+    private float fadeTime = 1f;
+    private LineRenderer _lineRenderer;
 
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
     }
 
-    public IEnumerator Fade(float fadeTime)
+    public IEnumerator Fade()
     {
         float currentFadeTime = 0;
         float alpha = 0;
