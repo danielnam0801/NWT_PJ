@@ -35,18 +35,22 @@ public class AIBrain : MonoBehaviour
 
     public EnemyAgentAnimator _enemyAnim { get; private set; }
     //public GroundEnemyAnim GroundEnemyAnim { get => _groundEnemyAnim; }
+    private AIStateInfo _stateInfo;
     AIState hitState;
 
     protected virtual void Awake()
     {
         //_target = GameManager.instance.Target;
-        AIActionData = transform.Find("AI").GetComponent<AIActionData>();
-        AIMovementData = transform.Find("AI").GetComponent<AIMovementData>();
+        
         enemy = transform.GetComponent<Enemy>();
         _enemyMovement = GetComponent<EnemyMovement>();
         _attackCoolController = GetComponent<AttackCoolController>();
-        hitState = transform.Find("AI").Find("HitState").GetComponent<AIState>();
-        //_groundEnemyAnim = transform.Find("VisualSprite").GetComponent<GroundEnemyAnim>();
+
+        Transform rootAI = transform.Find("AI");
+        AIActionData = rootAI.GetComponent<AIActionData>();
+        AIMovementData = rootAI.GetComponent<AIMovementData>();
+        _stateInfo = rootAI.GetComponent<AIStateInfo>();
+        hitState = rootAI.Find("HitState").GetComponent<AIState>();
     }
 
     protected void Update()
@@ -60,7 +64,6 @@ public class AIBrain : MonoBehaviour
         {
             _currentState.UpdateState();
         }
-        Debug.DrawRay(_target.position, Vector2.down * 5f, Color.green);
     }
 
     public Vector3 GetTargetUnderPosition()
@@ -92,7 +95,7 @@ public class AIBrain : MonoBehaviour
     
     public void ChangeToHitState()
     {
-        if(_currentState != hitState)
+        if(_currentState != hitState && _stateInfo.IsAttack == false)
         {
             ChangeState(hitState);
         }

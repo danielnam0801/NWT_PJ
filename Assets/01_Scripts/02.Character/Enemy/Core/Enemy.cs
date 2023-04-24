@@ -1,11 +1,12 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ClipperLib;
 using UnityEngine.Events;
+using UnitySpriteCutter;
 
-public class Enemy : MonoBehaviour, IHitable, IAgent
+public class Enemy : MonoBehaviour, IHitable, IAgent, ICuttable
 {
     public bool IsEnemy => true;
     public Vector3 HitPoint { get; set; }
@@ -20,7 +21,7 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     public UnityEvent OnDie { get; set; }
     [field : SerializeField]
     public UnityEvent OnGetHit { get; set; }
-    
+
     protected bool _isDead = false;
     [SerializeField] protected bool _isActive = false;
     
@@ -31,6 +32,9 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     protected EnemyAgentAnimator _enemyAnim;
     public EnemyAgentAnimator EnemyAnimator => _enemyAnim;
     Rigidbody2D rb;
+
+    [Header("Slice될 스프라이트 넣어줘야함(죽었을때 실행)")]
+    public Sprite SlicedSprite;
 
     void Awake()
     {
@@ -75,12 +79,12 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
     {
         Health = 0;
         _isDead = true;
-        Debug.Log("die");
-        _enemyAnim.OnAnimaitionEndTrigger += DieEvent;
-        _enemyAnim.DebugEnd();
+        SpriteChangeing();
+        //_enemyAnim.OnAnimaitionEndTrigger += DieEvent;
+        //_enemyAnim.DebugEnd();
         OnDie?.Invoke();    
-        _enemyAnim.SetDeadHash(true);
-        _enemyAnim.SetDeathTriggerHash();
+        //_enemyAnim.SetDeadHash(true);
+        //_enemyAnim.SetDeathTriggerHash();
 
     }
 
@@ -91,16 +95,49 @@ public class Enemy : MonoBehaviour, IHitable, IAgent
 
     public void DieEvent()
     {
-        
-        //Sequence seq = DOTween.Sequence();
-        //Tween dissolve = DOTween.To(
-        //    () => _spriteRenderer.material.GetFloat("_Dissolve"),
-        //    x => _spriteRenderer.material.SetFloat("_Dissolve", x),
-        //    0f,
-        //    1.5f);
+        SpriteChangeing();
+        //_SpriteCutting();
+    }
 
-        //seq.Append(dissolve);
-        //seq.OnComplete(() => Die());
+    public void SpriteCutting(Vector2 lineStart, Vector2 lineEnd, int layerMask)
+    {
+        List<GameObject> gameObjectsToCut = new List<GameObject>();
+
+        gameObjectsToCut.Add(gameObject);
+        foreach (GameObject go in gameObjectsToCut)
+        {
+            Debug.Log("SpriteCut");
+            SpriteCutterOutput output = SpriteCutter.Cut(new SpriteCutterInput()
+            {
+                lineStart = lineStart,
+                lineEnd = lineEnd,
+                gameObject = go,
+                gameObjectCreationMode = SpriteCutterInput.GameObjectCreationMode.CUT_OFF_ONE,
+            });
+
+            if (output != null && output.secondSideGameObject != null)
+            {
+                Rigidbody2D newRigidbody = output.secondSideGameObject.AddComponent<Rigidbody2D>();
+                newRigidbody.velocity = output.firstSideGameObject.GetComponent<Rigidbody2D>().velocity;
+            }
+        }
+    }
+
+    private void SpriteChangeing()
+    {
+        this.gameObject.AddComponent<SpriteRenderer>();
+        SpriteRenderer _slicingSprite = GetComponent<SpriteRenderer>();
+        _slicingSprite.sprite = SlicedSprite;
+        _slicingSprite.sortingOrder = 5;
+        this.gameObject.layer = LayerMask.NameToLayer("CanCutted");
+        GameObject.Find("Visual").SetActive(false);
 
     }
+
+    bool HitCounts(RaycastHit2D hit)
+    {
+        return (hit.transform.GetComponent<SpriteRenderer>() != null ||
+                 hit.transform.GetComponent<MeshRenderer>() != null);
+    }
+
 }

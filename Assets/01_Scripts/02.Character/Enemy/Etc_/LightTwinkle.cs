@@ -54,12 +54,7 @@ public class LightTwinkle : MonoBehaviour
     {
         if (IsLightUse)
         {
-            LightOn();
             TypeCheck();
-        }
-        else
-        {
-            LightOff();
         }
     }
 
@@ -145,7 +140,7 @@ public class LightTwinkle : MonoBehaviour
     public void LightOff()
     {
         IsLightOn = false;
-        //SetLightIntensity(firstIntensity, firstInColor, firstRadius);
+        FixedTypeSetIntensity(firstIntensity, firstInColor, firstRadius);
         TypeCheck();
     }
 

@@ -27,7 +27,8 @@ public class AIStateInfo : MonoBehaviour
 
     public void PlusHitCount()
     {
-        hitCnt++;
+        if(IsAttack == false)
+            hitCnt++;
     }
 
     private void Awake()

@@ -6,6 +6,7 @@ public class WallCheck : MonoBehaviour
 {
     AIMovementData _movement;
     [SerializeField] LayerMask _wallLayer;
+    [SerializeField] Transform rayPoint;
 
     private void Start()
     {
@@ -14,8 +15,8 @@ public class WallCheck : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit2D sideWalkCheck = Physics2D.Raycast(transform.position, new Vector3(_movement.direction.x, 0, 0), 1.5f, _wallLayer);
-        Debug.DrawRay(transform.position, new Vector3(_movement.direction.x, 0, 0) * 1.5f, Color.black);
+        RaycastHit2D sideWalkCheck = Physics2D.Raycast(rayPoint.position, new Vector3(_movement.direction.x, 0, 0), 1.5f, _wallLayer);
+        Debug.DrawRay(rayPoint.position, new Vector3(_movement.direction.x, 0, 0) * 1.5f, Color.black);
         if (sideWalkCheck.collider != null)
         {
             _movement.direction.x = -_movement.direction.x;
