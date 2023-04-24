@@ -8,12 +8,14 @@ public class PlayerInput : MonoBehaviour
     public event Action<Vector2> OnMovementInput;
     public event Action OnSpaceInput;
     public event Action OnShiftInput;
+    public event Action OnLeftClickInput;
 
     private void Update()
     {
         UpdateMovementInput();
         UpdateSpaceInput();
         UpdateShiftInput();
+        UpdateLeftClickInput();
     }
 
     private void UpdateMovementInput()
@@ -33,5 +35,11 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
             OnShiftInput?.Invoke();
+    }
+
+    private void UpdateLeftClickInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            OnLeftClickInput?.Invoke();
     }
 }

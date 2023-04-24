@@ -8,6 +8,7 @@ public abstract class PlayerState : MonoBehaviour
     protected PlayerAnimation anim;
     protected PlayerInput input;
     protected PlayerMovement movement;
+    protected PlayerAttack attack;
 
     public virtual void Init(Transform root)
     {
@@ -15,6 +16,7 @@ public abstract class PlayerState : MonoBehaviour
         movement = root.GetComponent<PlayerMovement>();
         input = root.GetComponent<PlayerInput>();
         anim = root.GetComponent<PlayerAnimation>();
+        attack = root.GetComponent<PlayerAttack>();
     }
     public abstract void EnterState();
     public abstract void UpdateState();

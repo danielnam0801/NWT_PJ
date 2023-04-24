@@ -20,6 +20,7 @@ public class PlayerMovementState : PlayerState
         input.OnMovementInput += Move;
         input.OnSpaceInput += Jump;
         input.OnShiftInput += DashHandle;
+        input.OnLeftClickInput += TeleportationHandle;
     }
 
     public override void ExitState()
@@ -27,6 +28,7 @@ public class PlayerMovementState : PlayerState
         input.OnMovementInput -= Move;
         input.OnSpaceInput -= Jump;
         input.OnShiftInput -= DashHandle;
+        input.OnLeftClickInput -= TeleportationHandle;
         movement?.SetMoveVector(Vector2.zero, 0);
     }
 
@@ -60,5 +62,13 @@ public class PlayerMovementState : PlayerState
     private void DashHandle()
     {
         controller.ChangeState(PlayerStateType.Dash);
+    }
+
+    private void TeleportationHandle()
+    {
+        Debug.Log(attack);
+        Debug.Log(attack.Weapon);
+        if (attack.Weapon.IsStay)
+            controller.ChangeState(PlayerStateType.Teleportation);
     }
 }

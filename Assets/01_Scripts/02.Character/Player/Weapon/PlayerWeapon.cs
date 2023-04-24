@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     public bool IsFollow { get; set; }
+    public bool IsStay { get; set; }
 
     [SerializeField]
     private WeaponSO info;
@@ -15,6 +16,7 @@ public class PlayerWeapon : MonoBehaviour
     protected virtual void Awake()
     {
         IsFollow = true;
+        IsStay = false;
         playerSwordTrm = GameObject.Find("Player/SwordPosition").transform;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -67,6 +69,24 @@ public class PlayerWeapon : MonoBehaviour
             }
         }
 
+        StartCoroutine("Stay");
+    }
+
+    private IEnumerator Stay()
+    {
+        IsStay = true;
+        IsFollow = false;
+
+        yield return new WaitForSeconds(info.stayTime);
+
+        IsStay = false;
+        IsFollow = true;
+    }
+
+    public void StopStay()
+    {
+        StopCoroutine("Stay");
+        IsStay = false;
         IsFollow = true;
     }
 

@@ -18,16 +18,23 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigid;
     public Vector2 Velocity { get => rigid.velocity + verticalVelocity * Vector2.up; }
     public float GravityScale { get => gravityScale; }
-    public bool ApplyGravity { get; set; }
+
+    private bool applyGravity = true;
+    public bool ApplyGravity
+    {
+        get => applyGravity;
+
+        set
+        {
+            applyGravity = value;
+            if (value == false)
+                SetVerticalVelocity(0);
+        }
+    }
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start()
-    {
-        ApplyGravity = true;
     }
 
     private void Update()
@@ -69,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Gravity()
     {
-        if (!ApplyGravity)
+        if (!applyGravity)
             return;
 
         if (!CheckGround())

@@ -41,7 +41,6 @@ public class PlayerDashState : PlayerState
         }
 
         movement.ApplyGravity = false;
-        movement.SetVerticalVelocity(0);
         StartCoroutine(Dash());
     }
 

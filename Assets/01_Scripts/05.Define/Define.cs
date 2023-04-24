@@ -9,5 +9,5 @@ public enum PlayerStateType
 {
     Movement = 0,
     Dash,
-    //Attack,
+    Teleportation,
 }
