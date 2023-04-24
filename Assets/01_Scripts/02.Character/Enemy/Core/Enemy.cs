@@ -4,9 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.U2D.Animation;
 using UnitySpriteCutter;
 
-public class Enemy : MonoBehaviour, IHitable, IAgent, ICuttable
+public class Enemy : MonoBehaviour, IHitable, IAgent
 {
     public bool IsEnemy => true;
     public Vector3 HitPoint { get; set; }
@@ -33,8 +34,9 @@ public class Enemy : MonoBehaviour, IHitable, IAgent, ICuttable
     public EnemyAgentAnimator EnemyAnimator => _enemyAnim;
     Rigidbody2D rb;
 
-    [Header("Slice될 스프라이트 넣어줘야함(죽었을때 실행)")]
+    [Header("Slice 관련")]
     public Sprite SlicedSprite;
+    public GameObject[] slicedParts;
 
     void Awake()
     {
@@ -99,45 +101,17 @@ public class Enemy : MonoBehaviour, IHitable, IAgent, ICuttable
         //_SpriteCutting();
     }
 
-    public void SpriteCutting(Vector2 lineStart, Vector2 lineEnd, int layerMask)
-    {
-        List<GameObject> gameObjectsToCut = new List<GameObject>();
-
-        gameObjectsToCut.Add(gameObject);
-        foreach (GameObject go in gameObjectsToCut)
-        {
-            Debug.Log("SpriteCut");
-            SpriteCutterOutput output = SpriteCutter.Cut(new SpriteCutterInput()
-            {
-                lineStart = lineStart,
-                lineEnd = lineEnd,
-                gameObject = go,
-                gameObjectCreationMode = SpriteCutterInput.GameObjectCreationMode.CUT_OFF_ONE,
-            });
-
-            if (output != null && output.secondSideGameObject != null)
-            {
-                Rigidbody2D newRigidbody = output.secondSideGameObject.AddComponent<Rigidbody2D>();
-                newRigidbody.velocity = output.firstSideGameObject.GetComponent<Rigidbody2D>().velocity;
-            }
-        }
-    }
-
     private void SpriteChangeing()
     {
-        this.gameObject.AddComponent<SpriteRenderer>();
-        SpriteRenderer _slicingSprite = GetComponent<SpriteRenderer>();
-        _slicingSprite.sprite = SlicedSprite;
-        _slicingSprite.sortingOrder = 5;
-        this.gameObject.layer = LayerMask.NameToLayer("CanCutted");
-        GameObject.Find("Visual").SetActive(false);
+        //this.gameObject.AddComponent<SpriteRenderer>();
+        //SpriteRenderer _slicingSprite = GetComponent<SpriteRenderer>();
+        //_slicingSprite.sprite = SlicedSprite;
+        //slicingSprite.sortingOrder = 5;
+        GameObject.Find("center bone").SetActive(false);
+        foreach (GameObject go in slicedParts)
+        {
+            go.gameObject.layer = LayerMask.NameToLayer("CanCutted");
+        }
 
     }
-
-    bool HitCounts(RaycastHit2D hit)
-    {
-        return (hit.transform.GetComponent<SpriteRenderer>() != null ||
-                 hit.transform.GetComponent<MeshRenderer>() != null);
-    }
-
 }
