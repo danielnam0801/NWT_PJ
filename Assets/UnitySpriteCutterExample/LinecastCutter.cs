@@ -35,7 +35,7 @@ public class LinecastCutter : MonoBehaviour {
 				lineEnd = lineEnd,
 				gameObject = go,
 				gameObjectCreationMode = SpriteCutterInput.GameObjectCreationMode.CUT_OFF_ONE,
-			} );
+			});
 
 			if ( output != null && output.secondSideGameObject != null ) {
 				Rigidbody2D newRigidbody = output.secondSideGameObject.AddComponent<Rigidbody2D>();

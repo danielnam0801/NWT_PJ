@@ -6,14 +6,16 @@ namespace UnitySpriteCutter.Tools {
 	public static class SpriteMeshConstructor {
 
 		public static Mesh ConstructFromRendererBounds( SpriteRenderer renderer ) {
+			Debug.Log(renderer.name);
 			Mesh result = new Mesh();
 
-			if ( renderer.sprite == null ) {
-				throw new System.Exception( "Cannot cut from null sprite!" );
-			}
-			
-			Vector2 min = renderer.sprite.bounds.min;
-			Vector2 max = renderer.sprite.bounds.max;
+            if (renderer.sprite == null)
+            {
+                throw new System.Exception("Cannot cut from null sprite!");
+            }
+
+            Vector2 min = renderer.sprite.bounds.min;
+            Vector2 max = renderer.sprite.bounds.max;
 
 			Vector3[] vertices = new Vector3[ 4 ];
 			vertices[ 0 ] = new Vector2( min.x, max.y );

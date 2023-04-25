@@ -1,19 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnitySpriteCutter;
 
-public class EnemyParts : MonoBehaviour,ICuttable
+public class EnemyParts : MonoBehaviour, ICuttable
 {
+    Action destroyAct;
+    Action<Sprite> spriteChangeAct;
     public void SpriteCutting(Vector2 InputVec, Vector2 OutputVec, int layerMask = -1)
     {
-        //Destroy(GetComponent<SpriteSkin>());
+        destroyAct += ( ) =>
+        {
+            Destroy(GetComponent<SpriteSkin>());
+        };
         SpriteCutterOutput output = SpriteCutter.Cut(new SpriteCutterInput()
         {
             lineStart = InputVec,
             lineEnd = OutputVec,
             gameObject = this.gameObject,
+            destroySpriteSkinAct = destroyAct,
             gameObjectCreationMode = SpriteCutterInput.GameObjectCreationMode.CUT_OFF_ONE,
         });
 

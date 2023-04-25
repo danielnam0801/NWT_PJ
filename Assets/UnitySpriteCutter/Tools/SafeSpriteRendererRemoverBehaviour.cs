@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 namespace UnitySpriteCutter.Tools {
 
@@ -29,12 +30,13 @@ namespace UnitySpriteCutter.Tools {
 
 		public delegate void OnFinish();
 
-		public void RemoveAndWaitOneFrame( SpriteRenderer spriteRenderer, OnFinish onFinish = null ) {
+		public void RemoveAndWaitOneFrame( SpriteRenderer spriteRenderer, Action destroyAct, OnFinish onFinish = null ) {
 			
 			SpriteRenderer duplicatedSpriteRenderer = CreateDuplicatedSpriteRenderer( spriteRenderer );
 			
 			GameObject gameObject = spriteRenderer.gameObject;
 			spriteRenderer.enabled = false;
+			//destroyAct?.Invoke();
 			SpriteRenderer.Destroy( spriteRenderer );
 
 			StartCoroutine( EndRemovalAfterOneFrame( gameObject, duplicatedSpriteRenderer, onFinish ) );
@@ -51,6 +53,11 @@ namespace UnitySpriteCutter.Tools {
 			result.hideFlags = originalSpriteRenderer.hideFlags;
 			result.sortingLayerID = originalSpriteRenderer.sortingLayerID;
 			result.sortingOrder = originalSpriteRenderer.sortingOrder;
+			
+			//Debug.Log("Sprite" + result.sprite);
+			//GameObject newObj =  Instantiate( result.gameObject);
+			//newObj.name = "NewInstance";
+			
 			return result;
 		}
 

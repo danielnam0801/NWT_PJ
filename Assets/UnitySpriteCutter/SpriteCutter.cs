@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnitySpriteCutter.Cutters;
 using UnitySpriteCutter.Tools;
+using System;
 
 namespace UnitySpriteCutter {
 
@@ -14,7 +15,7 @@ namespace UnitySpriteCutter {
 		/// GameObject to cut. Has to have SpriteRenderer or MeshRenderer or cut wont take place.
 		/// </summary>
 		public GameObject gameObject;
-
+		public Action destroySpriteSkinAct;
 		/// <summary>
 		/// By default, objects are cut only if their colliders can be cut with given line.
 		/// If set to true, colliders doesn't matter and aren't cut.
@@ -42,7 +43,7 @@ namespace UnitySpriteCutter {
 		public GameObject secondSideGameObject;
 	}
 
-	public static class SpriteCutter {
+	public static class SpriteCutter{
 
 		/// <summary>
 		/// Returns null, if cutting didn't took place.
@@ -78,6 +79,7 @@ namespace UnitySpriteCutter {
 				}
 			}
 
+			
 			SpriteCutterGameObject secondSideResult = SpriteCutterGameObject.CreateAsCopyOf( input.gameObject, true );
 			PrepareResultGameObject( secondSideResult, spriteRenderer, meshRenderer,
 			                         meshCutResult.secondSideMesh, collidersCutResults.secondSideColliderRepresentations );
@@ -90,10 +92,13 @@ namespace UnitySpriteCutter {
 
 			} else if ( input.gameObjectCreationMode == SpriteCutterInput.GameObjectCreationMode.CUT_OFF_ONE ) {
 				firstSideResult = SpriteCutterGameObject.CreateAs( input.gameObject );
+					
 				if ( spriteRenderer != null ) {
 					RendererParametersRepresentation tempParameters = new RendererParametersRepresentation();
 					tempParameters.CopyFrom( spriteRenderer );
-					SafeSpriteRendererRemoverBehaviour.get.RemoveAndWaitOneFrame( spriteRenderer, onFinish: () => {
+
+					input.destroySpriteSkinAct?.Invoke();
+					SafeSpriteRendererRemoverBehaviour.get.RemoveAndWaitOneFrame( spriteRenderer, input.destroySpriteSkinAct, onFinish: () => {
 						PrepareResultGameObject( firstSideResult, tempParameters,
 						                         meshCutResult.firstSideMesh, collidersCutResults.firstSideColliderRepresentations );
 					} );
