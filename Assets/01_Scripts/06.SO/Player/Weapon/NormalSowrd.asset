@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NormalSowrd
   m_EditorClassIdentifier: 
   power: 5
-  attackDelay: 1
+  stayTime: 5
   pointUnitMoveTime: 0.01
   followSpeed: 5
   followMinDistance: 0.3
