@@ -11,6 +11,12 @@ namespace UnitySpriteCutter {
 		public Vector2 lineStart;
 		public Vector2 lineEnd;
 
+		public int headX;
+		public int headY;
+		public int headWidth;
+		public int headHeight;
+		public int textureWidth;
+		public int textureHeight;
 		/// <summary>
 		/// GameObject to cut. Has to have SpriteRenderer or MeshRenderer or cut wont take place.
 		/// </summary>
@@ -62,7 +68,7 @@ namespace UnitySpriteCutter {
 			MeshRenderer meshRenderer = input.gameObject.GetComponent<MeshRenderer>();
 
 			FlatConvexPolygonMeshCutter.CutResult meshCutResult =
-				CutSpriteOrMeshRenderer( localLineStart, localLineEnd, spriteRenderer, meshRenderer );
+				CutSpriteOrMeshRenderer( localLineStart, localLineEnd, spriteRenderer, meshRenderer, input);
 			if ( meshCutResult.DidNotCut() ) {
 				return null;
 			}
@@ -115,14 +121,14 @@ namespace UnitySpriteCutter {
 			};
 		}
 
-		static FlatConvexPolygonMeshCutter.CutResult CutSpriteOrMeshRenderer( Vector2 lineStart, Vector2 lineEnd, SpriteRenderer spriteRenderer, MeshRenderer meshRenderer ) {
-			Mesh originMesh = GetOriginMeshFrom( spriteRenderer, meshRenderer );
+		static FlatConvexPolygonMeshCutter.CutResult CutSpriteOrMeshRenderer( Vector2 lineStart, Vector2 lineEnd, SpriteRenderer spriteRenderer, MeshRenderer meshRenderer, SpriteCutterInput input) {
+			Mesh originMesh = GetOriginMeshFrom( spriteRenderer, meshRenderer, input);
 			return FlatConvexPolygonMeshCutter.Cut( lineStart, lineEnd, originMesh );
 		}
 
-		static Mesh GetOriginMeshFrom( SpriteRenderer spriteRenderer, MeshRenderer meshRenderer ) {
+		static Mesh GetOriginMeshFrom( SpriteRenderer spriteRenderer, MeshRenderer meshRenderer, SpriteCutterInput input ) {
 			if ( spriteRenderer != null ) {
-				return SpriteMeshConstructor.ConstructFromRendererBounds( spriteRenderer );
+				return SpriteMeshConstructor.ConstructFromRendererBounds( spriteRenderer, input.headX, input.headY, input.headWidth, input.headHeight, input.textureWidth, input.textureHeight);
 			} else {
 				return meshRenderer.GetComponent<MeshFilter>().mesh;
 			}
