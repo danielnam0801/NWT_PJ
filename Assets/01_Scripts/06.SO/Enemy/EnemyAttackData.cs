@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Assets/EnemyAttackData")]
-public class EnemyAttackData : ScriptableObject
+public class EnemyAttackData
 {
-    public List<EnemyAttack> atk;
-    public Action<bool> action;
+    public EnemyAttack atk;
+    public Action action;
+    public SkillName AttackName;
     public float coolTime;
+    public float damage;
 }

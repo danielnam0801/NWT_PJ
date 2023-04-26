@@ -25,7 +25,7 @@ public class FlyingMovingAction : AIAction
     [Space(30f)]
     public float randA, randF, randP, randY;
 
-    public override void Init()
+    public override void InitAction()
     {
         _aiMovementData.direction.x = Random.Range(-3f, 3f);
     }
@@ -45,7 +45,12 @@ public class FlyingMovingAction : AIAction
         _aiMovementData.direction.y = value / 4; //속도 줄이려 나눈거
         _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
     }
-    
+
+    public override void ExitAction()
+    {
+
+    }
+
     float Wave(float a, float f, float p, float x) => (a + randA) * Mathf.Sin((f + randF) * x + p + randP) + y_Axis + randY;
     IEnumerator Think()
     {

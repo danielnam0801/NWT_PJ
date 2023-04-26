@@ -4,13 +4,41 @@ using UnityEngine;
 
 public enum SkillName
 {
-    Melee = 0,
-    Range = 1
+    Normal,
+    Special,
+    Jump,
+    Melee,
+    Range
 }
 public class AIStateInfo : MonoBehaviour
 {
-    public float MeleeCool = 0f;
-    public float RangeCool = 0f;
-
+    [Header("bool")]
     public bool IsAttack = false;
+    public bool IsNormal = false;
+    public bool IsSpecial = false;
+    public bool IsJump = false;
+    public bool IsMelee = false;
+    public bool IsRange = false;
+    public bool IsHit = false;
+
+    EnemyAgentAnimator animator;
+
+    public int hitCnt = 0;
+
+    public void PlusHitCount()
+    {
+        if(IsAttack == false)
+            hitCnt++;
+    }
+
+    private void Awake()
+    {
+        animator = transform.parent.Find("Visual").GetComponent<EnemyAgentAnimator>();   
+    }
+    private void LateUpdate()
+    {
+        animator.SetAttackState(IsAttack);
+    }
 }
+
+

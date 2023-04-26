@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FlyingIdleAction : AIAction
 {
-    public override void Init()
+    public override void InitAction()
     {
         Debug.Log(gameObject.name + "changeState");
     }
@@ -17,5 +17,10 @@ public class FlyingIdleAction : AIAction
         _aiMovementData.speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
 
         //_brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);// flying movingø° ¿÷¿Ω
+    }
+
+    public override void ExitAction()
+    {
+
     }
 }
