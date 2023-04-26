@@ -64,10 +64,10 @@ public class JumpAttack : EnemyAttack
         //Debug.Log(_frameSpeed);
         StartCoroutine(JumpCoroutine());
 
-        //디버그용 코드들
-        LineRenderer lr = GetComponent<LineRenderer>();
-        lr.positionCount = _bezierPoints.Length;
-        lr.SetPositions(_bezierPoints);
+        //디버그용
+        //LineRenderer lr = GetComponent<LineRenderer>();
+        //lr.positionCount = _bezierPoints.Length;
+        //lr.SetPositions(_bezierPoints);
 
     }
 

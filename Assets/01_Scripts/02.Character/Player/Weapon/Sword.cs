@@ -14,6 +14,7 @@ public class Sword : MonoBehaviour
         if (collision.gameObject.TryGetComponent<IHitable>(out hit))
         {
             hit.GetHit(damage, gameObject);
+            
         }
     }
 }

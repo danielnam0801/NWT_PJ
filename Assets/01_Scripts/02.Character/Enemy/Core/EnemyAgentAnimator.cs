@@ -83,10 +83,6 @@ public class EnemyAgentAnimator : MonoBehaviour
                     break;
             }
         }
-        else
-        {
-            
-        }
     }
 
     public void SetSpeed(float value)
@@ -122,13 +118,19 @@ public class EnemyAgentAnimator : MonoBehaviour
         OnAnimaitionEndTrigger?.Invoke();
     }
 
-    public void DebugEnd()
-    {
-        Debug.Log(OnAnimaitionEndTrigger.Method);
-    }
     public void OnAnimationEvent()
     {
         Debug.Log("Event0");
         OnAnimaitionEventTrigger?.Invoke();
+    }
+
+    public void DebugEnd()
+    {
+        Debug.Log(OnAnimaitionEndTrigger.Method);
+    }
+    public void Init()
+    {
+        SetDeadHash(false);
+        SetSpeed(0);
     }
 }
