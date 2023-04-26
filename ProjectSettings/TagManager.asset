@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - enemys
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -62,6 +64,9 @@ TagManager:
     locked: 0
   - name: Front + 3
     uniqueID: 3511251255
+    locked: 0
+  - name: NoneLight
+    uniqueID: 3267860519
     locked: 0
   - name: Front + 2
     uniqueID: 1649473269
