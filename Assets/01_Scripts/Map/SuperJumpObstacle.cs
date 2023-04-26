@@ -12,9 +12,7 @@ public class SuperJumpObstacle : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log(collision.gameObject.GetComponent<Rigidbody2D>());
-
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+            collision.gameObject.GetComponent<PlayerMovement>().SetVerticalVelocity(_jumpPower);
         }
     }
 }

@@ -28,8 +28,6 @@ public class PlayerWeapon : MonoBehaviour
     
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
-
         if (collision.gameObject.TryGetComponent<IHitable>(out IHitable hit))
         {
             hit.GetHit(info.power, gameObject);
@@ -88,15 +86,5 @@ public class PlayerWeapon : MonoBehaviour
         StopCoroutine("Stay");
         IsStay = false;
         IsFollow = true;
-    }
-
-    protected virtual void SetRotation()
-    {
-
-    }
-
-    public void SetRotation(Vector2 dir)
-    {
-        transform.up = -dir;
     }
 }

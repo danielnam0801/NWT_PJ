@@ -37,11 +37,6 @@ public class PlayerMovement : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        Debug.Log(Velocity);
-    }
-
     private void FixedUpdate()
     {
         Gravity();
