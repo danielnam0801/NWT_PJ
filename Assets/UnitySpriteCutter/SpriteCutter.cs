@@ -123,6 +123,20 @@ namespace UnitySpriteCutter {
 
 		static FlatConvexPolygonMeshCutter.CutResult CutSpriteOrMeshRenderer( Vector2 lineStart, Vector2 lineEnd, SpriteRenderer spriteRenderer, MeshRenderer meshRenderer, SpriteCutterInput input) {
 			Mesh originMesh = GetOriginMeshFrom( spriteRenderer, meshRenderer, input);
+			//var vertices = new Vector3[originMesh.vertices.Length];
+			//float scaleX = input.textureWidth/ input.headWidth;
+			//float scaleY = input.textureHeight / input.headHeight;
+			//for (var i = 0; i < vertices.Length; i++)
+			//{
+			//	var vertex = originMesh.vertices[i];
+			//	vertex.x = vertex.x * scaleX;
+			//	vertex.y = vertex.y * scaleY;
+			//	vertices[i] = vertex;
+			//}
+			//originMesh.vertices = vertices;
+			////if (RecalculateNormals)
+			////	mesh.RecalculateNormals();
+			//originMesh.RecalculateBounds();
 			return FlatConvexPolygonMeshCutter.Cut( lineStart, lineEnd, originMesh );
 		}
 

@@ -39,6 +39,7 @@ public class CanSlicedObject : MonoBehaviour, ICuttable
             //3초 후 사라지게
             output.firstSideGameObject.AddComponent<PartsDissapear>();
             output.secondSideGameObject.AddComponent<PartsDissapear>();
+            output.secondSideGameObject.AddComponent<CanSlicedObject>();
 
             Rigidbody2D newRigidbody = output.secondSideGameObject.AddComponent<Rigidbody2D>();
             Rigidbody2D newRigidbody2;

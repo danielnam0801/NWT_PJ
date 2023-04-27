@@ -8,14 +8,29 @@ using UnitySpriteCutter;
 public class EnemyParts : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
-    [SerializeField]
-    Sprite sprite;
+    [SerializeField] EnemyPartsUVData partsData;
     public int headX, headY, headWidth, headHeight, textureWidth, textureHeight;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
+    private void Start()
+    {
+        SetValues();
+    }
+
+    private void SetValues()
+    {
+        headX = partsData.GetHeadX;
+        headY = partsData.GetHeadY;
+        headWidth = partsData.GetHeadWidth;
+        headHeight = partsData.GetHeadHeight;
+        textureWidth = partsData.GetTextureWidth;
+        textureHeight = partsData.GetTextureHeight;
+    }
+        
 
     public void CreateSameObject()
     {
@@ -26,11 +41,11 @@ public class EnemyParts : MonoBehaviour
         Destroy(tmpObject.GetComponent<SpriteSkin>());
         
         SpriteRenderer childSpriteRender = tmpObject.GetComponent<SpriteRenderer>();
-        childSpriteRender.sprite = sprite;
-        childSpriteRender.sortingOrder = 5;
-        tmpObject.layer = LayerMask.NameToLayer("CanCutted");
+        childSpriteRender.sprite = spriteRenderer.sprite;
+        childSpriteRender.sortingOrder = spriteRenderer.sortingOrder;
         CanSlicedObject obj = tmpObject.AddComponent<CanSlicedObject>();
         obj.SetValues(headX, headY, headWidth, headHeight, textureWidth, textureHeight);
+        tmpObject.layer = LayerMask.NameToLayer("CanCutted");
 
         SetSpriteRenderEnabled(false);
     }
