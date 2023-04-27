@@ -13,6 +13,11 @@ public class Line : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
     }
 
+    public void StartFade()
+    {
+        StartCoroutine(Fade());
+    }
+
     public IEnumerator Fade()
     {
         float currentFadeTime = 0;

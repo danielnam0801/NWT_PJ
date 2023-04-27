@@ -11,4 +11,5 @@ public class WeaponSO : ScriptableObject
     public float pointUnitMoveTime;
     public float followSpeed;
     public float followMinDistance;
+    public float attackDelayTime;
 }

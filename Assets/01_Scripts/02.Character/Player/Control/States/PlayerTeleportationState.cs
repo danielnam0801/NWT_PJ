@@ -46,5 +46,6 @@ public class PlayerTeleportationState : PlayerState
         attack.Weapon.StopStay();
         movement.ApplyGravity = true;
         controller.ChangeState(PlayerStateType.Movement);
+        DrawManager.Instance.SetDelayDraw(attack.Weapon.Info.attackDelayTime);
     }
 }

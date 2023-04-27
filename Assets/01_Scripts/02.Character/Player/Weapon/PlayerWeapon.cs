@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    public bool IsFollow { get; set; }
-    public bool IsStay { get; set; }
 
     [SerializeField]
     private WeaponSO info;
 
     protected Transform playerSwordTrm;
-    protected Rigidbody2D rb;
+
+    public bool IsFollow { get; set; }
+    public bool IsStay { get; set; }
+    public WeaponSO Info
+    {
+        get { return info; }
+        private set { }
+    }
 
     protected virtual void Awake()
     {
         IsFollow = true;
         IsStay = false;
         playerSwordTrm = GameObject.Find("Player/SwordPosition").transform;
-        rb = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Update()
@@ -42,10 +46,6 @@ public class PlayerWeapon : MonoBehaviour
         if(Vector2.Distance(transform.position, playerSwordTrm.position) >= info.followMinDistance)
         {
             transform.position = Vector2.Lerp(transform.position, playerSwordTrm.position, Time.deltaTime * info.followSpeed);
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
         }
     }
 
@@ -79,6 +79,7 @@ public class PlayerWeapon : MonoBehaviour
 
         IsStay = false;
         IsFollow = true;
+        DrawManager.Instance.SetDelayDraw(Info.attackDelayTime);
     }
 
     public void StopStay()

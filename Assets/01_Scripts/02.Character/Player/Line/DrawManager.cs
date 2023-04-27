@@ -15,12 +15,17 @@ public class DrawManager : MonoBehaviour
 
     [SerializeField]
     private float pathPointInterval = 0.3f;
+    [SerializeField]
+    private float drawTimeScale = 0.2f;
+    [SerializeField]
+    private float maxLienLength = 35;
 
     LineRenderer lr;
     List<Vector2> points = new List<Vector2>();
 
     private bool canDraw = true;
     private bool isDraw = false;
+    private bool isMaxLength = false;
     private GameObject go;
     public PlayerWeapon sword;
     public GameObject player;
@@ -38,6 +43,11 @@ public class DrawManager : MonoBehaviour
         Draw();
     }
 
+    public void SetDelayDraw(float time)
+    {
+        StartCoroutine(DelayDraw(time));
+    }
+
     private void Draw()
     {
         if (!canDraw)
@@ -46,6 +56,7 @@ public class DrawManager : MonoBehaviour
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
         if (Input.GetMouseButtonDown(0))
         {
+            TimeManager.Instance.SetTimeScale(drawTimeScale, true);
             isDraw = true;
             points.Clear();
             go = Instantiate(linePrefab);
@@ -54,6 +65,14 @@ public class DrawManager : MonoBehaviour
             lr.positionCount = 1;
             lr.SetPosition(0, points[0]);
 
+        }
+        else if (isDraw && Input.GetMouseButtonUp(0) || isMaxLength)
+        {
+            isMaxLength = false;
+            isDraw = false;
+            TimeManager.Instance.SetTimeScale(1, true);
+
+            StartCoroutine(SwordMove());
         }
         else if (isDraw && Input.GetMouseButton(0))
         {
@@ -65,12 +84,9 @@ public class DrawManager : MonoBehaviour
                 lr.positionCount++;
                 lr.SetPosition(lr.positionCount - 1, pos);
             }
-        }
-        else if (isDraw && Input.GetMouseButtonUp(0))
-        {
-            isDraw = false;
 
-            StartCoroutine(SwordMove());
+            if(lr.positionCount > maxLienLength)
+                isMaxLength = true;
         }
     }
 
@@ -84,8 +100,13 @@ public class DrawManager : MonoBehaviour
         }
 
         points.Clear();
-        canDraw = true;
+        go.GetComponent<Line>().StartFade();
+    }
 
-        yield return StartCoroutine(go.GetComponent<Line>().Fade());
+    private IEnumerator DelayDraw(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        canDraw = true;
     }
 }

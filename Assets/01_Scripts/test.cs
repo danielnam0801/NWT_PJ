@@ -7,12 +7,18 @@ public class test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 0.0000000000001f;
+        StartCoroutine(Test());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Test()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(Input.GetAxisRaw("Horizontal") * 5, GetComponent<Rigidbody2D>().velocity.y);
+        while (true)
+        {
+
+            Debug.Log(1);
+
+            yield return null;
+        }
     }
-}
+}//6 900
