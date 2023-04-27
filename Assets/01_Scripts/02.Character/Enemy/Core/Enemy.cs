@@ -4,9 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.U2D.Animation;
-using UnitySpriteCutter;
+
 
 public class Enemy : PoolableObject, IHitable, IAgent
 {
@@ -115,6 +113,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
             eP.CreateSameObject();    
         }
     }
+
     public override void Init()
     {
         _isDead = false;
