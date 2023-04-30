@@ -9,11 +9,14 @@ public class EnemyParts : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     [SerializeField] EnemyPartsUVData partsData;
-    public int headX, headY, headWidth, headHeight, textureWidth, textureHeight;
+    [SerializeField] Material mat;
+    public int headX, headY, headWidth, headHeight, textureWidth, textureHeight; 
+    Vector2 scale;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        scale = transform.lossyScale;
     }
 
     private void Start()
@@ -36,15 +39,18 @@ public class EnemyParts : MonoBehaviour
     {
         GameObject tmpObject;
         tmpObject = Instantiate(this.gameObject, transform.position, Quaternion.Euler(transform.eulerAngles));
-        tmpObject.transform.parent = this.transform; // 지금 내 위치를 부모로 지정
-        
         Destroy(tmpObject.GetComponent<SpriteSkin>());
         
         SpriteRenderer childSpriteRender = tmpObject.GetComponent<SpriteRenderer>();
         childSpriteRender.sprite = spriteRenderer.sprite;
         childSpriteRender.sortingOrder = spriteRenderer.sortingOrder;
+        tmpObject.AddComponent<BoxCollider2D>();
+        tmpObject.AddComponent<Rigidbody2D>();
+
         CanSlicedObject obj = tmpObject.AddComponent<CanSlicedObject>();
-        obj.SetValues(headX, headY, headWidth, headHeight, textureWidth, textureHeight);
+        obj.SetValues(headX, headY, headWidth, headHeight, textureWidth, textureHeight, scale, transform, mat);
+        obj.DistroyThisObj(3f);
+        
         tmpObject.layer = LayerMask.NameToLayer("CanCutted");
 
         SetSpriteRenderEnabled(false);

@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Velocity);
+        //Debug.Log(Velocity);
     }
 
     private void FixedUpdate()

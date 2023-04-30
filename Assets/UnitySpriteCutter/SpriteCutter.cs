@@ -17,6 +17,7 @@ namespace UnitySpriteCutter {
 		public int headHeight;
 		public int textureWidth;
 		public int textureHeight;
+		public Vector2 scale;
 		/// <summary>
 		/// GameObject to cut. Has to have SpriteRenderer or MeshRenderer or cut wont take place.
 		/// </summary>
@@ -27,7 +28,7 @@ namespace UnitySpriteCutter {
 		/// If set to true, colliders doesn't matter and aren't cut.
 		/// </summary>
 		public bool dontCutColliders;
-
+		public bool isFirstCutting;
 		public enum GameObjectCreationMode {
 			/// <summary>
 			/// The original gameObject is converted into the "firstSide" gameObject.
@@ -123,26 +124,16 @@ namespace UnitySpriteCutter {
 
 		static FlatConvexPolygonMeshCutter.CutResult CutSpriteOrMeshRenderer( Vector2 lineStart, Vector2 lineEnd, SpriteRenderer spriteRenderer, MeshRenderer meshRenderer, SpriteCutterInput input) {
 			Mesh originMesh = GetOriginMeshFrom( spriteRenderer, meshRenderer, input);
-			//var vertices = new Vector3[originMesh.vertices.Length];
-			//float scaleX = input.textureWidth/ input.headWidth;
-			//float scaleY = input.textureHeight / input.headHeight;
-			//for (var i = 0; i < vertices.Length; i++)
-			//{
-			//	var vertex = originMesh.vertices[i];
-			//	vertex.x = vertex.x * scaleX;
-			//	vertex.y = vertex.y * scaleY;
-			//	vertices[i] = vertex;
-			//}
-			//originMesh.vertices = vertices;
-			////if (RecalculateNormals)
-			////	mesh.RecalculateNormals();
-			//originMesh.RecalculateBounds();
-			return FlatConvexPolygonMeshCutter.Cut( lineStart, lineEnd, originMesh );
+            return FlatConvexPolygonMeshCutter.Cut( lineStart, lineEnd, originMesh );
 		}
 
 		static Mesh GetOriginMeshFrom( SpriteRenderer spriteRenderer, MeshRenderer meshRenderer, SpriteCutterInput input ) {
-			if ( spriteRenderer != null ) {
-				return SpriteMeshConstructor.ConstructFromRendererBounds( spriteRenderer, input.headX, input.headY, input.headWidth, input.headHeight, input.textureWidth, input.textureHeight);
+			if ( spriteRenderer != null) {
+				if (input.isFirstCutting)
+					return SpriteMeshConstructor.ConstructFromSpriteUV(spriteRenderer, input.headX, input.headY, input.headWidth, input.headHeight, input.textureWidth, input.textureHeight);
+				else
+					return SpriteMeshConstructor.ConstructFromSpriteUV(spriteRenderer, input.headX, input.headY, input.headWidth, input.headHeight, input.textureWidth, input.textureHeight);
+				//return SpriteMeshConstructor.ConstructFromRendererBounds(spriteRenderer);
 			} else {
 				return meshRenderer.GetComponent<MeshFilter>().mesh;
 			}
