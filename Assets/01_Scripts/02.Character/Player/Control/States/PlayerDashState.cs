@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerState
 {
-    [SerializeField]
-    private float dashSpeed;
-    [SerializeField]
-    private float dashDistance = 5;
-    [SerializeField]
-    private float coolTime = 0.1f;
-
     private float lastDashTime;
     //[SerializeField]
     //private float maxDashCount;
@@ -34,7 +27,7 @@ public class PlayerDashState : PlayerState
         //}
         #endregion
 
-        if (Time.time - lastDashTime < coolTime)
+        if (Time.time - lastDashTime < status.DashCoolTime)
         {
             controller.ChangeState(PlayerStateType.Movement);
             return;
@@ -57,10 +50,10 @@ public class PlayerDashState : PlayerState
 
     private IEnumerator Dash()
     {
-        movement.SetMoveVector(transform.right, dashSpeed);
+        movement.SetMoveVector(transform.right, status.DashSpeed);
         //dashCount++;
 
-        yield return new WaitForSeconds(dashDistance / dashSpeed);
+        yield return new WaitForSeconds(status.DashDistance / status.DashSpeed);
 
         lastDashTime = Time.time;
         controller.ChangeState(PlayerStateType.Movement);

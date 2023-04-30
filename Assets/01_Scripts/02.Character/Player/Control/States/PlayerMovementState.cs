@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class PlayerMovementState : PlayerState
 {
-    [SerializeField]
-    private float moveSpeed;
-    [SerializeField]
-    private float jumpHeight;
-    [SerializeField]
-    private int maxJumpCount;
     private int currentJumpCount = 0;
 
 
@@ -40,21 +34,21 @@ public class PlayerMovementState : PlayerState
 
     private void Move(Vector2 inputVector)
     {
-        movement?.SetMoveVector(inputVector, moveSpeed);
+        movement?.SetMoveVector(inputVector, status.MoveSpeed);
     }
 
     private void Jump()
     {
         if (!movement.CheckGround())
         {
-            if (currentJumpCount >= maxJumpCount)
+            if (currentJumpCount >= status.MaxJumpCount)
                 return;
 
             if (currentJumpCount == 0)
                 currentJumpCount++;
         }
 
-        float jumpPower = Mathf.Sqrt(jumpHeight * 2 * -2f * gravityScale);
+        float jumpPower = Mathf.Sqrt(status.JumpHeight * 2 * -2f * gravityScale);
         movement.SetVerticalVelocity(jumpPower);
         currentJumpCount++;
     }

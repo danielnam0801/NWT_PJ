@@ -58,6 +58,8 @@ public class PlayerWeapon : MonoBehaviour
         {
             float currentMoveTime = 0;
 
+            Rotate(pathPoints[i + 1]);
+
             while(currentMoveTime < 1)
             {
                 currentMoveTime += Time.deltaTime / info.pointUnitMoveTime;
@@ -87,5 +89,12 @@ public class PlayerWeapon : MonoBehaviour
         StopCoroutine("Stay");
         IsStay = false;
         IsFollow = true;
+    }
+
+    private void Rotate(Vector2 targetDir)
+    {
+        Vector2 originRight = transform.right; 
+        Vector2 dir = (targetDir - (Vector2)transform.position).normalized;
+        transform.right = Quaternion.Euler(0, 0, -135f) * dir;
     }
 }

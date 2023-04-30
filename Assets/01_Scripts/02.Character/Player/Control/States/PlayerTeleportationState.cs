@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerTeleportationState : PlayerState
 {
-    [SerializeField]
-    private float teleportationTime = 1f;
-
     private SpriteRenderer render;
 
     public override void Init(Transform root)
@@ -38,7 +35,7 @@ public class PlayerTeleportationState : PlayerState
         color.a = 0;
         render.color = color;
 
-        yield return new WaitForSeconds(teleportationTime);
+        yield return new WaitForSeconds(status.TeleportationTime);
 
         controller.transform.position = attack.Weapon.transform.position;
         color.a = 1;
