@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class PartsDissapear : MonoBehaviour
 {
+    Collider2D thisCollider;
     private void Start()
     {
+        thisCollider = GetComponent<Collider2D>();
+        thisCollider.enabled = false;
         StartCoroutine(ChangeSlice());
     }
 

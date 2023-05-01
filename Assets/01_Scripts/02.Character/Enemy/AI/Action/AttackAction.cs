@@ -49,7 +49,7 @@ public class AttackAction : AIAction
 
     void SetEnd()
     {
-        attackCoolController.PlayCallbackAct(skillName); //stateInfo에 있는 isAttack을 false로 만들고 skill도 false
+        //attackCoolController.PlayCallbackAct(skillName); //stateInfo에 있는 isAttack을 false로 만들고 skill도 false
         _animator.SetAttackTrigger(false, skillName);
         EndEvent?.Invoke();
     }

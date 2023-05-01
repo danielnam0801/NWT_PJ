@@ -18,6 +18,8 @@ public class Enemy : PoolableObject, IHitable, IAgent
     public float Health { get; set; }
 
     [field: SerializeField]
+    public UnityEvent InitAction { get; set; }
+    [field: SerializeField]
     public UnityEvent OnDie { get; set; }
     [field: SerializeField]
     public UnityEvent OnGetHit { get; set; }
@@ -30,14 +32,14 @@ public class Enemy : PoolableObject, IHitable, IAgent
     protected CapsuleCollider2D _bodyColider;
     protected SpriteRenderer _spriteRenderer = null;
     protected EnemyAgentAnimator _enemyAnim;
+    Transform _rayPoint;
+    public Transform RayPoint => _rayPoint;
+
     public EnemyAgentAnimator EnemyAnimator => _enemyAnim;
     public LightTwinkle _enemyLight;
-    
-    Rigidbody2D rigidbody;
 
     [Header("Slice ฐüทร")]
     public EnemyParts[] ActiveVisual;
-    public Sprite SlicedSprite;
     public SpriteRenderer TestYong;
     [SerializeField] private float _addForcePower = 5f;
 
@@ -48,7 +50,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         _enemyAnim = transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
         _spriteRenderer = transform.Find("Visual").GetComponent<SpriteRenderer>();
         TestYong = GameObject.Find("TestYong").GetComponent<SpriteRenderer>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        _rayPoint = transform.Find("RayPoint").transform;
     }
 
     void Start()
@@ -119,10 +121,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         _isDead = false;
         Health = _enemyDataSO.HP;
         _enemyAnim.Init();
-        rigidbody.WakeUp();
-        if (_brain.enabled == false)
-            _brain.enabled = true;
-        
+        InitAction?.Invoke();
         foreach(EnemyParts eP in ActiveVisual)
         {
             eP.SetSpriteRenderEnabled(true);

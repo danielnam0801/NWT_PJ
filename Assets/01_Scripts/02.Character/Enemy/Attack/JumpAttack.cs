@@ -46,7 +46,7 @@ public class JumpAttack : EnemyAttack
     private void Jump()
     {
         Vector3 deltaPos = transform.position - _brain.BasePos.position;
-        Vector3 targetPos = _brain.GetTargetUnderPosition() + deltaPos; //점프 지점
+        Vector3 targetPos = _brain.GetTargetUnderPosition(); //점프 지점
         Vector3 startControl = (targetPos - transform.position) / 4;
         //Debug.Log("DeltaPos + " + deltaPos);
         //Debug.Log("targetPOs + " + targetPos);
@@ -71,28 +71,24 @@ public class JumpAttack : EnemyAttack
 
     }
 
+    float _changeFrameSpeed;
     IEnumerator JumpCoroutine()
     {
+        _changeFrameSpeed = _frameSpeed;
         AttackStartFeedback?.Invoke(); //공격사운드 재생후 0.4초후 점프
-        yield return new WaitForSeconds(_jumpDelay);
+        yield return new WaitForSeconds(_jumpDelay + 0.1f);
         
         for (int i = 0; i < _bezierPoints.Length; i++)
         {
-            yield return new WaitForSeconds(_frameSpeed);
+            if (i < _bezeirResolution / 5) _changeFrameSpeed = _frameSpeed / 2;
+            else if (i >= _bezeirResolution / 5 && i < _bezeirResolution / 10 * 7) _changeFrameSpeed = _frameSpeed;
+            else _changeFrameSpeed = _frameSpeed/2;
+
+            yield return new WaitForSeconds(_changeFrameSpeed);
             _brain.transform.position = _bezierPoints[i];
-            if (i == _bezierPoints.Length - 5)  //종료 5프레임 전이면 랜딩 애니메이션 재생
-            {
-                EdgeOfEndAnimation();
-            }
         }
         JumpEnd();
         Debug.Log("JumpEnd");
-    }
-
-    //점프가 거의 끝나갈때쯤 재생할 애니메이션
-    private void EdgeOfEndAnimation()
-    {
-        PlayLandingAnimation?.Invoke();
     }
 
     //점프가 끝나는 시점에서 호출될 코드
@@ -101,7 +97,6 @@ public class JumpAttack : EnemyAttack
         rb2d.gravityScale = 9.8f;
         //ImpactScript impact = PoolManager.Instance.Pop("ImpactShockwave") as ImpactScript;
         Vector3 basePos = _brain.BasePos.position; // 발바닥을 중심으로 충격파 발생
-
         float randomRot = UnityEngine.Random.Range(0, 360f);
         Quaternion rot = Quaternion.Euler(0, 0, randomRot);
 
@@ -121,6 +116,12 @@ public class JumpAttack : EnemyAttack
             //IKnockBack targetKnockback = GetTarget().GetComponent<IKnockBack>();
             //targetKnockback?.KnockBack(dir.normalized, 5f, 1f);
         }
+        StartCoroutine(DelayCoroutine(0.3f, () =>
+        {
+            Debug.Log("ISATTackINs");
+            AttackEndFeedback?.Invoke();
+            callBack?.Invoke();
+        }));
     }
 
     private void OnDisable()

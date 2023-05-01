@@ -9,8 +9,11 @@ public abstract class EnemyAttack : MonoBehaviour
     protected AIBrain _brain;
     protected EnemyAgentAnimator _animator;
     protected AIStateInfo _stateInfo;
+    protected AttackCoolController _CoolController;
 
+    public LayerMask CanDamageble;
     public UnityEvent AttackStartFeedback;
+    public UnityEvent AttackEndFeedback;
     protected Action callBack = null;
 
     protected virtual void Awake()
@@ -18,6 +21,7 @@ public abstract class EnemyAttack : MonoBehaviour
         _brain = transform.parent.GetComponent<AIBrain>();
         _stateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();
         _animator = _brain.transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
+        _CoolController = _brain.GetComponent<AttackCoolController>();
     }
 
     public abstract void Attack(Action CallBack);

@@ -48,8 +48,7 @@ public class EnemyParts : MonoBehaviour
         tmpObject.AddComponent<Rigidbody2D>();
 
         CanSlicedObject obj = tmpObject.AddComponent<CanSlicedObject>();
-        obj.SetValues(headX, headY, headWidth, headHeight, textureWidth, textureHeight, scale, transform, mat);
-        obj.DistroyThisObj(3f);
+        obj.SetValues(headX, headY, headWidth, headHeight, textureWidth, textureHeight, scale, transform, null);
         
         tmpObject.layer = LayerMask.NameToLayer("CanCutted");
 

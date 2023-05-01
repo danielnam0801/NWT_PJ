@@ -12,25 +12,44 @@ public class CanSlicedObject : MonoBehaviour, ICuttable
     Vector2 _scale;
     Transform _parent;
     Renderer _renderer;
-    Material _mat = null;
+    Material enemyMat = null;
+    
     public bool isFirstCutting = false;
+    private bool isSpriteRender;
 
     public void SetValues(int headX, int headY, int headWidth, int headHeight, int textureWidth, int textureHegiht, Vector2 scale, Transform parent, Material mat)
     {
         _renderer = GetComponent<Renderer>();
-        _mat = _renderer.material;
-        if (_renderer.GetType() == typeof(MeshRenderer))
-        {  
-            List<Material> materials = new List<Material>();
-            materials.Add(_mat);
-            Material enemyMat = Resources.Load("Enemy/EnemyDeadMaterial", typeof(Material)) as Material;
-            if (enemyMat) materials.Add(enemyMat); 
-            _renderer.materials = materials.ToArray();
-        }
-        if (_renderer.material.HasProperty("_Dissolve"))
+        enemyMat = Resources.Load("Enemy/EnemyDeadMaterial", typeof(Material)) as Material;
+
+        if (_renderer.GetType() == typeof(SpriteRenderer))
         {
-            _renderer.material.SetFloat("_Dissolve", 1);
+            _renderer.material = enemyMat;
+            if (_renderer.material.HasProperty("_Dissolve"))
+            {
+                _renderer.material.SetFloat("_Dissolve", 1);
+            }
+            isSpriteRender = true;
         }
+        else
+        {
+            isSpriteRender = false;
+        }
+        //if (_renderer.GetType() == typeof(MeshRenderer))
+        //{
+        //    Material myCurrentMat = _renderer.material;
+        //    List<Material> materials = new List<Material>();
+        //    //materials.Add(myCurrentMat);
+        //    if (enemyMat) materials.Add(enemyMat);
+        //    _renderer.materials = materials.ToArray();
+
+        //    if (_renderer.materials[0].HasProperty("_Dissolve"))//DeadMaterial 위치
+        //    {
+        //        _renderer.materials[0].SetFloat("_Dissolve", 1);
+        //    }
+        //    isMeshRenderer = true;
+        //}
+
         this._headX = headX;
         this._headY = headY;
         this._headWidth = headWidth;
@@ -40,29 +59,36 @@ public class CanSlicedObject : MonoBehaviour, ICuttable
         this._scale = scale;
         this._parent = parent;
         transform.localScale = scale;
-        isFirstCutting = true;
+        isFirstCutting = true; 
+        
+        DistroyThisObj(1.5f);
     }
 
     public void DistroyThisObj(float time)
     {
-        StartCoroutine(Waiting(time));
+        StartCoroutine(SpriteDissolve(time));
     }
 
-    IEnumerator Waiting(float time)
+    IEnumerator SpriteDissolve(float time)
     {
         yield return new WaitForSeconds(time);
-        Sequence seq = DOTween.Sequence();
-        Tween dissolve = DOTween.To(
-            () => _renderer.material.GetFloat("_Dissolve"),
-            x => _renderer.material.SetFloat("_Dissolve", x),
-            0f,
-            1.5f);
-
-        seq.Append(dissolve);
-        seq.OnComplete(() =>
+        if (isSpriteRender)
         {
+            Sequence seq = DOTween.Sequence();
+            Tween dissolve = DOTween.To(
+                () => _renderer.material.GetFloat("_Dissolve"),
+                x => _renderer.material.SetFloat("_Dissolve", x),
+                0f,
+                2.5f);
+
+            seq.Append(dissolve);
+            seq.OnComplete(() =>
+            {
+                Destroy(gameObject);
+            });
+        }
+        else
             Destroy(gameObject);
-        });
     }
     
     public void SpriteCutting(Vector2 InputVec, Vector2 OutputVec, int layerMask = -1)
@@ -88,27 +114,21 @@ public class CanSlicedObject : MonoBehaviour, ICuttable
             isFirstCutting = false;
             //3초 후 사라지게
             output.firstSideGameObject.AddComponent<PartsDissapear>();
-            //output.firstSideGameObject.transform.localScale = scale;
             output.secondSideGameObject.AddComponent<PartsDissapear>();
-            //output.secondSideGameObject.transform.localScale = scale;
 
             CanSlicedObject canSlice =  output.secondSideGameObject.AddComponent<CanSlicedObject>();
-            canSlice.SetValues(_headX, _headY, _headWidth, _headHeight, _textureWidth, _textureHeight, _scale, _parent, _mat);
+           
+            canSlice.SetValues(_headX, _headY, _headWidth, _headHeight, _textureWidth, _textureHeight, _scale, _parent, output.secondSideGameObject.GetComponent<Renderer>().material);
 
             Rigidbody2D newRigidbody = output.firstSideGameObject.GetComponent<Rigidbody2D>();
             Debug.Log(output.firstSideGameObject.name);
             output.secondSideGameObject.AddComponent<Rigidbody2D>();
             Rigidbody2D newRigidbody2 = output.secondSideGameObject.GetComponent<Rigidbody2D>();
 
-            newRigidbody.angularDrag = 0.8f;
-            newRigidbody2.angularDrag = 0.8f;
-            //if (output.firstSideGameObject.GetComponent<Rigidbody2D>() == null)
-                //newRigidbody2 = output.firstSideGameObject.AddComponent<Rigidbody2D>();
-            //else
-                //newRigidbody2 = output.firstSideGameObject.GetComponent<Rigidbody2D>();
-
-            newRigidbody.AddForceAtPosition((newRigidbody.position - InputVec) * 5, newRigidbody.position, ForceMode2D.Impulse);
-            newRigidbody2.AddForceAtPosition((newRigidbody2.position - InputVec) * 5, newRigidbody2.position, ForceMode2D.Impulse);
+            newRigidbody.angularDrag = 0.5f;
+            newRigidbody2.angularDrag = 0.5f;
+            newRigidbody.AddForceAtPosition((newRigidbody.position - InputVec) * 3, newRigidbody.position, ForceMode2D.Impulse);
+            newRigidbody2.AddForceAtPosition((newRigidbody2.position - InputVec) * 3, newRigidbody2.position, ForceMode2D.Impulse);
         }
     }
 }
