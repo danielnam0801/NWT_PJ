@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReverse: 0
   RayPoint: {fileID: 1239449157}
-  _distance: 4
+  _distance: 6
   boxCastUse: 1
 --- !u!114 &21831756
 MonoBehaviour:
@@ -1194,15 +1194,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f5bba9f8e938a4688a30693701a3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanDamageble:
+    serializedVersion: 2
+    m_Bits: 64
   AttackStartFeedback:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1486424697}
+        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
+        m_MethodName: AttackLightOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   AttackEndFeedback:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 280329915}
         m_TargetAssemblyTypeName: FeedbackPlayer, Assembly-CSharp
         m_MethodName: PlayFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1486424697}
+        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
+        m_MethodName: LightInit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1244,12 +1271,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6933c720e7d504887750a0d2e40555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanDamageble:
+    serializedVersion: 2
+    m_Bits: 64
   AttackStartFeedback:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1486424697}
+        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
+        m_MethodName: AttackLightOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   AttackEndFeedback:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1486424697}
+        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
+        m_MethodName: LightInit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  attackRange: 3
+  attackSize: {x: 1, y: 1}
+  damage: 1
 --- !u!1 &902455489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &1319380226
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1874,7 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c053661c17f26214795e7b989cdda87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
 --- !u!1 &1326863782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,7 +2247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 0
   _enemyDataSO: {fileID: 11400000, guid: 853d98f6338814b4e8ace384509b2cdf, type: 2}
-  <Health>k__BackingField: 0
+  <Health>k__BackingField: 10
   <InitAction>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -2334,6 +2391,12 @@ MonoBehaviour:
         m_CallState: 2
   _isActive: 1
   _enemyLight: {fileID: 1486424697}
+  spriteRenders:
+  - {fileID: 1852270819852194015}
+  - {fileID: 8291384379332511368}
+  - {fileID: 1926159579317478957}
+  - {fileID: 925931796506709464}
+  - {fileID: 2023482142278162719}
   ActiveVisual:
   - {fileID: 8819319344551644635}
   - {fileID: 5397473288296289713}
@@ -2880,21 +2943,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 4
-  AttackFeedback:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1486424697}
-        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
-        m_MethodName: AttackLightOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   EndEvent:
     m_PersistentCalls:
       m_Calls:
@@ -3387,21 +3435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 2
-  AttackFeedback:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1486424697}
-        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
-        m_MethodName: AttackLightOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   EndEvent:
     m_PersistentCalls:
       m_Calls:
@@ -3847,7 +3880,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3301896317664344ba32780a31cd24e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4196,7 +4229,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3301896317664344ba32780a31cd24e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4284,7 +4317,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3301896317664344ba32780a31cd24e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4352,7 +4385,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3301896317664344ba32780a31cd24e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5018,7 +5051,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3232279867982496533}
   - component: {fileID: 9221330923209425931}
-  - component: {fileID: 4572026063649146466}
   m_Layer: 0
   m_Name: Simple lang
   m_TagString: Untagged
@@ -5026,26 +5058,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &4572026063649146466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572026063649146463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d8f56bad4ab9994da6f2882b8ad208b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  partsData: {fileID: 11400000, guid: e8f274fef61ff8046a71e38dea3d2007, type: 2}
-  mat: {fileID: 2100000, guid: 3301896317664344ba32780a31cd24e1, type: 2}
-  headX: 0
-  headY: 0
-  headWidth: 0
-  headHeight: 0
-  textureWidth: 0
-  textureHeight: 0
 --- !u!4 &4578516884881596007
 Transform:
   m_ObjectHideFlags: 0
@@ -6431,7 +6443,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3301896317664344ba32780a31cd24e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
