@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class InGameUIController : MonoBehaviour
 {
     private UIDocument _doc;  // 요 스크립트와 같은 게임 오브젝트에 있는 UI Document 컴포넌트 할당용
+    private PlayerInput playerInput;
 
     private Button _leftBtn;
     private Button _rightBtn;
@@ -19,6 +20,11 @@ public class InGameUIController : MonoBehaviour
     {
         _doc = GetComponent<UIDocument>();
 
+        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+    }
+
+    private void OnEnable()
+    {
         // 각 버튼의 가져옴
         _leftBtn = _doc.rootVisualElement.Q<Button>("LeftBtn");
         _rightBtn = _doc.rootVisualElement.Q<Button>("RightBtn");
@@ -27,8 +33,17 @@ public class InGameUIController : MonoBehaviour
         _skill3Btn = _doc.rootVisualElement.Q<Button>("");
         _skill4Btn = _doc.rootVisualElement.Q<Button>("");
         _skill5Btn = _doc.rootVisualElement.Q<Button>("");
-        _leftBtn.clicked += LeftBtnClick;
-        _rightBtn.clicked += RightBtnClick;
+        _leftBtn.RegisterCallback<MouseDownEvent>(e =>
+        {
+            LeftBtnClick();
+            playerInput.UpdateMovementInput(Vector2.left);
+        });
+        _rightBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            playerInput.UpdateMovementInput(Vector2.right);
+        });
+        //_leftBtn.clicked += playerInput.UpdateMovementInput(Vector2.left);
+        //_rightBtn.clicked += RightBtnClick;
     }
 
     private void LeftBtnClick()
@@ -39,5 +54,4 @@ public class InGameUIController : MonoBehaviour
     {
         Debug.Log("RightBtnClick");
     }
-
 }

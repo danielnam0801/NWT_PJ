@@ -60,8 +60,6 @@ public class PlayerMovementState : PlayerState
 
     private void TeleportationHandle()
     {
-        Debug.Log(attack);
-        Debug.Log(attack.Weapon);
         if (attack.Weapon.IsStay)
             controller.ChangeState(PlayerStateType.Teleportation);
     }

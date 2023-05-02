@@ -22,12 +22,13 @@ public class FrogTongueAttack : EnemyAttack
 
     public void DamageCaster()
     {
-        RaycastHit2D damageCast = Physics2D.BoxCast(_brain.Enemy.RayPoint.position, attackSize, 0, new Vector2(_brain.AIMovementData.direction.x,0),attackRange, CanDamageble);
-        if (damageCast.collider != null)
-        {
-            damageCast.collider.GetComponent<IHitable>().GetHit(damage, this.gameObject);
-            Debug.Log("IsHIt");
-        }
+        //RaycastHit2D damageCast = Physics2D.BoxCast(_brain.Enemy.RayPoint.position, attackSize, 0, new Vector2(_brain.AIMovementData.direction.x,0),attackRange, CanDamageble);
+        //if (damageCast.collider != null)
+        //{
+        //    damageCast.collider.GetComponent<IHitable>().GetHit(damage, this.gameObject);
+        //    Debug.Log("IsHIt");
+        //} 
+        //ÀÛµ¿ ¾ÈµÊ
         
         StartCoroutine(DelayCoroutine(0.1f, () =>
         {
