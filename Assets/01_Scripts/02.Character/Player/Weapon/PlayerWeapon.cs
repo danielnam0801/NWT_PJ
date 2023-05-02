@@ -7,6 +7,7 @@ public class PlayerWeapon : MonoBehaviour
 
     [SerializeField]
     private WeaponSO info;
+    public float rotateTime = 1;
 
     protected Transform playerSwordTrm;
 
@@ -82,6 +83,7 @@ public class PlayerWeapon : MonoBehaviour
         IsStay = false;
         IsFollow = true;
         DrawManager.Instance.SetDelayDraw(Info.attackDelayTime);
+        StartCoroutine(RotateVertical());
     }
 
     public void StopStay()
@@ -89,12 +91,30 @@ public class PlayerWeapon : MonoBehaviour
         StopCoroutine("Stay");
         IsStay = false;
         IsFollow = true;
+        StartCoroutine(RotateVertical());
     }
 
     private void Rotate(Vector2 targetDir)
     {
-        Vector2 originRight = transform.right; 
         Vector2 dir = (targetDir - (Vector2)transform.position).normalized;
+
         transform.right = Quaternion.Euler(0, 0, -135f) * dir;
+    }
+
+    private IEnumerator RotateVertical()
+    {
+        Vector2 originRight = transform.right; 
+        Vector2 dir = Vector2.up;
+
+        float current = 0;
+        float percent = 0;
+        while(percent < 1)
+        {
+            current += Time.deltaTime;
+            percent = current / rotateTime;
+
+            transform.right = Vector2.Lerp(originRight, Quaternion.Euler(0, 0, -135f) * dir, percent);
+            yield return null;  
+        }
     }
 }

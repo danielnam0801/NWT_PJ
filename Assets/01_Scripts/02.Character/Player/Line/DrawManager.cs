@@ -19,6 +19,8 @@ public class DrawManager : MonoBehaviour
     private float drawTimeScale = 0.2f;
     [SerializeField]
     private float maxLienLength = 35;
+    [SerializeField]
+    private int minDrawPoint = 5;
 
     LineRenderer lr;
     List<Vector2> points = new List<Vector2>();
@@ -92,10 +94,9 @@ public class DrawManager : MonoBehaviour
 
     private IEnumerator SwordMove()
     {
-        canDraw = false;
-
-        if (points.Count > 5)
+        if (points.Count > minDrawPoint)
         {
+            canDraw = false;
             yield return StartCoroutine(sword.Attack(points));
         }
 

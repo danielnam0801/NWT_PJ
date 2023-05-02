@@ -17,4 +17,4 @@ MonoBehaviour:
   pointUnitMoveTime: 0.01
   followSpeed: 5
   followMinDistance: 0.3
-  attackDelayTime: 5
+  attackDelayTime: 3.5
