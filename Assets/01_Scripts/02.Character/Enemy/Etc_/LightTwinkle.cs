@@ -130,14 +130,14 @@ public class LightTwinkle : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void LightOn()
+    public void AttackLightOn()
     {
         StopAll();
         IsLightOn = true;
         FixedTypeSetIntensity(impactIntensityValue, attackColor, impactRadiusValue);
     }
 
-    public void LightOff()
+    public void LightInit()
     {
         IsLightOn = false;
         FixedTypeSetIntensity(firstIntensity, firstInColor, firstRadius);

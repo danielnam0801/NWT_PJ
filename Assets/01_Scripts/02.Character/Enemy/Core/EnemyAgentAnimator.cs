@@ -114,7 +114,6 @@ public class EnemyAgentAnimator : MonoBehaviour
     {
         if (OnAnimaitionEndTrigger == null) 
             Debug.LogError("sdfdsf");
-        Debug.Log("Methods : " + OnAnimaitionEndTrigger.Method);
         OnAnimaitionEndTrigger?.Invoke();
     }
 

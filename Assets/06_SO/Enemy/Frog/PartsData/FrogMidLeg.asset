@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022c70ec8b672374abcd01b56d1f7783, type: 3}
-  m_Name: Enemy-Frog
+  m_Script: {fileID: 11500000, guid: 1c01ee49f102a8847910e31e5198d793, type: 3}
+  m_Name: FrogMidLeg
   m_EditorClassIdentifier: 
-  m_BeforeSpeed: 1.5
-  m_AfterSpeed: 2
-  attackSpeed: 0.5
-  attackRange: 5
-  detectRange: 10
-  hp: 10
-  thinkTime: 5
+  headX: 4
+  headY: 638
+  headWidth: 131
+  headHeight: 203
+  textureWidth: 2039
+  textureHeight: 1018
+  EnemyName: GreenFrog

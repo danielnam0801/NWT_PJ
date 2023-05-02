@@ -30,6 +30,7 @@ public class HitAction : AIAction
 
     public override void ExitAction() // 애니메이션 진행동안 또 맞지 않으면 그냥 나가짐
     {
+        _brain.EnemyMovement.StopImmediatelly();
         _animator.OnAnimaitionEndTrigger -= EndAnim;
         _animator.SetEndHit();
     }
