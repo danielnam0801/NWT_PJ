@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class Document : MonoBehaviour
+public class StartUIController : MonoBehaviour
 {
     private void OnEnable()
     {
@@ -11,11 +12,20 @@ public class Document : MonoBehaviour
         VisualElement root = ui.rootVisualElement;
         VisualElement background = root.Q("Background");
         Button startBtn = root.Q<Button>("StartBtn");
+        Button settingBtn = root.Q<Button>("SettingBtn");
+        Button exitBtn = root.Q<Button>("ExitBtn");
 
         startBtn.RegisterCallback<ClickEvent>(e =>
         {
-            background.style.backgroundColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-            Debug.Log("startBtnClick");
+            SceneManager.LoadScene("씬이동");
+        });
+        settingBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            //세팅만들면
+        });
+        exitBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            Application.Quit();
         });
     }
 }
