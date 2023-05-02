@@ -1,15 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-public class StateMoveAgent : MonoBehaviour
+public class StateMoveAgent : DirectionType
 {
     public bool RepeatMove;
     [SerializeField] private float _speed;
     [SerializeField] private float _moveTime;
-    [SerializeField] private Vector3 repeatDir;
 
     private Vector3 dir;
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     private void Start()
     {
         StartCoroutine(UpandDown());
