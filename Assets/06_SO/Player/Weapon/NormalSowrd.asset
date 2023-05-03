@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad475763b15ff5e489ad58d6d4f3f6a7, type: 3}
   m_Name: NormalSowrd
   m_EditorClassIdentifier: 
-  power: 5
+  power: 100
   stayTime: 5
   pointUnitMoveTime: 0.01
   followSpeed: 5
