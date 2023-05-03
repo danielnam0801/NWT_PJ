@@ -85,7 +85,7 @@ public class AttackCoolController : MonoBehaviour
                         _stateInfo.IsNormal = false;
                         _stateInfo.IsAttack = false;
                     },
-                    coolTime = 5f,
+                    coolTime = 10f,
                     damage = 1
                 };
                 _attackDictionary.Add(rollAttack.AttackName, rollAttack);

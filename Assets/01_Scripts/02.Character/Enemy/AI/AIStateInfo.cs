@@ -20,6 +20,7 @@ public class AIStateInfo : MonoBehaviour
     public bool IsMelee = false;
     public bool IsRange = false;
     public bool IsHit = false;
+    public bool IsCrash = false;
 
     EnemyAgentAnimator animator;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckCrashWithPlayer : MonoBehaviour
 {
     [SerializeField] float damage = 3f;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         IHitable hitable = null;

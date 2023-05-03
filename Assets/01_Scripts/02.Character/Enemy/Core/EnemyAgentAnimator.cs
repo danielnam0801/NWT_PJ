@@ -11,7 +11,7 @@ public class EnemyAgentAnimator : MonoBehaviour
     private readonly int _JumpAttackHash = Animator.StringToHash("jumpAttack");
     private readonly int _MeleeAttackHash = Animator.StringToHash("meleeAttack");
     private readonly int _SpecialAttackHash = Animator.StringToHash("specialAttack");
-    private readonly int _NormalAttackHash = Animator.StringToHash("NormalAttack");
+    private readonly int _NormalAttackHash = Animator.StringToHash("normalAttack");
 
     private readonly int _playLandAnimHash = Animator.StringToHash("landTrigger");
     private readonly int _isAttackHash = Animator.StringToHash("is_attack");
