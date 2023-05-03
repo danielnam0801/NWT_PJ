@@ -40,7 +40,6 @@ public class AIBrain : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _target = GameManager.instance.Target;
         
         enemy = transform.GetComponent<Enemy>();
         _enemyMovement = GetComponent<EnemyMovement>();
@@ -52,6 +51,10 @@ public class AIBrain : MonoBehaviour
         AIMovementData = rootAI.GetComponent<AIMovementData>();
         _stateInfo = rootAI.GetComponent<AIStateInfo>();
         hitState = rootAI.Find("HitState").GetComponent<AIState>();
+    }
+    private void Start()
+    {
+        _target = GameManager.instance.Target;
     }
 
     protected void Update()

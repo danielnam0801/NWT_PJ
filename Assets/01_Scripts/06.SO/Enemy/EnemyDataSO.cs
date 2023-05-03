@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyType
-{
-
-}
-
 [CreateAssetMenu(menuName = "Assets/Enemy")]
 public class EnemyDataSO : ScriptableObject
 {

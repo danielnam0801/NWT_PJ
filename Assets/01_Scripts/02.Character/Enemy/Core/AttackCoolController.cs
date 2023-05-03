@@ -4,13 +4,26 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
+public enum EnemyType
+{
+    BigFrogEnemy,
+    SmallFrog,
+    Onion,
+    Gun,
+    Caterpillar,
+    Bug,
+    BeeHive,
+    BubbleBee,
+    Armadilo,
+}
+
 public class AttackCoolController : MonoBehaviour
 {
-    Enemy _enemy;
-    EnemyMovement _movement;
+    public EnemyType enemyType;
     Dictionary<SkillName, float> _attackCoolList;
     Dictionary<SkillName, EnemyAttackData> _attackDictionary;
-    Dictionary<SkillName, Action> _callbackList;
+    Enemy _enemy;
+    EnemyMovement _movement;
     AIStateInfo _stateInfo;
 
     private void Awake()
@@ -26,44 +39,63 @@ public class AttackCoolController : MonoBehaviour
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
         _attackCoolList = new Dictionary<SkillName, float>();
         _attackDictionary = new Dictionary<SkillName, EnemyAttackData>();
-        _callbackList = new Dictionary<SkillName, Action>();
     }
 
     private void MakeAttackTypeAction()
     {
         Transform atkTrm = transform.Find("AttackType");
-        #region GreenFrogEnemy
-        EnemyAttackData jumpAttack = new EnemyAttackData()
+        switch (enemyType)
         {
-            atk = atkTrm.GetComponent<JumpAttack>(),
-            AttackName = SkillName.Jump,
-            action = () => {
-                _stateInfo.IsJump = false;
-                _stateInfo.IsAttack = false;
-            },
-            coolTime = 5f,
-            damage = 1
-        };
-        EnemyAttackData tongueAttack = new EnemyAttackData()
-        {
-            atk = atkTrm.GetComponent<FrogTongueAttack>(),
-            AttackName = SkillName.Range,
-            action = () => {
-                _stateInfo.IsRange = false;
-                _stateInfo.IsAttack = false;
-            },
-            coolTime = 3f,
-            damage = 1
-        };
+            case EnemyType.BigFrogEnemy:
+                #region BigFrogEnemy
+                EnemyAttackData jumpAttack = new EnemyAttackData()
+                {
+                    atk = atkTrm.GetComponent<JumpAttack>(),
+                    AttackName = SkillName.Jump,
+                    action = () => {
+                        _stateInfo.IsJump = false;
+                        _stateInfo.IsAttack = false;
+                    },
+                    coolTime = 5f,
+                    damage = 1
+                };
+                EnemyAttackData tongueAttack = new EnemyAttackData()
+                {
+                    atk = atkTrm.GetComponent<FrogTongueAttack>(),
+                    AttackName = SkillName.Range,
+                    action = () => {
+                        _stateInfo.IsRange = false;
+                        _stateInfo.IsAttack = false;
+                    },
+                    coolTime = 3f,
+                    damage = 1
+                };
 
-        _attackDictionary.Add(jumpAttack.AttackName, jumpAttack);
-        _attackDictionary.Add(tongueAttack.AttackName, tongueAttack);
-        #endregion
+                _attackDictionary.Add(jumpAttack.AttackName, jumpAttack);
+                _attackDictionary.Add(tongueAttack.AttackName, tongueAttack);
+                #endregion
+                break;
+            case EnemyType.Armadilo:
+                #region Armadildo
+                EnemyAttackData rollAttack = new EnemyAttackData()
+                {
+                    atk = atkTrm.GetComponent<RollAttack>(),
+                    AttackName = SkillName.Normal,
+                    action = () => {
+                        _stateInfo.IsNormal = false;
+                        _stateInfo.IsAttack = false;
+                    },
+                    coolTime = 5f,
+                    damage = 1
+                };
+                _attackDictionary.Add(rollAttack.AttackName, rollAttack);
+                #endregion
+                break;
+        }
 
         foreach (var skill in _attackDictionary.Values)
         {
             _attackCoolList.Add(skill.AttackName, skill.coolTime);
-            _callbackList.Add(skill.AttackName, skill.action);
         }
 
     }
@@ -111,10 +143,5 @@ public class AttackCoolController : MonoBehaviour
         {
             _attackCoolList.Add(key, coolDown);
         }
-    }
-
-    public void PlayCallbackAct(SkillName key)
-    {
-        _callbackList[key]?.Invoke();
     }
 }

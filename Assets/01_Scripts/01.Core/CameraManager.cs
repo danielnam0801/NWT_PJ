@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
 
     public void Awake()
     {
-        playerCam = GameObject.Find("Cam/PlayerCam").GetComponent<CinemachineVirtualCamera>();
+        playerCam = DefineETC.VCam;
     }
 
     public void ShakePlayerCam(float amplitude = 1, float frequency = 1, float time = 1)

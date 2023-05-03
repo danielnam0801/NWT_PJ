@@ -9,6 +9,10 @@ public class EnemyAgentAnimator : MonoBehaviour
 
     private readonly int _RangeAttackHash = Animator.StringToHash("rangeAttack");
     private readonly int _JumpAttackHash = Animator.StringToHash("jumpAttack");
+    private readonly int _MeleeAttackHash = Animator.StringToHash("meleeAttack");
+    private readonly int _SpecialAttackHash = Animator.StringToHash("specialAttack");
+    private readonly int _NormalAttackHash = Animator.StringToHash("NormalAttack");
+
     private readonly int _playLandAnimHash = Animator.StringToHash("landTrigger");
     private readonly int _isAttackHash = Animator.StringToHash("is_attack");
     private readonly int _deadHash = Animator.StringToHash("isDead");
@@ -68,10 +72,25 @@ public class EnemyAgentAnimator : MonoBehaviour
         {
             switch (Skill)
             {
+                case SkillName.Normal:
+                    _animator.ResetTrigger(_NormalAttackHash);
+                    _animator.SetTrigger(_NormalAttackHash);
+                    currentSkillHash = _NormalAttackHash; 
+                    break; 
+                case SkillName.Special:
+                    _animator.ResetTrigger(_SpecialAttackHash);
+                    _animator.SetTrigger(_SpecialAttackHash);
+                    currentSkillHash = _SpecialAttackHash; 
+                    break;
+                case SkillName.Melee:
+                    _animator.ResetTrigger(_MeleeAttackHash);
+                    _animator.SetTrigger(_MeleeAttackHash);
+                    currentSkillHash = _MeleeAttackHash; 
+                    break;
                 case SkillName.Jump:
                     _animator.ResetTrigger(_JumpAttackHash);
                     _animator.SetTrigger(_JumpAttackHash);
-                    currentSkillHash = _JumpAttackHash; 
+                    currentSkillHash = _JumpAttackHash;
                     break;
                 case SkillName.Range:
                     _animator.ResetTrigger(_RangeAttackHash);
