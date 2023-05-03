@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum DissolveEffect
+{
+    Whole, Each
+}
 
 public class Enemy : PoolableObject, IHitable, IAgent
 {
@@ -38,7 +42,14 @@ public class Enemy : PoolableObject, IHitable, IAgent
     public LightTwinkle _enemyLight;
 
     [Header("childSprite")]
-    public List<SpriteRenderer> spriteRenders; 
+    public List<SpriteRenderer> spriteRenders;
+    
+    [Header("DissolveEffect")]
+    public DissolveEffect _dissolveType;
+    [SerializeField] float _dissolveDelay = 0.5f;
+    [SerializeField] float _dissolvePlayTime = 2.5f;
+    [SerializeField] float _dissolveSequenceTime = 0.3f;
+
 
     [Header("Slice 관련")]
     public EnemyParts[] ActiveVisual;
@@ -101,6 +112,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     {
         Health = 0;
         _isDead = true;
+        gameObject.layer = LayerMask.NameToLayer("EnemyDead");
         _enemyAnim.OnAnimaitionEndTrigger += DieAnimEvent; // 커팅 딜레이를 주고 싶다면 이걸 켜주
         // 커팅 딜레이를 주고 싶다면 이걸 켜주
 
@@ -119,15 +131,37 @@ public class Enemy : PoolableObject, IHitable, IAgent
     {
         //CreateCanSlicedObject(); // 자르는거 쓸꺼면 이거 활성화 근데 아직 안될꺼임
         Sequence seq = DOTween.Sequence();
-        foreach(var a in spriteRenders)
+        float time = _dissolveDelay;
+        switch (_dissolveType)
         {
-            Tween dissolve = DOTween.To(
-                () => a.material.GetFloat("_Dissolve"),
-                x => a.material.SetFloat("_Dissolve", x),
-                0f,
-                2.5f);
+            case DissolveEffect.Whole:
 
-            seq.Join(dissolve);
+                seq.PrependInterval(time); // 시작 딜레이
+
+                foreach (var a in spriteRenders)
+                {
+                    Tween dissolve = DOTween.To(
+                        () => a.material.GetFloat("_Dissolve"),
+                        x => a.material.SetFloat("_Dissolve", x),
+                        0f,
+                        _dissolvePlayTime);
+
+                    seq.Join(dissolve);
+                }
+                break;
+            case DissolveEffect.Each:
+                foreach(var a in spriteRenders)
+                {
+                    Tween dissolve = DOTween.To(
+                        () => a.material.GetFloat("_Dissolve"),
+                        x => a.material.SetFloat("_Dissolve", x),
+                        0f,
+                        _dissolvePlayTime);
+
+                    seq.Insert(time,dissolve);
+                    time += _dissolveSequenceTime;
+                }
+                break;
         }
         seq.OnComplete(() =>
         {
@@ -135,6 +169,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
             Destroy(gameObject);
         });
     }
+
 
     private void CreateCanSlicedObject()
     {
