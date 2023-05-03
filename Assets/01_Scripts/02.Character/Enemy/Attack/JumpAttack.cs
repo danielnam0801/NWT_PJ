@@ -80,9 +80,9 @@ public class JumpAttack : EnemyAttack
         
         for (int i = 0; i < _bezierPoints.Length; i++)
         {
-            if (i < _bezeirResolution / 5) _changeFrameSpeed = _frameSpeed / 2;
-            else if (i >= _bezeirResolution / 5 && i < _bezeirResolution / 10 * 7) _changeFrameSpeed = _frameSpeed;
-            else _changeFrameSpeed = _frameSpeed/2;
+            if (i < _bezeirResolution / 5) _changeFrameSpeed = _frameSpeed;
+            else if (i >= _bezeirResolution / 5 && i < _bezeirResolution / 10 * 7) _changeFrameSpeed = _frameSpeed /2;
+            else _changeFrameSpeed = _frameSpeed;
 
             yield return new WaitForSeconds(_changeFrameSpeed);
             _brain.transform.position = _bezierPoints[i];
