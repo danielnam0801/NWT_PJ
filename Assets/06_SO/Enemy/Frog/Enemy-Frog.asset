@@ -17,5 +17,5 @@ MonoBehaviour:
   attackSpeed: 0.5
   attackRange: 5
   detectRange: 10
-  hp: 10
+  hp: 100
   thinkTime: 5

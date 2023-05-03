@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UIToolkit/UI/start/Button.uss?fileID=7433441132597879392&amp;guid=a8e70f3069b810b4ba94f3618db16746&amp;type=3#Button" />
-    <ui:VisualElement name="Background" style="width: 100%; height: 100%; align-items: center; justify-content: center; transition-property: background-color; transition-duration: 1s; transition-timing-function: ease-in; transition-delay: 0s; background-color: rgba(0, 0, 0, 255);">
-        <ui:Label text="이중성" display-tooltip-when-elided="true" name="Title" style="position: relative; font-size: 300px; -unity-text-align: upper-center; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold; color: rgba(255, 255, 255, 255);" />
+    <ui:VisualElement name="Background" style="width: 100%; height: 100%; align-items: center; justify-content: center; transition-property: background-color; transition-duration: 1s; transition-timing-function: ease-in; transition-delay: 0s; background-color: rgb(0, 0, 0);">
+        <ui:Label text="이중성" display-tooltip-when-elided="true" name="Title" style="width: 30%; height: 24%; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-text-align: middle-center; -unity-font-style: bold; font-size: 200%; -unity-font-definition: none; margin-left: 53px; margin-right: 53px; margin-top: 53px; margin-bottom: 53px; color: rgb(255, 255, 255);" />
         <ui:Button text="START" display-tooltip-when-elided="true" name="StartBtn" class="btn" style="width: 200px; height: 80px;" />
-        <ui:Button text="SETTING" display-tooltip-when-elided="true" name="StartBtn" class="btn" style="width: 200px; height: 80px;" />
-        <ui:Button text="EXIT" display-tooltip-when-elided="true" name="StartBtn" class="btn" style="width: 200px; height: 80px;" />
+        <ui:Button text="SETTING" display-tooltip-when-elided="true" name="SettingBtn" class="btn" style="width: 200px; height: 80px;" />
+        <ui:Button text="EXIT" display-tooltip-when-elided="true" name="ExitBtn" class="btn" style="width: 200px; height: 80px;" />
     </ui:VisualElement>
 </ui:UXML>

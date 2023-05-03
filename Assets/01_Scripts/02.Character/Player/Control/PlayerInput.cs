@@ -12,15 +12,15 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        UpdateMovementInput();
+        //UpdateMovementInput();
         UpdateSpaceInput();
         UpdateShiftInput();
         UpdateLeftClickInput();
     }
 
-    private void UpdateMovementInput()
+    public void UpdateMovementInput(Vector2 input)
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+        //Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         
         OnMovementInput?.Invoke(input);
     }
