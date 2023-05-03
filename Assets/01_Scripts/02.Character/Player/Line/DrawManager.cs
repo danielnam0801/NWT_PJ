@@ -26,6 +26,7 @@ public class DrawManager : MonoBehaviour
     List<Vector2> points = new List<Vector2>();
 
     private bool canDraw = true;
+    public bool isDrawArea = false;
     private bool isDraw = false;
     private bool isMaxLength = false;
     private GameObject go;
@@ -94,6 +95,8 @@ public class DrawManager : MonoBehaviour
 
     private IEnumerator SwordMove()
     {
+        isDrawArea = false;
+
         if (points.Count > minDrawPoint)
         {
             canDraw = false;
