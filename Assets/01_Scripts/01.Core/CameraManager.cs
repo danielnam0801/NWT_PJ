@@ -12,11 +12,6 @@ public class CameraManager : MonoBehaviour
         playerCam = GameObject.Find("Cam/PlayerCam").GetComponent<CinemachineVirtualCamera>();
     }
 
-    private void Start()
-    {
-        ShakePlayerCam(6, 1);
-    }
-
     public void ShakePlayerCam(float amplitude = 1, float frequency = 1, float time = 1)
     {
         StartCoroutine(Shake(playerCam, amplitude, frequency, time));

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ShakeFeedback : Feedback
 {
-    [SerializeField] CinemachineVirtualCamera _cmVCam;
-    
     [SerializeField]
     [Range(0, 5f)]
     private float _amplitude = 1, _intensity = 1;
@@ -17,8 +15,8 @@ public class ShakeFeedback : Feedback
 
     private void OnEnable()
     {
-        if (_cmVCam == null) Debug.LogError("ShakeFeedback에 Vcam없음");
-        _noise = _cmVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        if (DefineETC.VCam == null) Debug.LogError("ShakeFeedback에 Vcam없음");
+        _noise = DefineETC.VCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     public override void CreateFeedBack()

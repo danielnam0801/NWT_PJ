@@ -61,7 +61,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     {
         _brain = GetComponent<AIBrain>();
         _enemyAnim = transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
-        TestYong = GameObject.Find("TestYong").GetComponent<SpriteRenderer>();
+        //TestYong = GameObject.Find("TestYong").GetComponent<SpriteRenderer>();
         _rayPoint = transform.Find("RayPoint").transform;
     }
 
@@ -85,6 +85,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     private void SetEnemyData()
     {
         Health = _enemyDataSO.HP;
+        //Debug.Log(_brain.AIMovementData);
         _brain.AIMovementData.thinkTime = _enemyDataSO.ThinkTime;
     }
 
