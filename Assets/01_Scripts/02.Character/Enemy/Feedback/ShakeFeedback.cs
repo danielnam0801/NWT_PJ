@@ -23,6 +23,7 @@ public class ShakeFeedback : Feedback
     {
         _noise.m_AmplitudeGain = _amplitude;
         _noise.m_FrequencyGain = _intensity;
+        Debug.Log("create feedback");
         StartCoroutine(ShakeCoroutine());
     }
 
@@ -34,14 +35,23 @@ public class ShakeFeedback : Feedback
 
     IEnumerator ShakeCoroutine()
     {
-        float time = _duration;
-        while (time > 0)
-        {
-            _noise.m_AmplitudeGain = Mathf.Lerp(0, _amplitude, time / _duration);
-            yield return null;
-            time -= Time.deltaTime;
-        }
-        _noise.m_AmplitudeGain = 0;
-    }
+        Debug.Log("shake");
 
+        _noise.m_AmplitudeGain = _amplitude;
+
+        yield return new WaitForSeconds(_duration);
+
+        _noise.m_AmplitudeGain = 0;
+
+        #region Lerp Shake
+        //float time = _duration;
+        //while (time > 0)
+        //{
+        //    _noise.m_AmplitudeGain = Mathf.Lerp(0, _amplitude, time / _duration);
+        //    yield return null;
+        //    time -= Time.deltaTime;
+        //}
+        //_noise.m_AmplitudeGain = 0;
+        #endregion
+    }
 }

@@ -36,7 +36,6 @@ public class InGameUIController : MonoBehaviour
         _skill3Btn = _doc.rootVisualElement.Q<VisualElement>("skill3Btn");
         _skill4Btn = _doc.rootVisualElement.Q<VisualElement>("skill4Btn");
         _skill5Btn = _doc.rootVisualElement.Q<VisualElement>("skill5Btn");
-        _attackArea = _doc.rootVisualElement.Q<VisualElement>("attackArea");
 
         SetPlayerButton();
     }
@@ -83,12 +82,6 @@ public class InGameUIController : MonoBehaviour
         {
             Debug.Log(1);
             playerInput.JumpInput();
-        });
-
-        _attackArea.RegisterCallback<FocusEvent>(e =>
-        {
-            Debug.Log(1);
-            DrawManager.Instance.isDrawArea = true;
-        });
+        }); 
     }
 }

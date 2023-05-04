@@ -99,14 +99,13 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
         HitPoint = damageDealer.transform.position;
 
+        OnGetHit?.Invoke();
 
         if (Health <= 0)
         {
             DeadProcess();
             return;
         }
-
-        OnGetHit?.Invoke();
     }
 
     private void DeadProcess()

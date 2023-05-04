@@ -80,7 +80,8 @@ public class DefineETC : MonoBehaviour
         get
         {
             if (_cmVCam == null)
-                _cmVCam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+                _cmVCam = GameObject.Find("Cam/PlayerCam").GetComponent<CinemachineVirtualCamera>();
+            //_cmVCam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
             return _cmVCam;
         }
     }

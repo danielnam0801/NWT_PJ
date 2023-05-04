@@ -13,6 +13,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public bool IsFollow { get; set; }
     public bool IsStay { get; set; }
+    private bool isAttack = false;
     public WeaponSO Info
     {
         get { return info; }
@@ -33,6 +34,8 @@ public class PlayerWeapon : MonoBehaviour
     
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!isAttack)
+            return;
         if (collision.gameObject.CompareTag("Player"))
             return;
 
@@ -55,6 +58,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public IEnumerator Attack(List<Vector2> pathPoints)
     {
+        isAttack = true;
         IsFollow = false;
         transform.position = pathPoints[0];
 
@@ -73,6 +77,7 @@ public class PlayerWeapon : MonoBehaviour
             }
         }
 
+        isAttack = false;
         StartCoroutine("Stay");
     }
 

@@ -22,9 +22,9 @@ public class PlayerInput : MonoBehaviour
     //Å°º¸µå
     public void UpdateMovementInput()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+        //Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         
-        OnMovementInput?.Invoke(input);
+        OnMovementInput?.Invoke(moveDir);
     }
 
     public void UpdateSpaceInput()
