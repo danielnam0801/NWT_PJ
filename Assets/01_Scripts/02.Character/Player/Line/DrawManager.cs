@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class DrawManager : MonoBehaviour
 {
     public static DrawManager Instance;
+    public UnityEvent DrawStartEvent;
     public UnityEvent DrawEndEvent;
 
     public GameObject linePrefab;
@@ -59,7 +60,8 @@ public class DrawManager : MonoBehaviour
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
         if (Input.GetMouseButtonDown(0))
         {
-            TimeManager.Instance.SetTimeScale(drawTimeScale, true);
+            DrawStartEvent?.Invoke();
+            //TimeManager.Instance.SetTimeScale(drawTimeScale, true);
             isDraw = true;
             points.Clear();
             go = Instantiate(linePrefab);
@@ -73,7 +75,8 @@ public class DrawManager : MonoBehaviour
         {
             isMaxLength = false;
             isDraw = false;
-            TimeManager.Instance.SetTimeScale(1, true);
+            DrawEndEvent?.Invoke();
+            //TimeManager.Instance.SetTimeScale(1, true);
 
             StartCoroutine(SwordMove());
         }

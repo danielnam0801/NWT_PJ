@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ButtonManipulator : MouseManipulator
+public class ClickManipulator : MouseManipulator
 {
     private Action _mouseDownEvent;
     private Action _mouseUpEvent;
 
-    public ButtonManipulator(Action mouseDownEvent, Action mouseUpEvent)
+    public ClickManipulator(Action mouseDownEvent = null, Action mouseUpEvent = null)
     {
         _mouseUpEvent = mouseUpEvent;
         _mouseDownEvent = mouseDownEvent;

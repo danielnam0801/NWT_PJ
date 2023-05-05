@@ -9,7 +9,7 @@ public class InGameUIController : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerController playerController;
 
-    private Button _leftBtn;
+    private VisualElement _leftBtn;
     private VisualElement _rightBtn;
     private VisualElement _settingBtn;
     private VisualElement _skill1Btn;
@@ -17,7 +17,7 @@ public class InGameUIController : MonoBehaviour
     private VisualElement _skill3Btn;
     private VisualElement _skill4Btn;
     private VisualElement _skill5Btn;
-    private VisualElement _attackArea;
+    private VisualElement _fadePanel;
 
     private void Awake()
     {
@@ -30,59 +30,35 @@ public class InGameUIController : MonoBehaviour
     private void OnEnable()
     {
         // 각 버튼의 가져옴
-        _leftBtn = _doc.rootVisualElement.Q<Button>("LeftBtn");
+        _leftBtn = _doc.rootVisualElement.Q<VisualElement>("LeftBtn");
         _rightBtn = _doc.rootVisualElement.Q<VisualElement>("RightBtn");
         _skill1Btn = _doc.rootVisualElement.Q<VisualElement>("skill1Btn");
         _skill2Btn = _doc.rootVisualElement.Q<VisualElement>("skill2Btn");
         _skill3Btn = _doc.rootVisualElement.Q<VisualElement>("skill3Btn");
         _skill4Btn = _doc.rootVisualElement.Q<VisualElement>("skill4Btn");
         _skill5Btn = _doc.rootVisualElement.Q<VisualElement>("skill5Btn");
-        _attackArea = _doc.rootVisualElement.Q<VisualElement>("a");
+        _fadePanel = _doc.rootVisualElement.Q<VisualElement>("fadePanel");
+
         SetPlayerButton();
     }
 
     private void SetPlayerButton()
     {
-        //_leftBtn.RegisterCallback<FocusEvent>(e =>
-        //{
-        //    Debug.Log(2);
-        //    playerInput.MoveInput(Vector2.left);
-        //});
-
-        //_leftBtn.RegisterCallback<MouseUpEvent>(e =>
-        //{
-        //    Debug.Log(3);
-        //    playerInput.MoveInput(Vector2.zero);
-        //});
-        _leftBtn.AddManipulator(new ButtonManipulator(() =>
+        _leftBtn.AddManipulator(new ClickManipulator(() =>
         {
-            Debug.Log(2);
             playerInput.MoveInput(Vector2.left);
         }, () =>
         {
-            Debug.Log(3);
-            playerInput.MoveInput(Vector2.zero);
-        }));
-        _attackArea.AddManipulator(new ButtonManipulator(() =>
-        {
-            Debug.Log(2);
-            playerInput.MoveInput(Vector2.left);
-        }, () =>
-        {
-            Debug.Log(3);
             playerInput.MoveInput(Vector2.zero);
         }));
 
-        _rightBtn.RegisterCallback<FocusEvent>(e =>
+        _rightBtn.AddManipulator(new ClickManipulator(() =>
         {
-            Debug.Log(2);
             playerInput.MoveInput(Vector2.right);
-        });
-
-        _rightBtn.RegisterCallback<MouseUpEvent>(e =>
+        }, () =>
         {
             playerInput.MoveInput(Vector2.zero);
-        });
+        }));
 
         _skill1Btn.RegisterCallback<ClickEvent>(e =>
         {
@@ -102,5 +78,11 @@ public class InGameUIController : MonoBehaviour
             Debug.Log(1);
             playerInput.JumpInput();
         }); 
+    }
+
+    public void Fade(float value)
+    {
+        Color color = _fadePanel.style.backgroundColor.value;
+        _fadePanel.style.backgroundColor = new StyleColor(new Color(color.r, color.g, color.b, value / 255f));
     }
 }

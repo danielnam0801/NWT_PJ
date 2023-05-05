@@ -25,24 +25,22 @@ public class TimeManager : MonoBehaviour
         defaultTimeScale = Time.timeScale;
     }
 
-    public void SetTimeScale(float value, bool isLerp = false)
+    public void SetTimeScale(float value)
     {
-        if(!isLerp)
-        {
-            Time.timeScale = value;
-        }
-        else
-        {
-            StartCoroutine(SetTimeScaleToLerp(value));
-        }
+        Time.timeScale = value;
     }
 
+    public void SetTimeScaleToLerp(float value)
+    {
+        StartCoroutine(SetTimeScaleToLerpCoroutine(value));
+    }
+    
     public void ResetTimeScale()
     {
         Time.timeScale = defaultTimeScale;
     }
 
-    private IEnumerator SetTimeScaleToLerp(float value)
+    private IEnumerator SetTimeScaleToLerpCoroutine(float value)
     {
         float currentTime = 0;
         float percent = 0;

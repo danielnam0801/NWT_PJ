@@ -80,3 +80,6 @@ TagManager:
   - name: Line
     uniqueID: 655701329
     locked: 0
+  - name: Fade
+    uniqueID: 485488969
+    locked: 0
