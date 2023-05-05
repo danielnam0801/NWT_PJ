@@ -9,7 +9,7 @@ public class InGameUIController : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerController playerController;
 
-    private VisualElement _leftBtn;
+    private Button _leftBtn;
     private VisualElement _rightBtn;
     private VisualElement _settingBtn;
     private VisualElement _skill1Btn;
@@ -18,6 +18,7 @@ public class InGameUIController : MonoBehaviour
     private VisualElement _skill4Btn;
     private VisualElement _skill5Btn;
     private VisualElement _attackArea;
+
     private void Awake()
     {
         _doc = GetComponent<UIDocument>();
@@ -29,30 +30,48 @@ public class InGameUIController : MonoBehaviour
     private void OnEnable()
     {
         // 각 버튼의 가져옴
-        _leftBtn = _doc.rootVisualElement.Q<VisualElement>("LeftBtn");
+        _leftBtn = _doc.rootVisualElement.Q<Button>("LeftBtn");
         _rightBtn = _doc.rootVisualElement.Q<VisualElement>("RightBtn");
         _skill1Btn = _doc.rootVisualElement.Q<VisualElement>("skill1Btn");
         _skill2Btn = _doc.rootVisualElement.Q<VisualElement>("skill2Btn");
         _skill3Btn = _doc.rootVisualElement.Q<VisualElement>("skill3Btn");
         _skill4Btn = _doc.rootVisualElement.Q<VisualElement>("skill4Btn");
         _skill5Btn = _doc.rootVisualElement.Q<VisualElement>("skill5Btn");
-
+        _attackArea = _doc.rootVisualElement.Q<VisualElement>("a");
         SetPlayerButton();
     }
 
     private void SetPlayerButton()
     {
-        _leftBtn.RegisterCallback<FocusEvent>(e =>
+        //_leftBtn.RegisterCallback<FocusEvent>(e =>
+        //{
+        //    Debug.Log(2);
+        //    playerInput.MoveInput(Vector2.left);
+        //});
+
+        //_leftBtn.RegisterCallback<MouseUpEvent>(e =>
+        //{
+        //    Debug.Log(3);
+        //    playerInput.MoveInput(Vector2.zero);
+        //});
+        _leftBtn.AddManipulator(new ButtonManipulator(() =>
         {
             Debug.Log(2);
             playerInput.MoveInput(Vector2.left);
-        });
-
-        _leftBtn.RegisterCallback<MouseUpEvent>(e =>
+        }, () =>
         {
             Debug.Log(3);
             playerInput.MoveInput(Vector2.zero);
-        });
+        }));
+        _attackArea.AddManipulator(new ButtonManipulator(() =>
+        {
+            Debug.Log(2);
+            playerInput.MoveInput(Vector2.left);
+        }, () =>
+        {
+            Debug.Log(3);
+            playerInput.MoveInput(Vector2.zero);
+        }));
 
         _rightBtn.RegisterCallback<FocusEvent>(e =>
         {

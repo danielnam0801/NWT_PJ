@@ -22,4 +22,5 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="VisualElement" style="flex-shrink: 0; flex-grow: 1; width: 50%; height: 100%; background-color: rgba(228, 228, 228, 0); background-image: url(&apos;project://database/Assets/11_Sprites/leftBtnPlayerMove.png?fileID=2800000&amp;guid=744ff8f2ccbb52646ab802b7316be42c&amp;type=3#leftBtnPlayerMove&apos;); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0);" />
 </ui:UXML>

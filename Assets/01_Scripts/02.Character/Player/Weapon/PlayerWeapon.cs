@@ -42,6 +42,7 @@ public class PlayerWeapon : MonoBehaviour
         if (collision.gameObject.TryGetComponent<IHitable>(out IHitable hit))
         {
             hit.GetHit(info.power, gameObject);
+            Debug.Log(collision.name);
         }
     }
 

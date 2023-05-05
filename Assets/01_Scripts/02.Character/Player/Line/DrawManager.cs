@@ -96,7 +96,7 @@ public class DrawManager : MonoBehaviour
     private IEnumerator SwordMove()
     {
         isDrawArea = false;
-
+        Destroy(go.gameObject);
         if (points.Count > minDrawPoint)
         {
             canDraw = false;
@@ -104,7 +104,8 @@ public class DrawManager : MonoBehaviour
         }
 
         points.Clear();
-        go.GetComponent<Line>().StartFade();
+        
+        //go.GetComponent<Line>().StartFade();
     }
 
     private IEnumerator DelayDraw(float time)
