@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnitySpriteCutter;
 
-public class EnemyParts : MonoBehaviour
+public class EnemyBoneParts : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     [SerializeField] EnemyPartsUVData partsData;

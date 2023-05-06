@@ -53,7 +53,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
 
     [Header("Slice ฐüทร")]
-    public EnemyParts[] ActiveVisual;
+    public EnemyBoneParts[] ActiveVisual;
     public SpriteRenderer TestYong;
     [SerializeField] private float _addForcePower = 5f;
 
@@ -186,7 +186,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
     private void CreateCanSlicedObject()
     {
-        foreach (EnemyParts eP in ActiveVisual)
+        foreach (EnemyBoneParts eP in ActiveVisual)
         {
             eP.CreateSameObject();    
         }
@@ -198,7 +198,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         Health = _enemyDataSO.HP;
         _enemyAnim.Init();
         InitAction?.Invoke();
-        foreach(EnemyParts eP in ActiveVisual)
+        foreach(EnemyBoneParts eP in ActiveVisual)
         {
             eP.SetSpriteRenderEnabled(true);
         }
