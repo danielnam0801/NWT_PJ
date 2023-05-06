@@ -99,6 +99,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
         HitPoint = damageDealer.transform.position;
 
+        PoolManager.Instance.Pop("AttackEffect");
         OnGetHit?.Invoke();
 
         if (Health <= 0)

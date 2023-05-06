@@ -42,11 +42,12 @@ public class PoolManager : MonoBehaviour
 
     public void Push(PoolableObject obj)
     {
-        if(pools.ContainsKey(obj.gameObject.name))
+        if(!pools.ContainsKey(obj.gameObject.name))
         {
-            pools[obj.gameObject.name].Push(obj);
+            Debug.Log("풀 없음");
+            return;
         }
 
-        Debug.Log("풀 없음");
+        pools[obj.gameObject.name].Push(obj);
     }
 }

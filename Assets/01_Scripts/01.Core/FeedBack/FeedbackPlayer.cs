@@ -14,7 +14,6 @@ public class FeedbackPlayer : MonoBehaviour
 
     public void PlayFeedback()
     {
-        Debug.Log("play feedback");
         FinishFeedback();
         foreach (Feedback f in _feedbackList)
         {

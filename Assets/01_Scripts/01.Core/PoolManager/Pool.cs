@@ -6,7 +6,7 @@ public class Pool<T> where T : PoolableObject
 {
     private T prefab;
     private Transform parent;
-    private Stack<T> pool;
+    private Stack<T> pool = new Stack<T>();
     
     public Pool(T _prefab, Transform _parent, int cnt = 5)
     {
@@ -18,6 +18,7 @@ public class Pool<T> where T : PoolableObject
             T obj = GameObject.Instantiate(prefab, parent);
             obj.name = obj.name.Replace("(Clone)", "");
             obj.gameObject.SetActive(false);
+            pool.Push(obj);
         }
     }
 
