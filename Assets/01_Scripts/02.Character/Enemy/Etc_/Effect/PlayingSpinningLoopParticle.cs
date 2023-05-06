@@ -18,10 +18,11 @@ public class PlayingSpinningLoopParticle : Feedback
     EffectPlayer effect;
     public override void CreateFeedBack()
     {
-        effect = Instantiate(_hitParticle) as EffectPlayer;
-        effect.transform.parent = transform;
+        effect = Instantiate(_hitParticle, Vector3.zero, Quaternion.identity) as EffectPlayer;
         //effect = PoolManager.Instance.Pop(_hitParticle.name) as EffectPlayer;
-        effect.transform.position = _aiACtionData.CreatePoint;
+        effect.transform.SetParent(_aiACtionData.transform.parent);
+        effect.transform.localPosition = _aiACtionData.CreatePoint + Vector3.down;
+        effect.transform.localRotation = Quaternion.identity;
         effect.StartPlay(_effectPlayTime);
     }
 
@@ -30,6 +31,6 @@ public class PlayingSpinningLoopParticle : Feedback
         
     }
 
-    public void StopFeedback() => Destroy(effect);
+    public void StopFeedback() => Destroy(effect.gameObject);
     //public void StopFeedback() => effect.StopPlay();
 }

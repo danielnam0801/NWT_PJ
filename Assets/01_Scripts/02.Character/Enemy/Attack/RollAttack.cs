@@ -16,7 +16,6 @@ public class RollAttack : EnemyAttack
     public override void Attack(Action CallBack)
     {
         this.callBack = CallBack;
-        AttackStartFeedback?.Invoke();
 
         StartCoroutine(Roll());
     }
@@ -29,7 +28,6 @@ public class RollAttack : EnemyAttack
 
     IEnumerator Roll()
     {
-        AttackStartFeedback?.Invoke();
 
         Vector3 pos = _brain.transform.position;
         //DOTween.Shake(() => _brain.transform.rotation.eulerAngles, z =>
@@ -41,6 +39,7 @@ public class RollAttack : EnemyAttack
         _brain.transform.DOJump(pos + new Vector3(0, 1, 0), 3, 1, 1f);
 
         yield return new WaitForSeconds(0.8f);
+        AttackStartFeedback?.Invoke();
 
         float t = 0;
         float rollPlayTime = 2.5f;
@@ -83,9 +82,11 @@ public class RollAttack : EnemyAttack
         _brain.transform.DORotate(new Vector3(0, 0, -170f +randomRotate), 0.3f).SetEase(Ease.InOutBack);
         //_brain.transform.DOShakeRotation(0.2f);
         _brain.EnemyMovement.StopImmediatelly();
-        _aiActionData.CreatePoint = transform.position + Vector3.up;
-
+        _aiActionData.CreatePoint = this.transform.localPosition;
+        
+        AttackEndFeedback?.Invoke();
         FaintStateEvent?.Invoke();
+
         t = 0;
         float faintTime = 4f;
         bool isIn = false;
@@ -118,7 +119,6 @@ public class RollAttack : EnemyAttack
         sequence.OnComplete(() =>
         {
             _stateInfo.IsCrash = false;
-            AttackEndFeedback?.Invoke();
             callBack();
         });
 
