@@ -33,13 +33,14 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
     protected AIBrain _brain;
     protected EnemyMovement _enemyMovement;
-    protected CapsuleCollider2D _bodyColider;
+    protected Collider2D _bodyColider;
     protected EnemyAgentAnimator _enemyAnim;
     Transform _rayPoint;
     public Transform RayPoint => _rayPoint;
 
     public EnemyAgentAnimator EnemyAnimator => _enemyAnim;
     public LightTwinkle _enemyLight;
+    public PhysicsMaterial2D physicsMaterial2D;
 
     [Header("childSprite")]
     public List<SpriteRenderer> spriteRenders;
@@ -55,6 +56,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     public EnemyParts[] ActiveVisual;
     public SpriteRenderer TestYong;
     [SerializeField] private float _addForcePower = 5f;
+
 
 
     void Awake()
@@ -126,6 +128,15 @@ public class Enemy : PoolableObject, IHitable, IAgent
     private void DieAnimEvent()
     {
         DieEvent();
+    }
+
+    public void ChangePhysicsMat2D()
+    {
+        _bodyColider.sharedMaterial = physicsMaterial2D;
+    }
+    public void InitPhysicsMat2D()
+    {
+        _bodyColider.sharedMaterial = null;
     }
 
     public void DieEvent()

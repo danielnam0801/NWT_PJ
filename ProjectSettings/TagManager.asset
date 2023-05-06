@@ -24,11 +24,11 @@ TagManager:
   - Weapon
   - CanCutted
   - Can'tCutting
+  - UnderFloor
   - 
   - 
-  - 
-  - 
-  - 
+  - Wall
+  - Floor
   - 
   - 
   - 

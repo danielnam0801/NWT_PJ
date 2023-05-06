@@ -11,4 +11,6 @@ public class AIActionData : MonoBehaviour
     public bool isIdle; 
     public bool isMoving;
 
+    public Vector3 CreatePoint;
+
 }
