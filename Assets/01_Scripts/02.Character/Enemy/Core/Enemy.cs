@@ -50,11 +50,15 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
 
     [Header("Slice 관련")]
-    public EnemySpriteParts[] ActiveVisual;
+    public SpriteRenderer[] ActiveVisual;
     public SpriteRenderer TestYong;
     [SerializeField] private float _addForcePower = 5f;
+
     [SerializeField]
-    private List<SpriteRenderer> childeSpriteRenders = new List<SpriteRenderer>();
+    private List<EnemyChildSprite> _enemyChildSlicedSprites = new List<EnemyChildSprite>();
+    
+    [Space(30)]
+    [Tooltip("Slice 가능하면 true로 설정")]
     public bool isCanSliced = false;
 
 
@@ -73,30 +77,35 @@ public class Enemy : PoolableObject, IHitable, IAgent
         SpriteMaterialInit();
     }
 
-    private void SpriteMaterialInit()
-    {
-        for (int i = 0; i < childeSpriteRenders.Count; i++)
-        {
-            if (childeSpriteRenders[i] != null)
-            {
-                childeSpriteRenders[i].material.SetFloat("_Dissolve", 1);
-            }
-        }
-    }
-
     private void SetEnemyData()
     {
         if (isCanSliced)
         {
             foreach(var a in ActiveVisual)
             {
-                childeSpriteRenders.Add(a.transform.GetComponent<SpriteRenderer>());
+                _enemyChildSlicedSprites.Add(a.GetComponent<EnemyChildSprite>());
             }
         }
+
         Health = _enemyDataSO.HP;
         Debug.Log(_brain.AIMovementData);
         _brain.AIMovementData.thinkTime = _enemyDataSO.ThinkTime;
     }
+    private void SpriteMaterialInit()
+    {
+        for (int i = 0; i < ActiveVisual.Length; i++)
+        {
+            if (ActiveVisual[i] != null)
+            {
+                ActiveVisual[i].material.SetFloat("_Dissolve", 1);
+            }
+            else
+            {
+                Debug.Log("Enemy에서 spriteRender안넣어줌");
+            }
+        }
+    }
+
 
     public void GetHit(float damage, GameObject damageDealer)
     {
@@ -168,7 +177,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
                 seq.PrependInterval(time); // 시작 딜레이
 
-                foreach (var a in childeSpriteRenders)
+                foreach (var a in ActiveVisual)
                 {
                     Tween dissolve = DOTween.To(
                         () => a.material.GetFloat("_Dissolve"),
@@ -180,7 +189,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
                 }
                 break;
             case global::DissolveEffect.Each:
-                foreach (var a in childeSpriteRenders)
+                foreach (var a in ActiveVisual)
                 {
                     Tween dissolve = DOTween.To(
                         () => a.material.GetFloat("_Dissolve"),
@@ -196,13 +205,15 @@ public class Enemy : PoolableObject, IHitable, IAgent
         seq.OnComplete(() =>
         {
             _enemyAnim.OnAnimaitionEndTrigger -= DieAnimEvent;
+            #region 풀링으로 바꿀부분
             Destroy(gameObject);
+            #endregion
         });
     }
 
     private void CreateCanSlicedObject()
     {
-        foreach (EnemySpriteParts eP in ActiveVisual)
+        foreach (EnemyChildSprite eP in _enemyChildSlicedSprites)
         {
             eP.CreateSameObject();    
         }
@@ -214,7 +225,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         Health = _enemyDataSO.HP;
         _enemyAnim.Init();
         InitAction?.Invoke();
-        foreach(EnemySpriteParts eP in ActiveVisual)
+        foreach(EnemyChildSprite eP in _enemyChildSlicedSprites)
         {
             eP.SetSpriteRenderEnabled(true);
         }

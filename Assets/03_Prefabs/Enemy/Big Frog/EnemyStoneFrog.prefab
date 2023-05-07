@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 287341766788041437}
   - component: {fileID: 8901864859890406413}
   - component: {fileID: 543791623}
-  - component: {fileID: 543791622}
+  - component: {fileID: 1000703685893990348}
   m_Layer: 0
   m_Name: Stone lang
   m_TagString: Untagged
@@ -482,7 +482,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.168, y: 0.368}
   m_EdgeRadius: 0
---- !u!114 &543791622
+--- !u!114 &1000703685893990348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -491,10 +491,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1988962938428792068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d43b0be98341544b703acbf61b7af1, type: 3}
+  m_Script: {fileID: 11500000, guid: ad36b2de3ba05514bba5a6a79943b91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 5
 --- !u!1 &2856104788767544051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,14 +1476,14 @@ MonoBehaviour:
   _dissolvePlayTime: 2.5
   _dissolveSequenceTime: 0.3
   ActiveVisual:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6665439604767656476}
+  - {fileID: 5023196978359995965}
+  - {fileID: 8626870114980025727}
+  - {fileID: 4447078176582096047}
+  - {fileID: 8589057668270368878}
   TestYong: {fileID: 0}
   _addForcePower: 1
-  childeSpriteRenders: []
+  _enemyChildSlicedSprites: []
   isCanSliced: 0
 --- !u!61 &4356950106294979530
 BoxCollider2D:

@@ -122,9 +122,9 @@ public class CanSlicedObject : MonoBehaviour, ICuttable
             output.firstSideGameObject.AddComponent<PartsDissapear>();
             output.secondSideGameObject.AddComponent<PartsDissapear>();
 
-            CanSlicedObject canSlice =  output.secondSideGameObject.AddComponent<CanSlicedObject>();
+            //CanSlicedObject canSlice =  output.secondSideGameObject.AddComponent<CanSlicedObject>();
            
-            canSlice.SetValues(_headX, _headY, _headWidth, _headHeight, _textureWidth, _textureHeight, _scale, _parent, output.secondSideGameObject.GetComponent<Renderer>().material);
+            //canSlice.SetValues(_headX, _headY, _headWidth, _headHeight, _textureWidth, _textureHeight, _scale, _parent, output.secondSideGameObject.GetComponent<Renderer>().material);
 
             Rigidbody2D newRigidbody = output.firstSideGameObject.GetComponent<Rigidbody2D>();
             Debug.Log(output.firstSideGameObject.name);

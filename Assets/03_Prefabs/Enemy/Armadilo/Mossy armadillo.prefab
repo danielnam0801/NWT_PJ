@@ -6722,7 +6722,7 @@ MonoBehaviour:
   - {fileID: 0}
   TestYong: {fileID: 0}
   _addForcePower: 1
-  childeSpriteRenders: []
+  _enemyChildSlicedSprites: []
   isCanSliced: 0
 --- !u!114 &7144592455688465757
 MonoBehaviour:
@@ -6756,7 +6756,7 @@ MonoBehaviour:
   enemyType: 8
   rangeCool: 5
   meleeCool: 3
-  normalCool: 5
+  normalCool: 10
   specialCool: 10
   rangeDamage: 5
   meleeDamage: 3

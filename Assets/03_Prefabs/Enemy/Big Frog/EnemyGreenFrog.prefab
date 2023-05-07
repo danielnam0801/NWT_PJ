@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1201795225593862063}
   - component: {fileID: 4867899268709421233}
   - component: {fileID: 1688270388}
-  - component: {fileID: 1688270391}
+  - component: {fileID: 1924063249671002241}
   m_Layer: 0
   m_Name: Simple lang
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.08, y: 0.296}
   m_EdgeRadius: 0
---- !u!114 &1688270391
+--- !u!114 &1924063249671002241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 217833538464289509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d43b0be98341544b703acbf61b7af1, type: 3}
+  m_Script: {fileID: 11500000, guid: ad36b2de3ba05514bba5a6a79943b91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 5
 --- !u!1 &323547301198115790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,14 +1717,14 @@ MonoBehaviour:
   _dissolvePlayTime: 2.5
   _dissolveSequenceTime: 0.3
   ActiveVisual:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2720853084689040485}
+  - {fileID: 5721283604233867826}
+  - {fileID: 2796147024282071703}
+  - {fileID: 3508142592694131042}
+  - {fileID: 2333468515083750821}
   TestYong: {fileID: 0}
   _addForcePower: 1
-  childeSpriteRenders: []
+  _enemyChildSlicedSprites: []
   isCanSliced: 0
 --- !u!61 &4356950106294979530
 BoxCollider2D:

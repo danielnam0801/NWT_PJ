@@ -1310,14 +1310,14 @@ MonoBehaviour:
   _dissolvePlayTime: 2.5
   _dissolveSequenceTime: 0.3
   ActiveVisual:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6634738282426093857}
+  - {fileID: 7289202917343733517}
+  - {fileID: 8033221954259073403}
+  - {fileID: 5097156186703220781}
+  - {fileID: 5452731946692202166}
   TestYong: {fileID: 0}
   _addForcePower: 1
-  childeSpriteRenders: []
+  _enemyChildSlicedSprites: []
   isCanSliced: 0
 --- !u!61 &4356950106294979530
 BoxCollider2D:
@@ -3384,7 +3384,7 @@ GameObject:
   - component: {fileID: 7881761646316793041}
   - component: {fileID: 8593156471266684955}
   - component: {fileID: 193691490}
-  - component: {fileID: 193691491}
+  - component: {fileID: 2684609937471499883}
   m_Layer: 0
   m_Name: Poison lang
   m_TagString: Untagged
@@ -3485,7 +3485,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.136, y: 0.324}
   m_EdgeRadius: 0
---- !u!114 &193691491
+--- !u!114 &2684609937471499883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3494,10 +3494,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8739440805251240818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d43b0be98341544b703acbf61b7af1, type: 3}
+  m_Script: {fileID: 11500000, guid: ad36b2de3ba05514bba5a6a79943b91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 5
 --- !u!1 &8826234425065531217
 GameObject:
   m_ObjectHideFlags: 0

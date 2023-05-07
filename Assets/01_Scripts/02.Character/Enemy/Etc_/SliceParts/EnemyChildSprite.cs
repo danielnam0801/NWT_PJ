@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnitySpriteCutter;
 
-public class EnemySpriteParts : MonoBehaviour
+public class EnemyChildSprite : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     Vector2 scale;
@@ -18,17 +18,13 @@ public class EnemySpriteParts : MonoBehaviour
 
     public void CreateSameObject()
     {
-        GameObject tmpObject;
-        tmpObject = Instantiate(this.gameObject, transform.position, Quaternion.Euler(transform.eulerAngles));
-        Destroy(tmpObject.GetComponent<SpriteSkin>());
-
-        SpriteRenderer childSpriteRender = tmpObject.GetComponent<SpriteRenderer>();
-        childSpriteRender.sprite = spriteRenderer.sprite;
-        childSpriteRender.sortingOrder = spriteRenderer.sortingOrder;
+        GameObject tmpObject = Instantiate(this.gameObject, transform.position, Quaternion.identity);
+        tmpObject.transform.SetParent(this.transform);
         tmpObject.AddComponent<BoxCollider2D>();
         tmpObject.AddComponent<Rigidbody2D>();
 
         CanSlicedObject obj = tmpObject.AddComponent<CanSlicedObject>();
+        obj.SetValues(true);
         tmpObject.layer = LayerMask.NameToLayer("CanCutted");
 
         SetSpriteRenderEnabled(false);
