@@ -45,7 +45,7 @@ public class AIBrain : MonoBehaviour
         _enemyMovement = GetComponent<EnemyMovement>();
         _attackCoolController = GetComponent<AttackCoolController>();
 
-        Transform rootAI = transform.Find("AI");
+        Transform rootAI = transform.Find("AI").transform;
         AIActionData = rootAI.GetComponent<AIActionData>();
         Debug.Log(rootAI);
         AIMovementData = rootAI.GetComponent<AIMovementData>();

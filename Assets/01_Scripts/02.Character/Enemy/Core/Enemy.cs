@@ -41,9 +41,6 @@ public class Enemy : PoolableObject, IHitable, IAgent
     public EnemyAgentAnimator EnemyAnimator => _enemyAnim;
     public LightTwinkle _enemyLight;
     public PhysicsMaterial2D physicsMaterial2D;
-
-    [Header("childSprite")]
-    public List<SpriteRenderer> spriteRenders;
     
     [Header("DissolveEffect")]
     public DissolveEffect _dissolveType;
@@ -53,10 +50,12 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
 
     [Header("Slice 관련")]
-    public EnemyBoneParts[] ActiveVisual;
+    public EnemySpriteParts[] ActiveVisual;
     public SpriteRenderer TestYong;
     [SerializeField] private float _addForcePower = 5f;
-
+    [SerializeField]
+    private List<SpriteRenderer> childeSpriteRenders = new List<SpriteRenderer>();
+    public bool isCanSliced = false;
 
 
     void Awake()
@@ -76,19 +75,26 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
     private void SpriteMaterialInit()
     {
-        for (int i = 0; i < spriteRenders.Count; i++)
+        for (int i = 0; i < childeSpriteRenders.Count; i++)
         {
-            if (spriteRenders[i] != null)
+            if (childeSpriteRenders[i] != null)
             {
-                spriteRenders[i].material.SetFloat("_Dissolve", 1);
+                childeSpriteRenders[i].material.SetFloat("_Dissolve", 1);
             }
         }
     }
 
     private void SetEnemyData()
     {
+        if (isCanSliced)
+        {
+            foreach(var a in ActiveVisual)
+            {
+                childeSpriteRenders.Add(a.transform.GetComponent<SpriteRenderer>());
+            }
+        }
         Health = _enemyDataSO.HP;
-        //Debug.Log(_brain.AIMovementData);
+        Debug.Log(_brain.AIMovementData);
         _brain.AIMovementData.thinkTime = _enemyDataSO.ThinkTime;
     }
 
@@ -142,16 +148,27 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
     public void DieEvent()
     {
-        //CreateCanSlicedObject(); // 자르는거 쓸꺼면 이거 활성화 근데 아직 안될꺼임
+        if (isCanSliced)
+        {
+            CreateCanSlicedObject(); // 자르는거 쓸꺼면 이거 활성화 근데 아직 안될꺼임
+        }
+        else
+        {
+            DissolveEffect();
+        }
+    }
+
+    private void DissolveEffect()
+    {
         Sequence seq = DOTween.Sequence();
         float time = _dissolveDelay;
         switch (_dissolveType)
         {
-            case DissolveEffect.Whole:
+            case global::DissolveEffect.Whole:
 
                 seq.PrependInterval(time); // 시작 딜레이
 
-                foreach (var a in spriteRenders)
+                foreach (var a in childeSpriteRenders)
                 {
                     Tween dissolve = DOTween.To(
                         () => a.material.GetFloat("_Dissolve"),
@@ -162,8 +179,8 @@ public class Enemy : PoolableObject, IHitable, IAgent
                     seq.Join(dissolve);
                 }
                 break;
-            case DissolveEffect.Each:
-                foreach(var a in spriteRenders)
+            case global::DissolveEffect.Each:
+                foreach (var a in childeSpriteRenders)
                 {
                     Tween dissolve = DOTween.To(
                         () => a.material.GetFloat("_Dissolve"),
@@ -171,7 +188,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
                         0f,
                         _dissolvePlayTime);
 
-                    seq.Insert(time,dissolve);
+                    seq.Insert(time, dissolve);
                     time += _dissolveSequenceTime;
                 }
                 break;
@@ -183,10 +200,9 @@ public class Enemy : PoolableObject, IHitable, IAgent
         });
     }
 
-
     private void CreateCanSlicedObject()
     {
-        foreach (EnemyBoneParts eP in ActiveVisual)
+        foreach (EnemySpriteParts eP in ActiveVisual)
         {
             eP.CreateSameObject();    
         }
@@ -198,7 +214,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         Health = _enemyDataSO.HP;
         _enemyAnim.Init();
         InitAction?.Invoke();
-        foreach(EnemyBoneParts eP in ActiveVisual)
+        foreach(EnemySpriteParts eP in ActiveVisual)
         {
             eP.SetSpriteRenderEnabled(true);
         }

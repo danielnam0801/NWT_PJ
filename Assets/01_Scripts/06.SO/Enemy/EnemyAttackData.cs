@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyAttackData
 {
-    public EnemyAttack atk;
+    public IEnemyAttack atk;
     public Action action;
     public SkillName AttackName;
     public float coolTime;

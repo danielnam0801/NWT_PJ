@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FrogTongueAttack : EnemyAttack
+public class FrogTongueAttack : EnemyAttack, IRangeAttack
 {
     [SerializeField] float attackRange;
     [SerializeField] Vector2 attackSize;
     [SerializeField] float damage = 1;
 
-    public override void Attack(Action CallBack)
+    public void Attack(Action CallBack)
     {
         AttackStartFeedback?.Invoke();
         _animator.OnAnimaitionEndTrigger += DamageCaster;

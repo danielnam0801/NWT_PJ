@@ -705,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e45af6053d5811478c052842b3c505e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reverseSprite: 0
   currentSkillHash: 0
 --- !u!1 &4235217690276135015
 GameObject:
@@ -1915,7 +1916,6 @@ MonoBehaviour:
   IsAttack: 0
   IsNormal: 0
   IsSpecial: 0
-  IsJump: 0
   IsMelee: 0
   IsRange: 0
   IsHit: 0
@@ -2033,7 +2033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  Skill: 0
+  Skill: 1
 --- !u!1 &7827535040701188590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,7 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f99055932b544b92fbadcc3c27bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 0
+  skillName: 1
   EndEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2219,7 +2219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  skill: 0
+  skill: 1
 --- !u!1 &7827535040980771228
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,17 +2568,6 @@ MonoBehaviour:
   _isActive: 1
   _enemyLight: {fileID: 0}
   physicsMaterial2D: {fileID: 6200000, guid: 0c0836dfe7227e842a4fcf4fa32d8374, type: 2}
-  spriteRenders:
-  - {fileID: 3500064467164420708}
-  - {fileID: 8089289024593489776}
-  - {fileID: 6693982942043653712}
-  - {fileID: 3424537889947701325}
-  - {fileID: 915437810936081605}
-  - {fileID: 8495507264278020361}
-  - {fileID: 3631083999182290206}
-  - {fileID: 2048709786269415368}
-  - {fileID: 3596799624891816430}
-  - {fileID: 3316114722007270479}
   _dissolveType: 0
   _dissolveDelay: 0.5
   _dissolvePlayTime: 2.5
@@ -2591,6 +2580,8 @@ MonoBehaviour:
   - {fileID: 0}
   TestYong: {fileID: 0}
   _addForcePower: 1
+  childeSpriteRenders: []
+  isCanSliced: 0
 --- !u!114 &7827535041287577263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2619,7 +2610,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd78b1368d6ff4749808c4ad3771554a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MySkills: 1
   enemyType: 8
+  rangeCool: 5
+  meleeCool: 3
+  normalCool: 5
+  specialCool: 10
+  rangeDamage: 5
+  meleeDamage: 3
+  normalDamage: 5
+  specialDamage: 10
 --- !u!114 &7827535041287577256
 MonoBehaviour:
   m_ObjectHideFlags: 0

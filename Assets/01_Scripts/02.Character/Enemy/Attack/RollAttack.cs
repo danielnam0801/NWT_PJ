@@ -5,7 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
 
-public class RollAttack : EnemyAttack
+public class RollAttack : EnemyAttack, INormalAttack
 {
     [SerializeField] Transform CenterPos;
     [SerializeField] float rotateValue = 20f;
@@ -13,7 +13,7 @@ public class RollAttack : EnemyAttack
 
     public UnityEvent FaintStateEvent;
     public UnityEvent FaintStateEndEvent;
-    public override void Attack(Action CallBack)
+    public void Attack(Action CallBack)
     {
         this.callBack = CallBack;
 

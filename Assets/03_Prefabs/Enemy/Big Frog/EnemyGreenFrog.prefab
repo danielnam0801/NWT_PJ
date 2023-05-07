@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  skill: 4
+  skill: 8
 --- !u!1 &4356950106104258103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,7 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  Skill: 2
+  Skill: 1
 --- !u!1 &4356950106120855244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,24 +1711,21 @@ MonoBehaviour:
         m_CallState: 2
   _isActive: 1
   _enemyLight: {fileID: 4356950106120855235}
-  spriteRenders:
-  - {fileID: 2720853084689040485}
-  - {fileID: 5721283604233867826}
-  - {fileID: 2796147024282071703}
-  - {fileID: 3508142592694131042}
-  - {fileID: 2333468515083750821}
+  physicsMaterial2D: {fileID: 0}
   _dissolveType: 0
   _dissolveDelay: 0.5
   _dissolvePlayTime: 2.5
   _dissolveSequenceTime: 0.3
   ActiveVisual:
-  - {fileID: 5049233640052840801}
-  - {fileID: 8543700480683491595}
-  - {fileID: 3605910905430101469}
-  - {fileID: 1640697192830261031}
-  - {fileID: 2920652800700776314}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   TestYong: {fileID: 0}
   _addForcePower: 1
+  childeSpriteRenders: []
+  isCanSliced: 0
 --- !u!61 &4356950106294979530
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1804,6 +1801,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd78b1368d6ff4749808c4ad3771554a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MySkills: 9
+  enemyType: 0
+  rangeCool: 5
+  meleeCool: 3
+  normalCool: 5
+  specialCool: 10
+  rangeDamage: 5
+  meleeDamage: 3
+  normalDamage: 5
+  specialDamage: 10
 --- !u!1 &4356950106519062897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,7 +1871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f99055932b544b92fbadcc3c27bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 4
+  skillName: 8
   EndEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1940,7 +1947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  skill: 2
+  skill: 1
 --- !u!1 &4356950106593473765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,7 +2068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f99055932b544b92fbadcc3c27bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 2
+  skillName: 1
   EndEvent:
     m_PersistentCalls:
       m_Calls:
@@ -2216,7 +2223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  Skill: 4
+  Skill: 8
 --- !u!1 &4356950107325950467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,10 +2338,10 @@ MonoBehaviour:
   IsAttack: 0
   IsNormal: 0
   IsSpecial: 0
-  IsJump: 0
   IsMelee: 0
   IsRange: 0
   IsHit: 0
+  IsCrash: 0
   hitCnt: 0
 --- !u!114 &4356950107333138819
 MonoBehaviour:
@@ -2353,6 +2360,7 @@ MonoBehaviour:
   arrived: 0
   isIdle: 0
   isMoving: 0
+  CreatePoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4356950107333138818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3717,6 +3725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e45af6053d5811478c052842b3c505e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reverseSprite: 0
   currentSkillHash: 0
 --- !u!1 &9074639641428619565
 GameObject:

@@ -26,8 +26,6 @@ public abstract class EnemyAttack : MonoBehaviour
         _CoolController = _brain.GetComponent<AttackCoolController>();
     }
 
-    public abstract void Attack(Action CallBack);
-
     protected IEnumerator DelayCoroutine(float afterAttackDelay, Action afterPlayAction)
     {
         yield return new WaitForSeconds(afterAttackDelay);

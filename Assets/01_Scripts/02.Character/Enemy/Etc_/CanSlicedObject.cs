@@ -16,11 +16,16 @@ public class CanSlicedObject : MonoBehaviour, ICuttable
     
     public bool isFirstCutting = false;
     private bool isSpriteRender;
+    
+    public void SetValues(bool isSprite)
+    {
+        isSpriteRender = isSprite;
+    }
 
     public void SetValues(int headX, int headY, int headWidth, int headHeight, int textureWidth, int textureHegiht, Vector2 scale, Transform parent, Material mat)
     {
         _renderer = GetComponent<Renderer>();
-        enemyMat = Resources.Load("Enemy/EnemyDeadMaterial", typeof(Material)) as Material;
+        enemyMat = mat;
 
         if (_renderer.GetType() == typeof(SpriteRenderer))
         {
@@ -100,11 +105,12 @@ public class CanSlicedObject : MonoBehaviour, ICuttable
             headX = _headX,
             headY = _headY,
             headWidth = _headWidth,
-            headHeight = _headHeight,    
+            headHeight = _headHeight,
             textureWidth = _textureWidth,
             textureHeight = _textureHeight,
             scale = _scale,
             isFirstCutting = isFirstCutting,
+            isboneCutting = !isSpriteRender,
             gameObject = this.gameObject,
             gameObjectCreationMode = SpriteCutterInput.GameObjectCreationMode.CUT_OFF_ONE,
         });

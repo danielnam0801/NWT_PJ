@@ -890,6 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e45af6053d5811478c052842b3c505e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reverseSprite: 0
   currentSkillHash: 0
 --- !u!1 &5217026121584839693
 GameObject:
@@ -6580,7 +6581,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5830222534364639615}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -6643,7 +6644,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5830222534364639615}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -6709,17 +6710,6 @@ MonoBehaviour:
   _isActive: 1
   _enemyLight: {fileID: 0}
   physicsMaterial2D: {fileID: 6200000, guid: 0c0836dfe7227e842a4fcf4fa32d8374, type: 2}
-  spriteRenders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _dissolveType: 0
   _dissolveDelay: 0.5
   _dissolvePlayTime: 2.5
@@ -6732,6 +6722,8 @@ MonoBehaviour:
   - {fileID: 0}
   TestYong: {fileID: 0}
   _addForcePower: 1
+  childeSpriteRenders: []
+  isCanSliced: 0
 --- !u!114 &7144592455688465757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6760,7 +6752,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd78b1368d6ff4749808c4ad3771554a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MySkills: 1
   enemyType: 8
+  rangeCool: 5
+  meleeCool: 3
+  normalCool: 5
+  specialCool: 10
+  rangeDamage: 5
+  meleeDamage: 3
+  normalDamage: 5
+  specialDamage: 10
 --- !u!114 &7144592455688465754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6994,7 +6995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  skill: 0
+  skill: 1
 --- !u!1 &7144592456315361875
 GameObject:
   m_ObjectHideFlags: 0
@@ -7055,7 +7056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f99055932b544b92fbadcc3c27bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 0
+  skillName: 1
   EndEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -7197,7 +7198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
-  Skill: 0
+  Skill: 1
 --- !u!1 &7144592456797798151
 GameObject:
   m_ObjectHideFlags: 0
@@ -7251,7 +7252,6 @@ MonoBehaviour:
   IsAttack: 0
   IsNormal: 0
   IsSpecial: 0
-  IsJump: 0
   IsMelee: 0
   IsRange: 0
   IsHit: 0
