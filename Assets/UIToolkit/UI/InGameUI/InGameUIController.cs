@@ -15,7 +15,7 @@ public class InGameUIController : MonoBehaviour
         UIDocument ui = GetComponent<UIDocument>();
         VisualElement root = ui.rootVisualElement;
         Button setting = root.Q<Button>("settingBtn");
-        Button upBtn = root.Q<Button>("UpBtn");
+        VisualElement upBtn = root.Q<VisualElement>("UpBtn");
         Button rightBtn = root.Q<Button>("RightBtn");
         Button leftBtn = root.Q<Button>("LeftBtn");
 
