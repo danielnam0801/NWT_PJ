@@ -60,6 +60,7 @@ public class DrawManager : MonoBehaviour
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
         if (Input.GetMouseButtonDown(0))
         {
+            LightManager.Instance.SetFocus(true);
             DrawStartEvent?.Invoke();
             //TimeManager.Instance.SetTimeScale(drawTimeScale, true);
             isDraw = true;
@@ -73,6 +74,7 @@ public class DrawManager : MonoBehaviour
         }
         else if (isDraw && Input.GetMouseButtonUp(0) || isMaxLength)
         {
+            LightManager.Instance.SetFocus(false);
             isMaxLength = false;
             isDraw = false;
             DrawEndEvent?.Invoke();

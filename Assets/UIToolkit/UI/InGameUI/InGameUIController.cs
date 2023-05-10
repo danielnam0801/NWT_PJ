@@ -80,9 +80,9 @@ public class InGameUIController : MonoBehaviour
         }); 
     }
 
-    public void Fade(float value)
-    {
-        Color color = _fadePanel.style.backgroundColor.value;
-        _fadePanel.style.backgroundColor = new StyleColor(new Color(color.r, color.g, color.b, value / 255f));
-    }
+    //public void Fade(float value)
+    //{
+    //    Color color = _fadePanel.style.backgroundColor.value;
+    //    _fadePanel.style.backgroundColor = new StyleColor(new Color(color.r, color.g, color.b, value / 255f));
+    //}
 }

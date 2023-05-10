@@ -27,6 +27,11 @@ public class PlayerWeapon : MonoBehaviour
         playerSwordTrm = GameObject.Find("Player/SwordPosition").transform;
     }
 
+    protected virtual void Start()
+    {
+        LightManager.Instance.AddFocusObject(gameObject);
+    }
+
     protected virtual void Update()
     {
         MoveToPlayer();

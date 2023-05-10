@@ -18,6 +18,9 @@ public class PlayerInput : MonoBehaviour
         UpdateSpaceInput();
         UpdateShiftInput();
         UpdateLeftClickInput();
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+            Debug.Log(1);
     }
     //Å°º¸µå
     public void UpdateMovementInput()
