@@ -9,35 +9,34 @@ public class PlayerInput : MonoBehaviour
     public event Action OnSpaceInput;
     public event Action OnShiftInput;
     public event Action OnLeftClickInput;
+    public event Action OnMouseUpAction;
 
     private Vector2 moveDir = Vector2.zero;
 
     private void Update()
     {
         UpdateMovementInput();
-        UpdateSpaceInput();
-        UpdateShiftInput();
+        UpdateJumpInput();
+        UpdateDashInput();
         UpdateLeftClickInput();
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
-            Debug.Log(1);
+            OnMouseUpAction?.Invoke();
     }
     //Å°º¸µå
     public void UpdateMovementInput()
     {
-        //Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
-
         Debug.Log(moveDir);
         OnMovementInput?.Invoke(moveDir);
     }
 
-    public void UpdateSpaceInput()
+    public void UpdateJumpInput()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
             OnSpaceInput?.Invoke();
     }
 
-    public void UpdateShiftInput()
+    public void UpdateDashInput()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
             OnShiftInput?.Invoke();
@@ -53,7 +52,11 @@ public class PlayerInput : MonoBehaviour
     public void MoveInput(Vector2 input)
     {
         moveDir = input;
-        //OnMovementInput?.Invoke(input);
+    }
+
+    public void StopMoveInput()
+    {
+        moveDir = Vector2.zero;
     }
 
     public void DashInput()
