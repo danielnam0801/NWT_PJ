@@ -1203,7 +1203,7 @@ GameObject:
   - component: {fileID: 4356950106294979542}
   - component: {fileID: 4356950106294979541}
   m_Layer: 8
-  m_Name: EnemyStoneFrog
+  m_Name: EnemyBigStoneFrog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
