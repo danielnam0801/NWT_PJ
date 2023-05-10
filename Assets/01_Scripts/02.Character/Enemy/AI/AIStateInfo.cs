@@ -1,25 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Flags]
 public enum SkillName
 {
-    Normal,
-    Special,
-    Jump,
-    Melee,
-    Range
+    Normal = 1,
+    Special = 2,
+    Melee = 4,
+    Range = 8
 }
+
 public class AIStateInfo : MonoBehaviour
 {
     [Header("bool")]
     public bool IsAttack = false;
     public bool IsNormal = false;
     public bool IsSpecial = false;
-    public bool IsJump = false;
     public bool IsMelee = false;
     public bool IsRange = false;
     public bool IsHit = false;
+    public bool IsCrash = false;
 
     EnemyAgentAnimator animator;
 

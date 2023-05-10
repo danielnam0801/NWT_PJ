@@ -21,6 +21,8 @@ public class FlyingMovingAction : AIAction
 
     [Header("Another..")]
     [Range(-5f, 5f)] public float y_Axis = 0;
+    [Range(-5f, 5f)] public float XSpeed = 0;
+    [Range(-5f, 5f)] public float YSpeed = 0;
 
     [Space(30f)]
     public float randA, randF, randP, randY;
@@ -28,6 +30,7 @@ public class FlyingMovingAction : AIAction
     public override void InitAction()
     {
         _aiMovementData.direction.x = Random.Range(-3f, 3f);
+        _aiMovementData.direction.y = Random.Range(-3f, 3f);
     }
 
     public override void TakeAction()
@@ -39,10 +42,10 @@ public class FlyingMovingAction : AIAction
         {
             StartCoroutine(nameof(Think));
             _aiActionData.isCanThinking = false;
-            _aiMovementData.direction.x = value;
+            _aiMovementData.direction.x = value * XSpeed;
         }
 
-        _aiMovementData.direction.y = value / 4; //속도 줄이려 나눈거
+        _aiMovementData.direction.y = value * YSpeed; //속도 줄이려 나눈거
         _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
     }
 

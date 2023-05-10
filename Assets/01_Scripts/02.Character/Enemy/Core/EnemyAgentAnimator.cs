@@ -8,10 +8,9 @@ public class EnemyAgentAnimator : MonoBehaviour
     private readonly int _speedHash = Animator.StringToHash("speed");
 
     private readonly int _RangeAttackHash = Animator.StringToHash("rangeAttack");
-    private readonly int _JumpAttackHash = Animator.StringToHash("jumpAttack");
     private readonly int _MeleeAttackHash = Animator.StringToHash("meleeAttack");
     private readonly int _SpecialAttackHash = Animator.StringToHash("specialAttack");
-    private readonly int _NormalAttackHash = Animator.StringToHash("NormalAttack");
+    private readonly int _NormalAttackHash = Animator.StringToHash("normalAttack");
 
     private readonly int _playLandAnimHash = Animator.StringToHash("landTrigger");
     private readonly int _isAttackHash = Animator.StringToHash("is_attack");
@@ -30,12 +29,16 @@ public class EnemyAgentAnimator : MonoBehaviour
     AIStateInfo _aiStateInfo;
 
     [SerializeField]
+    bool reverseSprite = false;
+    int reverseValue;
+    [SerializeField]
     int currentSkillHash;
 
     private void Awake()
     {
         _aiStateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();
         _animator = GetComponent<Animator>();
+        reverseValue = (reverseSprite == true) ? -1 : 1; 
     }
 
     public void ChaseAttackFaceDirection(Vector2 pointerInput)
@@ -43,16 +46,18 @@ public class EnemyAgentAnimator : MonoBehaviour
         if (_aiStateInfo.IsAttack == false)
         {
             Vector3 direction = (Vector3)pointerInput - transform.position;
-            transform.parent.localScale = (direction.x < 0) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            transform.parent.localScale = (direction.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
         }
     }
 
     public void IdleFaceDirection(Vector2 currentDir, Vector2 beforeDir)
     {
         if (currentDir.x == 0)
-            transform.parent.localScale = (beforeDir.x < 0) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); //멈춤이 일어날때 전에 보던 방향에 따른 페이스 디렉션
+        {
+            transform.parent.localScale = (beforeDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); //멈춤이 일어날때 전에 보던 방향에 따른 페이스 디렉션
+        }
         else
-            transform.parent.localScale = (currentDir.x < 0) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            transform.parent.localScale = (currentDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
 
     }
 
@@ -86,11 +91,6 @@ public class EnemyAgentAnimator : MonoBehaviour
                     _animator.ResetTrigger(_MeleeAttackHash);
                     _animator.SetTrigger(_MeleeAttackHash);
                     currentSkillHash = _MeleeAttackHash; 
-                    break;
-                case SkillName.Jump:
-                    _animator.ResetTrigger(_JumpAttackHash);
-                    _animator.SetTrigger(_JumpAttackHash);
-                    currentSkillHash = _JumpAttackHash;
                     break;
                 case SkillName.Range:
                     _animator.ResetTrigger(_RangeAttackHash);

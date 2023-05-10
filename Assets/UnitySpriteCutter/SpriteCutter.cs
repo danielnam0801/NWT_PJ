@@ -29,6 +29,7 @@ namespace UnitySpriteCutter {
 		/// </summary>
 		public bool dontCutColliders;
 		public bool isFirstCutting;
+		public bool isboneCutting;
 		public enum GameObjectCreationMode {
 			/// <summary>
 			/// The original gameObject is converted into the "firstSide" gameObject.
@@ -129,10 +130,10 @@ namespace UnitySpriteCutter {
 
 		static Mesh GetOriginMeshFrom( SpriteRenderer spriteRenderer, MeshRenderer meshRenderer, SpriteCutterInput input ) {
 			if ( spriteRenderer != null) {
-				if (input.isFirstCutting)
+				if (input.isboneCutting)
 					return SpriteMeshConstructor.ConstructFromSpriteUV(spriteRenderer, input.headX, input.headY, input.headWidth, input.headHeight, input.textureWidth, input.textureHeight);
 				else
-					return SpriteMeshConstructor.ConstructFromSpriteUV(spriteRenderer, input.headX, input.headY, input.headWidth, input.headHeight, input.textureWidth, input.textureHeight);
+					return SpriteMeshConstructor.ConstructFromRendererBounds(spriteRenderer);
 				//return SpriteMeshConstructor.ConstructFromRendererBounds(spriteRenderer);
 			} else {
 				return meshRenderer.GetComponent<MeshFilter>().mesh;

@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingShootAttack : EnemyAttack
+public class FlyingShootAttack : EnemyAttack, INormalAttack
 {
     [SerializeField] GameObject enemyBullet;
     [SerializeField] Transform shootPoint;
     [SerializeField] float shootingPower = 5f;
-    public override void Attack(Action CallBack)
+    public void Attack(Action CallBack)
     {
         //Debug.Log("AttackSS");
         //if (_waitBeforeNextAttack == false)

@@ -33,16 +33,14 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
     protected AIBrain _brain;
     protected EnemyMovement _enemyMovement;
-    protected CapsuleCollider2D _bodyColider;
+    protected Collider2D _bodyColider;
     protected EnemyAgentAnimator _enemyAnim;
     Transform _rayPoint;
     public Transform RayPoint => _rayPoint;
 
     public EnemyAgentAnimator EnemyAnimator => _enemyAnim;
     public LightTwinkle _enemyLight;
-
-    [Header("childSprite")]
-    public List<SpriteRenderer> spriteRenders;
+    public PhysicsMaterial2D physicsMaterial2D;
     
     [Header("DissolveEffect")]
     public DissolveEffect _dissolveType;
@@ -52,15 +50,23 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
 
     [Header("Slice 관련")]
-    public EnemyParts[] ActiveVisual;
+    public SpriteRenderer[] ActiveVisual;
     public SpriteRenderer TestYong;
     [SerializeField] private float _addForcePower = 5f;
+
+    [SerializeField]
+    private List<EnemyChildSprite> _enemyChildSlicedSprites = new List<EnemyChildSprite>();
+    
+    [Space(30)]
+    [Tooltip("Slice 가능하면 true로 설정")]
+    public bool isCanSliced = false;
 
 
     void Awake()
     {
         _brain = GetComponent<AIBrain>();
         _enemyAnim = transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
+        _bodyColider = GetComponent<Collider2D>();
         //TestYong = GameObject.Find("TestYong").GetComponent<SpriteRenderer>();
         _rayPoint = transform.Find("RayPoint").transform;
     }
@@ -71,23 +77,35 @@ public class Enemy : PoolableObject, IHitable, IAgent
         SpriteMaterialInit();
     }
 
+    private void SetEnemyData()
+    {
+        if (isCanSliced)
+        {
+            foreach(var a in ActiveVisual)
+            {
+                _enemyChildSlicedSprites.Add(a.GetComponent<EnemyChildSprite>());
+            }
+        }
+
+        Health = _enemyDataSO.HP;
+        Debug.Log(_brain.AIMovementData);
+        _brain.AIMovementData.thinkTime = _enemyDataSO.ThinkTime;
+    }
     private void SpriteMaterialInit()
     {
-        for (int i = 0; i < spriteRenders.Count; i++)
+        for (int i = 0; i < ActiveVisual.Length; i++)
         {
-            if (spriteRenders[i] != null)
+            if (ActiveVisual[i] != null)
             {
-                spriteRenders[i].material.SetFloat("_Dissolve", 1);
+                ActiveVisual[i].material.SetFloat("_Dissolve", 1);
+            }
+            else
+            {
+                Debug.Log("Enemy에서 spriteRender안넣어줌");
             }
         }
     }
 
-    private void SetEnemyData()
-    {
-        Health = _enemyDataSO.HP;
-        //Debug.Log(_brain.AIMovementData);
-        _brain.AIMovementData.thinkTime = _enemyDataSO.ThinkTime;
-    }
 
     public void GetHit(float damage, GameObject damageDealer)
     {
@@ -128,18 +146,38 @@ public class Enemy : PoolableObject, IHitable, IAgent
         DieEvent();
     }
 
+    public void ChangePhysicsMat2D()
+    {
+        _bodyColider.sharedMaterial = physicsMaterial2D;
+    }
+    public void InitPhysicsMat2D()
+    {
+        _bodyColider.sharedMaterial = null;
+    }
+
     public void DieEvent()
     {
-        //CreateCanSlicedObject(); // 자르는거 쓸꺼면 이거 활성화 근데 아직 안될꺼임
+        if (isCanSliced)
+        {
+            CreateCanSlicedObject(); // 자르는거 쓸꺼면 이거 활성화 근데 아직 안될꺼임
+        }
+        else
+        {
+            DissolveEffect();
+        }
+    }
+
+    private void DissolveEffect()
+    {
         Sequence seq = DOTween.Sequence();
         float time = _dissolveDelay;
         switch (_dissolveType)
         {
-            case DissolveEffect.Whole:
+            case global::DissolveEffect.Whole:
 
                 seq.PrependInterval(time); // 시작 딜레이
 
-                foreach (var a in spriteRenders)
+                foreach (var a in ActiveVisual)
                 {
                     Tween dissolve = DOTween.To(
                         () => a.material.GetFloat("_Dissolve"),
@@ -150,8 +188,8 @@ public class Enemy : PoolableObject, IHitable, IAgent
                     seq.Join(dissolve);
                 }
                 break;
-            case DissolveEffect.Each:
-                foreach(var a in spriteRenders)
+            case global::DissolveEffect.Each:
+                foreach (var a in ActiveVisual)
                 {
                     Tween dissolve = DOTween.To(
                         () => a.material.GetFloat("_Dissolve"),
@@ -159,7 +197,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
                         0f,
                         _dissolvePlayTime);
 
-                    seq.Insert(time,dissolve);
+                    seq.Insert(time, dissolve);
                     time += _dissolveSequenceTime;
                 }
                 break;
@@ -167,14 +205,15 @@ public class Enemy : PoolableObject, IHitable, IAgent
         seq.OnComplete(() =>
         {
             _enemyAnim.OnAnimaitionEndTrigger -= DieAnimEvent;
+            #region 풀링으로 바꿀부분
             Destroy(gameObject);
+            #endregion
         });
     }
 
-
     private void CreateCanSlicedObject()
     {
-        foreach (EnemyParts eP in ActiveVisual)
+        foreach (EnemyChildSprite eP in _enemyChildSlicedSprites)
         {
             eP.CreateSameObject();    
         }
@@ -186,7 +225,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         Health = _enemyDataSO.HP;
         _enemyAnim.Init();
         InitAction?.Invoke();
-        foreach(EnemyParts eP in ActiveVisual)
+        foreach(EnemyChildSprite eP in _enemyChildSlicedSprites)
         {
             eP.SetSpriteRenderEnabled(true);
         }

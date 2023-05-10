@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public abstract class EnemyAttack : MonoBehaviour
 {
     protected AIBrain _brain;
+    protected AIActionData _aiActionData;
     protected EnemyAgentAnimator _animator;
     protected AIStateInfo _stateInfo;
     protected AttackCoolController _CoolController;
@@ -21,10 +22,9 @@ public abstract class EnemyAttack : MonoBehaviour
         _brain = transform.parent.GetComponent<AIBrain>();
         _stateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();
         _animator = _brain.transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
+        _aiActionData = _brain.transform.Find("AI").GetComponent<AIActionData>();
         _CoolController = _brain.GetComponent<AttackCoolController>();
     }
-
-    public abstract void Attack(Action CallBack);
 
     protected IEnumerator DelayCoroutine(float afterAttackDelay, Action afterPlayAction)
     {

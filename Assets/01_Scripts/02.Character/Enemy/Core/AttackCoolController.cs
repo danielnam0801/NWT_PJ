@@ -19,12 +19,25 @@ public enum EnemyType
 
 public class AttackCoolController : MonoBehaviour
 {
+    public SkillName MySkills; //꼭 할당된 공격과 맞는것으로 체크해줘야함
     public EnemyType enemyType;
     Dictionary<SkillName, float> _attackCoolList;
     Dictionary<SkillName, EnemyAttackData> _attackDictionary;
     Enemy _enemy;
     EnemyMovement _movement;
     AIStateInfo _stateInfo;
+
+    [Header("CoolValue")]
+    [SerializeField] private float rangeCool = 5f;    
+    [SerializeField] private float meleeCool = 3f;    
+    [SerializeField] private float normalCool = 5f;    
+    [SerializeField] private float specialCool = 10f;    
+
+    [Header("DamageValue")]
+    [SerializeField] private float rangeDamage = 5f;    
+    [SerializeField] private float meleeDamage = 3f;    
+    [SerializeField] private float normalDamage = 5f;    
+    [SerializeField] private float specialDamage = 10f;    
 
     private void Awake()
     {
@@ -44,53 +57,68 @@ public class AttackCoolController : MonoBehaviour
     private void MakeAttackTypeAction()
     {
         Transform atkTrm = transform.Find("AttackType");
-        switch (enemyType)
-        {
-            case EnemyType.BigFrogEnemy:
-                #region BigFrogEnemy
-                EnemyAttackData jumpAttack = new EnemyAttackData()
-                {
-                    atk = atkTrm.GetComponent<JumpAttack>(),
-                    AttackName = SkillName.Jump,
-                    action = () => {
-                        _stateInfo.IsJump = false;
-                        _stateInfo.IsAttack = false;
-                    },
-                    coolTime = 5f,
-                    damage = 1
-                };
-                EnemyAttackData tongueAttack = new EnemyAttackData()
-                {
-                    atk = atkTrm.GetComponent<FrogTongueAttack>(),
-                    AttackName = SkillName.Range,
-                    action = () => {
-                        _stateInfo.IsRange = false;
-                        _stateInfo.IsAttack = false;
-                    },
-                    coolTime = 3f,
-                    damage = 1
-                };
 
-                _attackDictionary.Add(jumpAttack.AttackName, jumpAttack);
-                _attackDictionary.Add(tongueAttack.AttackName, tongueAttack);
-                #endregion
-                break;
-            case EnemyType.Armadilo:
-                #region Armadildo
-                EnemyAttackData rollAttack = new EnemyAttackData()
-                {
-                    atk = atkTrm.GetComponent<RollAttack>(),
-                    AttackName = SkillName.Normal,
-                    action = () => {
-                        _stateInfo.IsNormal = false;
-                        _stateInfo.IsAttack = false;
-                    },
-                    coolTime = 5f,
-                    damage = 1
-                };
-                _attackDictionary.Add(rollAttack.AttackName, rollAttack);
-                #endregion
-                break;
+        if (MySkills.HasFlag(SkillName.Normal)){ // NormalAttack이 있을때
+            EnemyAttackData NormalAttack = new EnemyAttackData()
+            {
+                atk = atkTrm.GetComponent<INormalAttack>(),
+                AttackName = SkillName.Normal,
+                action = () => {
+                    _stateInfo.IsNormal = false;
+                    _stateInfo.IsAttack = false;
+                },
+                coolTime = normalCool,
+                damage = normalDamage
+            };
+            _attackDictionary.Add(NormalAttack.AttackName, NormalAttack);
+        }
+
+        if (MySkills.HasFlag(SkillName.Special)) //SpecialAttack이 있을때
+        {
+            EnemyAttackData SpecialAttack = new EnemyAttackData()
+            {
+                atk = atkTrm.GetComponent<ISpecialAttack>(),
+                AttackName = SkillName.Special,
+                action = () => {
+                    _stateInfo.IsSpecial = false;
+                    _stateInfo.IsAttack = false;
+                },
+                coolTime = specialCool,
+                damage = specialDamage
+            };
+            _attackDictionary.Add(SpecialAttack.AttackName, SpecialAttack);
+        }
+
+        if (MySkills.HasFlag(SkillName.Range)) //RagneAttack이 있을때
+        {
+            EnemyAttackData RangeAttack = new EnemyAttackData()
+            {
+                atk = atkTrm.GetComponent<IRangeAttack>(),
+                AttackName = SkillName.Range,
+                action = () => {
+                    _stateInfo.IsRange = false;
+                    _stateInfo.IsAttack = false;
+                },
+                coolTime = rangeCool,
+                damage = rangeDamage
+            };
+            _attackDictionary.Add(RangeAttack.AttackName, RangeAttack);
+        }
+
+        if (MySkills.HasFlag(SkillName.Melee)) //MeleeAttack이 있을때
+        {
+            EnemyAttackData MeleeAttack = new EnemyAttackData()
+            {
+                atk = atkTrm.GetComponent<IMeleeAttack>(),
+                AttackName = SkillName.Melee,
+                action = () => {
+                    _stateInfo.IsMelee = false;
+                    _stateInfo.IsAttack = false;
+                },
+                coolTime = meleeCool,
+                damage = meleeDamage
+            };
+            _attackDictionary.Add(MeleeAttack.AttackName, MeleeAttack);
         }
 
         foreach (var skill in _attackDictionary.Values)

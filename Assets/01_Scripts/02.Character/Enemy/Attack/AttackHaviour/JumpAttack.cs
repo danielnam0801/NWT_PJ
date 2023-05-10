@@ -5,7 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
 
-public class JumpAttack : EnemyAttack
+public class JumpAttack : EnemyAttack, INormalAttack
 {
     [SerializeField]
     private int _bezeirResolution = 30;
@@ -30,7 +30,7 @@ public class JumpAttack : EnemyAttack
         rb2d = _brain.transform.GetComponent<Rigidbody2D>();
     }
 
-    public override void Attack(Action CallBack)
+    public void Attack(Action CallBack)
     {
         this.callBack = CallBack;
         JumpAct();
