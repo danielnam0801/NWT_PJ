@@ -1,18 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class SettingUIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
-    }
+        UIDocument ui = GetComponent<UIDocument>();
+        VisualElement root = ui.rootVisualElement;
+        VisualElement background = root.Q("Background");
+        Button returnBtn = root.Q<Button>("returnBtn");
+        Button newGameBtn = root.Q<Button>("newGameBtn");
+        Button settingBtn = root.Q<Button>("settingBtn");
+        Button exitBtn = root.Q<Button>("exitBtn");
+        returnBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            gameObject.SetActive(false);
+        });
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        newGameBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            SceneManager.LoadScene("");
+        });
+
+        settingBtn.RegisterCallback<ClickEvent>(e =>
+        {
+
+        });
+
+        exitBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            SceneManager.LoadScene("");
+        });
     }
 }
