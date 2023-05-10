@@ -5,84 +5,51 @@ using UnityEngine.UIElements;
 
 public class InGameUIController : MonoBehaviour
 {
-    private UIDocument _doc;  // 요 스크립트와 같은 게임 오브젝트에 있는 UI Document 컴포넌트 할당용
-    private PlayerInput playerInput;
-    private PlayerController playerController;
 
-    private VisualElement _leftBtn;
-    private VisualElement _rightBtn;
-    private VisualElement _settingBtn;
-    private VisualElement _skill1Btn;
-    private VisualElement _skill2Btn;
-    private VisualElement _skill3Btn;
-    private VisualElement _skill4Btn;
-    private VisualElement _skill5Btn;
-    private VisualElement _fadePanel;
-
-    private void Awake()
-    {
-        _doc = GetComponent<UIDocument>();
-
-        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
-        playerController = playerInput.GetComponent<PlayerController>();
-    }
-
+    public GameObject settingUI;
     private void OnEnable()
     {
-        // 각 버튼의 가져옴
-        _leftBtn = _doc.rootVisualElement.Q<VisualElement>("LeftBtn");
-        _rightBtn = _doc.rootVisualElement.Q<VisualElement>("RightBtn");
-        _skill1Btn = _doc.rootVisualElement.Q<VisualElement>("skill1Btn");
-        _skill2Btn = _doc.rootVisualElement.Q<VisualElement>("skill2Btn");
-        _skill3Btn = _doc.rootVisualElement.Q<VisualElement>("skill3Btn");
-        _skill4Btn = _doc.rootVisualElement.Q<VisualElement>("skill4Btn");
-        _skill5Btn = _doc.rootVisualElement.Q<VisualElement>("skill5Btn");
-        _fadePanel = _doc.rootVisualElement.Q<VisualElement>("fadePanel");
-
-        SetPlayerButton();
-    }
-
-    private void SetPlayerButton()
-    {
-        _leftBtn.AddManipulator(new ClickManipulator(() =>
+        UIDocument ui = GetComponent<UIDocument>();
+        VisualElement root = ui.rootVisualElement;
+        Button setting = root.Q<Button>("settingBtn");
+        setting.RegisterCallback<ClickEvent>(e =>
         {
-            playerInput.MoveInput(Vector2.left);
-        }, () =>
-        {
-            playerInput.MoveInput(Vector2.zero);
-        }));
-
-        _rightBtn.AddManipulator(new ClickManipulator(() =>
-        {
-            playerInput.MoveInput(Vector2.right);
-        }, () =>
-        {
-            playerInput.MoveInput(Vector2.zero);
-        }));
-
-        _skill1Btn.RegisterCallback<ClickEvent>(e =>
-        {
-            Debug.Log(1);
-            playerInput.TeleportationInput();
+            settingUI.SetActive(true);
         });
-
-        _skill4Btn.RegisterCallback<ClickEvent>(e =>
-        {
-            Debug.Log(1);
-            playerController.ChangeState(PlayerStateType.Dash);
-            playerInput.DashInput();
-        });
-
-        _skill5Btn.RegisterCallback<ClickEvent>(e =>
-        {
-            Debug.Log(1);
-            playerInput.JumpInput();
-        }); 
     }
+    //private UIDocument _doc;  // 요 스크립트와 같은 게임 오브젝트에 있는 UI Document 컴포넌트 할당용
 
-    //public void Fade(float value)
+    //private Button _leftBtn;
+    //private Button _rightBtn;
+    //private Button _settingBtn;
+    //private Button _skill1Btn;
+    //private Button _skill2Btn;
+    //private Button _skill3Btn;
+    //private Button _skill4Btn;
+    //private Button _skill5Btn;
+    //private void Awake()
     //{
-    //    Color color = _fadePanel.style.backgroundColor.value;
-    //    _fadePanel.style.backgroundColor = new StyleColor(new Color(color.r, color.g, color.b, value / 255f));
+    //    _doc = GetComponent<UIDocument>();
+
+    //    // 각 버튼의 가져옴
+    //    _leftBtn = _doc.rootVisualElement.Q<Button>("LeftBtn");
+    //    _rightBtn = _doc.rootVisualElement.Q<Button>("RightBtn");
+    //    _skill1Btn = _doc.rootVisualElement.Q<Button>("");
+    //    _skill2Btn = _doc.rootVisualElement.Q<Button>("");
+    //    _skill3Btn = _doc.rootVisualElement.Q<Button>("");
+    //    _skill4Btn = _doc.rootVisualElement.Q<Button>("");
+    //    _skill5Btn = _doc.rootVisualElement.Q<Button>("");
+    //    _leftBtn.clicked += LeftBtnClick;
+    //    _rightBtn.clicked += RightBtnClick;
     //}
+
+    //private void LeftBtnClick()
+    //{
+    //    Debug.Log("LeftButtonClicked");
+    //}
+    //private void RightBtnClick()
+    //{
+    //    Debug.Log("RightBtnClick");
+    //}
+
 }
