@@ -119,8 +119,8 @@ public class JumpAttack : EnemyAttack, INormalAttack
         StartCoroutine(DelayCoroutine(0.3f, () =>
         {
             Debug.Log("ISATTackINs");
-            AttackEndFeedback?.Invoke();
             callBack?.Invoke();
+            //AttackEndFeedback?.Invoke();
         }));
     }
 

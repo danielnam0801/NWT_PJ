@@ -37,7 +37,12 @@ public class AttackCoolController : MonoBehaviour
     [SerializeField] private float rangeDamage = 5f;    
     [SerializeField] private float meleeDamage = 3f;    
     [SerializeField] private float normalDamage = 5f;    
-    [SerializeField] private float specialDamage = 10f;    
+    [SerializeField] private float specialDamage = 10f;
+
+    public bool RangeBool;
+    public bool MeleeBool;
+    public bool SpecialBool;
+    public bool NormalBool;
 
     private void Awake()
     {
@@ -58,12 +63,14 @@ public class AttackCoolController : MonoBehaviour
     {
         Transform atkTrm = transform.Find("AttackType");
 
-        if (MySkills.HasFlag(SkillName.Normal)){ // NormalAttack이 있을때
+        if (MySkills.HasFlag(SkillName.Normal))
+        { // NormalAttack이 있을때
             EnemyAttackData NormalAttack = new EnemyAttackData()
             {
                 atk = atkTrm.GetComponent<INormalAttack>(),
                 AttackName = SkillName.Normal,
-                action = () => {
+                action = () =>
+                {
                     _stateInfo.IsNormal = false;
                     _stateInfo.IsAttack = false;
                 },
@@ -79,7 +86,8 @@ public class AttackCoolController : MonoBehaviour
             {
                 atk = atkTrm.GetComponent<ISpecialAttack>(),
                 AttackName = SkillName.Special,
-                action = () => {
+                action = () =>
+                {
                     _stateInfo.IsSpecial = false;
                     _stateInfo.IsAttack = false;
                 },
@@ -95,7 +103,8 @@ public class AttackCoolController : MonoBehaviour
             {
                 atk = atkTrm.GetComponent<IRangeAttack>(),
                 AttackName = SkillName.Range,
-                action = () => {
+                action = () =>
+                {
                     _stateInfo.IsRange = false;
                     _stateInfo.IsAttack = false;
                 },
@@ -111,7 +120,8 @@ public class AttackCoolController : MonoBehaviour
             {
                 atk = atkTrm.GetComponent<IMeleeAttack>(),
                 AttackName = SkillName.Melee,
-                action = () => {
+                action = () =>
+                {
                     _stateInfo.IsMelee = false;
                     _stateInfo.IsAttack = false;
                 },
@@ -125,7 +135,6 @@ public class AttackCoolController : MonoBehaviour
         {
             _attackCoolList.Add(skill.AttackName, skill.coolTime);
         }
-
     }
 
     public virtual void Attack(SkillName skillname)
@@ -150,12 +159,46 @@ public class AttackCoolController : MonoBehaviour
         float coolDown;
         if (_attackCoolList.TryGetValue(key, out coolDown))
         {
-            //Debug.Log(
-            //    $"{key.ToString()} : {Time.time > coolDown}");
+            if(Time.time > coolDown)
+            {
+                if(key == SkillName.Normal)
+                {
+                    NormalBool = true;
+                }
+                if(key == SkillName.Special)
+                {
+                    SpecialBool = true;
+                }
+                if(key == SkillName.Range)
+                {
+                    RangeBool = true;
+                }
+                if(key == SkillName.Melee)
+                {
+                    MeleeBool = true;
+                }
+                return Time.time > coolDown;
+            }
             return Time.time > coolDown;
         }
         else
         {
+            if (key == SkillName.Normal)
+            {
+                NormalBool = false;
+            }
+            if (key == SkillName.Special)
+            {
+                SpecialBool = false;
+            }
+            if (key == SkillName.Range)
+            {
+                RangeBool = false;
+            }
+            if (key == SkillName.Melee)
+            {
+                MeleeBool = false;
+            }
             return false;
         }
     }

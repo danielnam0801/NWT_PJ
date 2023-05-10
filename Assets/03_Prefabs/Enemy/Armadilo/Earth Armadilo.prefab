@@ -2573,11 +2573,16 @@ MonoBehaviour:
   _dissolvePlayTime: 2.5
   _dissolveSequenceTime: 0.3
   ActiveVisual:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3500064467164420708}
+  - {fileID: 8089289024593489776}
+  - {fileID: 6693982942043653712}
+  - {fileID: 3424537889947701325}
+  - {fileID: 915437810936081605}
+  - {fileID: 8495507264278020361}
+  - {fileID: 3631083999182290206}
+  - {fileID: 2048709786269415368}
+  - {fileID: 3596799624891816430}
+  - {fileID: 3316114722007270479}
   TestYong: {fileID: 0}
   _addForcePower: 1
   _enemyChildSlicedSprites: []

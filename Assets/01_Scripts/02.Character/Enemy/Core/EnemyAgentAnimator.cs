@@ -102,6 +102,27 @@ public class EnemyAgentAnimator : MonoBehaviour
                     break;
             }
         }
+        else
+        {
+            switch (Skill) {
+                case SkillName.Normal:
+                    _animator.ResetTrigger(_NormalAttackHash);
+                    break;
+                case SkillName.Special:
+                    _animator.ResetTrigger(_SpecialAttackHash);
+                    break;
+                case SkillName.Melee:
+                    _animator.ResetTrigger(_MeleeAttackHash);
+                    break;
+                case SkillName.Range:
+                    _animator.ResetTrigger(_RangeAttackHash);
+                    break;
+                default:
+                    Debug.LogError("존재하지 않는 스킬");
+                    break;
+            }
+
+        }
     }
 
     public void SetSpeed(float value)
