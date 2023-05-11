@@ -8,7 +8,10 @@ public class AttackAction : AIAction
     public SkillName skillName;
     public UnityEvent EndEvent;
 
+    [Tooltip("여기서 false로 설정하면 이에 상응하는 EnemyAttack에서 Animation실행을 해줘야 함")]
+    public bool isAnimTriggerOn = true; //여기서 false로 설정하면 이에 상응하는 EnemyAttack에서 Animation실행을 해줘야 함
     protected AttackCoolController attackCoolController;
+
 
     protected override void Awake()
     {
@@ -19,7 +22,8 @@ public class AttackAction : AIAction
     public override void InitAction()
     {
         _animator.SetSpeed(0);
-        SetAnimAttack();
+        if(isAnimTriggerOn)
+            SetAnimAttack();
     }
 
 

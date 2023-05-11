@@ -8432,7 +8432,7 @@ MonoBehaviour:
       m_Calls: []
   boltPrefab: {fileID: 315959873603146545, guid: 1ab12ed392a022c49a174b9a71a88646, type: 3}
   boltSpawnCnt: 7
-  AddForcePower: 20
+  AddForcePower: 10
   spawnPos: {fileID: 3457524824125482550}
 --- !u!1 &7790429809984710466
 GameObject:
