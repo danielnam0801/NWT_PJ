@@ -16,47 +16,53 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         UpdateMovementInput();
-        UpdateJumpInput();
-        UpdateDashInput();
-        UpdateLeftClickInput();
+        //UpdateJumpInput();
+        //UpdateDashInput();
+        //UpdateLeftClickInput();
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
-            OnMouseUpAction?.Invoke();
+        {
+            MoveInput(Vector2.zero);
+        }
     }
-    //키보드
+
+    #region 키보드
+    ////키보드
+    //public void UpdateMovementInput()
+    //{
+    //    Debug.Log(moveDir);
+    //    OnMovementInput?.Invoke(moveDir);
+    //}
+
+    //public void UpdateJumpInput()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //        OnSpaceInput?.Invoke();
+    //}
+
+    //public void UpdateDashInput()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.LeftShift))
+    //        OnShiftInput?.Invoke();
+    //}
+
+    //public void UpdateLeftClickInput()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Mouse0))
+    //        OnLeftClickInput?.Invoke();
+    //}
+    #endregion
+
+    //터치
     public void UpdateMovementInput()
     {
         Debug.Log(moveDir);
         OnMovementInput?.Invoke(moveDir);
     }
 
-    public void UpdateJumpInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            OnSpaceInput?.Invoke();
-    }
-
-    public void UpdateDashInput()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            OnShiftInput?.Invoke();
-    }
-
-    public void UpdateLeftClickInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            OnLeftClickInput?.Invoke();
-    }
-
-    //터치
     public void MoveInput(Vector2 input)
     {
         moveDir = input;
-    }
-
-    public void StopMoveInput()
-    {
-        moveDir = Vector2.zero;
     }
 
     public void DashInput()

@@ -41,6 +41,9 @@ public class PlayerMovementState : PlayerState
     {
         if (!movement.CheckGround())
         {
+            if (status.MaxJumpCount == 1)
+                return;
+
             if (currentJumpCount >= status.MaxJumpCount)
                 return;
 
