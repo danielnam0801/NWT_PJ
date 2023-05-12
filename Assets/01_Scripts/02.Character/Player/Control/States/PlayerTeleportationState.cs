@@ -10,7 +10,7 @@ public class PlayerTeleportationState : PlayerState
     {
         base.Init(root);
 
-        render = root.GetComponent<SpriteRenderer>();
+        render = root.transform.Find("Visual").GetComponent<SpriteRenderer>();
     }
 
     public override void EnterState()

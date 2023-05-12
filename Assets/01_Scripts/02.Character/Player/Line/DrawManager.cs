@@ -28,11 +28,14 @@ public class DrawManager : MonoBehaviour
 
     private bool canDraw = true;
     public bool isDrawArea = false;
-    private bool isDraw = false;
     private bool isMaxLength = false;
     private GameObject go;
+
     public PlayerWeapon sword;
     public GameObject player;
+
+    public bool StartDraw { get; set; }
+    public bool IsDraw { get; set; }
 
     private void Awake()
     {
@@ -40,6 +43,12 @@ public class DrawManager : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
+    }
+
+    private void Start()
+    {
+        StartDraw = false;
+        IsDraw = false;
     }
 
     private void Update()
@@ -58,12 +67,11 @@ public class DrawManager : MonoBehaviour
             return;
 
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
-        if (Input.GetMouseButtonDown(0))
+        if (StartDraw)
         {
-            LightManager.Instance.SetFocus(true);
+            StartDraw = false;
             DrawStartEvent?.Invoke();
-            //TimeManager.Instance.SetTimeScale(drawTimeScale, true);
-            isDraw = true;
+            IsDraw = true;
             points.Clear();
             go = Instantiate(linePrefab);
             lr = go.GetComponent<LineRenderer>();
@@ -72,17 +80,7 @@ public class DrawManager : MonoBehaviour
             lr.SetPosition(0, points[0]);
 
         }
-        else if (isDraw && Input.GetMouseButtonUp(0) || isMaxLength)
-        {
-            LightManager.Instance.SetFocus(false);
-            isMaxLength = false;
-            isDraw = false;
-            DrawEndEvent?.Invoke();
-            //TimeManager.Instance.SetTimeScale(1, true);
-
-            StartCoroutine(SwordMove());
-        }
-        else if (isDraw && Input.GetMouseButton(0))
+        else if (IsDraw && Input.GetMouseButton(0))
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 5;
@@ -93,8 +91,16 @@ public class DrawManager : MonoBehaviour
                 lr.SetPosition(lr.positionCount - 1, pos);
             }
 
-            if(lr.positionCount > maxLienLength)
+            if (lr.positionCount > maxLienLength)
                 isMaxLength = true;
+        }
+        else if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength)
+        {
+            isMaxLength = false;
+            IsDraw = false;
+            DrawEndEvent?.Invoke();
+
+            StartCoroutine(SwordMove());
         }
     }
 
@@ -109,8 +115,6 @@ public class DrawManager : MonoBehaviour
         }
 
         points.Clear();
-        
-        //go.GetComponent<Line>().StartFade();
     }
 
     private IEnumerator DelayDraw(float time)

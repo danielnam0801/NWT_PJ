@@ -8,36 +8,48 @@ public class InGameUIController : MonoBehaviour
     public GameObject settingUI;
     private PlayerInput playerInput;
 
-    private void OnEnable()
+    private void Start()
     {
         playerInput = GameManager.instance.Target.GetComponent<PlayerInput>();
+    }
 
+    private void OnEnable()
+    {
         UIDocument ui = GetComponent<UIDocument>();
         VisualElement root = ui.rootVisualElement;
-        Button setting = root.Q<Button>("settingBtn");
+        VisualElement setting = root.Q<VisualElement>("settingBtn");
         VisualElement upBtn = root.Q<VisualElement>("UpBtn");
-        Button rightBtn = root.Q<Button>("RightBtn");
-        Button leftBtn = root.Q<Button>("LeftBtn");
+        VisualElement rightBtn = root.Q<VisualElement>("RightBtn");
+        VisualElement leftBtn = root.Q<VisualElement>("LeftBtn");
 
-        setting.RegisterCallback<ClickEvent>(e =>
-        {
-            settingUI.SetActive(true);
-        });
+        //setting.RegisterCallback<ClickEvent>(e =>
+        //{
+        //    //settingUI.SetActive(true);
+        //    Debug.Log(10);
+        //});
 
-        upBtn.AddManipulator(new ClickManipulator(() =>
+        setting.AddManipulator(new ClickManipulator(() =>
         {
-            playerInput.JumpInput();
-        }));
-
-        rightBtn.AddManipulator(new ClickManipulator(() =>
-        {
-            Debug.Log(10);
-            playerInput.MoveInput(Vector2.right);
-            playerInput.OnMouseUpAction += playerInput.StopMoveInput;
+            Debug.Log(1);
         }, () =>
         {
-
+            Debug.Log(2);
         }));
+
+        //upBtn.AddManipulator(new ClickManipulator(() =>
+        //{
+        //    playerInput.JumpInput();
+        //}));
+
+        //rightBtn.AddManipulator(new ClickManipulator(() =>
+        //{
+        //    Debug.Log(10);
+        //    playerInput.MoveInput(Vector2.right);
+        //    playerInput.OnMouseUpAction += playerInput.StopMoveInput;
+        //}, () =>
+        //{
+
+        //}));
     }
     //private UIDocument _doc;  // 요 스크립트와 같은 게임 오브젝트에 있는 UI Document 컴포넌트 할당용
 

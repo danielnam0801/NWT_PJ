@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 0
-  moveSpeed: 100
+  moveSpeed: 80
   lifeTime: 2

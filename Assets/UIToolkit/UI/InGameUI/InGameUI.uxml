@@ -17,7 +17,9 @@
         <ui:VisualElement name="healthArea" style="position: absolute; left: -1px; top: -4px; width: 40%; height: 30%; margin-left: 2%; margin-right: 2%; margin-top: 2%; margin-bottom: 2%;">
             <ui:VisualElement style="background-image: url(&apos;project://database/Assets/11_Sprites/healthUI/3/hud_bg_without_custom_meter.png?fileID=21300000&amp;guid=3c12d7867bf797346b3e3af3441f5d86&amp;type=3#hud_bg_without_custom_meter&apos;); width: 90%; height: 60%; justify-content: center; align-items: center;">
                 <ui:Slider picking-mode="Ignore" value="42" high-value="100" style="background-color: rgb(0, 0, 0); width: 54%; position: absolute; top: 27%; left: 25%; height: 12%;" />
-                <ui:VisualElement style="position: absolute; left: 4.5%; background-image: url(&apos;project://database/Assets/11_Sprites/playerface.png?fileID=21300000&amp;guid=c5533c20f0ee53d409110d298ec55ac1&amp;type=3#playerface&apos;); height: 60%; top: 15%; width: 20%; border-top-left-radius: 50%; border-bottom-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%;" />
+                <ui:VisualElement style="position: absolute; left: 4.5%; background-image: url(&apos;project://database/Assets/11_Sprites/image.png?fileID=21300000&amp;guid=4ba491b2be1e4df4c8ee9ab214ce7774&amp;type=3#image&apos;); height: 60%; top: 15%; width: 20%; border-top-left-radius: 50%; border-bottom-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%;">
+                    <ui:VisualElement name="face" style="background-image: url(&apos;project://database/Assets/02_Assets/Player/CryMask.png?fileID=2800000&amp;guid=be18a40a597577348a01492c7db3ee63&amp;type=3#CryMask&apos;); width: 57px; height: 42px; left: 42%; top: 56%;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
