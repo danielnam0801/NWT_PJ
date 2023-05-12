@@ -5,51 +5,21 @@ using UnityEngine.UIElements;
 
 public class InGameUIController : MonoBehaviour
 {
+
     public GameObject settingUI;
-    private PlayerInput playerInput;
-
-    private void Start()
-    {
-        playerInput = GameManager.instance.Target.GetComponent<PlayerInput>();
-    }
-
     private void OnEnable()
     {
         UIDocument ui = GetComponent<UIDocument>();
         VisualElement root = ui.rootVisualElement;
-        VisualElement setting = root.Q<VisualElement>("settingBtn");
-        VisualElement upBtn = root.Q<VisualElement>("UpBtn");
-        VisualElement rightBtn = root.Q<VisualElement>("RightBtn");
-        VisualElement leftBtn = root.Q<VisualElement>("LeftBtn");
-
-        //setting.RegisterCallback<ClickEvent>(e =>
-        //{
-        //    //settingUI.SetActive(true);
-        //    Debug.Log(10);
-        //});
-
-        setting.AddManipulator(new ClickManipulator(() =>
+        Button setting = root.Q<Button>("settingBtn");
+        setting.RegisterCallback<ClickEvent>(e =>
         {
-            Debug.Log(1);
-        }, () =>
-        {
-            Debug.Log(2);
-        }));
+            settingUI.SetActive(true);
+        });
 
-        //upBtn.AddManipulator(new ClickManipulator(() =>
-        //{
-        //    playerInput.JumpInput();
-        //}));
+        Slider slider = root.Q<Slider>("Slider");
+        slider = GetComponentInChildren<Slider>();
 
-        //rightBtn.AddManipulator(new ClickManipulator(() =>
-        //{
-        //    Debug.Log(10);
-        //    playerInput.MoveInput(Vector2.right);
-        //    playerInput.OnMouseUpAction += playerInput.StopMoveInput;
-        //}, () =>
-        //{
-
-        //}));
     }
     //private UIDocument _doc;  // 요 스크립트와 같은 게임 오브젝트에 있는 UI Document 컴포넌트 할당용
 
