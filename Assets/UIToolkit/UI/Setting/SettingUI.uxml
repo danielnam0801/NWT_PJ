@@ -10,7 +10,7 @@
                 <ui:VisualElement name="newGameBtn" class="btn">
                     <ui:Label text="새 게임" display-tooltip-when-elided="true" style="font-size: 30px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="settingBtn" class="btn">
+                <ui:VisualElement name="resetCutSceneBtn" class="btn">
                     <ui:Label text="컷씬초기화" display-tooltip-when-elided="true" style="font-size: 30px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="exitBtn" class="btn">

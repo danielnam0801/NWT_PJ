@@ -13,7 +13,7 @@ public class SettingUIController : MonoBehaviour
         VisualElement background = root.Q("Background");
         Button returnBtn = root.Q<Button>("returnBtn");
         Button newGameBtn = root.Q<Button>("newGameBtn");
-        Button settingBtn = root.Q<Button>("settingBtn");
+        Button resetCutSceneBtn = root.Q<Button>("resetCutSceneBtn");
         Button exitBtn = root.Q<Button>("exitBtn");
         returnBtn.RegisterCallback<ClickEvent>(e =>
         {
@@ -25,14 +25,14 @@ public class SettingUIController : MonoBehaviour
             SceneManager.LoadScene("");
         });
 
-        settingBtn.RegisterCallback<ClickEvent>(e =>
+        resetCutSceneBtn.RegisterCallback<ClickEvent>(e =>
         {
 
         });
 
         exitBtn.RegisterCallback<ClickEvent>(e =>
         {
-            SceneManager.LoadScene("");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
     }
 }

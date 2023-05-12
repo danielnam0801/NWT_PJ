@@ -5,39 +5,21 @@ using UnityEngine.UIElements;
 
 public class InGameUIController : MonoBehaviour
 {
-    public GameObject settingUI;
-    private PlayerInput playerInput;
 
+    public GameObject settingUI;
     private void OnEnable()
     {
-        playerInput = GameManager.instance.Target.GetComponent<PlayerInput>();
-
         UIDocument ui = GetComponent<UIDocument>();
         VisualElement root = ui.rootVisualElement;
         Button setting = root.Q<Button>("settingBtn");
-        Button upBtn = root.Q<Button>("UpBtn");
-        Button rightBtn = root.Q<Button>("RightBtn");
-        Button leftBtn = root.Q<Button>("LeftBtn");
-
         setting.RegisterCallback<ClickEvent>(e =>
         {
             settingUI.SetActive(true);
         });
 
-        upBtn.AddManipulator(new ClickManipulator(() =>
-        {
-            playerInput.JumpInput();
-        }));
+        Slider slider = root.Q<Slider>("Slider");
+        slider = GetComponentInChildren<Slider>();
 
-        rightBtn.AddManipulator(new ClickManipulator(() =>
-        {
-            Debug.Log(10);
-            playerInput.MoveInput(Vector2.right);
-            playerInput.OnMouseUpAction += playerInput.StopMoveInput;
-        }, () =>
-        {
-
-        }));
     }
     //private UIDocument _doc;  // 요 스크립트와 같은 게임 오브젝트에 있는 UI Document 컴포넌트 할당용
 
