@@ -26,9 +26,14 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
     float plusAngle = 0f;
     float randomAngleRotate = 0f;
     int attackType = 0;
+    
+    [SerializeField]
     private int attackTypeCnt = 2;
 
+    // 모아서 쏘는 공격용 변수
     List<GameObject> bullet;
+    int currentSpawnBulletCnt = 0;
+    int callMaxValue = 5;
 
     public void Attack(Action CallBack)
     {
@@ -53,31 +58,41 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 
     private void BoltAttack()
     {
-        if(attackType == 0)
-        {
-            
-        }
-        else if(attackType == 1)
-        {
-
-        }
-
+        currentSpawnBulletCnt++;
         attackFeedbackAction?.Invoke();
         currentAngle = 0f;
         randomAngleRotate = UnityEngine.Random.Range(-5f, 5f);
-
-
-        for(int i = 0; i < boltSpawnCnt; i++)
+        
+        if (attackType == 0)
         {
-            GameObject bolt = Instantiate(boltPrefab, spawnPos.position, Quaternion.Euler(0,0, currentAngle + randomAngleRotate));
+            BoltNormalAttack();
+        }
+        else if (attackType == 1)
+        {
+            CollectAndSpreadAttack();
+        }
+
+    }
+
+    private void BoltNormalAttack()
+    {
+        for (int i = 0; i < boltSpawnCnt; i++)
+        {
+            GameObject bolt = Instantiate(boltPrefab, spawnPos.position, Quaternion.Euler(0, 0, currentAngle + randomAngleRotate));
             bolt.GetComponent<Rigidbody2D>().AddForce(bolt.transform.right * AddForcePower, ForceMode2D.Impulse);
             currentAngle += plusAngle;
         }
     }
 
-    
     private void CollectAndSpreadAttack()
     {
+        if(currentSpawnBulletCnt >= callMaxValue)
+        {
+            foreach(var a in bullet)
+            {
+                a.GetComponent<Rigidbody2D>().AddForce(a.transform.right * AddForcePower * 3, ForceMode2D.Impulse);
+            }
+        }
         GameObject bolt = Instantiate(boltPrefab, spawnPos.position, Quaternion.Euler(0,0, currentAngle + randomAngleRotate));
         bullet.Add(bolt);
         currentAngle += plusAngle;
