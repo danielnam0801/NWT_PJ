@@ -31,13 +31,14 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
     private int attackTypeCnt = 2;
 
     // 모아서 쏘는 공격용 변수
-    List<GameObject> bullet;
+    List<GameObject> bullet = new List<GameObject>();
     int currentSpawnBulletCnt = 0;
     int callMaxValue = 5;
 
     public void Attack(Action CallBack)
     {
         this.callBack = CallBack;
+        Init();
         _animator.OnAnimaitionEventTrigger += BoltAttack;
         _animator.OnAnimaitionEndTrigger += AnimationEnd;
 
@@ -47,7 +48,14 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 
         Debug.LogError("볼트 액션실행중");
     }
-    
+
+    private void Init()
+    {
+        bullet.Clear();
+        currentSpawnBulletCnt = 0;
+        currentAngle = 0;
+    }
+
     private void AnimationEnd()
     {
         Debug.LogError("볼트 액션끝");
@@ -60,15 +68,16 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
     {
         currentSpawnBulletCnt++;
         attackFeedbackAction?.Invoke();
-        currentAngle = 0f;
         randomAngleRotate = UnityEngine.Random.Range(-5f, 5f);
         
         if (attackType == 0)
         {
+            //CollectAndSpreadAttack();
             BoltNormalAttack();
         }
         else if (attackType == 1)
         {
+            //BoltNormalAttack();
             CollectAndSpreadAttack();
         }
 
@@ -76,6 +85,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 
     private void BoltNormalAttack()
     {
+        currentAngle = 0f;
         for (int i = 0; i < boltSpawnCnt; i++)
         {
             GameObject bolt = Instantiate(boltPrefab, spawnPos.position, Quaternion.Euler(0, 0, currentAngle + randomAngleRotate));
@@ -88,13 +98,22 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
     {
         if(currentSpawnBulletCnt >= callMaxValue)
         {
-            foreach(var a in bullet)
+            bullet.ForEach((enemyBullet) =>
             {
-                a.GetComponent<Rigidbody2D>().AddForce(a.transform.right * AddForcePower * 3, ForceMode2D.Impulse);
-            }
+                enemyBullet.GetComponent<Rigidbody2D>().AddForce(enemyBullet.transform.right * AddForcePower * 3, ForceMode2D.Impulse);
+            });
+            return;
         }
+
+        Debug.Log("CurrentAngle : " + currentAngle);
         GameObject bolt = Instantiate(boltPrefab, spawnPos.position, Quaternion.Euler(0,0, currentAngle + randomAngleRotate));
+        bolt.transform.position += bolt.transform.right * 2;
         bullet.Add(bolt);
         currentAngle += plusAngle;
+    }
+
+    private void Lightningattack()
+    {
+
     }
 }

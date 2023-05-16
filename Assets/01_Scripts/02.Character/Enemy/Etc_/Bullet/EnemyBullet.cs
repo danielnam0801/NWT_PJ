@@ -5,6 +5,13 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public float damage = 20f;
+    
+
+    private void Update()
+    {
+        
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
