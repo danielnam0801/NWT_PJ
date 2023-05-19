@@ -11,3 +11,11 @@ public enum PlayerStateType
     Dash,
     Teleportation,
 }
+
+public enum ShapeType
+{
+    Circle = 0,
+    Nothing = 1,
+    Triangle = 3,
+    Square = 4,
+}

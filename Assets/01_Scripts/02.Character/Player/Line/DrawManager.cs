@@ -22,6 +22,8 @@ public class DrawManager : MonoBehaviour
     private float maxLienLength = 35;
     [SerializeField]
     private int minDrawPoint = 5;
+    [SerializeField]
+    private float minAngleCheck = 45f;
 
     LineRenderer lr;
     List<Vector2> points = new List<Vector2>();
@@ -123,4 +125,15 @@ public class DrawManager : MonoBehaviour
 
         canDraw = true;
     }
+
+    //private ShapeType CheckShape()
+    //{
+    //    int angleCount = 0;
+    //    List<Vector2> anglePoint = new List<Vector2>();
+
+    //    for(int i = 0; i < points.Count - 1; i++)
+    //    {
+            
+    //    }
+    //}
 }

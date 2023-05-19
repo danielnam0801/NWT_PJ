@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        UpdateMovementInput();
+        //UpdateMovementInput();
         //UpdateJumpInput();
         //UpdateDashInput();
         //UpdateLeftClickInput();
@@ -56,13 +56,16 @@ public class PlayerInput : MonoBehaviour
     //ÅÍÄ¡
     public void UpdateMovementInput()
     {
-        Debug.Log(moveDir);
-        OnMovementInput?.Invoke(moveDir);
+        //Debug.Log(moveDir);
+
+        //OnMovementInput?.Invoke(moveDir);
     }
 
     public void MoveInput(Vector2 input)
     {
         moveDir = input;
+
+        OnMovementInput?.Invoke(moveDir);
     }
 
     public void DashInput()

@@ -25,30 +25,4 @@ public class PlayerStatus : MonoBehaviour
     [Space]
     [Header("Teloportation Property")]
     public float TeleportationTime;
-
-    [Space]
-    [Header("Equipment")]
-    public List<Item> items = new List<Item>();
-
-    public void MountingItem(Item item)
-    {
-        items.Add(item);
-        PhysicResistance += item.info.physicResistance;
-        MagicResistance += item.info.magicResistance;
-        MaxHealth += item.info.healthIncrement;
-        Vampirism += item.info.vampirism;
-        PhysicPower += item.info.physicPowerIncreament;
-        MagicPower += item.info.magicPowerIncreament;
-    }
-
-    public void ReleaseItem(Item item)
-    {
-        items.Remove(item);
-        PhysicResistance -= item.info.physicResistance;
-        MagicResistance -= item.info.magicResistance;
-        MaxHealth -= item.info.healthIncrement;
-        Vampirism -= item.info.vampirism;
-        PhysicPower -= item.info.physicPowerIncreament;
-        MagicPower -= item.info.magicPowerIncreament;
-    }
 }

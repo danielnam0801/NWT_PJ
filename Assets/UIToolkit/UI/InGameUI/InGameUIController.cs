@@ -63,7 +63,7 @@ public class InGameUIController : MonoBehaviour
         {
             settingUI.SetActive(true);
             TimeManager.Instance.SetTimeScale(0);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         });
     }
 }

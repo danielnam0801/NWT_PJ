@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private float verticalVelocity = 0;
     private float gravityScale = -9.81f * 2;
 
+    
+
     private Rigidbody2D rigid;
     public Vector2 Velocity { get => rigid.velocity + verticalVelocity * Vector2.up; }
     public float GravityScale { get => gravityScale; }

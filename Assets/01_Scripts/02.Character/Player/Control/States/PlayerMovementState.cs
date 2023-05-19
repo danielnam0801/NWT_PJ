@@ -5,7 +5,13 @@ using UnityEngine;
 public class PlayerMovementState : PlayerState
 {
     private int currentJumpCount = 0;
+    [SerializeField]
+    private float transDashTime = 10f;
 
+    private Vector2 lastMoveVector = Vector2.zero;
+    private Vector2 newMoveVector = Vector2.zero;
+    private float lastMoveTime = 0;
+    private float newMoveTime = 0;
 
     private float gravityScale = -9.81f;
 
@@ -13,7 +19,6 @@ public class PlayerMovementState : PlayerState
     {
         input.OnMovementInput += Move;
         input.OnSpaceInput += Jump;
-        input.OnShiftInput += DashHandle;
         input.OnLeftClickInput += TeleportationHandle;
     }
 
@@ -21,7 +26,6 @@ public class PlayerMovementState : PlayerState
     {
         input.OnMovementInput -= Move;
         input.OnSpaceInput -= Jump;
-        input.OnShiftInput -= DashHandle;
         input.OnLeftClickInput -= TeleportationHandle;
         movement?.SetMoveVector(Vector2.zero, 0);
     }
@@ -35,6 +39,18 @@ public class PlayerMovementState : PlayerState
     private void Move(Vector2 inputVector)
     {
         movement?.SetMoveVector(inputVector, status.MoveSpeed);
+
+        newMoveVector = inputVector;
+        lastMoveVector = newMoveVector;
+
+        lastMoveTime = newMoveTime;
+        newMoveTime = Time.time;
+
+        if (GetInputDiff() <= transDashTime)
+        {
+            if (newMoveVector != Vector2.zero && lastMoveVector == newMoveVector)
+                DashHandle();
+        }
     }
 
     private void Jump()
@@ -65,5 +81,10 @@ public class PlayerMovementState : PlayerState
     {
         if (attack.Weapon.IsStay)
             controller.ChangeState(PlayerStateType.Teleportation);
+    }
+
+    private float GetInputDiff()
+    {
+        return newMoveTime - lastMoveTime;
     }
 }
