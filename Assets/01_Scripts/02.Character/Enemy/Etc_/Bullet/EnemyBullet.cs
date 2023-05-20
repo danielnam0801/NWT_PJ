@@ -18,9 +18,9 @@ public class EnemyBullet : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             Debug.Log(gameObject);
-            collision.GetComponent<IHitable>().GetHit(damage, gameObject);
+            //collision.GetComponent<IHitable>().GetHit(damage, gameObject);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
