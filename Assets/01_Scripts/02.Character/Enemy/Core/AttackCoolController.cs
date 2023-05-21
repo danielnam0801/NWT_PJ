@@ -23,6 +23,7 @@ public class AttackCoolController : MonoBehaviour
     public EnemyType enemyType;
     Dictionary<SkillName, float> _attackCoolList;
     Dictionary<SkillName, EnemyAttackData> _attackDictionary;
+
     Enemy _enemy;
     EnemyMovement _movement;
     AIStateInfo _stateInfo;
@@ -38,11 +39,6 @@ public class AttackCoolController : MonoBehaviour
     [SerializeField] private float meleeDamage = 3f;    
     [SerializeField] private float normalDamage = 5f;    
     [SerializeField] private float specialDamage = 10f;
-
-    public bool RangeBool;
-    public bool MeleeBool;
-    public bool SpecialBool;
-    public bool NormalBool;
 
     private void Awake()
     {
@@ -141,64 +137,45 @@ public class AttackCoolController : MonoBehaviour
     {
         if (_stateInfo.IsAttack) return;
         if (isCoolDown(skillname) == false) return;
-
-        FieldInfo fInfoBool = typeof(AIStateInfo)
-        .GetField($"Is{skillname.ToString()}", BindingFlags.Public | BindingFlags.Instance);
-
+        
         EnemyAttackData atkData = null;
         if(_attackDictionary.TryGetValue(skillname, out atkData)){
             _movement.StopImmediatelly();
+            SetAttackValue(skillname);
             _stateInfo.IsAttack = true;
-            fInfoBool.SetValue(_stateInfo, true); //??? ??? ?????????? ????
             SetCoolDown(atkData.AttackName, atkData.coolTime);
             atkData.atk.Attack(atkData.action);
         }
     }
+
+    void SetAttackValue(SkillName skill)
+    {
+        switch (skill)
+        {
+            case SkillName.Normal:
+                _stateInfo.IsNormal = true;
+                break;
+            case SkillName.Special:
+                _stateInfo.IsSpecial = true;
+                break;
+            case SkillName.Range:
+                _stateInfo.IsRange = true;
+                break;
+            case SkillName.Melee:
+                _stateInfo.IsMelee = true;
+                break;
+        }
+    }
+
     public bool isCoolDown(SkillName key)
     {
         float coolDown;
         if (_attackCoolList.TryGetValue(key, out coolDown))
         {
-            if(Time.time > coolDown)
-            {
-                if(key == SkillName.Normal)
-                {
-                    NormalBool = true;
-                }
-                if(key == SkillName.Special)
-                {
-                    SpecialBool = true;
-                }
-                if(key == SkillName.Range)
-                {
-                    RangeBool = true;
-                }
-                if(key == SkillName.Melee)
-                {
-                    MeleeBool = true;
-                }
-                return Time.time > coolDown;
-            }
             return Time.time > coolDown;
         }
-        else
+        else //들어온 key에 해당하는 value가 없음
         {
-            if (key == SkillName.Normal)
-            {
-                NormalBool = false;
-            }
-            if (key == SkillName.Special)
-            {
-                SpecialBool = false;
-            }
-            if (key == SkillName.Range)
-            {
-                RangeBool = false;
-            }
-            if (key == SkillName.Melee)
-            {
-                MeleeBool = false;
-            }
             return false;
         }
     }

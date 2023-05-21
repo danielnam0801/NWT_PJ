@@ -15,6 +15,7 @@ public class JumpAndReturnAttack : EnemyAttack, IRangeAttack
 
     IEnumerator JumpAttackAndReturn()
     {
+
         yield return new WaitForSeconds(1f);
         CallbackPlay();
     }

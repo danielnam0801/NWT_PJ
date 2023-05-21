@@ -9,7 +9,7 @@ public class AttackAction : AIAction
     public UnityEvent EndEvent;
 
     [Tooltip("여기서 false로 설정하면 이에 상응하는 EnemyAttack에서 Animation실행을 해줘야 함")]
-    public bool isAnimTriggerOn = true; //여기서 false로 설정하면 이에 상응하는 EnemyAttack에서 Animation실행을 해줘야 함
+    public bool isAnimTriggerOn = true; //적 공격 끝나는것을 애니메이션 트리거로 통제할지, 아니면 스크립트로 제어할지
     protected AttackCoolController attackCoolController;
 
 
