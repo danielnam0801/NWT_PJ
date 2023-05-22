@@ -1,3 +1,4 @@
+using DigitalRuby.LightningBolt;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 {
     [SerializeField] GameObject boltPrefab;
     [SerializeField] GameObject linePrefab;
+    [SerializeField] GameObject electroSphere;
     [SerializeField] UnityAction attackFeedbackAction;
     [SerializeField]
     Transform spawnPos;
@@ -39,7 +41,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 
 
     [Header("ElectoBall")]
-    [SerializeField] ParticleSystem portal;
+    [SerializeField] GameObject portal;
     [SerializeField] private float teleportPlayTIme = 2f;
     private Action AppearAction;
     private Action DisappearAction;
@@ -54,7 +56,6 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 
         attackType = UnityEngine.Random.Range(0, attackTypeCnt); //  공격 타입이 늘어날 수록
         
-        plusAngle = CanAttackAngleRange / (boltSpawnCnt - 1);
         randomAngleRotate = UnityEngine.Random.Range(-5f, 5f);
 
         Debug.LogError("볼트 액션실행중");
@@ -65,6 +66,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
         bullet.Clear();
         currentSpawnBulletCnt = 0;
         currentAngle = 0;
+        _animator.Animator.SetFloat("AttackSpeed", 1);
     }
 
     private void AnimationEnd()
@@ -79,13 +81,16 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
     {
         attackFeedbackAction?.Invoke();
         randomAngleRotate = UnityEngine.Random.Range(-5f, 5f);
-        
+
+        attackType = 1;
         if (attackType == 0)
         {
+            plusAngle = CanAttackAngleRange / (boltSpawnCnt - 1);
             CollectAndSpreadAttack();
         }
         else if (attackType == 1)
         {
+            plusAngle = CanAttackAngleRange / (electroLineSpawnCnt - 1);
             LightingAttack();
         }
         else if(attackType == 2)
@@ -100,12 +105,14 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
         SpawnPortal(transform.position);
         DisappearAction?.Invoke();
 
+        _animator.Animator.SetFloat("AttackSpeed", 0.5f);
         StartCoroutine(DelayCoroutine(1.5f, Teleporting));
     }
 
 
     private void Teleporting()
     {
+        _animator.Animator.SetFloat("AttackSpeed", 1f);
         AppearAction?.Invoke();
         Vector3 randomPosition = new Vector3(UnityEngine.Random.Range(-1f,1f), 0, 0);
         Vector3 SpawnPos = _brain.Target.position + randomPosition * UnityEngine.Random.Range(1f,2f);
@@ -114,7 +121,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 
     private void SpawnPortal(Vector3 position)
     {
-        //Instantiate(portal, position, Quaternion.identity);
+        Instantiate(portal, position, Quaternion.identity);
     }
 
     private void BoltNormalAttack()
@@ -157,33 +164,41 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
         StartCoroutine(LineSpawn());
     }
 
+    private float animSpeed = 0.25f;
+    private float destroyTime = 1f;
     private IEnumerator LineSpawn()
     {
+        GameObject electro = Instantiate(electroSphere, spawnPos.position, Quaternion.identity);
+        _animator.Animator.SetFloat("AttackSpeed", animSpeed);
         for(int i = 0; i < electroLineSpawnCnt; i++)
         {
-            GameObject line1 = Instantiate(linePrefab, spawnPos.position, Quaternion.Euler(0, 0, currentAngle));
-            line1.transform.position += line1.transform.right;
-            GameObject line2 = Instantiate(linePrefab, spawnPos.position, Quaternion.Euler(0, 0, CanAttackAngleRange - currentAngle));
-            line2.transform.position += line2.transform.right;
+            GameObject line1 = Instantiate(linePrefab, spawnPos.position, Quaternion.Euler(-currentAngle, 90, 0));
+            line1.transform.position += line1.transform.right * 2;
+            GameObject line2 = Instantiate(linePrefab, spawnPos.position, Quaternion.Euler(-(CanAttackAngleRange - currentAngle), 90, 0));
+            line2.transform.position += line2.transform.right * 2;
 
-            LineRenderer _line1 = line1.GetComponent<LineRenderer>();
-            LineRenderer _line2 = line2.GetComponent<LineRenderer>();
+            //LightningBoltScript _line1 = line1.GetComponent<LightningBoltScript>(); 
+            //LightningBoltScript _line2 = line2.GetComponent<LightningBoltScript>();
 
             RaycastHit2D ray1 = Physics2D.Raycast(line1.transform.position, line1.transform.right, 10, isGround);
             RaycastHit2D ray2 = Physics2D.Raycast(line2.transform.position, line2.transform.right, 10, isGround);
 
-            _line1.SetPosition(0, spawnPos.position);
-            _line2.SetPosition(0, spawnPos.position);
+            //_line1.StartPosition = line1.transform.position - line1.transform.position;
+            //_line2.StartPosition = line2.transform.position - line2.transform.position;
 
-            _line1.SetPosition(1, line1.transform.position + (line1.transform.right * 10));
-            _line2.SetPosition(1, line2.transform.position + (line2.transform.right * 10));
-
+            ////if (ray1.collider != null) _line1.EndPosition = ray1.point;
+            //_line1.EndPosition = line1.transform.position + (line1.transform.right * 10) - line1.transform.position;
+            ////if (ray2.collider != null) _line2.EndPosition = ray2.point;
+            //_line2.EndPosition = line2.transform.position + (line2.transform.right * 10) - line2.transform.position;
+            
             currentAngle += plusAngle;
 
-            Destroy(line1, 0.2f);
-            Destroy(line2, 0.2f);
+            Destroy(line1, destroyTime);
+            Destroy(line2, destroyTime);
 
-            yield return new WaitForSeconds(animPlayingTime / electroLineSpawnCnt);
+            yield return new WaitForSeconds(animPlayingTime * (1/animSpeed) / electroLineSpawnCnt);
         }
+        _animator.Animator.SetFloat("AttackSpeed", 1);
+        Destroy(electro);
     }
 }
