@@ -12,7 +12,6 @@ public class AttackAction : AIAction
     public bool isAnimTriggerOn = true; //적 공격 끝나는것을 애니메이션 트리거로 통제할지, 아니면 스크립트로 제어할지
     protected AttackCoolController attackCoolController;
 
-
     protected override void Awake()
     {
         base.Awake();
@@ -35,7 +34,7 @@ public class AttackAction : AIAction
 
     public override void ExitAction()
     {
-
+        
     }
 
     void SetAnimAttack()

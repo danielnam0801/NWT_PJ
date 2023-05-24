@@ -61,6 +61,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     [Tooltip("Slice 가능하면 true로 설정")]
     public bool isCanSliced = false;
 
+    private Rigidbody2D rigidbody;
 
     void Awake()
     {
@@ -69,6 +70,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         _bodyColider = GetComponent<Collider2D>();
         //TestYong = GameObject.Find("TestYong").GetComponent<SpriteRenderer>();
         _rayPoint = transform.Find("RayPoint").transform;
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -217,6 +219,11 @@ public class Enemy : PoolableObject, IHitable, IAgent
         {
             eP.CreateSameObject();    
         }
+    }
+
+    public void SetGravityScale(float value)
+    {
+        rigidbody.gravityScale = value;
     }
 
     public override void Init()

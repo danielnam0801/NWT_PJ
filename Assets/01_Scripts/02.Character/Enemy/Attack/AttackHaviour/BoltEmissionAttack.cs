@@ -31,7 +31,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
     float randomAngleRotate = 0f;
     int attackType = 0;
     
-    private int attackTypeCnt = 3;
+    private int attackTypeCnt = 2;
     [SerializeField]
     LayerMask isGround;
 
@@ -82,7 +82,6 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
         attackFeedbackAction?.Invoke();
         randomAngleRotate = UnityEngine.Random.Range(-5f, 5f);
 
-        attackType = 1;
         if (attackType == 0)
         {
             plusAngle = CanAttackAngleRange / (boltSpawnCnt - 1);
@@ -93,11 +92,6 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
             plusAngle = CanAttackAngleRange / (electroLineSpawnCnt - 1);
             LightingAttack();
         }
-        else if(attackType == 2)
-        {
-            TeleportAttack();
-        }
-
     }
 
     private void TeleportAttack()

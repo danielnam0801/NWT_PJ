@@ -23,6 +23,7 @@ public class AttackCoolController : MonoBehaviour
     public EnemyType enemyType;
     Dictionary<SkillName, float> _attackCoolList;
     Dictionary<SkillName, EnemyAttackData> _attackDictionary;
+    Dictionary<SkillName, bool> _canAttackList;
 
     Enemy _enemy;
     EnemyMovement _movement;
@@ -52,6 +53,7 @@ public class AttackCoolController : MonoBehaviour
         _movement = GetComponent<EnemyMovement>();
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
         _attackCoolList = new Dictionary<SkillName, float>();
+        _canAttackList = new Dictionary<SkillName, bool>();
         _attackDictionary = new Dictionary<SkillName, EnemyAttackData>();
     }
 
@@ -69,6 +71,8 @@ public class AttackCoolController : MonoBehaviour
                 {
                     _stateInfo.IsNormal = false;
                     _stateInfo.IsAttack = false;
+                    _canAttackList[SkillName.Normal] = true;
+                    SetCoolDown(SkillName.Normal, normalCool);
                 },
                 coolTime = normalCool,
                 damage = normalDamage
@@ -86,6 +90,8 @@ public class AttackCoolController : MonoBehaviour
                 {
                     _stateInfo.IsSpecial = false;
                     _stateInfo.IsAttack = false;
+                    _canAttackList[SkillName.Special] = true;
+                    SetCoolDown(SkillName.Special, specialCool);
                 },
                 coolTime = specialCool,
                 damage = specialDamage
@@ -103,6 +109,8 @@ public class AttackCoolController : MonoBehaviour
                 {
                     _stateInfo.IsRange = false;
                     _stateInfo.IsAttack = false;
+                    _canAttackList[SkillName.Range] = true;
+                    SetCoolDown(SkillName.Range, rangeCool);
                 },
                 coolTime = rangeCool,
                 damage = rangeDamage
@@ -120,6 +128,8 @@ public class AttackCoolController : MonoBehaviour
                 {
                     _stateInfo.IsMelee = false;
                     _stateInfo.IsAttack = false;
+                    _canAttackList[SkillName.Melee] = true;
+                    SetCoolDown(SkillName.Melee, meleeCool);
                 },
                 coolTime = meleeCool,
                 damage = meleeDamage
@@ -130,12 +140,14 @@ public class AttackCoolController : MonoBehaviour
         foreach (var skill in _attackDictionary.Values)
         {
             _attackCoolList.Add(skill.AttackName, skill.coolTime);
+            _canAttackList.Add(skill.AttackName, true);
         }
     }
 
     public virtual void Attack(SkillName skillname)
     {
         if (_stateInfo.IsAttack) return;
+        if (IsCanAttack(skillname) == false) return;
         if (isCoolDown(skillname) == false) return;
         
         EnemyAttackData atkData = null;
@@ -143,7 +155,8 @@ public class AttackCoolController : MonoBehaviour
             _movement.StopImmediatelly();
             SetAttackValue(skillname);
             _stateInfo.IsAttack = true;
-            SetCoolDown(atkData.AttackName, atkData.coolTime);
+            _canAttackList[skillname] = false;
+            //SetCoolDown(atkData.AttackName, atkData.coolTime);
             atkData.atk.Attack(atkData.action);
         }
     }
@@ -164,6 +177,19 @@ public class AttackCoolController : MonoBehaviour
             case SkillName.Melee:
                 _stateInfo.IsMelee = true;
                 break;
+        }
+    }
+
+    public bool IsCanAttack(SkillName key)
+    {
+        bool value;
+        if(_canAttackList.TryGetValue(key, out value))
+        {
+            return value;
+        }
+        else
+        {
+            return false;
         }
     }
 
