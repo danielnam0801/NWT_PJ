@@ -14,8 +14,7 @@ public enum PlayerStateType
 
 public enum ShapeType
 {
-    Circle = 0,
-    Nothing = 1,
-    Triangle = 3,
-    Square = 4,
+    Circle = 1,
+    Triangle,
+    Square,
 }
