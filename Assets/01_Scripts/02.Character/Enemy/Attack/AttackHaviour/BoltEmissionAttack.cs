@@ -158,8 +158,8 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
         StartCoroutine(LineSpawn());
     }
 
-    private float animSpeed = 0.25f;
-    private float destroyTime = 1f;
+    private float animSpeed = 0.5f;
+    private float destroyTime = 0.5f;
     private IEnumerator LineSpawn()
     {
         GameObject electro = Instantiate(electroSphere, spawnPos.position, Quaternion.identity);
