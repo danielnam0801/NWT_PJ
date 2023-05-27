@@ -11,6 +11,7 @@ public class EnergyBall : MonoBehaviour
     [SerializeField] int randomness = 90;
     [SerializeField] float shakeTime = 2f;
 
+    int passbyPlayerCnt = 0;
     float shootPower = 5f;
     float damage;
     Transform target;
@@ -67,7 +68,7 @@ public class EnergyBall : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, angle);
             }
             rb.velocity = transform.up * shootPower;
-            yield return new WaitForSeconds(0.04f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
