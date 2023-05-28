@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class EnergyBall : MonoBehaviour
 {
@@ -10,10 +11,14 @@ public class EnergyBall : MonoBehaviour
     [SerializeField] int vibrato = 10;
     [SerializeField] int randomness = 90;
     [SerializeField] float shakeTime = 2f;
+    [SerializeField]
+    float shootPower = 5f;
 
     int passbyPlayerCnt = 0;
-    float shootPower = 5f;
+    private float currentShootPower;
     float damage;
+
+    bool isCanCounting = true;
     Transform target;
 
     public LayerMask CanHittable;
@@ -26,11 +31,12 @@ public class EnergyBall : MonoBehaviour
         circleCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.Find("Player").transform;
+        currentShootPower = shootPower;
     }
 
     private void Start()
     {
-        SetValueAndPlay(3, transform);
+        SetValueAndPlay(3, target);
     }
 
     private void DGShoot()
@@ -47,34 +53,85 @@ public class EnergyBall : MonoBehaviour
         StartCoroutine(nameof(Shooting));
     }
 
+
+    private float delayTime = 0.05f;
+    private void ChangeDelayTime(float time) => delayTime = time; 
+    
+    IEnumerator DelayCoroutine(float changeTime, float normalTime, float delayTime)
+    {
+        Debug.Log("IsIN");
+        ChangeDelayTime(changeTime);
+
+        float delay = delayTime / 2;
+
+        SetSpeed(false, delay);
+        yield return new WaitForSeconds(delay);
+        SetSpeed(true, delay);
+        yield return new WaitForSeconds(delay);
+
+        isCanCounting = true;
+        ChangeDelayTime(normalTime);
+    }
+
+    public void SetSpeed(bool isIncrease, float playTime)
+    {
+        if (!isIncrease)
+        {
+            DOVirtual.Float(currentShootPower, 1f, playTime, (t) => currentShootPower = t).SetEase(Ease.InQuad);
+        }
+        else
+        {
+            DOVirtual.Float(currentShootPower, shootPower, playTime, (t) => currentShootPower = t).SetEase(Ease.InBack);
+        }
+    }
+
+
     IEnumerator Shooting()
     {
+        delayTime = 0.05f;
         while (gameObject.activeSelf)
         {
-            Vector3 dir = (target.position - transform.position).normalized;
-            float dot = Vector3.Dot(transform.up, dir);
-            if (dot < 1.0f)
+
+            if (Vector2.Distance(transform.position, target.position) < 2f && isCanCounting == true)
             {
-                float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-                Vector3 cross = Vector3.Cross(transform.up, dir);
-                if (cross.z < 0)
+                passbyPlayerCnt++;
+                if(passbyPlayerCnt <= 1)
                 {
-                    angle = transform.rotation.eulerAngles.z - Mathf.Min(10, angle);
+                    float eventPlayTime = 2f;
+                    StartCoroutine(DelayCoroutine(0.1f, 0.05f, eventPlayTime));
                 }
-                else
-                {
-                    angle = transform.rotation.eulerAngles.z + Mathf.Min(10, angle);
-                }
-                transform.rotation = Quaternion.Euler(0, 0, angle);
+                isCanCounting = false;
+                yield return null;
             }
-            rb.velocity = transform.up * shootPower;
-            yield return new WaitForSeconds(0.1f);
+
+            if(passbyPlayerCnt < 2)
+            {
+                Vector3 dir = (target.position - transform.position).normalized;
+                float dot = Vector3.Dot(transform.up, dir);
+                if (dot < 1.0f)
+                {
+                    float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+                    Vector3 cross = Vector3.Cross(transform.up, dir);
+                    if (cross.z < 0)
+                    {
+                        angle = transform.rotation.eulerAngles.z - Mathf.Min(10, angle);
+                    }
+                    else
+                    {
+                        angle = transform.rotation.eulerAngles.z + Mathf.Min(10, angle);
+                    }
+                    transform.rotation = Quaternion.Euler(0, 0, angle);
+                }
+            }
+            rb.velocity = transform.up * currentShootPower;
+            yield return new WaitForSeconds(delayTime);
         }
     }
 
     public void SetValueAndPlay(float dmamage, Transform targetPos)
     {
         this.damage = dmamage;
+        this.target = targetPos;
         circleCollider.enabled = false;
         circleCollider.offset = Vector2.zero;
         transform.localScale = Vector3.zero;
