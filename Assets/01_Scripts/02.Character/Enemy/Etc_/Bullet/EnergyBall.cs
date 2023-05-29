@@ -12,7 +12,7 @@ public class EnergyBall : MonoBehaviour
     [SerializeField] int randomness = 90;
     [SerializeField] float shakeTime = 2f;
     [SerializeField]
-    float shootPower = 5f;
+    float shootPower = 10f;
 
     int passbyPlayerCnt = 0;
     private float currentShootPower;
@@ -25,6 +25,7 @@ public class EnergyBall : MonoBehaviour
 
     Collider2D circleCollider;
     Rigidbody2D rb;
+    public bool isShootReady = false;
 
     private void Awake()
     {
@@ -34,22 +35,31 @@ public class EnergyBall : MonoBehaviour
         currentShootPower = shootPower;
     }
 
-    private void Start()
+    public void SetValueAndPlay(float dmamage, Transform targetPos, LayerMask hittable)
     {
-        SetValueAndPlay(3, target);
+        this.damage = dmamage;
+        this.target = targetPos;
+        this.CanHittable = hittable;
+        circleCollider.enabled = false;
+        circleCollider.offset = Vector2.zero;
+        transform.localScale = Vector3.zero;
+        DGShoot();
     }
-
     private void DGShoot()
     {
         Sequence seq = DOTween.Sequence();
         Tween scaleUp = transform.DOScale(Vector3.one, chargeTime);
-        seq.Append(scaleUp).AppendCallback(() => circleCollider.enabled = true);
+        seq.Append(scaleUp).AppendCallback(() => {
+            circleCollider.enabled = true;
+            isShootReady = true;
+        });
         Tween shake = transform.DOShakePosition(shakeTime, strength, vibrato, randomness).SetEase(Ease.InExpo);
-        seq.Insert(chargeTime - 1f, shake).AppendCallback(Shoot);
+        seq.Insert(chargeTime - 1.5f, shake).AppendCallback(Shoot);
     }
 
     private void Shoot()
     {
+        rb.velocity = (target.position - transform.position).normalized * currentShootPower;
         StartCoroutine(nameof(Shooting));
     }
 
@@ -60,24 +70,26 @@ public class EnergyBall : MonoBehaviour
     IEnumerator DelayCoroutine(float changeTime, float normalTime, float delayTime)
     {
         Debug.Log("IsIN");
-        ChangeDelayTime(changeTime);
+        //ChangeDelayTime(changeTime);
+
 
         float delay = delayTime / 2;
-
+        yield return new WaitForSeconds(0.25f);
+        canSetTarget = true;
         SetSpeed(false, delay);
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(delay - 0.05f);
         SetSpeed(true, delay);
         yield return new WaitForSeconds(delay);
 
         isCanCounting = true;
-        ChangeDelayTime(normalTime);
+        //ChangeDelayTime(normalTime);
     }
 
     public void SetSpeed(bool isIncrease, float playTime)
     {
         if (!isIncrease)
         {
-            DOVirtual.Float(currentShootPower, 1f, playTime, (t) => currentShootPower = t).SetEase(Ease.InQuad);
+            DOVirtual.Float(currentShootPower, 3f, playTime, (t) => currentShootPower = t).SetEase(Ease.InQuad);
         }
         else
         {
@@ -85,26 +97,27 @@ public class EnergyBall : MonoBehaviour
         }
     }
 
-
+    private bool canSetTarget = true;
     IEnumerator Shooting()
     {
+        yield return new WaitForSeconds(1f);
         delayTime = 0.05f;
         while (gameObject.activeSelf)
         {
-
-            if (Vector2.Distance(transform.position, target.position) < 2f && isCanCounting == true)
+            if (Vector2.Distance(transform.position, target.position) < 2.3f && isCanCounting == true)
             {
+                canSetTarget = false;
                 passbyPlayerCnt++;
                 if(passbyPlayerCnt <= 1)
                 {
-                    float eventPlayTime = 2f;
+                    float eventPlayTime = 1.9f;
                     StartCoroutine(DelayCoroutine(0.1f, 0.05f, eventPlayTime));
                 }
                 isCanCounting = false;
                 yield return null;
             }
 
-            if(passbyPlayerCnt < 2)
+            if(passbyPlayerCnt < 2 && canSetTarget == true)
             {
                 Vector3 dir = (target.position - transform.position).normalized;
                 float dot = Vector3.Dot(transform.up, dir);
@@ -123,19 +136,11 @@ public class EnergyBall : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0, 0, angle);
                 }
             }
+
+            if (passbyPlayerCnt == 2) Destroy(this.gameObject, 1f);
             rb.velocity = transform.up * currentShootPower;
             yield return new WaitForSeconds(delayTime);
         }
-    }
-
-    public void SetValueAndPlay(float dmamage, Transform targetPos)
-    {
-        this.damage = dmamage;
-        this.target = targetPos;
-        circleCollider.enabled = false;
-        circleCollider.offset = Vector2.zero;
-        transform.localScale = Vector3.zero;
-        DGShoot();
     }
 
     private void DestroyEvent()
@@ -143,16 +148,18 @@ public class EnergyBall : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.IsTouchingLayers(CanHittable))
+        Debug.Log("IsTrigger");
+        if (collision.IsTouchingLayers(CanHittable))
         {
+            Debug.Log("IsTriggerHit");
             IHitable hittable;
             if(collision.gameObject.TryGetComponent(out hittable))
             {
                 hittable.GetHit(damage, damageDealer: this.gameObject);
-                DestroyEvent();
             }
+            DestroyEvent();
         }
     }
 }

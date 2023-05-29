@@ -32,6 +32,7 @@ public class JumpAttack : EnemyAttack, INormalAttack
 
     public void Attack(Action CallBack)
     {
+        SetAnimAttack();
         this.callBack = CallBack;
         JumpAct();
     }

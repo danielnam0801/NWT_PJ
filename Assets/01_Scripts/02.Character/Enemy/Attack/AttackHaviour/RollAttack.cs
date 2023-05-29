@@ -15,6 +15,7 @@ public class RollAttack : EnemyAttack, INormalAttack
     public UnityEvent FaintStateEndEvent;
     public void Attack(Action CallBack)
     {
+        SetAnimAttack();
         this.callBack = CallBack;
 
         StartCoroutine(Roll());

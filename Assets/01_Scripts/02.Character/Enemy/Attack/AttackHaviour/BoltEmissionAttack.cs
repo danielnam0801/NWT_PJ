@@ -49,6 +49,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 
     public void Attack(Action CallBack)
     {
+        SetAnimAttack();
         this.callBack = CallBack;
         Init();
         _animator.OnAnimaitionEventTrigger += BoltAttack;

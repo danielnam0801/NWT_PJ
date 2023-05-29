@@ -71,28 +71,28 @@ public class EnemyAgentAnimator : MonoBehaviour
         _animator.SetTrigger(_playLandAnimHash);
     }
 
-    public void SetAttackTrigger(bool value, SkillName Skill)
+    public void SetAttackTrigger(bool value, SkillType Skill)
     {
         if (value)
         {
             switch (Skill)
             {
-                case SkillName.Normal:
+                case SkillType.Normal:
                     _animator.ResetTrigger(_NormalAttackHash);
                     _animator.SetTrigger(_NormalAttackHash);
                     currentSkillHash = _NormalAttackHash; 
                     break; 
-                case SkillName.Special:
+                case SkillType.Special:
                     _animator.ResetTrigger(_SpecialAttackHash);
                     _animator.SetTrigger(_SpecialAttackHash);
                     currentSkillHash = _SpecialAttackHash; 
                     break;
-                case SkillName.Melee:
+                case SkillType.Melee:
                     _animator.ResetTrigger(_MeleeAttackHash);
                     _animator.SetTrigger(_MeleeAttackHash);
                     currentSkillHash = _MeleeAttackHash; 
                     break;
-                case SkillName.Range:
+                case SkillType.Range:
                     _animator.ResetTrigger(_RangeAttackHash);
                     _animator.SetTrigger(_RangeAttackHash);
                     currentSkillHash = _RangeAttackHash; 
@@ -105,16 +105,16 @@ public class EnemyAgentAnimator : MonoBehaviour
         else
         {
             switch (Skill) {
-                case SkillName.Normal:
+                case SkillType.Normal:
                     _animator.ResetTrigger(_NormalAttackHash);
                     break;
-                case SkillName.Special:
+                case SkillType.Special:
                     _animator.ResetTrigger(_SpecialAttackHash);
                     break;
-                case SkillName.Melee:
+                case SkillType.Melee:
                     _animator.ResetTrigger(_MeleeAttackHash);
                     break;
-                case SkillName.Range:
+                case SkillType.Range:
                     _animator.ResetTrigger(_RangeAttackHash);
                     break;
                 default:
@@ -171,5 +171,10 @@ public class EnemyAgentAnimator : MonoBehaviour
     {
         SetDeadHash(false);
         SetSpeed(0);
+    }
+
+    public void SetAnimatorSpeed(float speed)
+    {
+        _animator.SetFloat("AttackSpeed", speed);
     }
 }

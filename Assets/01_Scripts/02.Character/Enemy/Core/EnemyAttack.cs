@@ -12,6 +12,8 @@ public abstract class EnemyAttack : MonoBehaviour
     protected AIStateInfo _stateInfo;
     protected AttackCoolController _CoolController;
 
+    [SerializeField]
+    protected SkillType _skillName;
     public LayerMask CanDamageble;
     public UnityEvent AttackStartFeedback;
     public UnityEvent AttackEndFeedback;
@@ -35,5 +37,10 @@ public abstract class EnemyAttack : MonoBehaviour
     public void CallbackPlay()
     {
         callBack?.Invoke();
+    }
+
+    protected void SetAnimAttack()
+    {
+        _animator.SetAttackTrigger(true, _skillName);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class AttackAction : AIAction
 {
-    public SkillName skillName;
+    public SkillType skillName;
     public UnityEvent EndEvent;
 
     [Tooltip("여기서 false로 설정하면 이에 상응하는 EnemyAttack에서 Animation실행을 해줘야 함")]
@@ -21,8 +21,6 @@ public class AttackAction : AIAction
     public override void InitAction()
     {
         _animator.SetSpeed(0);
-        if(isAnimTriggerOn)
-            SetAnimAttack();
     }
 
 
@@ -34,11 +32,6 @@ public class AttackAction : AIAction
 
     public override void ExitAction()
     {
-        
-    }
 
-    void SetAnimAttack()
-    {
-        _animator.SetAttackTrigger(true, skillName);
     }
 }

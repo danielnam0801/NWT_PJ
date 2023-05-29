@@ -12,6 +12,7 @@ public class TeleportAttack : EnemyAttack, IMeleeAttack
 
     public void Attack(Action CallBack)
     {
+        SetAnimAttack();
         this.callBack = CallBack;
         Teleport();
         _animator.OnAnimaitionEventTrigger += AnimEvent;
