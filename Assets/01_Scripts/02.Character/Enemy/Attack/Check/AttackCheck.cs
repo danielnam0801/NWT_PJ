@@ -19,20 +19,10 @@ public class AttackCheck : MonoBehaviour
     {
         switch (_attackCheckType)
         {
-            case AttackCheckType.CIRCLE_COLLISION:
-                circle = true;
+            case AttackCheckType.COLLISION:
                 collisionCheck = true;
                 break;
-            case AttackCheckType.BOX_COLLISION:
-                box = true;
-                collisionCheck = true;
-                break;
-            case AttackCheckType.CIRCLE_COLLIDER:
-                circle = true;
-                colliderCheck = true;
-                break;
-            case AttackCheckType.BOX_COLLIDER:
-                box = true;
+            case AttackCheckType.COLLIDER:
                 colliderCheck = true;
                 break;
             case AttackCheckType.CIRCLE_OVERLAP:
@@ -56,6 +46,47 @@ public class AttackCheck : MonoBehaviour
                 rayCheck = true;
                 break;
         }
-    }  
-    
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collisionCheck)
+        {
+            IHitable hitable;
+            if(collision.gameObject.TryGetComponent<IHitable>(out hitable)){
+                hitable.GetHit(damage, this.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (colliderCheck)
+        {
+            IHitable hitable;
+            if (collision.gameObject.TryGetComponent<IHitable>(out hitable))
+            {
+                hitable.GetHit(damage, this.gameObject);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    public void OverlapCheck()
+    {
+
+    }
+
+    public void RayCheck()
+    {
+
+    }
+
+
+
 }

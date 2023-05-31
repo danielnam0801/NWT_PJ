@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public abstract class GuideLine : MonoBehaviour
 {
-    public ShapeType type;
+    //public ShapeType type;
 
     [SerializeField]
     protected float checkOffset = 0.3f;
