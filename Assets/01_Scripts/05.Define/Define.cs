@@ -22,10 +22,8 @@ public enum ShapeType
 
 public enum AttackCheckType
 {
-    BOX_COLLISION,
-    CIRCLE_COLLISION,
-    BOX_COLLIDER,
-    CIRCLE_COLLIDER,
+    COLLISION,
+    COLLIDER,
     CIRCLE_OVERLAP,
     BOX_OVERLAP,
     LINE_RAYCAST,
