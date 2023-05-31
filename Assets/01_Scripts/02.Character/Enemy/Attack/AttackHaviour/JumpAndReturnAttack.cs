@@ -21,7 +21,7 @@ public class JumpAndReturnAttack : EnemyAttack, IRangeAttack
     IEnumerator JumpAttackAndReturn()
     {
         EnergyBall energyball = Instantiate(EnergyBallPrefab, spawnPos.position, Quaternion.identity);
-        energyball.SetValueAndPlay(damage, _brain.Target, CanDamageble);
+        energyball.SetValueAndPlay(damage, _brain.Target);
         while (energyball)
         {
             if (energyball.isShootReady)

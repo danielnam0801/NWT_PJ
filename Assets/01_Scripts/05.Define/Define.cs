@@ -11,3 +11,16 @@ public enum PlayerStateType
     Dash,
     Teleportation,
 }
+
+public enum AttackCheckType
+{
+    BOX_COLLISION,
+    CIRCLE_COLLISION,
+    BOX_COLLIDER,
+    CIRCLE_COLLIDER,
+    CIRCLE_OVERLAP,
+    BOX_OVERLAP,
+    LINE_RAYCAST,
+    BOX_RAYCAST,
+    CIRCLE_RAYCAST,
+}

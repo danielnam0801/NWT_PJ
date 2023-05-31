@@ -172,20 +172,6 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
             GameObject line2 = Instantiate(linePrefab, spawnPos.position, Quaternion.Euler(-(CanAttackAngleRange - currentAngle), 90, 0));
             line2.transform.position += line2.transform.right * 2;
 
-            //LightningBoltScript _line1 = line1.GetComponent<LightningBoltScript>(); 
-            //LightningBoltScript _line2 = line2.GetComponent<LightningBoltScript>();
-
-            RaycastHit2D ray1 = Physics2D.Raycast(line1.transform.position, line1.transform.right, 10, isGround);
-            RaycastHit2D ray2 = Physics2D.Raycast(line2.transform.position, line2.transform.right, 10, isGround);
-
-            //_line1.StartPosition = line1.transform.position - line1.transform.position;
-            //_line2.StartPosition = line2.transform.position - line2.transform.position;
-
-            ////if (ray1.collider != null) _line1.EndPosition = ray1.point;
-            //_line1.EndPosition = line1.transform.position + (line1.transform.right * 10) - line1.transform.position;
-            ////if (ray2.collider != null) _line2.EndPosition = ray2.point;
-            //_line2.EndPosition = line2.transform.position + (line2.transform.right * 10) - line2.transform.position;
-            
             currentAngle += plusAngle;
 
             Destroy(line1, destroyTime);

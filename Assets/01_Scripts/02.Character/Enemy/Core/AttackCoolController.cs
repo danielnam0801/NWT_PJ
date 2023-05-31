@@ -21,6 +21,7 @@ public class AttackCoolController : MonoBehaviour
 {
     public SkillType MySkills; //꼭 할당된 공격과 맞는것으로 체크해줘야함
     public EnemyType enemyType;
+
     Dictionary<SkillType, float> _attackCoolList;
     Dictionary<SkillType, EnemyAttackData> _attackDictionary;
     Dictionary<SkillType, bool> _canAttackList;
@@ -41,6 +42,9 @@ public class AttackCoolController : MonoBehaviour
     [SerializeField] private float normalDamage = 5f;    
     [SerializeField] private float specialDamage = 10f;
 
+    [Tooltip("공격사이에 공격간격두기")]
+    [Header("AttackTerm")]
+    public bool isUseAttackTerm = false;
     [SerializeField] private float attackTerm = 4f;
 
     private void Awake()
@@ -71,6 +75,7 @@ public class AttackCoolController : MonoBehaviour
                 AttackName = SkillType.Normal,
                 action = () =>
                 {
+                    isUseAttackTerm = true;
                     _stateInfo.IsNormal = false;
                     _stateInfo.IsAttack = false;
                     _canAttackList[SkillType.Normal] = true;

@@ -21,8 +21,6 @@ public class EnergyBall : MonoBehaviour
     bool isCanCounting = true;
     Transform target;
 
-    public LayerMask CanHittable;
-
     Collider2D circleCollider;
     Rigidbody2D rb;
     public bool isShootReady = false;
@@ -35,11 +33,10 @@ public class EnergyBall : MonoBehaviour
         currentShootPower = shootPower;
     }
 
-    public void SetValueAndPlay(float dmamage, Transform targetPos, LayerMask hittable)
+    public void SetValueAndPlay(float dmamage, Transform targetPos)
     {
         this.damage = dmamage;
         this.target = targetPos;
-        this.CanHittable = hittable;
         circleCollider.enabled = false;
         circleCollider.offset = Vector2.zero;
         transform.localScale = Vector3.zero;
@@ -150,16 +147,12 @@ public class EnergyBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("IsTrigger");
-        if (collision.IsTouchingLayers(CanHittable))
+        Debug.Log($"IsTriggerHit : {collision.gameObject.name}");
+        IHitable hittable;
+        if(collision.gameObject.TryGetComponent(out hittable))
         {
-            Debug.Log("IsTriggerHit");
-            IHitable hittable;
-            if(collision.gameObject.TryGetComponent(out hittable))
-            {
-                hittable.GetHit(damage, damageDealer: this.gameObject);
-            }
-            DestroyEvent();
+            hittable.GetHit(damage, damageDealer: this.gameObject);
         }
+        DestroyEvent();
     }
 }

@@ -14,7 +14,6 @@ public abstract class EnemyAttack : MonoBehaviour
 
     [SerializeField]
     protected SkillType _skillName;
-    public LayerMask CanDamageble;
     public UnityEvent AttackStartFeedback;
     public UnityEvent AttackEndFeedback;
     protected Action callBack = null;

@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 1598720999419041926}
   - component: {fileID: 1598720999419041925}
   - component: {fileID: 1598720999419041927}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: YellowEnergyBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,6 +264,7 @@ MonoBehaviour:
   CanHittable:
     serializedVersion: 2
     m_Bits: 64
+  isShootReady: 0
 --- !u!50 &1598720999419041927
 Rigidbody2D:
   serializedVersion: 4
