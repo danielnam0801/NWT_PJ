@@ -7,7 +7,7 @@ public class IdleAction : AIAction
 {
     public override void InitAction()
     {
-        
+        _animator.SetAnimatorSpeed(1);
     }
 
     public override void TakeAction()

@@ -15,6 +15,7 @@ public class RollAttack : EnemyAttack, INormalAttack
     public UnityEvent FaintStateEndEvent;
     public void Attack(Action CallBack)
     {
+        SetAnimAttack();
         this.callBack = CallBack;
 
         StartCoroutine(Roll());
@@ -42,7 +43,7 @@ public class RollAttack : EnemyAttack, INormalAttack
         AttackStartFeedback?.Invoke();
 
         float t = 0;
-        float rollPlayTime = 2.5f;
+        float rollPlayTime = 2f;
         float rollStartAccerleration = 0.8f;
         float rollEndDecelerationTime = 0.8f;
         float currentRotateSpeed = 1f;

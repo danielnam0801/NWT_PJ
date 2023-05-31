@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CanAttackDecision : AIDecision
 {
-    [SerializeField] SkillName Skill;
+    [SerializeField] SkillType Skill;
     FieldInfo fInfo;
     public override bool MakeADecision()
     {

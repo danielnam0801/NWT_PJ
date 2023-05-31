@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EndOfAttackDecision : AIDecision
 {
-    public SkillName skill;
+    public SkillType skill;
     private FieldInfo skillInfo;    
 
     protected override void Awake()

@@ -32,6 +32,7 @@ public class JumpAttack : EnemyAttack, INormalAttack
 
     public void Attack(Action CallBack)
     {
+        SetAnimAttack();
         this.callBack = CallBack;
         JumpAct();
     }
@@ -119,8 +120,8 @@ public class JumpAttack : EnemyAttack, INormalAttack
         StartCoroutine(DelayCoroutine(0.3f, () =>
         {
             Debug.Log("ISATTackINs");
-            AttackEndFeedback?.Invoke();
             callBack?.Invoke();
+            //AttackEndFeedback?.Invoke();
         }));
     }
 

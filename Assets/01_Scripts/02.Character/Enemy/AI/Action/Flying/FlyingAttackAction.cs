@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlyingAttackAction : AIAction
 {
-    public SkillName skillName;
+    public SkillType skillName;
     public override void InitAction()
     {
         

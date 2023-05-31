@@ -12,6 +12,7 @@ public class FrogTongueAttack : EnemyAttack, IRangeAttack
 
     public void Attack(Action CallBack)
     {
+        SetAnimAttack();
         AttackStartFeedback?.Invoke();
         _animator.OnAnimaitionEndTrigger += DamageCaster;
         

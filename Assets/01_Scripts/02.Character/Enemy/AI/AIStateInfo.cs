@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Flags]
-public enum SkillName
+public enum SkillType
 {
     Normal = 1,
     Special = 2,
@@ -37,7 +37,7 @@ public class AIStateInfo : MonoBehaviour
     {
         animator = transform.parent.Find("Visual").GetComponent<EnemyAgentAnimator>();   
     }
-    private void LateUpdate()
+    private void Update()
     {
         animator.SetAttackState(IsAttack);
     }

@@ -92,7 +92,7 @@ public class AIBrain : MonoBehaviour
             IdleStateStateChanged?.Invoke(AIMovementData.direction, AIMovementData.beforeDirection);
     }
 
-    public virtual void Attack(SkillName skillName)
+    public virtual void Attack(SkillType skillName)
     {
         _attackCoolController.Attack(skillName);
     }
