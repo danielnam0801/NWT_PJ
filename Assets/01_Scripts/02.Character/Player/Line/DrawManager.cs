@@ -11,7 +11,6 @@ public class DrawManager : MonoBehaviour
     public static DrawManager Instance;
     public UnityEvent DrawStartEvent;
     public UnityEvent DrawEndEvent;
-    public Action<List<Vector2>> CheckLine;
 
     public GameObject linePrefab;
 
@@ -26,10 +25,8 @@ public class DrawManager : MonoBehaviour
     [SerializeField]
     private float minAngleCheck = 45f;
 
-    public float PathPointInterval => pathPointInterval;
-
     LineRenderer lr;
-    public List<Vector2> points = new List<Vector2>();
+    List<Vector2> points = new List<Vector2>();
 
     private bool canDraw = true;
     public bool isDrawArea = false;
@@ -118,8 +115,6 @@ public class DrawManager : MonoBehaviour
             canDraw = false;
             yield return StartCoroutine(sword.Attack(points));
         }
-
-        CheckLine?.Invoke(points);
 
         points.Clear();
     }

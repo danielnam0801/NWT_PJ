@@ -14,6 +14,7 @@ public enum PlayerStateType
 
 public enum AttackCheckType
 {
+<<<<<<< HEAD
     BOX_COLLISION,
     CIRCLE_COLLISION,
     BOX_COLLIDER,
@@ -23,4 +24,10 @@ public enum AttackCheckType
     LINE_RAYCAST,
     BOX_RAYCAST,
     CIRCLE_RAYCAST,
+=======
+    Circle = 0,
+    Nothing = 1,
+    Triangle = 3,
+    Square = 4,
+>>>>>>> parent of bef0be6 (shape guide)
 }
