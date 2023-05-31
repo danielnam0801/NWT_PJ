@@ -12,6 +12,14 @@ public enum PlayerStateType
     Teleportation,
 }
 
+public enum ShapeType
+{
+    Circle,
+    Triangle,
+    Square,
+}
+
+
 public enum AttackCheckType
 {
     BOX_COLLISION,
