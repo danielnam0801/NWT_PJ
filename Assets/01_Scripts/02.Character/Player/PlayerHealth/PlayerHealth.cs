@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IHitable
 {
     public bool IsEnemy => false;
+    public float UnHitTime = 0.5f;
+    private bool unHit = false;
 
     public Vector3 HitPoint { get; set; }
 
@@ -18,6 +20,10 @@ public class PlayerHealth : MonoBehaviour, IHitable
 
     public void GetHit(float damage, GameObject damageDealer)
     {
+        if (unHit) 
+            return;
+
+        StartCoroutine(UnHitCoroutine(UnHitTime));
         hp -= damage;
 
         hp = Mathf.Clamp(hp, 0, maxHp);
@@ -27,6 +33,16 @@ public class PlayerHealth : MonoBehaviour, IHitable
             Die();
         }
     }
+
+    private IEnumerator UnHitCoroutine(float time)
+    {
+        unHit = true;
+
+        yield return new WaitForSeconds(time);
+
+        unHit = false;
+    }
+        
 
     private void Die()
     {

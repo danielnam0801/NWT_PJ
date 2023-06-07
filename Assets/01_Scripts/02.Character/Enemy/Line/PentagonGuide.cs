@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriangleGuide : GuideLine
+public class PentagonGuide : GuideLine
 {
     private float distance = 0;
     private float betweenPointCount = 0;
@@ -19,9 +19,9 @@ public class TriangleGuide : GuideLine
     {
         List<Vector2> vertex = new List<Vector2>();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
-            vertex.Add((Quaternion.Euler(0, 0, 120 * i) * Vector2.up) * shapeSize);
+            vertex.Add((Quaternion.Euler(0, 0, 72 * i) * Vector2.up) * shapeSize);
         }
 
         for (int i = 0; i < vertex.Count; i++)

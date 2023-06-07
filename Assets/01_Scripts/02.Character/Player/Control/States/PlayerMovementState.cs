@@ -40,6 +40,15 @@ public class PlayerMovementState : PlayerState
     {
         movement?.SetMoveVector(inputVector, status.MoveSpeed);
 
+        if(inputVector.sqrMagnitude == 0)
+        {
+            anim.SetMove(0);
+        }
+        else
+        {
+            anim.SetMove(status.MoveSpeed);
+        }
+
         newMoveVector = inputVector;
         lastMoveVector = newMoveVector;
 
@@ -67,9 +76,11 @@ public class PlayerMovementState : PlayerState
                 currentJumpCount++;
         }
 
+        anim.PlayJumpAnimation();
         float jumpPower = Mathf.Sqrt(status.JumpHeight * 2 * -2f * gravityScale);
         movement.SetVerticalVelocity(jumpPower);
         currentJumpCount++;
+
     }
 
     private void DashHandle()
