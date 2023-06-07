@@ -103,6 +103,7 @@ public class DrawManager : MonoBehaviour
         {
             isMaxLength = false;
             IsDraw = false;
+            Debug.Log(points.Count);
             DrawEndEvent?.Invoke();
 
             StartCoroutine(SwordMove());

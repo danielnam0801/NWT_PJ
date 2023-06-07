@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4118976874383314116}
-  - component: {fileID: 3653864893006146466}
+  - component: {fileID: -3094883905750689471}
   - component: {fileID: 4118976874383314117}
   m_Layer: 0
-  m_Name: SquareGuideLine
+  m_Name: PentagonGuideLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3653864893006146466
+--- !u!114 &-3094883905750689471
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4118976874383314122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41cec96efe4a5594da3d9a1734fafa21, type: 3}
+  m_Script: {fileID: 11500000, guid: 3324b5e8dc67c4f428035a24486c8935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  checkOffset: 1
+  poolType: 0
+  type: 3
+  checkOffset: 0.5
   shapeSize: 1
+  pair: {fileID: 0}
   shapePoints: []
 --- !u!120 &4118976874383314117
 LineRenderer:
@@ -87,8 +89,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 655701329
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Positions: []
   m_Parameters:

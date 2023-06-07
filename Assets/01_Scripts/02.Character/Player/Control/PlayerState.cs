@@ -16,7 +16,7 @@ public abstract class PlayerState : MonoBehaviour
         controller = root.GetComponent<PlayerController>();
         movement = root.GetComponent<PlayerMovement>();
         input = root.GetComponent<PlayerInput>();
-        anim = root.GetComponent<PlayerAnimation>();
+        anim = root.Find("Visual").GetComponent<PlayerAnimation>();
         attack = root.GetComponent<PlayerAttack>();
         status = root.GetComponent<PlayerStatus>();
     }

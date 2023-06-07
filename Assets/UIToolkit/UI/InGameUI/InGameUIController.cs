@@ -41,7 +41,6 @@ public class InGameUIController : MonoBehaviour
         VisualElement drawPanel = root.Q<VisualElement>("DrawPanel");
         drawPanel.AddManipulator(new ClickManipulator(() =>
         {
-            Debug.Log(1);
             DrawManager.Instance.StartDraw = true;
         }));
 

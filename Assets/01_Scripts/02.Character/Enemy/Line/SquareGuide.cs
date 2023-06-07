@@ -10,6 +10,11 @@ public class SquareGuide : GuideLine
     private Vector2 endVertex = Vector2.zero;
     private Vector2 dir = Vector2.zero;
 
+    public override void Init()
+    {
+        base.Init();
+    }
+
     protected override void SetShapePoints()
     {
         List<Vector2> vertex = new List<Vector2>();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public abstract class GuideLine : MonoBehaviour
+public abstract class GuideLine : PoolableObject
 {
     public ShapeType type;
 
@@ -11,6 +11,9 @@ public abstract class GuideLine : MonoBehaviour
     protected float checkOffset = 0.3f;
     [SerializeField]
     protected float shapeSize = 1f;
+    [SerializeField]
+    protected Transform pair;
+
 
     protected float pathPointInterval;
 
@@ -26,15 +29,25 @@ public abstract class GuideLine : MonoBehaviour
 
     protected virtual void Start()
     {
-        pathPointInterval = DrawManager.Instance.PathPointInterval;
-        DrawManager.Instance.CheckLine += CheckShape;
         SetShapePoints();
         DrawShape();
     }
 
+    public override void Init()
+    {
+        pathPointInterval = DrawManager.Instance.PathPointInterval;
+        DrawManager.Instance.CheckLine += CheckShape;
+    }
+
+    private void Update()
+    {
+        transform.position = pair.position;
+    }
+
     private void OnDisable()
     {
-        DrawManager.Instance.CheckLine -= CheckShape;
+        if(DrawManager.Instance != null)
+            DrawManager.Instance.CheckLine -= CheckShape;
     }
 
     protected abstract void SetShapePoints();
@@ -50,8 +63,14 @@ public abstract class GuideLine : MonoBehaviour
 
     public void CheckShape(List<Vector2> points)
     {
+        Debug.Log("check");
+
         if ((float)points.Count / (float)shapePoints.Count < 0.7f)
+        {
+            Debug.Log("return");
             return;
+        }
+            
 
         int count = 0;
         int repeat = points.Count < shapePoints.Count ? points.Count : shapePoints.Count;
@@ -69,5 +88,10 @@ public abstract class GuideLine : MonoBehaviour
             Debug.Log((float)count / (float)repeat);
             Debug.Log("그리기 성공");
         }
+    }
+
+    public void SetPair(Transform _pair)
+    {
+        pair = _pair;
     }
 }
