@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class CircleGuide : GuideLine
 {
-    public float radius;
-    public float unitChord;
+    [SerializeField]
+    private float radius;
+    [SerializeField]
+    private float unitChord;
+    [SerializeField]
+    private float unitAngle;
+    private int pointCount;
 
     public override void Init()
     {
@@ -13,13 +18,20 @@ public class CircleGuide : GuideLine
 
         radius = shapeSize / 2f;
         unitChord = DrawManager.Instance.PathPointInterval;
+        unitAngle = Mathf.Asin(unitChord / (2 * radius)) * 2;
+        pointCount = (int)(360 / unitAngle);
     }
 
     protected override void SetShapePoints()
     {
-        for(int i = 0; i < shapeSize; i++)
+        for(int i = 0; i < pointCount; i++)
         {
-            shapePoints.Add(Quaternion.Equals(0, 0, i * 30) * (transform.up * radius));
+            shapePoints.Add(Quaternion.Euler(0, 0, unitAngle * i) * (transform.up * radius));
+        }
+
+        if(unitAngle * pointCount < 360f)
+        {
+            shapePoints.Add(shapePoints[0]);
         }
 
         //float angle = 0f;

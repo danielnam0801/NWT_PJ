@@ -48,11 +48,12 @@ MonoBehaviour:
   poolType: 0
   type: 0
   checkOffset: 0.3
-  shapeSize: 1
+  shapeSize: 3
   pair: {fileID: 0}
   shapePoints: []
   radius: 0
   unitChord: 0
+  unitAngle: 0
 --- !u!120 &8900946482040756432
 LineRenderer:
   m_ObjectHideFlags: 0
