@@ -88,6 +88,10 @@ public abstract class GuideLine : PoolableObject
             Debug.Log((float)count / (float)repeat);
             Debug.Log("그리기 성공");
         }
+        else
+        {
+            Debug.Log("그리기 실패");
+        }
     }
 
     public void SetPair(Transform _pair)

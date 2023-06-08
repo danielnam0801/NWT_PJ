@@ -18,7 +18,7 @@ public class CircleGuide : GuideLine
 
         radius = shapeSize / 2f;
         unitChord = DrawManager.Instance.PathPointInterval;
-        unitAngle = Mathf.Asin(unitChord / (2 * radius)) * 2;
+        unitAngle = Mathf.Asin(unitChord / (2 * radius)) * Mathf.Rad2Deg * 2;
         pointCount = (int)(360 / unitAngle);
     }
 
@@ -33,6 +33,8 @@ public class CircleGuide : GuideLine
         {
             shapePoints.Add(shapePoints[0]);
         }
+
+        Debug.Log(shapePoints.Count);
 
         //float angle = 0f;
         //float currentChord = 0f;

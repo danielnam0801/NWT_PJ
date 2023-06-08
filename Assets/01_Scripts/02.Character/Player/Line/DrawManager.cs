@@ -87,8 +87,8 @@ public class DrawManager : MonoBehaviour
         }
         else if (IsDraw && Input.GetMouseButton(0))
         {
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 5;
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //pos.z = 5;
             if (Vector2.Distance(points[points.Count - 1], pos) > pathPointInterval)
             {
                 points.Add(pos);
