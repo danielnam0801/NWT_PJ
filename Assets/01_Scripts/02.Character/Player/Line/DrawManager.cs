@@ -32,12 +32,10 @@ public class DrawManager : MonoBehaviour
     public List<Vector2> points = new List<Vector2>();
 
     private bool canDraw = true;
-    public bool isDrawArea = false;
     private bool isMaxLength = false;
     private GameObject go;
 
     public PlayerWeapon sword;
-    public SwordSkill skill;
     public GameObject player;
 
     public bool StartDraw { get; set; }
@@ -107,14 +105,20 @@ public class DrawManager : MonoBehaviour
             Debug.Log(points.Count);
             DrawEndEvent?.Invoke();
 
-            SwordMove();
+            Destroy(go.gameObject);
+
+            if (points.Count > minDrawPoint)
+            {
+                canDraw = false;
+                CheckLines();
+            }
+            //SwordMove();
             //StartCoroutine(SwordMove());
         }
     }
 
     public void SwordMove()
     {
-        isDrawArea = false;
         Destroy(go.gameObject);
         if (points.Count > minDrawPoint)
         {
@@ -124,7 +128,7 @@ public class DrawManager : MonoBehaviour
             //yield return StartCoroutine(sword.Attack(points));
         }
 
-        points.Clear();
+        //points.Clear();
     }
 
     private IEnumerator DelayDraw(float time)
@@ -142,11 +146,11 @@ public class DrawManager : MonoBehaviour
 
             if (checkType != ShapeType.Default)
             {
-                skill.DoSKill(checkType, GuideLines[i].transform.position);
+                sword.DoSKill(checkType, GuideLines[i].transform.position);
                 break;
             }
         }
 
-        skill.DoSKill(ShapeType.Default, Vector2.zero);
+        sword.DoSKill(ShapeType.Default, Vector2.zero);
     }
 }

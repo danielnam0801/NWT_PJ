@@ -62,6 +62,30 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
+    public void DoSKill(ShapeType type, Vector2 _targetPos)
+    {
+        targetPos = _targetPos;
+
+        switch (type)
+        {
+            case ShapeType.Circle:
+                CircleSkill();
+                break;
+            case ShapeType.Triangle:
+                TriangleSkill();
+                break;
+            case ShapeType.Square:
+                SquareSkill();
+                break;
+            case ShapeType.Pentagon:
+                PentagonSkill();
+                break;
+            case ShapeType.Default:
+                DefaultSkill();
+                break;
+        }
+    }
+
     public IEnumerator Attack(List<Vector2> pathPoints)
     {
         isAttack = true;
