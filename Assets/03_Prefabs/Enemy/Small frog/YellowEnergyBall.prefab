@@ -150,8 +150,9 @@ GameObject:
   - component: {fileID: 1598720999419041924}
   - component: {fileID: 1598720999419042043}
   - component: {fileID: 1598720999419041926}
-  - component: {fileID: 1598720999419041925}
   - component: {fileID: 1598720999419041927}
+  - component: {fileID: -2099957272697309437}
+  - component: {fileID: 1598720999419041925}
   m_Layer: 21
   m_Name: YellowEnergyBall
   m_TagString: Untagged
@@ -240,31 +241,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.021428466, y: -0.0053571463}
+  m_Offset: {x: -0.031095266, y: -0.0053571463}
   serializedVersion: 2
-  m_Radius: 0.7059288
---- !u!114 &1598720999419041925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598720999419042042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f994a046c1369c347a71a778e968d78c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chargeTime: 3
-  strength: 0.1
-  vibrato: 20
-  randomness: 90
-  shakeTime: 2
-  shootPower: 7
-  CanHittable:
-    serializedVersion: 2
-    m_Bits: 64
-  isShootReady: 0
+  m_Radius: 0.3869232
 --- !u!50 &1598720999419041927
 Rigidbody2D:
   serializedVersion: 4
@@ -286,3 +265,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2099957272697309437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598720999419042042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad36b2de3ba05514bba5a6a79943b91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackCheckType: 1
+  damage: 5
+  centerPos: {fileID: 0}
+  radius: 0
+  size: {x: 0, y: 0}
+  lineLength: 5
+--- !u!114 &1598720999419041925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598720999419042042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f994a046c1369c347a71a778e968d78c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeTime: 3
+  strength: 0.1
+  vibrato: 20
+  randomness: 90
+  shakeTime: 2
+  shootPower: 10.5
+  isShootReady: 0
+  CanChaseMaxCnt: 3

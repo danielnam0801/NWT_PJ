@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 4870030517758886}
   - component: {fileID: 198866534812435342}
   - component: {fileID: 199831446352202148}
-  m_Layer: 0
+  - component: {fileID: 1061662952920143780}
+  - component: {fileID: 977884852689339249}
+  - component: {fileID: 5596292512986429769}
+  m_Layer: 21
   m_Name: ElectricitySphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4888,3 +4891,53 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1061662952920143780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306605793903958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fcae93f6320424ea5f24927402da71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolType: 0
+  _particles:
+  - {fileID: 198866534812435342}
+  _effects: []
+--- !u!114 &977884852689339249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306605793903958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad36b2de3ba05514bba5a6a79943b91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackCheckType: 1
+  damage: 5
+  centerPos: {fileID: 4870030517758886}
+  radius: 0
+  size: {x: 0, y: 0}
+  lineLength: 5
+--- !u!58 &5596292512986429769
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306605793903958}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.021065116, y: -0.0037689805}
+  serializedVersion: 2
+  m_Radius: 1.7579172

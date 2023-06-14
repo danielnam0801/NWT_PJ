@@ -46,7 +46,7 @@ public class EnemyAgentAnimator : MonoBehaviour
         if (_aiStateInfo.IsAttack == false)
         {
             Vector3 direction = (Vector3)pointerInput - transform.position;
-            transform.parent.localScale = (direction.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            transform.localScale = (direction.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
         }
     }
 
@@ -54,10 +54,10 @@ public class EnemyAgentAnimator : MonoBehaviour
     {
         if (currentDir.x == 0)
         {
-            transform.parent.localScale = (beforeDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); //멈춤이 일어날때 전에 보던 방향에 따른 페이스 디렉션
+            transform.localScale = (beforeDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); //멈춤이 일어날때 전에 보던 방향에 따른 페이스 디렉션
         }
         else
-            transform.parent.localScale = (currentDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            transform.localScale = (currentDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
 
     }
 
@@ -153,13 +153,12 @@ public class EnemyAgentAnimator : MonoBehaviour
     public void OnAnimationEnd()
     {
         if (OnAnimaitionEndTrigger == null) 
-            Debug.LogError("sdfdsf");
+            Debug.Log("OnAnimationEndTriggerisNull");
         OnAnimaitionEndTrigger?.Invoke();
     }
 
     public void OnAnimationEvent()
     {
-        Debug.Log("Event0");
         OnAnimaitionEventTrigger?.Invoke();
     }
 

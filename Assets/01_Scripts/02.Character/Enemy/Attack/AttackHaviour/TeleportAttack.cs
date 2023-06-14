@@ -7,8 +7,8 @@ using UnityEngine.Events;
 
 public class TeleportAttack : EnemyAttack, IMeleeAttack
 {
-    [SerializeField] ParticleSystem portal;
-    public UnityEvent<Vector3> FlashEffect;
+    [SerializeField] EffectPlayer portal;
+    [SerializeField] EffectPlayer flashEffect;
 
     public void Attack(Action CallBack)
     {
@@ -18,11 +18,11 @@ public class TeleportAttack : EnemyAttack, IMeleeAttack
         _animator.OnAnimaitionEventTrigger += AnimEvent;
         _animator.Animator.SetFloat("AttackSpeed", 1);
     }
-
     private void AnimEvent()
     {
         Vector3 pos = _animator.transform.position;
-        FlashEffect?.Invoke(pos);
+        Destroy(Instantiate(flashEffect, pos, Quaternion.identity), 5f);
+
         _animator.Animator.SetFloat("AttackSpeed", 0);
         _brain.transform.localScale = Vector3.zero;
         _brain.Enemy.SetGravityScale(0f);
@@ -33,7 +33,8 @@ public class TeleportAttack : EnemyAttack, IMeleeAttack
     {
         ChangeEnemyPos();
         Vector3 pos = _animator.transform.position;
-        FlashEffect?.Invoke(pos);
+        Destroy(Instantiate(flashEffect, pos, Quaternion.identity, transform), 5f);
+        
         _brain.transform.localScale = Vector3.one;
         _animator.Animator.SetFloat("AttackSpeed", 1);
         _brain.Enemy.SetGravityScale(1f);
@@ -45,12 +46,15 @@ public class TeleportAttack : EnemyAttack, IMeleeAttack
     private void Teleport()
     {
         float appearTime = 1f;
-        ParticleSystem portal1 = Instantiate(portal, _animator.transform.position + new Vector3(0,1.5f, 0), Quaternion.identity);
+        EffectPlayer portal1 = PoolManager.Instance.Pop(portal.name) as EffectPlayer;
         portal1.transform.localScale = Vector3.zero;
         Sequence seq = DOTween.Sequence();
         seq.Append(ResizePortal(portal1, 1f, 1f));
         seq.AppendInterval(appearTime);
-        seq.Append(ResizePortal(portal1, 0f, 1f));
+        seq.Append(ResizePortal(portal1, 0f, 1f)).OnComplete(() =>
+        {
+            PoolManager.Instance.Push(portal1);
+        });
         seq.Append(MySequence2(appearTime));
         seq.OnComplete(() =>
         {
@@ -69,12 +73,12 @@ public class TeleportAttack : EnemyAttack, IMeleeAttack
     {
         SetTarget();
         //ChangeEnemyPos();
-        ParticleSystem portal2 = Instantiate(portal, moveNextPos, Quaternion.identity);
+        EffectPlayer portal2 = PoolManager.Instance.Pop(portal.name) as EffectPlayer;
         portal2.transform.localScale = Vector3.zero;
         return DOTween.Sequence().Append(ResizePortal(portal2, 1f, 1f)).AppendCallback(() => ReAppear())
-            .AppendInterval(appearTime).Append(ResizePortal(portal2, 0f, 1f));
+            .AppendInterval(appearTime).Append(ResizePortal(portal2, 0f, 1f)).OnComplete( () => PoolManager.Instance.Push(portal2));
     }
-    private Tween ResizePortal(ParticleSystem portal, float value, float duration) => portal.transform.DOScale(value, duration).SetEase(Ease.OutBounce);
+    private Tween ResizePortal(EffectPlayer portal, float value, float duration) => portal.transform.DOScale(value, duration).SetEase(Ease.OutBounce);
     private void SetTarget()
     {
         randomX = _brain.Target.position.x + UnityEngine.Random.Range(-1f, 1f);

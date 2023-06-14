@@ -32,7 +32,7 @@ public abstract class EnemyAttack : MonoBehaviour
         yield return new WaitForSeconds(afterAttackDelay);
         afterPlayAction();
     }
-    
+
     public void CallbackPlay()
     {
         callBack?.Invoke();
@@ -41,5 +41,11 @@ public abstract class EnemyAttack : MonoBehaviour
     protected void SetAnimAttack()
     {
         _animator.SetAttackTrigger(true, _skillName);
+    }
+
+    public void StopAllAct()
+    {
+        StopAllCoroutines();
+        CallbackPlay();
     }
 }

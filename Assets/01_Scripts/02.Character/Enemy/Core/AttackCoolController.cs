@@ -47,6 +47,8 @@ public class AttackCoolController : MonoBehaviour
     public bool isUseAttackTerm = false;
     [SerializeField] private float attackTerm = 4f;
 
+    Queue<EnemyAttackData> attackQueue;
+
     private void Awake()
     {
         Init();
@@ -61,6 +63,7 @@ public class AttackCoolController : MonoBehaviour
         _attackCoolList = new Dictionary<SkillType, float>();
         _canAttackList = new Dictionary<SkillType, bool>();
         _attackDictionary = new Dictionary<SkillType, EnemyAttackData>();
+        attackQueue = new Queue<EnemyAttackData>();
     }
 
     private void MakeAttackTypeAction()
@@ -85,6 +88,7 @@ public class AttackCoolController : MonoBehaviour
                 damage = normalDamage
             };
             _attackDictionary.Add(NormalAttack.AttackName, NormalAttack);
+            attackQueue.Enqueue(NormalAttack);
         }
 
         if (MySkills.HasFlag(SkillType.Special)) //SpecialAttack이 있을때
@@ -104,6 +108,7 @@ public class AttackCoolController : MonoBehaviour
                 damage = specialDamage
             };
             _attackDictionary.Add(SpecialAttack.AttackName, SpecialAttack);
+            attackQueue.Enqueue(SpecialAttack);
         }
 
         if (MySkills.HasFlag(SkillType.Range)) //RagneAttack이 있을때
@@ -123,6 +128,7 @@ public class AttackCoolController : MonoBehaviour
                 damage = rangeDamage
             };
             _attackDictionary.Add(RangeAttack.AttackName, RangeAttack);
+            attackQueue.Enqueue(RangeAttack);
         }
 
         if (MySkills.HasFlag(SkillType.Melee)) //MeleeAttack이 있을때
@@ -142,6 +148,7 @@ public class AttackCoolController : MonoBehaviour
                 damage = meleeDamage
             };
             _attackDictionary.Add(MeleeAttack.AttackName, MeleeAttack);
+            attackQueue.Enqueue(MeleeAttack);
         }
 
         foreach (var skill in _attackDictionary.Values)
@@ -151,12 +158,18 @@ public class AttackCoolController : MonoBehaviour
         }
     }
 
-    public virtual void Attack(SkillType skillname)
+    public virtual bool Attack(SkillType skillname)
     {
-        if (_stateInfo.IsAttack) return;
-        if (IsCanAttack(skillname) == false) return;
-        if (isCoolDown(skillname) == false) return;
+        if (_stateInfo.IsAttack) return false;
+        Debug.Log($"AttackQueue First : {attackQueue.Peek().AttackName}");
         
+        if (attackQueue.Peek().AttackName != skillname) // 현재 들어온 공격이 우선순위 1순위가 아니라면
+            return false;
+
+        if (IsCanAttack(skillname) == false) return false;
+        if (isCoolDown(skillname) == false) return false;
+
+
         EnemyAttackData atkData = null;
         if(_attackDictionary.TryGetValue(skillname, out atkData)){
             _movement.StopImmediatelly();
@@ -165,7 +178,16 @@ public class AttackCoolController : MonoBehaviour
             _canAttackList[skillname] = false;
             //SetCoolDown(atkData.AttackName, atkData.coolTime);
             atkData.atk.Attack(atkData.action);
+            GotoEndQueue();
         }
+        return true;
+    }
+
+    void GotoEndQueue()
+    {
+        EnemyAttackData temp = attackQueue.Peek(); //뒷순위로 미룬다
+        attackQueue.Dequeue();
+        attackQueue.Enqueue(temp); // 
     }
 
     void SetAttackValue(SkillType skill)
