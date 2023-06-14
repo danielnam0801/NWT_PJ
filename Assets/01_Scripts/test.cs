@@ -10,6 +10,6 @@ public class test : MonoBehaviour
     private void Start()
     {
         obj = PoolManager.Instance.Pop($"{shapeType}GuideLine") as GuideLine;
-        obj.SetPair(transform);
+        obj.SetPair(transform.Find("GuidePosition").transform);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class GuideLine : PoolableObject
 {
     public ShapeType type;
+    protected SwordSkill skill;
 
     [SerializeField]
     protected float checkOffset = 0.3f;
@@ -25,6 +26,7 @@ public abstract class GuideLine : PoolableObject
     protected virtual void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+        skill = GameObject.Find("Sword").GetComponent<SwordSkill>();
     }
 
     protected virtual void Start()
@@ -36,7 +38,7 @@ public abstract class GuideLine : PoolableObject
     public override void Init()
     {
         pathPointInterval = DrawManager.Instance.PathPointInterval;
-        DrawManager.Instance.CheckLine += CheckShape;
+        DrawManager.Instance.GuideLines.Add(this);
     }
 
     private void Update()
@@ -46,8 +48,8 @@ public abstract class GuideLine : PoolableObject
 
     private void OnDisable()
     {
-        if(DrawManager.Instance != null)
-            DrawManager.Instance.CheckLine -= CheckShape;
+        if (DrawManager.Instance != null)
+            DrawManager.Instance.GuideLines.Remove(this);
     }
 
     protected abstract void SetShapePoints();
@@ -61,14 +63,14 @@ public abstract class GuideLine : PoolableObject
         }
     }
 
-    public void CheckShape(List<Vector2> points)
+    public ShapeType CheckShape(List<Vector2> points)
     {
         Debug.Log("check");
 
         if ((float)points.Count / (float)shapePoints.Count < 0.7f)
         {
             Debug.Log("return");
-            return;
+            return ShapeType.Default;
         }
             
 
@@ -87,11 +89,12 @@ public abstract class GuideLine : PoolableObject
         {
             Debug.Log((float)count / (float)repeat);
             Debug.Log("그리기 성공");
+            skill.DoSKill(type, transform.position);
+            return type;
         }
-        else
-        {
-            Debug.Log("그리기 실패");
-        }
+
+        Debug.Log("그리기 실패");
+        return ShapeType.Default;
     }
 
     public void SetPair(Transform _pair)

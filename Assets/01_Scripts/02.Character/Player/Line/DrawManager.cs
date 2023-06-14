@@ -11,7 +11,7 @@ public class DrawManager : MonoBehaviour
     public static DrawManager Instance;
     public UnityEvent DrawStartEvent;
     public UnityEvent DrawEndEvent;
-    public Action<List<Vector2>> CheckLine;
+    public List<GuideLine> GuideLines;
 
     public GameObject linePrefab;
 
@@ -37,6 +37,7 @@ public class DrawManager : MonoBehaviour
     private GameObject go;
 
     public PlayerWeapon sword;
+    public SwordSkill skill;
     public GameObject player;
 
     public bool StartDraw { get; set; }
@@ -106,21 +107,22 @@ public class DrawManager : MonoBehaviour
             Debug.Log(points.Count);
             DrawEndEvent?.Invoke();
 
-            StartCoroutine(SwordMove());
+            SwordMove();
+            //StartCoroutine(SwordMove());
         }
     }
 
-    private IEnumerator SwordMove()
+    public void SwordMove()
     {
         isDrawArea = false;
         Destroy(go.gameObject);
         if (points.Count > minDrawPoint)
         {
             canDraw = false;
-            yield return StartCoroutine(sword.Attack(points));
+            CheckLines();
+            //yield return StartCoroutine(CheckLines());
+            //yield return StartCoroutine(sword.Attack(points));
         }
-
-        CheckLine?.Invoke(points);
 
         points.Clear();
     }
@@ -132,14 +134,19 @@ public class DrawManager : MonoBehaviour
         canDraw = true;
     }
 
-    //private ShapeType CheckShape()
-    //{
-    //    int angleCount = 0;
-    //    List<Vector2> anglePoint = new List<Vector2>();
+    private void CheckLines()
+    {
+        for(int i = 0; i < GuideLines.Count; i++)
+        {
+            ShapeType checkType = GuideLines[i].CheckShape(points);
 
-    //    for(int i = 0; i < points.Count - 1; i++)
-    //    {
-            
-    //    }
-    //}
+            if (checkType != ShapeType.Default)
+            {
+                skill.DoSKill(checkType, GuideLines[i].transform.position);
+                break;
+            }
+        }
+
+        skill.DoSKill(ShapeType.Default, Vector2.zero);
+    }
 }
