@@ -5,9 +5,6 @@ using UnityEngine;
 public class HitAction : AIAction
 {
     public float hitCnt = 1;
-    [SerializeField]
-    private float stateHitCnt = 1;
-   
     public override void InitAction()
     {
         Debug.Log("Hittt");

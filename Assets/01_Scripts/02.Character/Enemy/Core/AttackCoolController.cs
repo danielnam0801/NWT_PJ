@@ -161,7 +161,6 @@ public class AttackCoolController : MonoBehaviour
     public virtual bool Attack(SkillType skillname)
     {
         if (_stateInfo.IsAttack) return false;
-        Debug.Log($"AttackQueue First : {attackQueue.Peek().AttackName}");
         
         if (attackQueue.Peek().AttackName != skillname) // 현재 들어온 공격이 우선순위 1순위가 아니라면
             return false;
