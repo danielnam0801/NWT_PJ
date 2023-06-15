@@ -36,7 +36,8 @@ public abstract class GuideLine : PoolableObject
     public override void Init()
     {
         pathPointInterval = DrawManager.Instance.PathPointInterval;
-        DrawManager.Instance.CheckLine += CheckShape;
+        DrawManager.Instance.AddGuideLine(this);
+        //DrawManager.Instance.CheckLine += CheckShape;
     }
 
     private void Update()
@@ -47,7 +48,8 @@ public abstract class GuideLine : PoolableObject
     private void OnDisable()
     {
         if(DrawManager.Instance != null)
-            DrawManager.Instance.CheckLine -= CheckShape;
+            DrawManager.Instance.RemoveGudieLine(this);
+        //DrawManager.Instance.CheckLine -= CheckShape;
     }
 
     protected abstract void SetShapePoints();
@@ -61,14 +63,14 @@ public abstract class GuideLine : PoolableObject
         }
     }
 
-    public void CheckShape(List<Vector2> points)
+    public ShapeType CheckShape(List<Vector2> points)
     {
         Debug.Log("check");
 
         if ((float)points.Count / (float)shapePoints.Count < 0.7f)
         {
             Debug.Log("return");
-            return;
+            return ShapeType.Default;
         }
             
 
@@ -87,10 +89,12 @@ public abstract class GuideLine : PoolableObject
         {
             Debug.Log((float)count / (float)repeat);
             Debug.Log("그리기 성공");
+            return type;
         }
         else
         {
             Debug.Log("그리기 실패");
+            return ShapeType.Default;
         }
     }
 

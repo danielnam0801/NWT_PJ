@@ -18,6 +18,7 @@ public enum ShapeType
     Triangle,
     Square,
     Pentagon,
+    Default,
 }
 
 

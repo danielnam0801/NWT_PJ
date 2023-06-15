@@ -62,11 +62,17 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
-    public IEnumerator Attack(List<Vector2> pathPoints)
+    public void Attack(List<Vector2> pathPoints, ShapeType _type)
+    {
+        StartCoroutine(AttackCoroutine(pathPoints, _type));
+    }
+
+    private IEnumerator AttackCoroutine(List<Vector2> pathPoints, ShapeType _type)
     {
         isAttack = true;
         IsFollow = false;
         transform.position = pathPoints[0];
+        Debug.Log(pathPoints.Count);
 
         for (int i = 0; i < pathPoints.Count - 1; i++)
         {
@@ -77,6 +83,9 @@ public class PlayerWeapon : MonoBehaviour
             while(currentMoveTime < 1)
             {
                 currentMoveTime += Time.deltaTime / info.pointUnitMoveTime;
+                
+                Debug.Log(pathPoints[i]);
+                Debug.Log(pathPoints[i + 1]);
                 transform.position = Vector2.Lerp(pathPoints[i], pathPoints[i + 1], currentMoveTime);
 
                 yield return null;
