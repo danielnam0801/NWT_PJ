@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ca50c99553e9d41b8d9a5e14ded114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  checkOffset: 0.5
-  shapeSize: 1
+  poolType: 0
+  type: 1
+  checkOffset: 2
+  shapeSize: 2
+  pair: {fileID: 0}
   shapePoints: []
 --- !u!120 &4118976874383314117
 LineRenderer:

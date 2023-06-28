@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +10,13 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private WeaponSO info;
     public float rotateTime = 1;
+    public LayerMask WallLayer;
 
     protected Transform playerSwordTrm;
     public bool IsFollow { get; set; }
     public bool IsStay { get; set; }
     private bool isAttack = false;
+    private bool isSkill = false;
     public WeaponSO Info
     {
         get { return info; }
@@ -30,8 +33,25 @@ public class PlayerWeapon : MonoBehaviour
     private float targetAngleOffset = 1080f;
     [SerializeField]
     private float circleSkillTime = 1f;
+    [SerializeField]
+    private float circleAttackCount = 5;
+    [SerializeField]
+    private float circleSkillDamage;
 
+
+    [Header("pentagon")]
     public UnityEvent ExplosionEvent;
+
+    [Header("triangle")]
+    [SerializeField]
+    private int bounceCount = 3;
+    [SerializeField]
+    private float wallCheckDistance = 0.2f;
+    [SerializeField]
+    private float triangleMoveSpeed = 5f;
+    [SerializeField]
+    private float triangleMoveTime = 1f;
+
 
     protected virtual void Awake()
     {
@@ -43,6 +63,8 @@ public class PlayerWeapon : MonoBehaviour
     protected virtual void Start()
     {
         LightManager.Instance.AddFocusObject(gameObject);
+
+        circleSkillDamage = info.power / 3f;
     }
 
     protected virtual void Update()
@@ -52,7 +74,7 @@ public class PlayerWeapon : MonoBehaviour
     
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isAttack)
+        if (!isAttack || isSkill)
             return;
         if (collision.gameObject.CompareTag("Player"))
             return;
@@ -85,7 +107,6 @@ public class PlayerWeapon : MonoBehaviour
         isAttack = true;
         IsFollow = false;
         transform.position = pathPoints[0];
-        Debug.Log(pathPoints.Count);
 
         for (int i = 0; i < pathPoints.Count - 1; i++)
         {
@@ -102,14 +123,16 @@ public class PlayerWeapon : MonoBehaviour
                 yield return null;
             }
         }
-        yield return StartCoroutine(CircleSkill());
-        //yield return StartCoroutine(ChooseAttackSkill(_type));
+
+        yield return StartCoroutine(ChooseAttackSkill(_type));
         isAttack = false;
         StartCoroutine("Stay");
     }
 
     private IEnumerator ChooseAttackSkill(ShapeType shape)
     {
+        isSkill = true;
+
         switch(shape)
         {
             case ShapeType.Circle:
@@ -119,24 +142,86 @@ public class PlayerWeapon : MonoBehaviour
                 yield return null;
                 PentagonSkill();
                 break;
-            default:
-                yield break;
+            case ShapeType.Triangle:
+                yield return StartCoroutine(TriangleSkill());
+                break;
+            case ShapeType.Default:
+                break;
         }
+
+        isSkill = false;
     }
 
+    #region ½ºÅ³
     private IEnumerator CircleSkill()
     {
         Debug.Log("start cir");
         float current = 0f;
         float percent = 0f;
-        Quaternion start = transform.rotation;
+        float attackTime = circleSkillTime / circleAttackCount;
+        float currentAttackTime = 0;
 
-        while(percent < 1)
+        Vector2 dir = transform.up;
+        float angle = Mathf.Atan2(dir.y, dir.x);
+
+        while (percent < 1)
         {
             current += Time.deltaTime;
-            percent = current / circleSkillTime;
+            currentAttackTime += Time.deltaTime;
 
-            transform.rotation = Quaternion.Lerp(start, Quaternion.Euler(0, 0, start.z + targetAngleOffset), percent);
+            percent = current / circleSkillTime;
+            angle -= Time.deltaTime * 30;
+
+            if(currentAttackTime - attackTime >= 0)
+            {
+                RangeAttack(1.5f, circleSkillDamage);
+                currentAttackTime = 0;
+            }
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg), percent);
+
+            yield return null;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, (Quaternion.Euler(0, 0, 45f) * transform.up).normalized * wallCheckDistance);
+    }
+
+    private IEnumerator TriangleSkill()
+    {
+        int currnetBounceCount = 0;
+        Vector2 dir = (Quaternion.Euler(0, 0, 45f) * transform.up).normalized;
+        RaycastHit2D hit;
+        float currentMoveTime = 0;
+
+        while(currnetBounceCount <= bounceCount)
+        {
+            currentMoveTime += Time.deltaTime;
+
+            if (currentMoveTime >= triangleMoveTime)
+                break;
+
+            Debug.Log("tri");
+            transform.position += (Vector3)(dir * triangleMoveSpeed * Time.deltaTime);
+
+            hit = Physics2D.Raycast(transform.position, dir, wallCheckDistance, WallLayer);
+
+            if(hit)
+            {
+                Vector2 reflectVec = Vector2.Reflect(dir, hit.normal).normalized;
+                dir = reflectVec;
+                currnetBounceCount++;
+                currentMoveTime = 0;
+
+                if(currnetBounceCount <= bounceCount)
+                {
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0, 0, angle + 45 - 180);
+                }
+            }
 
             yield return null;
         }
@@ -144,7 +229,13 @@ public class PlayerWeapon : MonoBehaviour
 
     private void PentagonSkill()
     {
-        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 2f);
+        RangeAttack(2, 5, () => ExplosionEvent?.Invoke());
+    }
+    #endregion
+
+    public void RangeAttack(float radius, float damage, Action action = null)
+    {
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, radius);
 
         if (col.Length > 0)
         {
@@ -152,13 +243,11 @@ public class PlayerWeapon : MonoBehaviour
             {
                 if (col[i].TryGetComponent<IHitable>(out IHitable obj))
                 {
-                    ExplosionEvent?.Invoke();
-                    obj.GetHit(5, gameObject);
+                    action?.Invoke();
+                    obj.GetHit(damage, gameObject);
                 }
             }
         }
-
-        Debug.Log("Pentagon skill");
     }
 
     private IEnumerator Stay()
