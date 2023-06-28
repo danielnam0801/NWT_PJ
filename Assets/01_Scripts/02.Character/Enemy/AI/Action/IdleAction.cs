@@ -12,7 +12,7 @@ public class IdleAction : AIAction
 
     public override void TakeAction()
     {
-        _aiActionData.isIdle = true;
+        _aiActionData.IsIdle = true;
         _aiMovementData.pointOfInterest = transform.position;
         if(_aiMovementData.direction.x == 0 && _aiMovementData.direction.y == 0)
         {

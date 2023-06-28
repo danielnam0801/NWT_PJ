@@ -34,6 +34,26 @@ public class AIState : MonoBehaviour
         foreach (AITransition tr in _transition)
         {
             if (tr.gameObject.activeSelf == false) continue;
+        
+            bool result = false;
+            foreach (AIDecision d in tr.decisions)
+            {
+                result = d.MakeADecision();
+                if (d.isReverse == true) result = !result;
+                if (result == false) break;
+            }
+
+            if (result == true)
+            {
+                _brain.ChangeState(tr.NextState);
+                return;
+            }
+        }
+
+        if (_brain.AnyTransitions == null) return;
+
+        foreach(AITransition tr in _brain.AnyTransitions) //AnyTrans
+        {
             bool result = false;
             foreach (AIDecision d in tr.decisions)
             {
@@ -45,6 +65,7 @@ public class AIState : MonoBehaviour
                 _brain.ChangeState(tr.NextState);
         }
     }
+    
 
     public void ExitState()
     {

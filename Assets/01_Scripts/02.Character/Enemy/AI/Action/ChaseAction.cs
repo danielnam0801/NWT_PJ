@@ -12,7 +12,7 @@ public class ChaseAction : AIAction
     public override void TakeAction()
     {
         Vector2 dir = (_brain.Target.position.x - transform.position.x > 0) ? new Vector2(1, 0) : new Vector2(-1, 0);
-        _aiActionData.isIdle = false;
+        _aiActionData.IsIdle = false;
         _aiMovementData.direction = dir;
         _aiMovementData.pointOfInterest = _brain.Target.position;
         _aiMovementData.speed = _brain.Enemy.EnemyData.GetAfterSpeed;

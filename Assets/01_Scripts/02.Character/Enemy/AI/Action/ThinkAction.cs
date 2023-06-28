@@ -13,10 +13,10 @@ public class ThinkAction : AIAction
 
     public override void TakeAction()
     {
-        if (_aiActionData.isCanThinking)
+        if (_aiActionData.IsCanThinking)
         {
             _aiMovementData.direction = new Vector2(NextMove(), 0);
-            _aiActionData.isCanThinking = false;
+            _aiActionData.IsCanThinking = false;
         }
     }
     public int NextMove()
@@ -35,7 +35,7 @@ public class ThinkAction : AIAction
     IEnumerator EnemyThink(float thinkTime)
     {
         yield return new WaitForSeconds(thinkTime);
-        _aiActionData.isCanThinking = true;
+        _aiActionData.IsCanThinking = true;
         _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
     }
 

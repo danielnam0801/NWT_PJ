@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitAction : AIAction
+public class BubbleBeeHitAction : AIAction
 {
     public override void InitAction()
     {

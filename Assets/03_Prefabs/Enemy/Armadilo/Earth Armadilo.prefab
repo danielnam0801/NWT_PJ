@@ -102,7 +102,7 @@ MonoBehaviour:
   - {fileID: 32298242164704776}
   - {fileID: 5213782936258887400}
   m_Bounds:
-    m_Center: {x: -0.000828743, y: -0.016538203, z: 0}
+    m_Center: {x: -0.00084781647, y: -0.016542017, z: 0}
     m_Extent: {x: 0.53515613, y: 0.76345813, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7595716904624778470}
   m_Bounds:
-    m_Center: {x: 0.10867247, y: 0.023518294, z: 0}
+    m_Center: {x: 0.10867247, y: 0.023520201, z: 0}
     m_Extent: {x: 0.14747053, y: 0.31456703, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1839246224073871275}
   m_Bounds:
-    m_Center: {x: -0.089104295, y: 0.024649411, z: 0}
+    m_Center: {x: -0.08910048, y: 0.024651319, z: 0}
     m_Extent: {x: 0.41694504, y: 0.32870322, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -809,7 +809,7 @@ MonoBehaviour:
   - {fileID: 8134113075492956908}
   - {fileID: 3345706484898215445}
   m_Bounds:
-    m_Center: {x: -0.011999965, y: -0.008003831, z: 0}
+    m_Center: {x: -0.012003779, y: -0.008000016, z: 0}
     m_Extent: {x: 0.7160002, y: 0.6440002, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -917,7 +917,7 @@ MonoBehaviour:
   - {fileID: 3196614706106077524}
   - {fileID: 2847233716372391091}
   m_Bounds:
-    m_Center: {x: -0.026727423, y: 0.035744756, z: 0}
+    m_Center: {x: -0.026731238, y: 0.03574285, z: 0}
     m_Extent: {x: 0.14720255, y: 0.31374738, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1232,7 +1232,7 @@ MonoBehaviour:
   - {fileID: 3196614706106077524}
   - {fileID: 8890915920963917908}
   m_Bounds:
-    m_Center: {x: -0.22936302, y: 0.104860336, z: 0}
+    m_Center: {x: -0.22935158, y: 0.10486224, z: 0}
     m_Extent: {x: 0.19430834, y: 0.39490446, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3345706484898215445}
   m_Bounds:
-    m_Center: {x: 0.0006098747, y: -0.0000037550926, z: 0}
+    m_Center: {x: 0.0006098747, y: 0.000001013279, z: 0}
     m_Extent: {x: 0.63539016, y: 0.8480003, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 32298242164704776}
   m_Bounds:
-    m_Center: {x: -0.028095782, y: -0.019533902, z: 0}
+    m_Center: {x: -0.028091967, y: -0.01953581, z: 0}
     m_Extent: {x: 0.25790226, y: 0.48817977, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1524,9 +1524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978f97eb3e9638b4d9ad8e89eaac546f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanDamageble:
-    serializedVersion: 2
-    m_Bits: 64
+  _skillName: 0
   AttackStartFeedback:
     m_PersistentCalls:
       m_Calls:
@@ -1757,8 +1755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394366cd09287a949b00033bf8686150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCnt: 1
-  stateHitCnt: 1
 --- !u!1 &7827535040165250329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,9 +1914,7 @@ MonoBehaviour:
   IsSpecial: 0
   IsMelee: 0
   IsRange: 0
-  IsHit: 0
   IsCrash: 0
-  hitCnt: 0
 --- !u!114 &7827535040245353722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,11 +1927,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c5755a1fd2ba84eba7863d92e0b9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCanThinking: 1
-  targetSpotted: 0
-  arrived: 0
-  isIdle: 0
-  isMoving: 0
+  IsCanThinking: 1
+  TargetSpotted: 0
+  Arrived: 0
+  IsIdle: 0
+  IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
 --- !u!114 &7827535040245353723
 MonoBehaviour:
@@ -2156,9 +2150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 1
-  EndEvent:
+  ExitEvent:
     m_PersistentCalls:
       m_Calls: []
+  isAnimTriggerOn: 1
 --- !u!1 &7827535040977188480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,15 +2550,15 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 7827535040245353721}
         m_TargetAssemblyTypeName: AIStateInfo, Assembly-CSharp
-        m_MethodName: PlusHitCount
-        m_Mode: 1
+        m_MethodName: set_IsHit
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   _isActive: 1
   _enemyLight: {fileID: 0}
@@ -2625,6 +2620,8 @@ MonoBehaviour:
   meleeDamage: 3
   normalDamage: 5
   specialDamage: 10
+  isUseAttackTerm: 0
+  attackTerm: 4
 --- !u!114 &7827535041287577256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3068,7 +3065,7 @@ MonoBehaviour:
   - {fileID: 4027987708381704756}
   - {fileID: 5213782936258887400}
   m_Bounds:
-    m_Center: {x: -0.000015258789, y: 0.00096797943, z: 0}
+    m_Center: {x: 0.0000038146973, y: 0.00096797943, z: 0}
     m_Extent: {x: 0.52800024, y: 0.4070323, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

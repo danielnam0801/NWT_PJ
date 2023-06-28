@@ -12,7 +12,6 @@ public class EnemyAgentAnimator : MonoBehaviour
     private readonly int _SpecialAttackHash = Animator.StringToHash("specialAttack");
     private readonly int _NormalAttackHash = Animator.StringToHash("normalAttack");
 
-    private readonly int _playLandAnimHash = Animator.StringToHash("landTrigger");
     private readonly int _isAttackHash = Animator.StringToHash("is_attack");
     private readonly int _deadHash = Animator.StringToHash("isDead");
     private readonly int _deadTriggerHash = Animator.StringToHash("death");
@@ -64,11 +63,6 @@ public class EnemyAgentAnimator : MonoBehaviour
     public void SetAttackState(bool value)
     {
         _animator.SetBool(_isAttackHash, value);
-    }
-
-    public void PlayLandAnimation()
-    {
-        _animator.SetTrigger(_playLandAnimHash);
     }
 
     public void SetAttackTrigger(bool value, SkillType Skill)

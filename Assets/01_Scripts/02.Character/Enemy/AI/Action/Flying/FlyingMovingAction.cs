@@ -38,10 +38,10 @@ public class FlyingMovingAction : AIAction
         float x = Time.time;
         float value = Wave(a1, f1, p1, x) + Wave(a2, f2, p2, x) + Wave(a3, f3, p3, x);
 
-        if (_aiActionData.isCanThinking)
+        if (_aiActionData.IsCanThinking)
         {
             StartCoroutine(nameof(Think));
-            _aiActionData.isCanThinking = false;
+            _aiActionData.IsCanThinking = false;
             _aiMovementData.direction.x = value * XSpeed;
         }
 
@@ -63,7 +63,7 @@ public class FlyingMovingAction : AIAction
         randY = UnityEngine.Random.Range(-0.5f, 0.5f);
 
         yield return new WaitForSeconds(_aiMovementData.thinkTime);
-        _aiActionData.isCanThinking = true;
+        _aiActionData.IsCanThinking = true;
         _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
     }
 }

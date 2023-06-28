@@ -990,9 +990,7 @@ MonoBehaviour:
   IsSpecial: 0
   IsMelee: 0
   IsRange: 0
-  IsHit: 0
   IsCrash: 0
-  hitCnt: 0
 --- !u!114 &4269957867187374698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,11 +1003,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c5755a1fd2ba84eba7863d92e0b9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCanThinking: 1
-  targetSpotted: 0
-  arrived: 0
-  isIdle: 0
-  isMoving: 0
+  IsCanThinking: 1
+  TargetSpotted: 0
+  Arrived: 0
+  IsIdle: 0
+  IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4269957867187374699
 MonoBehaviour:
@@ -1147,9 +1145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978f97eb3e9638b4d9ad8e89eaac546f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanDamageble:
-    serializedVersion: 2
-    m_Bits: 64
+  _skillName: 0
   AttackStartFeedback:
     m_PersistentCalls:
       m_Calls:
@@ -1349,8 +1345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394366cd09287a949b00033bf8686150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCnt: 1
-  stateHitCnt: 1
 --- !u!1 &4269957868103530775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,15 +1714,15 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 4269957867187374697}
         m_TargetAssemblyTypeName: AIStateInfo, Assembly-CSharp
-        m_MethodName: PlusHitCount
-        m_Mode: 1
+        m_MethodName: set_IsHit
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   _isActive: 1
   _enemyLight: {fileID: 0}
@@ -1788,6 +1782,8 @@ MonoBehaviour:
   meleeDamage: 3
   normalDamage: 5
   specialDamage: 10
+  isUseAttackTerm: 0
+  attackTerm: 4
 --- !u!114 &4269957868166813752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,9 +2079,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 1
-  EndEvent:
+  ExitEvent:
     m_PersistentCalls:
       m_Calls: []
+  isAnimTriggerOn: 1
 --- !u!1 &4324511475675229245
 GameObject:
   m_ObjectHideFlags: 0

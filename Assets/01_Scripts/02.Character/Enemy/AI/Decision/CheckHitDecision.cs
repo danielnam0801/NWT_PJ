@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DecisionEndHit : AIDecision
+public class CheckHitDecision : AIDecision
 {
     public override bool MakeADecision()
     {
-        return !_stateInfo.IsHit;
+        return _stateInfo.IsHit;
     }
 }

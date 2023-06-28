@@ -494,7 +494,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad36b2de3ba05514bba5a6a79943b91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackCheckType: 0
   damage: 5
+  centerPos: {fileID: 0}
+  radius: 0
+  size: {x: 0, y: 0}
+  lineLength: 5
 --- !u!1 &2856104788767544051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,29 +1449,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4356950106294979549}
-        m_TargetAssemblyTypeName: AIBrain, Assembly-CSharp
-        m_MethodName: ChangeToHitState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4356950107333138816}
         m_TargetAssemblyTypeName: AIStateInfo, Assembly-CSharp
-        m_MethodName: PlusHitCount
-        m_Mode: 1
+        m_MethodName: set_IsHit
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   _isActive: 1
   _enemyLight: {fileID: 4356950106120855235}
@@ -1570,6 +1563,8 @@ MonoBehaviour:
   meleeDamage: 3
   normalDamage: 5
   specialDamage: 10
+  isUseAttackTerm: 0
+  attackTerm: 4
 --- !u!1 &4356950106519062897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,21 +1626,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 8
-  EndEvent:
+  ExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4356950106120855235}
-        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
-        m_MethodName: LightInit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  isAnimTriggerOn: 1
 --- !u!1 &4356950106588603385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,21 +1812,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 1
-  EndEvent:
+  ExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4356950106120855235}
-        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
-        m_MethodName: LightInit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  isAnimTriggerOn: 1
 --- !u!1 &4356950106883529879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,9 +2072,7 @@ MonoBehaviour:
   IsSpecial: 0
   IsMelee: 0
   IsRange: 0
-  IsHit: 0
   IsCrash: 0
-  hitCnt: 0
 --- !u!114 &4356950107333138819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2114,11 +2085,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c5755a1fd2ba84eba7863d92e0b9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCanThinking: 1
-  targetSpotted: 0
-  arrived: 0
-  isIdle: 0
-  isMoving: 0
+  IsCanThinking: 1
+  TargetSpotted: 0
+  Arrived: 0
+  IsIdle: 0
+  IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4356950107333138818
 MonoBehaviour:
@@ -2241,8 +2212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394366cd09287a949b00033bf8686150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCnt: 1
-  stateHitCnt: 1
 --- !u!1 &4356950107863308465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,9 +2363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f5bba9f8e938a4688a30693701a3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanDamageble:
-    serializedVersion: 2
-    m_Bits: 64
+  _skillName: 1
   AttackStartFeedback:
     m_PersistentCalls:
       m_Calls:
@@ -2471,9 +2438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6933c720e7d504887750a0d2e40555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanDamageble:
-    serializedVersion: 2
-    m_Bits: 64
+  _skillName: 8
   AttackStartFeedback:
     m_PersistentCalls:
       m_Calls:

@@ -20,18 +20,10 @@ public class AIStateInfo : MonoBehaviour
     public bool IsSpecial = false;
     public bool IsMelee = false;
     public bool IsRange = false;
-    public bool IsHit = false;
+    public bool IsHit { get; set; } = false;
     public bool IsCrash = false;
 
     EnemyAgentAnimator animator;
-
-    public int hitCnt = 0;
-
-    public void PlusHitCount()
-    {
-        if(IsAttack == false)
-            hitCnt++;
-    }
 
     private void Awake()
     {

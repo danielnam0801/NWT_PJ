@@ -124,7 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad36b2de3ba05514bba5a6a79943b91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackCheckType: 0
   damage: 5
+  centerPos: {fileID: 0}
+  radius: 0
+  size: {x: 0, y: 0}
+  lineLength: 5
 --- !u!1 &323547301198115790
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +251,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120524759775481262}
-  m_LocalRotation: {x: 0, y: 0, z: 0.5398426, w: -0.84176606}
+  m_LocalRotation: {x: 0, y: 0, z: 0.53984284, w: -0.8417659}
   m_LocalPosition: {x: 0.31917268, y: -0.00000000520369, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
@@ -427,8 +432,8 @@ MonoBehaviour:
   - {fileID: 2077186076311560880}
   - {fileID: 441249975062229942}
   m_Bounds:
-    m_Center: {x: -0.40161133, y: 0.037663043, z: 0}
-    m_Extent: {x: 0.95799994, y: 0.7933839, z: 0}
+    m_Center: {x: -0.40161228, y: 0.03766352, z: 0}
+    m_Extent: {x: 0.957999, y: 0.793384, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -620,8 +625,8 @@ MonoBehaviour:
   - {fileID: 441249975062229942}
   - {fileID: 8948891320844145274}
   m_Bounds:
-    m_Center: {x: -0.4072224, y: 0.06267445, z: 0}
-    m_Extent: {x: 0.221456, y: 0.29132017, z: 0}
+    m_Center: {x: -0.4072224, y: 0.062675476, z: 0}
+    m_Extent: {x: 0.22145528, y: 0.29131964, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -699,7 +704,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3326827329860668050}
-  m_LocalRotation: {x: 0, y: -0, z: -0.14013249, w: 0.99013275}
+  m_LocalRotation: {x: 0, y: -0, z: -0.14013185, w: 0.9901329}
   m_LocalPosition: {x: 0.304, y: 0.006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -794,7 +799,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3487920881375325468}
-  m_LocalRotation: {x: -0, y: -0, z: -0.23278108, w: 0.9725291}
+  m_LocalRotation: {x: -0, y: -0, z: -0.23278052, w: 0.97252935}
   m_LocalPosition: {x: 0.181, y: 0.014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -905,8 +910,8 @@ MonoBehaviour:
   - {fileID: 1782185631035734527}
   - {fileID: 126064414892961960}
   m_Bounds:
-    m_Center: {x: -0.40953946, y: 0.0362131, z: 0}
-    m_Extent: {x: 0.50207174, y: 0.46283418, z: 0}
+    m_Center: {x: -0.40953922, y: 0.036213458, z: 0}
+    m_Extent: {x: 0.502072, y: 0.462834, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1685,29 +1690,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4356950106294979549}
-        m_TargetAssemblyTypeName: AIBrain, Assembly-CSharp
-        m_MethodName: ChangeToHitState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4356950107333138816}
         m_TargetAssemblyTypeName: AIStateInfo, Assembly-CSharp
-        m_MethodName: PlusHitCount
-        m_Mode: 1
+        m_MethodName: set_IsHit
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   _isActive: 1
   _enemyLight: {fileID: 4356950106120855235}
@@ -1811,6 +1804,8 @@ MonoBehaviour:
   meleeDamage: 3
   normalDamage: 5
   specialDamage: 10
+  isUseAttackTerm: 0
+  attackTerm: 4
 --- !u!1 &4356950106519062897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,21 +1867,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 8
-  EndEvent:
+  ExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4356950106120855235}
-        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
-        m_MethodName: LightInit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  isAnimTriggerOn: 1
 --- !u!1 &4356950106588603385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,21 +2053,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 1
-  EndEvent:
+  ExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4356950106120855235}
-        m_TargetAssemblyTypeName: LightTwinkle, Assembly-CSharp
-        m_MethodName: LightInit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  isAnimTriggerOn: 1
 --- !u!1 &4356950106883529879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2340,9 +2313,7 @@ MonoBehaviour:
   IsSpecial: 0
   IsMelee: 0
   IsRange: 0
-  IsHit: 0
   IsCrash: 0
-  hitCnt: 0
 --- !u!114 &4356950107333138819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2355,11 +2326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c5755a1fd2ba84eba7863d92e0b9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCanThinking: 1
-  targetSpotted: 0
-  arrived: 0
-  isIdle: 0
-  isMoving: 0
+  IsCanThinking: 1
+  TargetSpotted: 0
+  Arrived: 0
+  IsIdle: 0
+  IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4356950107333138818
 MonoBehaviour:
@@ -2482,8 +2453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394366cd09287a949b00033bf8686150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCnt: 1
-  stateHitCnt: 1
 --- !u!1 &4356950107863308465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,9 +2604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f5bba9f8e938a4688a30693701a3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanDamageble:
-    serializedVersion: 2
-    m_Bits: 64
+  _skillName: 1
   AttackStartFeedback:
     m_PersistentCalls:
       m_Calls:
@@ -2712,9 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6933c720e7d504887750a0d2e40555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanDamageble:
-    serializedVersion: 2
-    m_Bits: 64
+  _skillName: 8
   AttackStartFeedback:
     m_PersistentCalls:
       m_Calls:
@@ -2951,8 +2916,8 @@ MonoBehaviour:
   - {fileID: 1324266217731567218}
   - {fileID: 8367572165209082746}
   m_Bounds:
-    m_Center: {x: -0.40095654, y: 0.042112827, z: 0}
-    m_Extent: {x: 0.29145738, y: 0.2958111, z: 0}
+    m_Center: {x: -0.4009568, y: 0.04211256, z: 0}
+    m_Extent: {x: 0.29145795, y: 0.2958098, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -3064,7 +3029,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6203118863424421693}
-  m_LocalRotation: {x: 0, y: 0, z: 0.20129694, w: 0.9795303}
+  m_LocalRotation: {x: 0, y: 0, z: 0.20129305, w: 0.97953105}
   m_LocalPosition: {x: 0.21211353, y: -0.037496105, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3128,7 +3093,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6417911120584407970}
-  m_LocalRotation: {x: 0, y: 0, z: -0.47571734, w: 0.87959826}
+  m_LocalRotation: {x: 0, y: 0, z: -0.47571668, w: 0.87959856}
   m_LocalPosition: {x: 0.15858325, y: 0.017876672, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3160,7 +3125,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6556117651058727989}
-  m_LocalRotation: {x: 0, y: 0, z: -0.4279352, w: 0.9038094}
+  m_LocalRotation: {x: 0, y: 0, z: -0.42793223, w: 0.9038109}
   m_LocalPosition: {x: 0.100372665, y: -0.052677438, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3290,7 +3255,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6997107060916835125}
-  m_LocalRotation: {x: 0, y: 0, z: -0.86011356, w: 0.5101027}
+  m_LocalRotation: {x: 0, y: 0, z: -0.86011386, w: 0.51010215}
   m_LocalPosition: {x: 0.16982368, y: -0.21664006, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3435,8 +3400,8 @@ MonoBehaviour:
   - {fileID: 5212113104328548159}
   - {fileID: 1111453547839887572}
   m_Bounds:
-    m_Center: {x: -0.22004265, y: 0.20535666, z: 0}
-    m_Extent: {x: 0.25581205, y: 0.23611003, z: 0}
+    m_Center: {x: -0.22004265, y: 0.20535582, z: 0}
+    m_Extent: {x: 0.25581205, y: 0.23611099, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -3575,8 +3540,8 @@ MonoBehaviour:
   - {fileID: 3994779498184372172}
   - {fileID: 5916846001574281522}
   m_Bounds:
-    m_Center: {x: -0.29126585, y: 0.080581486, z: 0}
-    m_Extent: {x: 0.2649989, y: 0.37194052, z: 0}
+    m_Center: {x: -0.29126567, y: 0.08058217, z: 0}
+    m_Extent: {x: 0.26499957, y: 0.37194037, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -3623,7 +3588,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8826234425065531217}
-  m_LocalRotation: {x: -0, y: 0, z: 0.13281412, w: 0.99114096}
+  m_LocalRotation: {x: -0, y: 0, z: 0.13281372, w: 0.991141}
   m_LocalPosition: {x: 0.384, y: -0.006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
