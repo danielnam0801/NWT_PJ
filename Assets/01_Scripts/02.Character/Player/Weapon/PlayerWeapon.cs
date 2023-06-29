@@ -97,6 +97,7 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
+    #region 공격
     public void Attack(List<Vector2> pathPoints, ShapeType _type)
     {
         StartCoroutine(AttackCoroutine(pathPoints, _type));
@@ -129,11 +130,28 @@ public class PlayerWeapon : MonoBehaviour
         StartCoroutine("Stay");
     }
 
+    public void RangeAttack(float radius, float damage, Action action = null)
+    {
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, radius);
+
+        if (col.Length > 0)
+        {
+            for (int i = 0; i < col.Length; i++)
+            {
+                if (col[i].TryGetComponent<IHitable>(out IHitable obj))
+                {
+                    action?.Invoke();
+                    obj.GetHit(damage, gameObject);
+                }
+            }
+        }
+    }
+
     private IEnumerator ChooseAttackSkill(ShapeType shape)
     {
         isSkill = true;
 
-        switch(shape)
+        switch (shape)
         {
             case ShapeType.Circle:
                 yield return StartCoroutine(CircleSkill());
@@ -151,6 +169,7 @@ public class PlayerWeapon : MonoBehaviour
 
         isSkill = false;
     }
+    #endregion
 
     #region 스킬
     private IEnumerator CircleSkill()
@@ -193,9 +212,12 @@ public class PlayerWeapon : MonoBehaviour
     private IEnumerator TriangleSkill()
     {
         int currnetBounceCount = 0;
-        Vector2 dir = (Quaternion.Euler(0, 0, 45f) * transform.up).normalized;
+        //Vector2 dir = (Quaternion.Euler(0, 0, 45f) * transform.up).normalized;
+        Vector2 dir = Vector2.zero;
         RaycastHit2D hit;
         float currentMoveTime = 0;
+
+        yield return new WaitUntil(() => TriangleSkillWaitClick(out dir));
 
         while(currnetBounceCount <= bounceCount)
         {
@@ -227,29 +249,31 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
+    private bool TriangleSkillWaitClick(out Vector2 dir)
+    {
+        dir = Vector2.zero;
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dir = (mousePos - (Vector2)transform.position).normalized;
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle + 45 - 180);
+
+            return true;
+        }
+
+        return false;
+    }
+
     private void PentagonSkill()
     {
         RangeAttack(2, 5, () => ExplosionEvent?.Invoke());
     }
     #endregion
 
-    public void RangeAttack(float radius, float damage, Action action = null)
-    {
-        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, radius);
-
-        if (col.Length > 0)
-        {
-            for (int i = 0; i < col.Length; i++)
-            {
-                if (col[i].TryGetComponent<IHitable>(out IHitable obj))
-                {
-                    action?.Invoke();
-                    obj.GetHit(damage, gameObject);
-                }
-            }
-        }
-    }
-
+    #region 대기, 회전
     private IEnumerator Stay()
     {
         Debug.Log("stay");
@@ -295,4 +319,5 @@ public class PlayerWeapon : MonoBehaviour
             yield return null;  
         }
     }
+    #endregion
 }
