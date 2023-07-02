@@ -15,71 +15,72 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        //UpdateMovementInput();
-        //UpdateJumpInput();
-        //UpdateDashInput();
-        //UpdateLeftClickInput();
+        UpdateMovementInput();
+        UpdateJumpInput();
+        UpdateDashInput();
+        UpdateLeftClickInput();
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            MoveInput(Vector2.zero);
-        }
+        //모바일
+        //if (Input.GetKeyUp(KeyCode.Mouse0))
+        //{
+        //    MoveInput(Vector2.zero);
+        //}
     }
 
     #region 키보드
-    ////키보드
+    //키보드
+    public void UpdateMovementInput()
+    {
+        OnMovementInput?.Invoke(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+    }
+
+    public void UpdateJumpInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            OnSpaceInput?.Invoke();
+    }
+
+    public void UpdateDashInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            OnShiftInput?.Invoke();
+    }
+
+    public void UpdateLeftClickInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            OnLeftClickInput?.Invoke();
+    }
+    #endregion
+
+    #region 터치
     //public void UpdateMovementInput()
     //{
-    //    Debug.Log(moveDir);
+    //    //Debug.Log(moveDir);
+
+    //    //OnMovementInput?.Invoke(moveDir);
+    //}
+
+    //public void MoveInput(Vector2 input)
+    //{
+    //    moveDir = input;
+
     //    OnMovementInput?.Invoke(moveDir);
     //}
 
-    //public void UpdateJumpInput()
+    //public void DashInput()
     //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //        OnSpaceInput?.Invoke();
+    //    OnShiftInput?.Invoke();
     //}
 
-    //public void UpdateDashInput()
+    //public void JumpInput()
     //{
-    //    if (Input.GetKeyDown(KeyCode.LeftShift))
-    //        OnShiftInput?.Invoke();
+    //    OnSpaceInput?.Invoke();
     //}
 
-    //public void UpdateLeftClickInput()
+    //public void TeleportationInput()
     //{
-    //    if (Input.GetKeyDown(KeyCode.Mouse0))
-    //        OnLeftClickInput?.Invoke();
+    //    OnLeftClickInput?.Invoke();
     //}
     #endregion
-
-    //터치
-    public void UpdateMovementInput()
-    {
-        //Debug.Log(moveDir);
-
-        //OnMovementInput?.Invoke(moveDir);
-    }
-
-    public void MoveInput(Vector2 input)
-    {
-        moveDir = input;
-
-        OnMovementInput?.Invoke(moveDir);
-    }
-
-    public void DashInput()
-    {
-        OnShiftInput?.Invoke();
-    }
-
-    public void JumpInput()
-    {
-        OnSpaceInput?.Invoke();
-    }
-
-    public void TeleportationInput()
-    {
-        OnLeftClickInput?.Invoke();
-    }
 }

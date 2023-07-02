@@ -20,6 +20,7 @@ public class PlayerMovementState : PlayerState
         input.OnMovementInput += Move;
         input.OnSpaceInput += Jump;
         input.OnLeftClickInput += TeleportationHandle;
+        input.OnShiftInput += DashHandle;
     }
 
     public override void ExitState()
@@ -27,6 +28,7 @@ public class PlayerMovementState : PlayerState
         input.OnMovementInput -= Move;
         input.OnSpaceInput -= Jump;
         input.OnLeftClickInput -= TeleportationHandle;
+        input.OnShiftInput -= DashHandle;
         movement?.SetMoveVector(Vector2.zero, 0);
     }
 
@@ -49,17 +51,17 @@ public class PlayerMovementState : PlayerState
             anim.SetMove(status.MoveSpeed);
         }
 
-        newMoveVector = inputVector;
-        lastMoveVector = newMoveVector;
+        //newMoveVector = inputVector;
+        //lastMoveVector = newMoveVector;
 
-        lastMoveTime = newMoveTime;
-        newMoveTime = Time.time;
+        //lastMoveTime = newMoveTime;
+        //newMoveTime = Time.time;
 
-        if (GetInputDiff() <= transDashTime)
-        {
-            if (newMoveVector != Vector2.zero && lastMoveVector == newMoveVector)
-                DashHandle();
-        }
+        //if (GetInputDiff() <= transDashTime)
+        //{
+        //    if (newMoveVector != Vector2.zero && lastMoveVector == newMoveVector)
+        //        DashHandle();
+        //}
     }
 
     private void Jump()

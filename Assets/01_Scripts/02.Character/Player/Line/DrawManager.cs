@@ -40,7 +40,7 @@ public class DrawManager : MonoBehaviour
     public PlayerWeapon sword;
     public GameObject player;
 
-    public bool StartDraw { get; set; }
+    private bool startDraw;
     public bool IsDraw { get; set; }
 
     private void Awake()
@@ -53,12 +53,15 @@ public class DrawManager : MonoBehaviour
 
     private void Start()
     {
-        StartDraw = false;
+        startDraw = false;
         IsDraw = false;
     }
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+            StartDraw();
+
         Draw();
     }
 
@@ -78,15 +81,20 @@ public class DrawManager : MonoBehaviour
             GuideLines.Remove(line);
     }
 
+    public void StartDraw()
+    {
+        startDraw = true;
+    }
+
     private void Draw()
     {
         if (!canDraw)
             return;
 
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
-        if (StartDraw)
+        if (startDraw && !IsDraw)
         {
-            StartDraw = false;
+            startDraw = false;
             DrawStartEvent?.Invoke();
             IsDraw = true;
             points.Clear();
