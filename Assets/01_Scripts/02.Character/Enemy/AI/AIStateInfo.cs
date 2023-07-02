@@ -22,6 +22,7 @@ public class AIStateInfo : MonoBehaviour
     public bool IsRange = false;
     public bool IsHit { get; set; } = false;
     public bool IsCrash = false;
+    public int hitCnt = 0;
 
     EnemyAgentAnimator animator;
 
@@ -32,6 +33,11 @@ public class AIStateInfo : MonoBehaviour
     private void Update()
     {
         animator.SetAttackState(IsAttack);
+    }
+
+    public void PlusHitCount()
+    {
+        hitCnt++;
     }
 }
 

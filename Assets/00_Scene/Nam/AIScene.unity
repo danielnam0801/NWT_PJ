@@ -802,6 +802,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &366595657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 366595659}
+  - component: {fileID: 366595658}
+  m_Layer: 0
+  m_Name: MouseDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &366595658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366595657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a00ca3cb476d38418bb2c3c75fb35fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+--- !u!4 &366595659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366595657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &436528076
 GameObject:
   m_ObjectHideFlags: 0
@@ -4950,10 +4995,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4175147498970617739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e45af6053d5811478c052842b3c505e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c3fd17598c3e9c4f894af7316649ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reverseSprite: 1
+  reverseSprite: 0
   currentSkillHash: 0
 --- !u!212 &4175147498977744536
 SpriteRenderer:
@@ -5280,6 +5325,7 @@ MonoBehaviour:
   IsMelee: 0
   IsRange: 0
   IsCrash: 0
+  hitCnt: 0
 --- !u!114 &4356950106272207210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5459,7 +5505,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4356950106707984105}
   - component: {fileID: 4356950106707984104}
-  - component: {fileID: 4356950106707984111}
   - component: {fileID: 4356950106707984112}
   m_Layer: 0
   m_Name: HitState
@@ -5468,18 +5513,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4356950106707984111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4356950106707984106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394366cd09287a949b00033bf8686150, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4356950106707984112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5492,6 +5525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a215733e77e0da41960fb29ee69b466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angryStateTime: 5
 --- !u!4 &4356950106740432741
 Transform:
   m_ObjectHideFlags: 0
@@ -5564,7 +5598,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4356950106810830943}
   - component: {fileID: 4356950106810830942}
-  - component: {fileID: 4356950106810830945}
   - component: {fileID: 4356950106810830944}
   m_Layer: 0
   m_Name: IdleState
@@ -5603,34 +5636,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4356950106810830944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4356950106810830936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e00be73619e70b47880d05f68704778, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  a1: 3
-  f1: 1
-  p1: 0
-  a2: 2
-  f2: 3
-  p2: 0
-  a3: 1
-  f3: 4
-  p3: 0
-  y_Axis: 0
-  XSpeed: 2
-  YSpeed: 0.5
-  randA: 0
-  randF: 0
-  randP: 0
-  randY: 0
---- !u!114 &4356950106810830945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5939,6 +5944,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 4356950106272207209}
+        m_TargetAssemblyTypeName: AIStateInfo, Assembly-CSharp
+        m_MethodName: PlusHitCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _isActive: 1
   _enemyLight: {fileID: 0}
   physicsMaterial2D: {fileID: 0}
@@ -5951,7 +5968,7 @@ MonoBehaviour:
   TestYong: {fileID: 0}
   _addForcePower: 1
   _enemyChildSlicedSprites: []
-  isCanSliced: 1
+  isCanSliced: 0
 --- !u!114 &4356950107306165052
 MonoBehaviour:
   m_ObjectHideFlags: 0
