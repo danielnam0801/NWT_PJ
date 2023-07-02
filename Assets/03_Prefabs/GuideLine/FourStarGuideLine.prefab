@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 0
   type: 4
-  checkOffset: 3
+  checkOffset: 5
   shapeSize: 2
   pair: {fileID: 0}
   shapePoints: []

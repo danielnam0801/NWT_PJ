@@ -15,8 +15,8 @@ public class PlayerWeapon : MonoBehaviour
     protected Transform playerSwordTrm;
     public bool IsFollow { get; set; }
     public bool IsStay { get; set; }
-    private bool isAttack = false;
-    private bool isSkill = false;
+    public bool IsAttack = false;
+    public bool IsSkill = false;
     public WeaponSO Info
     {
         get { return info; }
@@ -77,17 +77,18 @@ public class PlayerWeapon : MonoBehaviour
     {
         MoveToPlayer();
     }
-    
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isAttack || isSkill)
+        if (!IsAttack || IsSkill)
             return;
+
         if (collision.gameObject.CompareTag("Player"))
             return;
 
         if (collision.gameObject.TryGetComponent<IHitable>(out IHitable hit))
         {
-            hit.GetHit(info.power, gameObject);
+            hit.GetHit(Info.power, gameObject);
             Debug.Log(collision.name);
         }
     }
@@ -111,7 +112,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private IEnumerator AttackCoroutine(List<Vector2> pathPoints, ShapeType _type)
     {
-        isAttack = true;
+        IsAttack = true;
         IsFollow = false;
         transform.position = pathPoints[0];
 
@@ -132,7 +133,7 @@ public class PlayerWeapon : MonoBehaviour
         }
 
         yield return StartCoroutine(ChooseAttackSkill(_type));
-        isAttack = false;
+        IsAttack = false;
         StartCoroutine("Stay");
     }
 
@@ -155,7 +156,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private IEnumerator ChooseAttackSkill(ShapeType shape)
     {
-        isSkill = true;
+        IsSkill = true;
 
         switch (shape)
         {
@@ -183,7 +184,7 @@ public class PlayerWeapon : MonoBehaviour
         }       
 
 
-        isSkill = false;
+        IsSkill = false;
     }
     #endregion
 
@@ -285,31 +286,42 @@ public class PlayerWeapon : MonoBehaviour
     private IEnumerator StarShapeSkill(int point)
     {
         int count;
-
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, starSkillRadius);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, starSkillRadius, 1 << 8);
+        Debug.Log(cols.Length);
         count = cols.Length > point ? point : cols.Length;
 
         for(int i = 0; i < count; i++)
         {
             Vector2 startPos = transform.position;
-            Vector2 endPos = cols[i].transform.position;
+            Vector2 endPos = cols[i].transform.Find("GuidePosition").position;
+            Rotate(endPos);
             float distance = Vector2.Distance(startPos, endPos);
             float time = distance / starSkillMoveSpeed;
-            float current = 0;
+             
+            yield return StartCoroutine(LerpMove(startPos, endPos, time));
 
-            while(current < time)
+            if (cols[i].gameObject.TryGetComponent<IHitable>(out IHitable hit))
             {
-                current += Time.deltaTime;
-
-                transform.position = Vector2.Lerp(startPos, endPos, current / time);
-
-                yield return null;
+                hit.GetHit(Info.power, gameObject);
+                Debug.Log(cols[i].name);
             }
-
             //
         }
     }
     #endregion
+
+    private IEnumerator LerpMove(Vector2 start, Vector2 end, float time)
+    {
+        float current = 0;  
+
+        while(current < time)
+        {
+            transform.position = Vector2.Lerp(start, end, current / time);
+            current += Time.deltaTime;
+
+            yield return null;
+        }
+    }
 
     #region 대기, 회전
     private IEnumerator Stay()
