@@ -88,15 +88,16 @@ public class DrawManager : MonoBehaviour
 
     private void Draw()
     {
-        if (!canDraw)
-            return;
+        //if (!canDraw)
+        //    return;
 
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
-        if (startDraw && !IsDraw)
+        if (canDraw && Input.GetMouseButtonDown(0))
         {
             startDraw = false;
             DrawStartEvent?.Invoke();
             IsDraw = true;
+            canDraw = false;
             points.Clear();
             go = Instantiate(linePrefab);
             lr = go.GetComponent<LineRenderer>();
