@@ -18,6 +18,9 @@ public enum ShapeType
     Triangle,
     Square,
     Pentagon,
+    FourStar,
+    FiveStar,
+    SixStar,
     Default,
 }
 

@@ -52,6 +52,12 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private float triangleMoveTime = 1f;
 
+    [Header("star")]
+    [SerializeField]
+    private float starSkillRadius = 5f;
+    [SerializeField]
+    private float starSkillMoveSpeed = 10f;
+
 
     protected virtual void Awake()
     {
@@ -165,7 +171,17 @@ public class PlayerWeapon : MonoBehaviour
                 break;
             case ShapeType.Default:
                 break;
-        }
+            case ShapeType.FourStar:
+                yield return StartCoroutine(StarShapeSkill(4));
+                break;
+            case ShapeType.FiveStar:
+                yield return StartCoroutine(StarShapeSkill(5));
+                break;
+            case ShapeType.SixStar:
+                yield return StartCoroutine(StarShapeSkill(6));
+                break;
+        }       
+
 
         isSkill = false;
     }
@@ -201,12 +217,6 @@ public class PlayerWeapon : MonoBehaviour
 
             yield return null;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position, (Quaternion.Euler(0, 0, 45f) * transform.up).normalized * wallCheckDistance);
     }
 
     private IEnumerator TriangleSkill()
@@ -270,6 +280,34 @@ public class PlayerWeapon : MonoBehaviour
     private void PentagonSkill()
     {
         RangeAttack(2, 5, () => ExplosionEvent?.Invoke());
+    }
+
+    private IEnumerator StarShapeSkill(int point)
+    {
+        int count;
+
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, starSkillRadius);
+        count = cols.Length > point ? point : cols.Length;
+
+        for(int i = 0; i < count; i++)
+        {
+            Vector2 startPos = transform.position;
+            Vector2 endPos = cols[i].transform.position;
+            float distance = Vector2.Distance(startPos, endPos);
+            float time = distance / starSkillMoveSpeed;
+            float current = 0;
+
+            while(current < time)
+            {
+                current += Time.deltaTime;
+
+                transform.position = Vector2.Lerp(startPos, endPos, current / time);
+
+                yield return null;
+            }
+
+            //
+        }
     }
     #endregion
 

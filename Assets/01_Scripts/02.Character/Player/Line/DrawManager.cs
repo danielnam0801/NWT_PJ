@@ -132,15 +132,22 @@ public class DrawManager : MonoBehaviour
             {
                 _type = GuideLines[i].CheckShape(points);
 
-                if(_type != ShapeType.Default && _type != ShapeType.Triangle)
-                    points.Add(GuideLines[i].transform.position);
+                if(_type != ShapeType.Default)
+                {
+                    if(_type == ShapeType.Circle)
+                        points.Add(GuideLines[i].transform.position);
 
-                Debug.Log(points.Count);
-                SwordAttack(_type);
-                return;
+                    Debug.Log(points.Count);
+                    SwordAttack(_type);
+                    return;
+                }
+
+                //if(_type != ShapeType.Default && _type != ShapeType.Triangle)
+                //    points.Add(GuideLines[i].transform.position);
             }
 
-            SwordAttack(ShapeType.Default);
+            Debug.Log(points.Count);
+            SwordAttack(_type);
         }
     }
 
