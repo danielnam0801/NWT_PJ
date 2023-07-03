@@ -14,7 +14,6 @@ public abstract class GuideLine : PoolableObject
     [SerializeField]
     protected Transform pair;
 
-
     protected float pathPointInterval;
 
     protected LineRenderer _lineRenderer;

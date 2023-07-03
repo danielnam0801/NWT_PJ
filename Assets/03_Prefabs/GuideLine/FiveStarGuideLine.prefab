@@ -50,6 +50,8 @@ MonoBehaviour:
   checkOffset: 10
   shapeSize: 2
   pair: {fileID: 0}
+  Circle: {fileID: 21300000, guid: 3a813875beb97b848ae2b3a95cb7f647, type: 3}
+  Arraw: {fileID: 21300000, guid: 02a169aba50203043ad398389d35bf42, type: 3}
   shapePoints: []
   PointCount: 5
 --- !u!120 &8900946482040756432
