@@ -21,6 +21,10 @@ public enum ShapeType
     FourStar,
     FiveStar,
     SixStar,
+    UpArraw,
+    DownArraw,
+    LeftArraw,
+    RightArraw,
     Default,
 }
 
