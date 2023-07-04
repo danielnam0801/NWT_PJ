@@ -24,6 +24,7 @@ public class BubbleBeeHitAction : AIAction
     {
         if (_stateInfo.hitCnt != hitCnt)
         {
+            if(hitCnt != 0) _animator.HitHash();
             t = 0;
             hitCnt = _stateInfo.hitCnt;
         }

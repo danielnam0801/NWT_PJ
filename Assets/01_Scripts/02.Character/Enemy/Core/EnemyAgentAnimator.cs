@@ -35,7 +35,9 @@ public class EnemyAgentAnimator : MonoBehaviour
 
     private void Awake()
     {
-        _aiStateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();
+        Transform Ai = transform.parent.Find("AI").transform;
+        _aiStateInfo = Ai.GetComponent<AIStateInfo>();
+        _movementData = Ai.GetComponent<AIMovementData>();
         _animator = GetComponent<Animator>();
         reverseValue = (reverseSprite == true) ? -1 : 1; 
     }
@@ -136,12 +138,19 @@ public class EnemyAgentAnimator : MonoBehaviour
     public void SetEndHit()
     {
         _animator.SetTrigger(_EndHitTriggerHash);
+        _movementData.canMove = true;
     }
 
     public void SetDamageHash(float currentHp)
     {
         if (currentHp < 0) _animator.SetTrigger(_deadTriggerHash);
         else _animator.SetTrigger(_damageTriggerHash);
+    }
+
+    public void HitHash()
+    {
+        _movementData.canMove = false;
+        _animator.SetTrigger("hit");
     }
 
     public void OnAnimationEnd()

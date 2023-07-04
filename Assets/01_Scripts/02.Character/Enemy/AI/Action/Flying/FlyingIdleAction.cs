@@ -7,15 +7,13 @@ public class FlyingIdleAction : AIAction
 {
     public override void InitAction()
     {
-        Debug.Log(gameObject.name + "changeState");
+        _aiActionData.IsIdle = true;
+        _aiMovementData.pointOfInterest = transform.position;
+        _aiMovementData.Speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
     }
 
     public override void TakeAction()
     {
-        _aiActionData.IsIdle = true;
-        _aiMovementData.pointOfInterest = transform.position;
-        _aiMovementData.speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
-
         //_brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);// flying movingø° ¿÷¿Ω
     }
 

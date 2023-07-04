@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022c70ec8b672374abcd01b56d1f7783, type: 3}
   m_Name: BubleBee
   m_EditorClassIdentifier: 
-  m_BeforeSpeed: 1
-  m_AfterSpeed: 3
+  m_BeforeSpeed: 0.5
+  m_AfterSpeed: 0.5
   attackSpeed: 0.5
   attackRange: 2
   detectRange: 10
-  hp: 100
+  hp: 10
   thinkTime: 5

@@ -8,15 +8,13 @@ public class EnemyMovement : MonoBehaviour
     Enemy _enemy;
 
     protected Rigidbody2D rb;
-
-    private int nextMove = 0;
-
     public UnityEvent<float> onVelocityChange;
 
     protected float _currentVelocity = 0;
+    [SerializeField] private float lerpTime = 0.5f;
     protected Vector2 _movementdirection;
 
-    AIMovementData _data;
+    protected AIMovementData _data;
 
     protected virtual void Awake()
     {
@@ -27,15 +25,31 @@ public class EnemyMovement : MonoBehaviour
 
     public void MoveAgent(Vector2 moveInput)
     {   
-        _currentVelocity = _data.speed;
         _movementdirection = moveInput;
-        _enemy.EnemyAnimator.SetSpeed(_currentVelocity);
     }
 
+    public void SetSpeed(float speed)
+    {
+        StopAllCoroutines();
+        StartCoroutine(MoveLerp(speed));
+        _enemy.EnemyAnimator.SetSpeed(_currentVelocity);
+    }   
+   
     public void StopImmediatelly()
     {
         _enemy.EnemyAnimator.SetSpeed(0);
         _currentVelocity = 0;
         rb.velocity = Vector2.zero;
+    }
+
+    IEnumerator MoveLerp(float speed)
+    {
+        float t = 0;
+        while(t < lerpTime)
+        {
+            t += Time.deltaTime * lerpTime;
+            yield return null;
+            _currentVelocity = Mathf.Lerp(_currentVelocity, speed, t / lerpTime);
+        }
     }
 }
