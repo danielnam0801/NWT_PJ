@@ -12,6 +12,7 @@ public enum PlayerStateType
     Teleportation,
 }
 
+[System.Serializable]
 public enum ShapeType
 {
     Circle,

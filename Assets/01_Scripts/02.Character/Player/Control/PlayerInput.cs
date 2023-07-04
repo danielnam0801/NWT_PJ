@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class PlayerInput : MonoBehaviour
     public event Action OnLeftClickInput;
     public event Action OnMouseUpAction;
 
+    public ShapeType Q_Type;
+    public UnityEvent<ShapeType> Q_Input;
+    public ShapeType E_Type;
+    public UnityEvent<ShapeType> E_Input;
+    public ShapeType R_Type;
+    public UnityEvent<ShapeType> R_Input;
+    public ShapeType T_Type;
+    public UnityEvent<ShapeType> T_Input;
+ 
     private Vector2 moveDir = Vector2.zero;
 
     private void Update()
@@ -19,6 +29,7 @@ public class PlayerInput : MonoBehaviour
         UpdateJumpInput();
         UpdateDashInput();
         UpdateLeftClickInput();
+        SkillInput();
 
         //¸ð¹ÙÀÏ
         //if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -50,6 +61,29 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
             OnLeftClickInput?.Invoke();
+    }
+
+    private void SkillInput()
+    {
+        if(Input.anyKeyDown)
+        {
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                Q_Input?.Invoke(Q_Type);
+            }
+            else if(Input.GetKeyDown(KeyCode.E))
+            {
+                Q_Input?.Invoke(E_Type);
+            }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                Q_Input?.Invoke(R_Type);
+            }
+            else if (Input.GetKeyDown(KeyCode.T))
+            {
+                Q_Input?.Invoke(T_Type);
+            }
+        }
     }
     #endregion
 
