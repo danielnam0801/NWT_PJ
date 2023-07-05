@@ -33,9 +33,13 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
 
+            EnemyGuide enemyGuide = closestEnemy.transform.Find("GuidePosition").GetComponent<EnemyGuide>();
+
+            if (enemyGuide.HasPair)
+                return;
 
             GuideLine obj = PoolManager.Instance.Pop($"{shape}GuideLine") as GuideLine;
-            obj.SetPair(closestEnemy.transform.Find("GuidePosition"));
+            obj.SetPair(enemyGuide);
         }
     }
 }

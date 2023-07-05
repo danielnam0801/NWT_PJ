@@ -42,7 +42,7 @@ public class PlayerInput : MonoBehaviour
     //Å°º¸µå
     public void UpdateMovementInput()
     {
-        OnMovementInput?.Invoke(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+        OnMovementInput?.Invoke(new Vector2(Input.GetAxisRaw("Horizontal"), 0));
     }
 
     public void UpdateJumpInput()

@@ -131,12 +131,12 @@ public class DrawManager : MonoBehaviour
 
             for (int i = 0; i < GuideLines.Count; i++)
             {
-                _type = GuideLines[i].CheckShape(points);
+                GuideLines[i].CheckShape(points, out _type, out Vector2 pos);
 
                 if(_type != ShapeType.Default)
                 {
                     if(_type == ShapeType.Circle)
-                        points.Add(GuideLines[i].transform.position);
+                        points.Add(pos);
 
                     Debug.Log(points.Count);
                     SwordAttack(_type);
