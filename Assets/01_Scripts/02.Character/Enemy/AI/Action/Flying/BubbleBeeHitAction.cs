@@ -15,13 +15,21 @@ public class BubbleBeeHitAction : AIAction
         returnIdle = false;
         t = 0;
         _stateInfo.IsAttack = true;
-        _brain.EnemyMovement.StopImmediatelly();
         _animator.OnAnimaitionEndTrigger += EndAnim;
         _animator.SetDamageHash(_brain.Enemy.Health);
     }
 
     public override void TakeAction()
     {
+        int dirX = (_brain.Target.position.x - transform.position.x > 0) ? 1 : -1;
+        int dirY = (_brain.Target.position.y - transform.position.y > 0) ? 1 : -1;
+        _aiMovementData.direction = new Vector2(
+            dirX,
+            Mathf.Abs(_aiMovementData.direction.y) * dirY
+        );
+
+        _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
+
         if (_stateInfo.hitCnt != hitCnt)
         {
             if(hitCnt != 0) _animator.HitHash();
@@ -37,11 +45,11 @@ public class BubbleBeeHitAction : AIAction
         {
             returnIdle = true;
         }
+
     }
 
     public override void ExitAction() // 애니메이션 진행동안 또 맞지 않으면 그냥 나가짐
     {
-        _brain.EnemyMovement.StopImmediatelly();
         _animator.OnAnimaitionEndTrigger -= EndAnim;
         _animator.SetEndHit();
         _stateInfo.hitCnt = 0;

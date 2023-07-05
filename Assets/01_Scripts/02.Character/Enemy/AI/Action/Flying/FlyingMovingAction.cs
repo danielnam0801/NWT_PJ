@@ -29,8 +29,8 @@ public class FlyingMovingAction : AIAction
 
     public override void InitAction()
     {
-        _aiMovementData.direction.x = Random.Range(-3f, 3f);
-        _aiMovementData.direction.y = Random.Range(-3f, 3f);
+        //_aiMovementData.direction.x = Random.Range(-3f, 3f);
+        //_aiMovementData.direction.y = Random.Range(-3f, 3f);
     }
 
     public override void TakeAction()
@@ -38,32 +38,13 @@ public class FlyingMovingAction : AIAction
         float x = Time.time;
         float value = Wave(a1, f1, p1, x) + Wave(a2, f2, p2, x) + Wave(a3, f3, p3, x);
 
-        if (_aiActionData.IsCanThinking)
-        {
-            StartCoroutine(nameof(Think));
-            _aiActionData.IsCanThinking = false;
-            _aiMovementData.direction.x = value * XSpeed;
-        }
-
-        _aiMovementData.direction.y = value * YSpeed; //속도 줄이려 나눈거
-        _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
+        _aiMovementData.direction = new Vector2(_aiMovementData.direction.x, value * YSpeed).normalized;
     }
 
     public override void ExitAction()
     {
-
+       
     }
 
     float Wave(float a, float f, float p, float x) => (a + randA) * Mathf.Sin((f + randF) * x + p + randP) + y_Axis + randY;
-    IEnumerator Think()
-    {
-        randA = UnityEngine.Random.Range(-0.5f, 0.5f);
-        randF = UnityEngine.Random.Range(-0.5f, 0.5f);
-        randP = UnityEngine.Random.Range(-0.5f, 0.5f);
-        randY = UnityEngine.Random.Range(-0.5f, 0.5f);
-
-        yield return new WaitForSeconds(_aiMovementData.thinkTime);
-        _aiActionData.IsCanThinking = true;
-        _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
-    }
 }

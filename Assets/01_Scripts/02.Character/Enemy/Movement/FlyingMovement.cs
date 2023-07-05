@@ -9,6 +9,6 @@ public class FlyingMovement : EnemyMovement
         if (!_data.canMove) return;
 
         onVelocityChange?.Invoke(_movementdirection.x);
-        rb.velocity = new Vector2(_movementdirection.x * _currentVelocity, _movementdirection.y);
+        rb.velocity = new Vector2(_movementdirection.x, _movementdirection.y) * _currentVelocity;
     }
 }

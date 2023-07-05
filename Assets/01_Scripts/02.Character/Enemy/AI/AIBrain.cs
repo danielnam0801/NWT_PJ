@@ -67,6 +67,7 @@ public class AIBrain : MonoBehaviour
     private void Start()
     {
         _target = GameManager.instance.Target;
+        _currentState.InitState();
     }
 
     protected void Update()
