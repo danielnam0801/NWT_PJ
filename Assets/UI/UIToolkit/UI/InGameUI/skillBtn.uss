@@ -1,0 +1,19 @@
+.skillBtn {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#Timer {
+    -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;);
+    -unity-font-definition: none;
+    -unity-font-style: bold;
+    -unity-font: url('project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&guid=800cdf45943e5ca45be120af27b43a39&type=3#MapoDacapo');
+    font-size: 40px;
+}

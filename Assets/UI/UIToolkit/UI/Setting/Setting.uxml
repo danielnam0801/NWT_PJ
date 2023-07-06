@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/UI/UIToolkit/UI/Setting/idontknow.uss?fileID=7433441132597879392&amp;guid=196417bcc2bc5574b85141c669072b4e&amp;type=3#idontknow" />
+    <ui:VisualElement name="BackGround" style="flex-grow: 1; margin-left: 6%; margin-right: 6%; margin-top: 6%; margin-bottom: 6%;">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgb(113, 113, 113);">
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+                <ui:Label text="설정" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 75px; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 7; flex-direction: row;">
+                <ui:VisualElement name="Left" style="align-items: center; flex-basis: 50%; justify-content: space-around;">
+                    <ui:DropdownField label="해상도" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="DropdownField" style="font-size: 40px; background-color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold;" />
+                    <ui:Toggle label="전체화면  " name="fullScreen" style="font-size: 40px; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold;" />
+                    <ui:Button text="컷씬초기화" display-tooltip-when-elided="true" name="Reset" style="-unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold;" />
+                    <ui:Toggle label="타이머 표시 " name="TimerToggle" style="font-size: 40px; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Right" style="flex-basis: 50%; align-items: center; justify-content: space-around;">
+                    <ui:Slider picking-mode="Ignore" label="소리조절1" value="42" high-value="100" name="SoundSlider1" style="width: 564px; font-size: 40px; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold;">
+                        <ui:Toggle />
+                    </ui:Slider>
+                    <ui:Slider picking-mode="Ignore" label="소리조절2" value="42" high-value="100" style="width: 564px; font-size: 40px; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold;">
+                        <ui:Toggle />
+                    </ui:Slider>
+                    <ui:DropdownField label="UI표시" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="DropdownField" style="background-color: rgb(255, 255, 255); font-size: 40px; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; -unity-font-style: bold;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 0; align-items: center; justify-content: center; flex-direction: row;">
+                <ui:Button text="돌아가기" display-tooltip-when-elided="true" style="width: 20%; height: 75%;" />
+                <ui:Button text="새게임" display-tooltip-when-elided="true" style="width: 20%; height: 75%;" />
+                <ui:Button text="종료하기" display-tooltip-when-elided="true" style="width: 20%; height: 75%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

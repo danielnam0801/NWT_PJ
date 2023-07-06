@@ -11,15 +11,12 @@
                     <ui:Label text="새 게임" display-tooltip-when-elided="true" style="font-size: 30px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="resetCutSceneBtn" class="btn">
-                    <ui:Label text="컷씬초기화" display-tooltip-when-elided="true" style="font-size: 30px;" />
+                    <ui:Label text="설정" display-tooltip-when-elided="true" style="font-size: 30px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="exitBtn" class="btn">
                     <ui:Label text="게임종료" display-tooltip-when-elided="true" style="font-size: 30px;" />
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-direction: row;">
-                    <ui:Toggle label="    효과음" style="flex-grow: 1; margin-left: 5%; margin-right: 5%; margin-top: 1%; margin-bottom: 1%; background-image: url(&apos;project://database/Assets/11_Sprites/Choice_Box_Hover.png?fileID=21300000&amp;guid=e97d8b507d2d0684bb99debc063e3c12&amp;type=3#Choice_Box_Hover&apos;); -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; font-size: 20px; -unity-text-align: upper-center; -unity-font-style: bold;" />
-                    <ui:Toggle label="   배경음 " style="flex-grow: 1; margin-left: 5%; margin-right: 5%; margin-top: 1%; margin-bottom: 1%; background-image: url(&apos;project://database/Assets/11_Sprites/Choice_Box_Hover.png?fileID=21300000&amp;guid=e97d8b507d2d0684bb99debc063e3c12&amp;type=3#Choice_Box_Hover&apos;); -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); -unity-font-definition: none; font-size: 20px; -unity-text-align: upper-center; -unity-font-style: bold;" />
-                </ui:VisualElement>
+                <ui:VisualElement style="flex-direction: row;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

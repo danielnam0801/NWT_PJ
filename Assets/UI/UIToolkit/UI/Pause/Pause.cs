@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class SettingUIController : MonoBehaviour
+public class Pause : MonoBehaviour
 {
     private void OnEnable()
     {
         UIDocument ui = GetComponent<UIDocument>();
         VisualElement root = ui.rootVisualElement;
+        
         VisualElement background = root.Q("Background");
         Button returnBtn = root.Q<Button>("returnBtn");
         Button newGameBtn = root.Q<Button>("newGameBtn");
