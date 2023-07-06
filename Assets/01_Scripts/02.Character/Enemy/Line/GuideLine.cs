@@ -12,8 +12,7 @@ public abstract class GuideLine : PoolableObject
     [SerializeField]
     protected float shapeSize = 1f;
     [SerializeField]
-    protected Transform pair;
-
+    protected EnemyGuide pair;
 
     protected float pathPointInterval;
 
@@ -36,18 +35,23 @@ public abstract class GuideLine : PoolableObject
     public override void Init()
     {
         pathPointInterval = DrawManager.Instance.PathPointInterval;
-        DrawManager.Instance.CheckLine += CheckShape;
+        DrawManager.Instance.AddGuideLine(this);
     }
 
     private void Update()
     {
-        transform.position = pair.position;
+        transform.position = pair.transform.position;
     }
 
     private void OnDisable()
     {
+        //push
+
         if(DrawManager.Instance != null)
-            DrawManager.Instance.CheckLine -= CheckShape;
+            DrawManager.Instance.RemoveGudieLine(this);
+        
+        pair?.ClearPair();
+        pair = null;
     }
 
     protected abstract void SetShapePoints();
@@ -61,16 +65,17 @@ public abstract class GuideLine : PoolableObject
         }
     }
 
-    public void CheckShape(List<Vector2> points)
+    public void CheckShape(List<Vector2> points, out ShapeType _type, out Vector2 pos)
     {
         Debug.Log("check");
+        pos = Vector2.zero;
 
         if ((float)points.Count / (float)shapePoints.Count < 0.7f)
         {
             Debug.Log("return");
+            _type = ShapeType.Default;
             return;
         }
-            
 
         int count = 0;
         int repeat = points.Count < shapePoints.Count ? points.Count : shapePoints.Count;
@@ -87,11 +92,23 @@ public abstract class GuideLine : PoolableObject
         {
             Debug.Log((float)count / (float)repeat);
             Debug.Log("그리기 성공");
+
+            _type = type;
+            pos = transform.position;
+            PoolManager.Instance.Push(this);
+            return;
+        }
+        else
+        {
+            Debug.Log("그리기 실패");
+            _type = ShapeType.Default;
+            return;
         }
     }
 
-    public void SetPair(Transform _pair)
+    public void SetPair(EnemyGuide _pair)
     {
         pair = _pair;
+        pair.SetPair(this);
     }
 }

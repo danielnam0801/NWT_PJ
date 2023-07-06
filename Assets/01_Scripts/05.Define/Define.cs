@@ -12,12 +12,21 @@ public enum PlayerStateType
     Teleportation,
 }
 
+[System.Serializable]
 public enum ShapeType
 {
     Circle,
     Triangle,
     Square,
     Pentagon,
+    FourStar,
+    FiveStar,
+    SixStar,
+    UpArraw,
+    DownArraw,
+    LeftArraw,
+    RightArraw,
+    Default,
 }
 
 

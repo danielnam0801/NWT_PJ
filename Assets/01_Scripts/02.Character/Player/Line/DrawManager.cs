@@ -11,7 +11,8 @@ public class DrawManager : MonoBehaviour
     public static DrawManager Instance;
     public UnityEvent DrawStartEvent;
     public UnityEvent DrawEndEvent;
-    public Action<List<Vector2>> CheckLine;
+    //public Action<List<Vector2>> CheckLine;
+    public List<GuideLine> GuideLines;
 
     public GameObject linePrefab;
 
@@ -39,7 +40,7 @@ public class DrawManager : MonoBehaviour
     public PlayerWeapon sword;
     public GameObject player;
 
-    public bool StartDraw { get; set; }
+    private bool startDraw;
     public bool IsDraw { get; set; }
 
     private void Awake()
@@ -52,12 +53,15 @@ public class DrawManager : MonoBehaviour
 
     private void Start()
     {
-        StartDraw = false;
+        startDraw = false;
         IsDraw = false;
     }
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+            StartDraw();
+
         Draw();
     }
 
@@ -66,17 +70,34 @@ public class DrawManager : MonoBehaviour
         StartCoroutine(DelayDraw(time));
     }
 
+    public void AddGuideLine(GuideLine line)
+    {
+        GuideLines.Add(line);
+    }
+
+    public void RemoveGudieLine(GuideLine line)
+    {
+        if(GuideLines.Find(x => x == line) != null)
+            GuideLines.Remove(line);
+    }
+
+    public void StartDraw()
+    {
+        startDraw = true;
+    }
+
     private void Draw()
     {
-        if (!canDraw)
-            return;
+        //if (!canDraw)
+        //    return;
 
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
-        if (StartDraw)
+        if (canDraw && Input.GetMouseButtonDown(0))
         {
-            StartDraw = false;
+            startDraw = false;
             DrawStartEvent?.Invoke();
             IsDraw = true;
+            canDraw = false;
             points.Clear();
             go = Instantiate(linePrefab);
             lr = go.GetComponent<LineRenderer>();
@@ -87,8 +108,8 @@ public class DrawManager : MonoBehaviour
         }
         else if (IsDraw && Input.GetMouseButton(0))
         {
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 5;
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //pos.z = 5;
             if (Vector2.Distance(points[points.Count - 1], pos) > pathPointInterval)
             {
                 points.Add(pos);
@@ -101,29 +122,66 @@ public class DrawManager : MonoBehaviour
         }
         else if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength)
         {
+            ShapeType _type = ShapeType.Default;
             isMaxLength = false;
             IsDraw = false;
             Debug.Log(points.Count);
+
             DrawEndEvent?.Invoke();
 
-            StartCoroutine(SwordMove());
+            for (int i = 0; i < GuideLines.Count; i++)
+            {
+                GuideLines[i].CheckShape(points, out _type, out Vector2 pos);
+
+                if(_type != ShapeType.Default)
+                {
+                    if(_type == ShapeType.Circle)
+                        points.Add(pos);
+
+                    Debug.Log(points.Count);
+                    SwordAttack(_type);
+                    return;
+                }
+
+                //if(_type != ShapeType.Default && _type != ShapeType.Triangle)
+                //    points.Add(GuideLines[i].transform.position);
+            }
+
+            Debug.Log(points.Count);
+            SwordAttack(_type);
         }
     }
 
-    private IEnumerator SwordMove()
+    private void SwordAttack(ShapeType _type)
     {
         isDrawArea = false;
         Destroy(go.gameObject);
+        Debug.Log("sword attack");
+        Debug.Log(_type);
+
         if (points.Count > minDrawPoint)
         {
             canDraw = false;
-            yield return StartCoroutine(sword.Attack(points));
+            sword.Attack(points, _type);
         }
 
-        CheckLine?.Invoke(points);
-
-        points.Clear();
+        //points.Clear();
     }
+
+    //private IEnumerator SwordMove()
+    //{
+    //    isDrawArea = false;
+    //    Destroy(go.gameObject);
+    //    if (points.Count > minDrawPoint)
+    //    {
+    //        canDraw = false;
+    //        //yield return StartCoroutine(sword.Attack(points));
+    //    }
+        
+    //    //CheckLine?.Invoke(points);
+
+    //    points.Clear();
+    //}
 
     private IEnumerator DelayDraw(float time)
     {
@@ -131,15 +189,4 @@ public class DrawManager : MonoBehaviour
 
         canDraw = true;
     }
-
-    //private ShapeType CheckShape()
-    //{
-    //    int angleCount = 0;
-    //    List<Vector2> anglePoint = new List<Vector2>();
-
-    //    for(int i = 0; i < points.Count - 1; i++)
-    //    {
-            
-    //    }
-    //}
 }

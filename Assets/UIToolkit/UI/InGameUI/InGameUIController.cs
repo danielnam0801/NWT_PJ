@@ -26,43 +26,43 @@ public class InGameUIController : MonoBehaviour
         //Slider slider = root.Q<Slider>("Slider");
         //slider = GetComponentInChildren<Slider>();
 
-        VisualElement leftBtn = root.Q<VisualElement>("LeftBtn");
-        leftBtn.AddManipulator(new ClickManipulator(() =>
-        {
-            playerInput.MoveInput(Vector2.left);
-        }));
+        //VisualElement leftBtn = root.Q<VisualElement>("LeftBtn");
+        //leftBtn.AddManipulator(new ClickManipulator(() =>
+        //{
+        //    playerInput.MoveInput(Vector2.left);
+        //}));
 
-        VisualElement rightBtn = root.Q<VisualElement>("RightBtn");
-        rightBtn.AddManipulator(new ClickManipulator(() =>
-        {
-            playerInput.MoveInput(Vector2.right);
-        }));
+        //VisualElement rightBtn = root.Q<VisualElement>("RightBtn");
+        //rightBtn.AddManipulator(new ClickManipulator(() =>
+        //{
+        //    playerInput.MoveInput(Vector2.right);
+        //}));
 
-        VisualElement drawPanel = root.Q<VisualElement>("DrawPanel");
-        drawPanel.AddManipulator(new ClickManipulator(() =>
-        {
-            DrawManager.Instance.StartDraw = true;
-        }));
+        //VisualElement drawPanel = root.Q<VisualElement>("DrawPanel");
+        //drawPanel.AddManipulator(new ClickManipulator(() =>
+        //{
+        //    DrawManager.Instance.StartDraw = true;
+        //}));
 
-        Button jumpBtn = root.Q<Button>("skill3Btn");
-        jumpBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            Debug.Log(1);
-            playerInput.JumpInput();
-        });
+        //Button jumpBtn = root.Q<Button>("skill3Btn");
+        //jumpBtn.RegisterCallback<ClickEvent>(e =>
+        //{
+        //    Debug.Log(1);
+        //    playerInput.JumpInput();
+        //});
 
-        Button teloportationBtn = root.Q<Button>("skill1Btn");
-        teloportationBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            playerInput.TeleportationInput();
-        });
+        //Button teloportationBtn = root.Q<Button>("skill1Btn");
+        //teloportationBtn.RegisterCallback<ClickEvent>(e =>
+        //{
+        //    playerInput.TeleportationInput();
+        //});
 
-        Button settingBtn = root.Q<Button>("settingBtn");
-        settingBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            settingUI.SetActive(true);
-            TimeManager.Instance.SetTimeScale(0);
-            //gameObject.SetActive(false);
-        });
+        //Button settingBtn = root.Q<Button>("settingBtn");
+        //settingBtn.RegisterCallback<ClickEvent>(e =>
+        //{
+        //    settingUI.SetActive(true);
+        //    TimeManager.Instance.SetTimeScale(0);
+        //    //gameObject.SetActive(false);
+        //});
     }
 }

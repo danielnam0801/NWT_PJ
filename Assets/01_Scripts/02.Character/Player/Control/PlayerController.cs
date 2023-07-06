@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private PlayerState state;
+    //public PlayerInput input;
 
     private Dictionary<PlayerStateType, PlayerState> stateDictionary = new Dictionary<PlayerStateType, PlayerState>();
 
