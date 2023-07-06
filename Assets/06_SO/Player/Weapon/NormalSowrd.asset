@@ -18,3 +18,4 @@ MonoBehaviour:
   followSpeed: 5
   followMinDistance: 0.3
   attackDelayTime: 3.5
+  maxDrawTime: 7.5

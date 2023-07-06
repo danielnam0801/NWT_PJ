@@ -27,6 +27,10 @@ public class DrawManager : MonoBehaviour
     [SerializeField]
     private float minAngleCheck = 45f;
 
+    public float MaxDrawTime = 7.5f;
+    [SerializeField]
+    private float currentDrawTime = 0;
+
     public float PathPointInterval => pathPointInterval;
 
     LineRenderer lr;
@@ -34,7 +38,7 @@ public class DrawManager : MonoBehaviour
 
     private bool canDraw = true;
     public bool isDrawArea = false;
-    private bool isMaxLength = false;
+    public bool isMaxLength = false;
     private GameObject go;
 
     public PlayerWeapon sword;
@@ -108,6 +112,17 @@ public class DrawManager : MonoBehaviour
         }
         else if (IsDraw && Input.GetMouseButton(0))
         {
+            currentDrawTime += Time.unscaledDeltaTime;
+            if (currentDrawTime >= MaxDrawTime)
+            {
+                IsDraw = false;
+                isMaxLength = false;
+                canDraw = true;
+                DrawEndEvent?.Invoke();
+                Destroy(go.gameObject);
+                currentDrawTime = 0;
+            }
+
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //pos.z = 5;
             if (Vector2.Distance(points[points.Count - 1], pos) > pathPointInterval)
@@ -120,7 +135,7 @@ public class DrawManager : MonoBehaviour
             if (lr.positionCount > maxLienLength)
                 isMaxLength = true;
         }
-        else if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength)
+        if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength)
         {
             ShapeType _type = ShapeType.Default;
             isMaxLength = false;
