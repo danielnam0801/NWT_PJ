@@ -1,0 +1,26 @@
+#DropdownField Label {
+    background-color: rgb(255, 0, 0);
+    -unity-text-align: middle-center;
+    font-size: 32px;
+}
+
+DropdownField {
+    width: 50%;
+    height: 10%;
+}
+
+Button {
+    -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;);
+    -unity-font-definition: none;
+    -unity-font-style: bold;
+    -unity-font: url('project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&guid=800cdf45943e5ca45be120af27b43a39&type=3#MapoDacapo');
+    font-size: 40px;
+    width: 40%;
+    height: 15%;
+}
+
+DropdownField Label {
+}
+
+Slider Toggle {
+}
