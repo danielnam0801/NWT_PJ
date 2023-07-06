@@ -16,7 +16,7 @@ public class AttackAction : AIAction
     protected override void Awake()
     {
         base.Awake();
-        nextState = transform.Find("TransChase").GetComponent<AITransition>().NextState;
+        nextState = transform.Find("TransIdle").GetComponent<AITransition>().NextState;
         attackCoolController = _brain.transform.GetComponent<AttackCoolController>();
     }
 

@@ -40,8 +40,8 @@ public class AIBrain : MonoBehaviour
     private AIStateInfo _stateInfo;
     AIState hitState;
 
-    private List<AITransition> anyTransitions;
-    public List<AITransition> AnyTransitions => anyTransitions;
+    private List<AITransition> _anyTransitions = new List<AITransition>();
+    public List<AITransition> AnyTransitions => _anyTransitions;
 
     protected virtual void Awake()
     {
@@ -57,12 +57,11 @@ public class AIBrain : MonoBehaviour
         _stateInfo = rootAI.GetComponent<AIStateInfo>();
         hitState = rootAI.Find("HitState").GetComponent<AIState>();
 
-        Transform anyTrm = transform.Find("AI/AnyTransitions");
-        if (anyTrm != null)
+        Transform anyTranTrm = transform.Find("AI/AnyTransitions");
+        if (anyTranTrm != null)
         {
-            anyTrm.GetComponentsInChildren<AITransition>(anyTransitions);
+            anyTranTrm.GetComponentsInChildren<AITransition>(_anyTransitions);
         }
-
     }
     private void Start()
     {

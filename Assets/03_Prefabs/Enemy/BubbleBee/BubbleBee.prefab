@@ -1035,7 +1035,7 @@ GameObject:
   - component: {fileID: 2846920623613470568}
   - component: {fileID: 2846920623613470571}
   m_Layer: 8
-  m_Name: BubleBee
+  m_Name: BubbleBee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

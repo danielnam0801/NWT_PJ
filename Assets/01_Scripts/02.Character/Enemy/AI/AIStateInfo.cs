@@ -24,15 +24,18 @@ public class AIStateInfo : MonoBehaviour
     public bool IsCrash = false;
     public int hitCnt = 0;
 
-    EnemyAgentAnimator animator;
+    EnemyAgentAnimator _animator;
+    AIMovementData _movementData;
 
     private void Awake()
     {
-        animator = transform.parent.Find("Visual").GetComponent<EnemyAgentAnimator>();   
+        _animator = transform.parent.Find("Visual").GetComponent<EnemyAgentAnimator>();   
+        _movementData = transform.GetComponent<AIMovementData>();
     }
     private void Update()
     {
-        animator.SetAttackState(IsAttack);
+        _animator.SetAttackState(IsAttack);
+        _animator.SetSpeed(_movementData.Speed);
     }
 
     public void PlusHitCount()
