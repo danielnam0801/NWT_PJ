@@ -59,6 +59,9 @@ public class DrawManager : MonoBehaviour
     {
         startDraw = false;
         IsDraw = false;
+        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     private void Update()
@@ -98,6 +101,9 @@ public class DrawManager : MonoBehaviour
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
         if (canDraw && Input.GetMouseButtonDown(0))
         {
+            //Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             startDraw = false;
             DrawStartEvent?.Invoke();
             IsDraw = true;
@@ -137,6 +143,9 @@ public class DrawManager : MonoBehaviour
         }
         if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength)
         {
+            //Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             ShapeType _type = ShapeType.Default;
             isMaxLength = false;
             IsDraw = false;

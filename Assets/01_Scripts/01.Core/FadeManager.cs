@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class FadeManager : MonoBehaviour
 {
     public static FadeManager Instance;
 
-    private Image fadePanel;
+    private UIDocument document;
+    private VisualElement fadeImage;
 
     private void Awake()
     {
@@ -17,17 +19,21 @@ public class FadeManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        fadePanel = transform.Find("FadePanel").GetComponent<Image>();
+        DontDestroyOnLoad(gameObject);
+
+        document = GetComponent<UIDocument>();
     }
 
-    public void Fade(float endValue, float duration)
+    private void OnEnable()
     {
-        fadePanel.gameObject.SetActive(true);
+        fadeImage = document.rootVisualElement.Q<VisualElement>("FadeImage");
+    }
 
-        fadePanel.DOFade(endValue, duration).OnComplete(() =>
-        {
-            if(endValue == 0)
-                fadePanel.gameObject.SetActive(false);
-        });
+    public void Fade(bool on)
+    {
+        if (on)
+            fadeImage.AddToClassList("on");
+        else
+            fadeImage.RemoveFromClassList("on");
     }
 }
