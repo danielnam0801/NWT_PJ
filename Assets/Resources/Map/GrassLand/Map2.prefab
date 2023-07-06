@@ -13581,7 +13581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3702839777542122491}
   m_Layer: 0
-  m_Name: Map02
+  m_Name: Map2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26586,7 +26586,7 @@ MonoBehaviour:
   - {x: 10.484962, y: -2.1727295, z: 0}
   m_ShapePathHash: 654910066
   m_Mesh: {fileID: 0}
-  m_InstanceId: 50838
+  m_InstanceId: 92724
 --- !u!1 &3702839778361019252
 GameObject:
   m_ObjectHideFlags: 0
