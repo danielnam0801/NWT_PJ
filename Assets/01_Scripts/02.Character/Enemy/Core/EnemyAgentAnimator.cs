@@ -12,7 +12,6 @@ public class EnemyAgentAnimator : MonoBehaviour
     private readonly int _SpecialAttackHash = Animator.StringToHash("specialAttack");
     private readonly int _NormalAttackHash = Animator.StringToHash("normalAttack");
 
-    private readonly int _playLandAnimHash = Animator.StringToHash("landTrigger");
     private readonly int _isAttackHash = Animator.StringToHash("is_attack");
     private readonly int _deadHash = Animator.StringToHash("isDead");
     private readonly int _deadTriggerHash = Animator.StringToHash("death");
@@ -36,7 +35,9 @@ public class EnemyAgentAnimator : MonoBehaviour
 
     private void Awake()
     {
-        _aiStateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();
+        Transform Ai = transform.parent.Find("AI").transform;
+        _aiStateInfo = Ai.GetComponent<AIStateInfo>();
+        _movementData = Ai.GetComponent<AIMovementData>();
         _animator = GetComponent<Animator>();
         reverseValue = (reverseSprite == true) ? -1 : 1; 
     }
@@ -46,7 +47,7 @@ public class EnemyAgentAnimator : MonoBehaviour
         if (_aiStateInfo.IsAttack == false)
         {
             Vector3 direction = (Vector3)pointerInput - transform.position;
-            transform.parent.localScale = (direction.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            transform.localScale = (direction.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
         }
     }
 
@@ -54,21 +55,16 @@ public class EnemyAgentAnimator : MonoBehaviour
     {
         if (currentDir.x == 0)
         {
-            transform.parent.localScale = (beforeDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); //멈춤이 일어날때 전에 보던 방향에 따른 페이스 디렉션
+            transform.localScale = (beforeDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); //멈춤이 일어날때 전에 보던 방향에 따른 페이스 디렉션
         }
         else
-            transform.parent.localScale = (currentDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            transform.localScale = (currentDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
 
     }
 
     public void SetAttackState(bool value)
     {
         _animator.SetBool(_isAttackHash, value);
-    }
-
-    public void PlayLandAnimation()
-    {
-        _animator.SetTrigger(_playLandAnimHash);
     }
 
     public void SetAttackTrigger(bool value, SkillType Skill)
@@ -142,6 +138,7 @@ public class EnemyAgentAnimator : MonoBehaviour
     public void SetEndHit()
     {
         _animator.SetTrigger(_EndHitTriggerHash);
+        _movementData.canMove = true;
     }
 
     public void SetDamageHash(float currentHp)
@@ -150,16 +147,21 @@ public class EnemyAgentAnimator : MonoBehaviour
         else _animator.SetTrigger(_damageTriggerHash);
     }
 
+    public void HitHash()
+    {
+        _movementData.canMove = false;
+        _animator.SetTrigger("hit");
+    }
+
     public void OnAnimationEnd()
     {
         if (OnAnimaitionEndTrigger == null) 
-            Debug.LogError("sdfdsf");
+            Debug.Log("OnAnimationEndTriggerisNull");
         OnAnimaitionEndTrigger?.Invoke();
     }
 
     public void OnAnimationEvent()
     {
-        Debug.Log("Event0");
         OnAnimaitionEventTrigger?.Invoke();
     }
 

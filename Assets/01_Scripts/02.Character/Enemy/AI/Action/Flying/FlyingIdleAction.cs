@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,20 +6,22 @@ public class FlyingIdleAction : AIAction
 {
     public override void InitAction()
     {
-        Debug.Log(gameObject.name + "changeState");
+        _aiActionData.IsIdle = true;
+        _aiMovementData.pointOfInterest = transform.position;
+        _aiMovementData.Speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
+        
+        int dirX = Random.Range(-1, 1);
+        if(dirX == 0) dirX = 1;
+        _aiMovementData.direction.x = dirX;
     }
 
     public override void TakeAction()
     {
-        _aiActionData.isIdle = true;
-        _aiMovementData.pointOfInterest = transform.position;
-        _aiMovementData.speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
-
-        //_brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);// flying moving에 있음
+        _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);// flying moving에 있음
     }
 
     public override void ExitAction()
     {
-
+        _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
     }
 }

@@ -11,6 +11,18 @@ public class EffectPlayer : PoolableObject
     [SerializeField]
     protected List<VisualEffect> _effects;
 
+    Rigidbody2D rb;
+
+    public void SetPositionAndRotation(Vector3 pos, Quaternion rot)
+    {
+        transform.SetPositionAndRotation(pos, rot);
+    }
+
+    public void Shoot(float power)
+    {
+        rb.AddForce(transform.right * power, ForceMode2D.Impulse);
+    }
+
     public void StartPlay(float endTime)
     {
         if (_particles != null)
@@ -39,6 +51,7 @@ public class EffectPlayer : PoolableObject
 
     public override void Init()
     {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (_particles != null)
         {
             _particles.ForEach(p => p.Simulate(0));

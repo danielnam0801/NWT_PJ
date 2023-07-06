@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class AttackCheck : MonoBehaviour
 {
+    [Tooltip("(충돌 처리 할 것들은 Physics세팅 건들어주셈)")]
     [SerializeField] private AttackCheckType _attackCheckType;
     [SerializeField] float damage = 5f;
+    [SerializeField] Transform centerPos;
+
+    [Space(20)]
+    [Header("Circle")]
+    [SerializeField]
+    float radius;
+
+    [Header("Box")]
+    [SerializeField]
+    Vector2 size;
+
+    [Header("Line")]
+    [SerializeField]
+    float lineLength = 5f;
+
+    Collider2D colider;
+    PoolableObject poolObj;
 
     private bool collisionCheck;
     private bool colliderCheck;
@@ -15,8 +33,15 @@ public class AttackCheck : MonoBehaviour
     private bool circle;
     private bool box;
     private bool line;
-    private void Awake()
+
+    private void OnEnable()
     {
+        poolObj = transform.GetComponent<PoolableObject>();
+    }
+
+    private void Start()
+    {
+        centerPos = transform;
         switch (_attackCheckType)
         {
             case AttackCheckType.COLLISION:
@@ -56,6 +81,7 @@ public class AttackCheck : MonoBehaviour
             IHitable hitable;
             if(collision.gameObject.TryGetComponent<IHitable>(out hitable)){
                 hitable.GetHit(damage, this.gameObject);
+                //PoolManager.Instance.Push(poolObj);
             }
         }
     }
@@ -69,24 +95,93 @@ public class AttackCheck : MonoBehaviour
             {
                 hitable.GetHit(damage, this.gameObject);
             }
+            //PoolManager.Instance.Push(poolObj);
         }
     }
 
     private void Update()
     {
-        
+        if(overlapCheck) OverlapCheck();
+        if(rayCheck) RayCheck();
     }
 
     public void OverlapCheck()
     {
-
+        if (circle)
+        {
+            Collider2D[] circleHits = Physics2D.OverlapCircleAll(centerPos.position, radius);
+            for (int i = 0; i < circleHits.Length; i++)
+            {
+                IHitable hitable;
+                if (circleHits[i].TryGetComponent<IHitable>(out hitable))
+                {
+                    hitable.GetHit(damage, this.gameObject);
+                }
+            }
+        }
+        if (box)
+        {
+            Collider2D[] boxHits = Physics2D.OverlapBoxAll(centerPos.position, size, 0);
+            for (int i = 0; i < boxHits.Length; i++)
+            {
+                IHitable hitable;
+                if (boxHits[i].TryGetComponent<IHitable>(out hitable))
+                {
+                    hitable.GetHit(damage, this.gameObject);
+                }
+            }
+        }
     }
 
     public void RayCheck()
     {
-
+        if(line){
+            RaycastHit2D[] hit = Physics2D.RaycastAll(centerPos.position, transform.right, lineLength);
+            if (hit.Length > 0)
+            {
+                foreach(var a in hit)
+                {
+                    IHitable hitable;
+                    if(a.collider.TryGetComponent<IHitable>(out hitable)){
+                        hitable.GetHit(damage, this.gameObject);
+                    }
+                }
+            }
+        }
+        if (circle)
+        {
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(centerPos.position, radius, transform.right);
+            if (hit.Length > 0)
+            {
+                foreach (var a in hit)
+                {
+                    IHitable hitable;
+                    if (a.collider.TryGetComponent<IHitable>(out hitable))
+                    {
+                        hitable.GetHit(damage, this.gameObject);
+                    }
+                }
+            }
+        }
+        if (box)
+        {
+            RaycastHit2D[] hit = Physics2D.BoxCastAll(centerPos.position, size, 0, transform.right);
+            if (hit.Length > 0)
+            {
+                foreach (var a in hit)
+                {
+                    IHitable hitable;
+                    if (a.collider.TryGetComponent<IHitable>(out hitable))
+                    {
+                        hitable.GetHit(damage, this.gameObject);
+                    }
+                }
+            }
+        }
     }
-
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawCube(centerPos.position, size);
+    }
 
 }

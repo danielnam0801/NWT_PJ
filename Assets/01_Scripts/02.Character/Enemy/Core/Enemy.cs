@@ -111,11 +111,10 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
     public void GetHit(float damage, GameObject damageDealer)
     {
-        Debug.Log("PlayerÇÑÅ× ¸Â¾ÒÂÇ¿°");
+        Debug.Log($"PlayerÇÑÅ× ¸Â¾ÒÂÇ¿° : {damageDealer.name}");
         if (_isDead == true) return;
 
         Health -= damage;
-        Debug.Log(Health);
 
         HitPoint = damageDealer.transform.position;
 

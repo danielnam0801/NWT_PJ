@@ -9,6 +9,6 @@ public class CanAttackDecision : AIDecision
     FieldInfo fInfo;
     public override bool MakeADecision()
     {
-        return (!_state.IsAttack &&_brain.AttackCoolController.isCoolDown(Skill));
+        return (!_stateInfo.IsAttack &&_brain.AttackCoolController.isCoolDown(Skill));
     }
 }

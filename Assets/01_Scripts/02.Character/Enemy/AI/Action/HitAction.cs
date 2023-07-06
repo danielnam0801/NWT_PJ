@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class HitAction : AIAction
 {
-    public float hitCnt = 1;
-    [SerializeField]
-    private float stateHitCnt = 1;
-   
     public override void InitAction()
     {
         Debug.Log("Hittt");
         _brain.EnemyMovement.StopImmediatelly();
-        _stateInfo.IsHit = true;
         _animator.OnAnimaitionEndTrigger += EndAnim;
-        //_animator.SetDamageHash(_brain.Enemy.Health);
+        _animator.SetDamageHash(_brain.Enemy.Health);
         hitCnt = _stateInfo.hitCnt;
     }
 
+    int hitCnt = 0;
     public override void TakeAction()
     {
-        if(hitCnt != _stateInfo.hitCnt) // 맞는중에 또맞으면 
+        if(_stateInfo.hitCnt != hitCnt)
         {
-            Debug.Log("Attacked");
-            hitCnt = _stateInfo.hitCnt;
+            hitCnt++;
             _animator.SetDamageHash(_brain.Enemy.Health);
         }
+        _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
+        
     }
 
     public override void ExitAction() // 애니메이션 진행동안 또 맞지 않으면 그냥 나가짐

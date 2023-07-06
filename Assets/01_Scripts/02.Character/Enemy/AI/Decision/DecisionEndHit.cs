@@ -6,6 +6,6 @@ public class DecisionEndHit : AIDecision
 {
     public override bool MakeADecision()
     {
-        return !_state.IsHit;
+        return !_stateInfo.IsHit;
     }
 }

@@ -20,26 +20,27 @@ public class AIStateInfo : MonoBehaviour
     public bool IsSpecial = false;
     public bool IsMelee = false;
     public bool IsRange = false;
-    public bool IsHit = false;
+    public bool IsHit { get; set; } = false;
     public bool IsCrash = false;
-
-    EnemyAgentAnimator animator;
-
     public int hitCnt = 0;
 
-    public void PlusHitCount()
-    {
-        if(IsAttack == false)
-            hitCnt++;
-    }
+    EnemyAgentAnimator _animator;
+    AIMovementData _movementData;
 
     private void Awake()
     {
-        animator = transform.parent.Find("Visual").GetComponent<EnemyAgentAnimator>();   
+        _animator = transform.parent.Find("Visual").GetComponent<EnemyAgentAnimator>();   
+        _movementData = transform.GetComponent<AIMovementData>();
     }
     private void Update()
     {
-        animator.SetAttackState(IsAttack);
+        _animator.SetAttackState(IsAttack);
+        _animator.SetSpeed(_movementData.Speed);
+    }
+
+    public void PlusHitCount()
+    {
+        hitCnt++;
     }
 }
 

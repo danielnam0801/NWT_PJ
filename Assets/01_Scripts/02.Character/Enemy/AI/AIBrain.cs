@@ -14,6 +14,8 @@ public class AIBrain : MonoBehaviour
     [SerializeField]
     private AIState _currentState;
 
+    public AIState CurrentState => _currentState;
+
     [SerializeField]
     private Transform _target;
     public Transform Target => _target;
@@ -38,6 +40,9 @@ public class AIBrain : MonoBehaviour
     private AIStateInfo _stateInfo;
     AIState hitState;
 
+    private List<AITransition> _anyTransitions = new List<AITransition>();
+    public List<AITransition> AnyTransitions => _anyTransitions;
+
     protected virtual void Awake()
     {
         
@@ -51,10 +56,17 @@ public class AIBrain : MonoBehaviour
         AIMovementData = rootAI.GetComponent<AIMovementData>();
         _stateInfo = rootAI.GetComponent<AIStateInfo>();
         hitState = rootAI.Find("HitState").GetComponent<AIState>();
+
+        Transform anyTranTrm = transform.Find("AI/AnyTransitions");
+        if (anyTranTrm != null)
+        {
+            anyTranTrm.GetComponentsInChildren<AITransition>(_anyTransitions);
+        }
     }
     private void Start()
     {
         _target = GameManager.instance.Target;
+        _currentState.InitState();
     }
 
     protected void Update()
@@ -86,15 +98,15 @@ public class AIBrain : MonoBehaviour
     public void Move(Vector2 direction, Vector3 targetPos)
     {
         OnMovementKeyPress?.Invoke(direction);
-        if (!AIActionData.isIdle)
+        if (!AIActionData.IsIdle)
             AttackAndChaseStateChanged?.Invoke(targetPos);
         else
             IdleStateStateChanged?.Invoke(AIMovementData.direction, AIMovementData.beforeDirection);
     }
 
-    public virtual void Attack(SkillType skillName)
+    public virtual bool Attack(SkillType skillName)
     {
-        _attackCoolController.Attack(skillName);
+        return _attackCoolController.Attack(skillName);
     }
     
     public void ChangeToHitState()

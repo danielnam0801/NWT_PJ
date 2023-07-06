@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AIActionData : MonoBehaviour
 {
-    public bool isCanThinking = true;
-    public bool targetSpotted;//타겟을 발견했는가
-    public bool arrived;
+    public bool IsCanThinking = true;
+    public bool TargetSpotted;//타겟을 발견했는가
+    public bool Arrived;
 
-    public bool isIdle; 
-    public bool isMoving;
+    public bool IsIdle; 
+    public bool IsMoving;
 
     public Vector3 CreatePoint;
 

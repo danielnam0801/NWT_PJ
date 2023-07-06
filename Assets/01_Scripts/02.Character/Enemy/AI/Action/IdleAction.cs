@@ -7,20 +7,20 @@ public class IdleAction : AIAction
 {
     public override void InitAction()
     {
+        _aiActionData.IsIdle = true;
+        _aiMovementData.pointOfInterest = transform.position;
         _animator.SetAnimatorSpeed(1);
     }
 
     public override void TakeAction()
     {
-        _aiActionData.isIdle = true;
-        _aiMovementData.pointOfInterest = transform.position;
         if(_aiMovementData.direction.x == 0 && _aiMovementData.direction.y == 0)
         {
-            _aiMovementData.speed = 0;
+            _aiMovementData.Speed = 0;
         }
         else
         {
-            _aiMovementData.speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
+            _aiMovementData.Speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
         }
 
         _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);

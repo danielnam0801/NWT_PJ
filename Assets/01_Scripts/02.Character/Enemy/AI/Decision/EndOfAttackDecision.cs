@@ -17,6 +17,6 @@ public class EndOfAttackDecision : AIDecision
 
     public override bool MakeADecision()
     {
-        return (bool)skillInfo.GetValue(_state) == false;
+        return (bool)skillInfo.GetValue(_stateInfo) == false;
     }
 }
