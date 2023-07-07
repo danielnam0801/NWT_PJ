@@ -9,11 +9,13 @@ public class IdleAction : AIAction
     {
         _aiActionData.IsIdle = true;
         _aiMovementData.pointOfInterest = transform.position;
+        _aiMovementData.Speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
         _animator.SetAnimatorSpeed(1);
     }
 
     public override void TakeAction()
     {
+        Debug.Log("IDle");
         if(_aiMovementData.direction.x == 0 && _aiMovementData.direction.y == 0)
         {
             _aiMovementData.Speed = 0;

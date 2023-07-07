@@ -12,17 +12,15 @@ public class AIMovementData : MonoBehaviour
     public bool canMove = true;
     public float thinkTime;
 
+    [SerializeField]
     private float speed;
     public float Speed 
     { 
         get { return speed; } 
         set 
         {
-            if(speed != value)
-            {
-                speed = value;
-                enemyMovement.SetSpeed(speed);
-            }
+            speed = value;
+            enemyMovement.SetSpeed(speed);
         }
     }
 

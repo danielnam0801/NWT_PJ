@@ -30,14 +30,20 @@ public class EnemyMovement : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        StopAllCoroutines();
-        StartCoroutine(MoveLerp(speed));
+        if (speed == 0)
+        {
+            StopImmediatelly();
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(MoveLerp(speed));
+        }
         _enemy.EnemyAnimator.SetSpeed(_currentVelocity);
     }   
    
     public void StopImmediatelly()
     {
-        _enemy.EnemyAnimator.SetSpeed(0);
         _currentVelocity = 0;
         rb.velocity = Vector2.zero;
     }

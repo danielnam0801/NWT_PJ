@@ -47,7 +47,8 @@ public class EnemyAgentAnimator : MonoBehaviour
         if (_aiStateInfo.IsAttack == false)
         {
             Vector3 direction = (Vector3)pointerInput - transform.position;
-            transform.localScale = (direction.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            transform.localScale = (direction.x < 0) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            transform.localScale *= reverseValue;
         }
     }
 
@@ -55,11 +56,12 @@ public class EnemyAgentAnimator : MonoBehaviour
     {
         if (currentDir.x == 0)
         {
-            transform.localScale = (beforeDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); //멈춤이 일어날때 전에 보던 방향에 따른 페이스 디렉션
+            transform.localScale = (beforeDir.x < 0) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); //멈춤이 일어날때 전에 보던 방향에 따른 페이스 디렉션
         }
         else
-            transform.localScale = (currentDir.x < 0 && reverseSprite == false) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
-
+            transform.localScale = (currentDir.x < 0) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+        
+        transform.localScale *= reverseValue;
     }
 
     public void SetAttackState(bool value)
@@ -67,59 +69,35 @@ public class EnemyAgentAnimator : MonoBehaviour
         _animator.SetBool(_isAttackHash, value);
     }
 
-    public void SetAttackTrigger(bool value, SkillType Skill)
+    public void SetAttackTrigger(SkillType Skill)
     {
-        if (value)
+        switch (Skill)
         {
-            switch (Skill)
-            {
-                case SkillType.Normal:
-                    _animator.ResetTrigger(_NormalAttackHash);
-                    _animator.SetTrigger(_NormalAttackHash);
-                    currentSkillHash = _NormalAttackHash; 
-                    break; 
-                case SkillType.Special:
-                    _animator.ResetTrigger(_SpecialAttackHash);
-                    _animator.SetTrigger(_SpecialAttackHash);
-                    currentSkillHash = _SpecialAttackHash; 
-                    break;
-                case SkillType.Melee:
-                    _animator.ResetTrigger(_MeleeAttackHash);
-                    _animator.SetTrigger(_MeleeAttackHash);
-                    currentSkillHash = _MeleeAttackHash; 
-                    break;
-                case SkillType.Range:
-                    _animator.ResetTrigger(_RangeAttackHash);
-                    _animator.SetTrigger(_RangeAttackHash);
-                    currentSkillHash = _RangeAttackHash; 
-                    break;
-                default:
-                    Debug.LogError("존재하지 않는 스킬");
-                    break;
-            }
-        }
-        else
-        {
-            switch (Skill) {
-                case SkillType.Normal:
-                    _animator.ResetTrigger(_NormalAttackHash);
-                    break;
-                case SkillType.Special:
-                    _animator.ResetTrigger(_SpecialAttackHash);
-                    break;
-                case SkillType.Melee:
-                    _animator.ResetTrigger(_MeleeAttackHash);
-                    break;
-                case SkillType.Range:
-                    _animator.ResetTrigger(_RangeAttackHash);
-                    break;
-                default:
-                    Debug.LogError("존재하지 않는 스킬");
-                    break;
-            }
-
-        }
-    }
+            case SkillType.Normal:
+                _animator.ResetTrigger(_NormalAttackHash);
+                _animator.SetTrigger(_NormalAttackHash);
+                currentSkillHash = _NormalAttackHash;
+                break;
+            case SkillType.Special:
+                _animator.ResetTrigger(_SpecialAttackHash);
+                _animator.SetTrigger(_SpecialAttackHash);
+                currentSkillHash = _SpecialAttackHash;
+                break;
+            case SkillType.Melee:
+                _animator.ResetTrigger(_MeleeAttackHash);
+                _animator.SetTrigger(_MeleeAttackHash);
+                currentSkillHash = _MeleeAttackHash;
+                break;
+            case SkillType.Range:
+                _animator.ResetTrigger(_RangeAttackHash);
+                _animator.SetTrigger(_RangeAttackHash);
+                currentSkillHash = _RangeAttackHash;
+                break;
+            default:
+                Debug.LogError("존재하지 않는 스킬");
+                break;
+        }   
+     }
 
     public void SetSpeed(float value)
     {

@@ -38,11 +38,6 @@ public abstract class EnemyAttack : MonoBehaviour
         callBack?.Invoke();
     }
 
-    protected void SetAnimAttack()
-    {
-        _animator.SetAttackTrigger(true, _skillName);
-    }
-
     public void StopAllAct()
     {
         StopAllCoroutines();

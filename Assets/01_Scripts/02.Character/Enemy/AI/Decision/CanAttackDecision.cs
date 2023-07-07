@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class CanAttackDecision : AIDecision
 {
-    [SerializeField] SkillType Skill;
-    FieldInfo fInfo;
     public override bool MakeADecision()
     {
-        return (!_stateInfo.IsAttack &&_brain.AttackCoolController.isCoolDown(Skill));
+        return _aiStateInfo.IsAttack && !_aiStateInfo.IsAttackWait;
     }
 }

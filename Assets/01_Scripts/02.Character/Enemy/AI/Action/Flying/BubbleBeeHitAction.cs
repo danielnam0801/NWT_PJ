@@ -22,19 +22,18 @@ public class BubbleBeeHitAction : AIAction
     public override void TakeAction()
     {
         int dirX = (_brain.Target.position.x - transform.position.x > 0) ? 1 : -1;
-        int dirY = (_brain.Target.position.y - transform.position.y > 0) ? 1 : -1;
         _aiMovementData.direction = new Vector2(
             dirX,
-            Mathf.Abs(_aiMovementData.direction.y) * dirY
+            _aiMovementData.direction.y
         );
 
         _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);
 
-        if (_stateInfo.hitCnt != hitCnt)
+        if (_stateInfo.HitCnt != hitCnt)
         {
             if(hitCnt != 0) _animator.HitHash();
             t = 0;
-            hitCnt = _stateInfo.hitCnt;
+            hitCnt = _stateInfo.HitCnt;
         }
 
         if(t < angryStateTime)
@@ -52,7 +51,7 @@ public class BubbleBeeHitAction : AIAction
     {
         _animator.OnAnimaitionEndTrigger -= EndAnim;
         _animator.SetEndHit();
-        _stateInfo.hitCnt = 0;
+        _stateInfo.InitHitCount();
     }
 
     public void EndAnim()

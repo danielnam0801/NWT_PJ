@@ -12,5 +12,5 @@ public class AIActionData : MonoBehaviour
     public bool IsMoving;
 
     public Vector3 CreatePoint;
-
+    public SkillType nextSkill;
 }
