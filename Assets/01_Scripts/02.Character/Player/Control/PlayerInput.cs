@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
+public class ExtraInput
+{
+    public KeyCode keyCode;
+    public Action action;
+}
+
 public class PlayerInput : MonoBehaviour
 {
     public event Action<Vector2> OnMovementInput;
@@ -20,8 +27,20 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent<ShapeType> R_Input;
     public ShapeType T_Type;
     public UnityEvent<ShapeType> T_Input;
+
+    [SerializeField]
+    private List<ExtraInput> extraInputList;
+    private Dictionary<KeyCode, ExtraInput> extraInputDictionary = new Dictionary<KeyCode, ExtraInput>();
  
     private Vector2 moveDir = Vector2.zero;
+
+    private void Awake()
+    {
+        foreach(ExtraInput extraInput in extraInputList)
+        {
+            extraInputDictionary.Add(extraInput.keyCode, extraInput);
+        }
+    }
 
     private void Update()
     {
@@ -30,6 +49,7 @@ public class PlayerInput : MonoBehaviour
         UpdateDashInput();
         UpdateLeftClickInput();
         SkillInput();
+        UpdateExtraInput();
 
         //모바일
         //if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -83,6 +103,27 @@ public class PlayerInput : MonoBehaviour
             {
                 Q_Input?.Invoke(T_Type);
             }
+        }
+    }
+
+    public void AddInput(KeyCode code, Action _action)
+    {
+        if(extraInputDictionary.ContainsKey(code))
+        {
+            extraInputDictionary[code].action += _action;
+        }
+        else
+        {
+            Debug.Log("등록된 키 없음");
+        }
+    }
+
+    private void UpdateExtraInput()
+    {
+        foreach(ExtraInput input in extraInputList)
+        {
+            if (Input.GetKeyDown(input.keyCode))
+                input.action?.Invoke();
         }
     }
     #endregion

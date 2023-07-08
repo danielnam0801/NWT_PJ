@@ -39,10 +39,14 @@ public class DrawManager : MonoBehaviour
     private bool canDraw = true;
     public bool isDrawArea = false;
     public bool isMaxLength = false;
+    public bool OnTheWall = false;
+    public LayerMask WallLayer;
     private GameObject go;
 
     public PlayerWeapon sword;
     public GameObject player;
+
+    private Camera mainCam;
 
     private bool startDraw;
     public bool IsDraw { get; set; }
@@ -61,6 +65,8 @@ public class DrawManager : MonoBehaviour
         IsDraw = false;
         //Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        mainCam = Camera.main;
 
     }
 
@@ -129,6 +135,13 @@ public class DrawManager : MonoBehaviour
                 currentDrawTime = 0;
             }
 
+            RaycastHit2D hit = Physics2D.Raycast(mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, WallLayer);
+            if (hit.collider != null)
+            {
+                Debug.Log("On The Wall");
+                OnTheWall = true;
+            }
+
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //pos.z = 5;
             if (Vector2.Distance(points[points.Count - 1], pos) > pathPointInterval)
@@ -141,7 +154,7 @@ public class DrawManager : MonoBehaviour
             if (lr.positionCount > maxLienLength)
                 isMaxLength = true;
         }
-        if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength)
+        if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength || OnTheWall)
         {
             //Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -149,6 +162,7 @@ public class DrawManager : MonoBehaviour
             ShapeType _type = ShapeType.Default;
             isMaxLength = false;
             IsDraw = false;
+            OnTheWall = false;
             Debug.Log(points.Count);
 
             DrawEndEvent?.Invoke();

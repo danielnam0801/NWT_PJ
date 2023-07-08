@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private PlayerState state;
-    //public PlayerInput input;
+    private PlayerInput input;
 
     private Dictionary<PlayerStateType, PlayerState> stateDictionary = new Dictionary<PlayerStateType, PlayerState>();
 
@@ -29,10 +29,14 @@ public class PlayerController : MonoBehaviour
             stateScript.Init(transform);
             stateDictionary.Add(state, stateScript);
         }
+
+        input = GetComponent<PlayerInput>();
     }
 
     private void Start()
     {
+        input.AddInput(KeyCode.F, Interact);
+
         ChangeState(PlayerStateType.Movement);
     }
 
@@ -46,5 +50,21 @@ public class PlayerController : MonoBehaviour
         if(state != null) state.ExitState();
         state = stateDictionary[newState];
         state.EnterState();
+    }
+
+    private void Interact()
+    {
+        Debug.Log("interact");
+
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 2f);
+
+        foreach(Collider2D col in cols)
+        {
+            if(col.TryGetComponent<IInteract>(out IInteract interact))
+            {
+                interact.Interact();
+                return;
+            }
+        }
     }
 }

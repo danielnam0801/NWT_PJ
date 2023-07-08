@@ -17,7 +17,7 @@ public class StartUIController : MonoBehaviour
 
         startBtn.RegisterCallback<ClickEvent>(e =>
         {
-            SceneManager.LoadScene("æ¿¿Ãµø");
+            SceneManager.LoadScene("MergeScene 2");
         });
         settingBtn.RegisterCallback<ClickEvent>(e =>
         {

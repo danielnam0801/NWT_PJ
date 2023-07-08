@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00_Scene/Ahn/UIToolKit.unity
     guid: ec2457e343550e04ab63ee3aaf246280
+  - enabled: 1
+    path: Assets/00_Scene/Im/MergeScene 2.unity
+    guid: 6a51e1e3571341c4397c4595647895fa
   m_configObjects: {}
