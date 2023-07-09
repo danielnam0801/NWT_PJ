@@ -5,15 +5,10 @@ using UnityEngine.Events;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public List<ShapeType> HaveShapes;
+    public List<ShapeType> HaveShapes = new List<ShapeType>();
     public UnityEvent HaveShapesOnChanged;
 
-    private void Start()
-    {
-        HaveShapes = new List<ShapeType>();
-    }
-
-    public void GetShape(ShapeType shape)
+    public void AddShape(ShapeType shape)
     {
         HaveShapes.Add(shape);
         HaveShapesOnChanged?.Invoke();

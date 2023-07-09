@@ -8,7 +8,8 @@ using UnityEngine.Events;
 public class ExtraInput
 {
     public KeyCode keyCode;
-    public Action action;
+    public UnityEvent inputAction;
+    public UnityEvent outputAction;
 }
 
 public class PlayerInput : MonoBehaviour
@@ -19,14 +20,14 @@ public class PlayerInput : MonoBehaviour
     public event Action OnLeftClickInput;
     public event Action OnMouseUpAction;
 
-    public ShapeType Q_Type;
-    public UnityEvent<ShapeType> Q_Input;
-    public ShapeType E_Type;
-    public UnityEvent<ShapeType> E_Input;
-    public ShapeType R_Type;
-    public UnityEvent<ShapeType> R_Input;
-    public ShapeType T_Type;
-    public UnityEvent<ShapeType> T_Input;
+    //public ShapeType Q_Type;
+    //public UnityEvent<ShapeType> Q_Input;
+    //public ShapeType E_Type;
+    //public UnityEvent<ShapeType> E_Input;
+    //public ShapeType R_Type;
+    //public UnityEvent<ShapeType> R_Input;
+    //public ShapeType T_Type;
+    //public UnityEvent<ShapeType> T_Input;
 
     [SerializeField]
     private List<ExtraInput> extraInputList;
@@ -48,7 +49,7 @@ public class PlayerInput : MonoBehaviour
         UpdateJumpInput();
         UpdateDashInput();
         UpdateLeftClickInput();
-        SkillInput();
+        //SkillInput();
         UpdateExtraInput();
 
         //¸ð¹ÙÀÏ
@@ -83,34 +84,35 @@ public class PlayerInput : MonoBehaviour
             OnLeftClickInput?.Invoke();
     }
 
-    private void SkillInput()
-    {
-        if(Input.anyKeyDown)
-        {
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                Q_Input?.Invoke(Q_Type);
-            }
-            else if(Input.GetKeyDown(KeyCode.E))
-            {
-                Q_Input?.Invoke(E_Type);
-            }
-            else if (Input.GetKeyDown(KeyCode.R))
-            {
-                Q_Input?.Invoke(R_Type);
-            }
-            else if (Input.GetKeyDown(KeyCode.T))
-            {
-                Q_Input?.Invoke(T_Type);
-            }
-        }
-    }
+    //private void SkillInput()
+    //{
+    //    if(Input.anyKeyDown)
+    //    {
+    //        if(Input.GetKeyDown(KeyCode.Q))
+    //        {
+    //            Q_Input?.Invoke(Q_Type);
+    //        }
+    //        else if(Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            Q_Input?.Invoke(E_Type);
+    //        }
+    //        else if (Input.GetKeyDown(KeyCode.R))
+    //        {
+    //            Q_Input?.Invoke(R_Type);
+    //        }
+    //        else if (Input.GetKeyDown(KeyCode.T))
+    //        {
+    //            Q_Input?.Invoke(T_Type);
+    //        }
+    //    }
+    //}
 
-    public void AddInput(KeyCode code, Action _action)
+    public void AddInput(KeyCode code, UnityAction _inputAction, UnityAction _outputAction = null)
     {
         if(extraInputDictionary.ContainsKey(code))
         {
-            extraInputDictionary[code].action += _action;
+            extraInputDictionary[code].inputAction.AddListener(_inputAction);
+            extraInputDictionary[code].outputAction.AddListener(_outputAction);
         }
         else
         {
@@ -123,7 +125,9 @@ public class PlayerInput : MonoBehaviour
         foreach(ExtraInput input in extraInputList)
         {
             if (Input.GetKeyDown(input.keyCode))
-                input.action?.Invoke();
+                input.inputAction?.Invoke();
+            else if(Input.GetKeyUp(input.keyCode))
+                input.outputAction?.Invoke();
         }
     }
     #endregion

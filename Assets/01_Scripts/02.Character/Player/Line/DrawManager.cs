@@ -11,7 +11,6 @@ public class DrawManager : MonoBehaviour
     public static DrawManager Instance;
     public UnityEvent DrawStartEvent;
     public UnityEvent DrawEndEvent;
-    //public Action<List<Vector2>> CheckLine;
     public List<GuideLine> GuideLines;
 
     public GameObject linePrefab;
@@ -39,9 +38,12 @@ public class DrawManager : MonoBehaviour
     private bool canDraw = true;
     public bool isDrawArea = false;
     public bool isMaxLength = false;
-    public bool OnTheWall = false;
+    //public bool OnTheWall = false;
     public LayerMask WallLayer;
     private GameObject go;
+
+    [field:SerializeField]
+    public bool isUIMouse { get; set; }
 
     public PlayerWeapon sword;
     public GameObject player;
@@ -63,7 +65,6 @@ public class DrawManager : MonoBehaviour
     {
         startDraw = false;
         IsDraw = false;
-        //Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
         mainCam = Camera.main;
@@ -101,13 +102,12 @@ public class DrawManager : MonoBehaviour
 
     private void Draw()
     {
-        //if (!canDraw)
-        //    return;
+        if (isUIMouse)
+            return;
 
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
         if (canDraw && Input.GetMouseButtonDown(0))
         {
-            //Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
             startDraw = false;
@@ -135,15 +135,14 @@ public class DrawManager : MonoBehaviour
                 currentDrawTime = 0;
             }
 
-            RaycastHit2D hit = Physics2D.Raycast(mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, WallLayer);
-            if (hit.collider != null)
-            {
-                Debug.Log("On The Wall");
-                OnTheWall = true;
-            }
+            //RaycastHit2D hit = Physics2D.Raycast(mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, WallLayer);
+            //if (hit.collider != null)
+            //{
+            //    Debug.Log("On The Wall");
+            //    OnTheWall = true;
+            //}
 
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //pos.z = 5;
             if (Vector2.Distance(points[points.Count - 1], pos) > pathPointInterval)
             {
                 points.Add(pos);
@@ -154,15 +153,14 @@ public class DrawManager : MonoBehaviour
             if (lr.positionCount > maxLienLength)
                 isMaxLength = true;
         }
-        if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength || OnTheWall)
+        if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength /*|| OnTheWall*/)
         {
-            //Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
             ShapeType _type = ShapeType.Default;
             isMaxLength = false;
             IsDraw = false;
-            OnTheWall = false;
+            //OnTheWall = false;
             Debug.Log(points.Count);
 
             DrawEndEvent?.Invoke();
@@ -180,9 +178,6 @@ public class DrawManager : MonoBehaviour
                     SwordAttack(_type);
                     return;
                 }
-
-                //if(_type != ShapeType.Default && _type != ShapeType.Triangle)
-                //    points.Add(GuideLines[i].transform.position);
             }
 
             Debug.Log(points.Count);
@@ -202,25 +197,7 @@ public class DrawManager : MonoBehaviour
             canDraw = false;
             sword.Attack(points, _type);
         }
-
-        //points.Clear();
     }
-
-    //private IEnumerator SwordMove()
-    //{
-    //    isDrawArea = false;
-    //    Destroy(go.gameObject);
-    //    if (points.Count > minDrawPoint)
-    //    {
-    //        canDraw = false;
-    //        //yield return StartCoroutine(sword.Attack(points));
-    //    }
-        
-    //    //CheckLine?.Invoke(points);
-
-    //    points.Clear();
-    //}
-
     private IEnumerator DelayDraw(float time)
     {
         yield return new WaitForSeconds(time);

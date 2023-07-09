@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/inventoryStyle.uss?fileID=7433441132597879392&amp;guid=d32e8d73f1d4c3846967685ce6f83d22&amp;type=3#inventoryStyle" />
+    <ui:VisualElement name="item" class="Item item" style="top: 220px; left: 636px; rotate: 45deg;">
+        <ui:VisualElement name="image" style="background-image: url(&apos;project://database/Assets/02_Assets/Effect/3153666.jpg?fileID=2800000&amp;guid=c5f7d9f54d22f524d8306f2e1e713a3b&amp;type=3#3153666&apos;);" />
+    </ui:VisualElement>
+    <ui:VisualElement name="item" class="Item item" style="top: 512px; left: 816px; rotate: 90deg;">
+        <ui:VisualElement name="image" style="background-image: url(&apos;project://database/Assets/02_Assets/Effect/3153666.jpg?fileID=2800000&amp;guid=c5f7d9f54d22f524d8306f2e1e713a3b&amp;type=3#3153666&apos;);" />
+    </ui:VisualElement>
+    <ui:VisualElement name="item" class="Item item" style="top: 200px; left: 1032px; rotate: 135deg;">
+        <ui:VisualElement name="image" style="background-image: url(&apos;project://database/Assets/02_Assets/Effect/3153666.jpg?fileID=2800000&amp;guid=c5f7d9f54d22f524d8306f2e1e713a3b&amp;type=3#3153666&apos;);" />
+    </ui:VisualElement>
+</ui:UXML>
