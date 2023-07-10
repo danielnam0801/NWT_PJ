@@ -33,6 +33,8 @@ public abstract class EnemyAttack : MonoBehaviour
         afterPlayAction();
     }
 
+    //public abstract void OnAnimEventAction();
+
     public void CallbackPlay()
     {
         callBack?.Invoke();

@@ -30,7 +30,7 @@ public class AttackCoolController : MonoBehaviour
     AIStateInfo _stateInfo;
     AIActionData _actionData;   
 
-    SkillType skillname;
+    SkillType skillName;
 
     [Header("CoolValue")]
     [SerializeField] private float rangeCool = 5f;    
@@ -156,13 +156,13 @@ public class AttackCoolController : MonoBehaviour
 
     public virtual bool Attack(SkillType skillname)
     {
-        this.skillname = skillname;
-
+        
         // 현재 들어온 공격이 우선순위 1순위가 아니라면
         if (attackQueue.Peek().AttackName != skillname) return false;
         if (_stateInfo.IsAttack || _stateInfo.IsAttackWait) return false;
         if (isCoolDown(skillname) == false) return false;
 
+        this.skillName = skillname;  
         _actionData.nextSkill = skillname;
         _stateInfo.IsAttackWait = true;
         StartCoroutine(AttackWait());
@@ -176,11 +176,11 @@ public class AttackCoolController : MonoBehaviour
         yield return new WaitUntil(() => !_stateInfo.IsHit);
         
         EnemyAttackData atkData = null;
-        if (_attackDictionary.TryGetValue(skillname, out atkData))
+        if (_attackDictionary.TryGetValue(skillName, out atkData))
         {
             _movement.StopImmediatelly();
             atkData.atk.Attack(atkData.action);
-            SetAttackValue(skillname);
+            SetAttackValue(skillName);
             GotoEndQueue();
 
             _stateInfo.IsAttack = true;

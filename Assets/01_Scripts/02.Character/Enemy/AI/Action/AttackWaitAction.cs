@@ -6,15 +6,10 @@ public class AttackWaitAction : AIAction
 {
     public override void InitAction()
     {
-    }
-
-    public override void TakeAction()
-    {
         _brain.EnemyMovement.StopImmediatelly();
     }
 
-    public override void ExitAction()
-    {
-        
-    }
+    public override void TakeAction() {}
+
+    public override void ExitAction() {}
 }

@@ -33,14 +33,15 @@ public class JumpAttack : EnemyAttack, INormalAttack
     public void Attack(Action CallBack)
     {
         this.callBack = CallBack;
-        JumpAct();
+        _animator.OnAnimaitionEventTrigger += OnAnimEventAction;
     }
 
-    void JumpAct()
+    public void OnAnimEventAction()
     {
         rb2d.gravityScale = 0f;
         //Debug.Log("JumpStart");
         Jump();
+
     }
 
     private void Jump()
@@ -48,8 +49,8 @@ public class JumpAttack : EnemyAttack, INormalAttack
         Vector3 deltaPos = transform.position - _brain.BasePos.position;
         Vector3 targetPos = _brain.GetTargetUnderPosition(); //점프 지점
         Vector3 startControl = (targetPos - transform.position) / 4;
-        //Debug.Log("DeltaPos + " + deltaPos);
-        //Debug.Log("targetPOs + " + targetPos);
+        Debug.Log("DeltaPos + " + deltaPos);
+        Debug.Log("targetPOs + " + targetPos);
 
         float angle = targetPos.x - transform.position.x < 0 ? -45f : 45f;
 
@@ -120,6 +121,7 @@ public class JumpAttack : EnemyAttack, INormalAttack
         {
             Debug.Log("ISATTackINs");
             callBack?.Invoke();
+            _animator.OnAnimaitionEventTrigger -= OnAnimEventAction;
             //AttackEndFeedback?.Invoke();
         }));
     }
