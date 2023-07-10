@@ -40,10 +40,12 @@ public class InventoryUI : MonoBehaviour
         {
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             SetElementInfo();
+            DrawManager.Instance.isUIMouse = true;
         }
         else
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            DrawManager.Instance.isUIMouse = false;
         }
     }
 

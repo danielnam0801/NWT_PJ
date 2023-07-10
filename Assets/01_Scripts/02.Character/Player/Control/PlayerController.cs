@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
 
     private Dictionary<PlayerStateType, PlayerState> stateDictionary = new Dictionary<PlayerStateType, PlayerState>();
 
+
+    [field: SerializeField]
+    public bool Interactable { get; set; }
+
     private void Awake()
     {
         Transform stateTrm = transform.Find("States");
@@ -36,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         ChangeState(PlayerStateType.Movement);
+        Interactable = true;
     }
 
     void Update()
@@ -52,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     public void Interact()
     {
+        if(!Interactable) return;
+
         Debug.Log("interact");
 
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 2f);

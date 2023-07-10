@@ -3911,9 +3911,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 7121441563426792790}
-          m_TargetAssemblyTypeName: DrawManager, Assembly-CSharp
-          m_MethodName: set_isUIMouse
+        - m_Target: {fileID: 1037148952}
+          m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+          m_MethodName: set_Interactable
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3921,7 +3921,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
     outputAction:
       m_PersistentCalls:
@@ -3938,9 +3938,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 7121441563426792790}
-          m_TargetAssemblyTypeName: DrawManager, Assembly-CSharp
-          m_MethodName: set_isUIMouse
+        - m_Target: {fileID: 1037148952}
+          m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+          m_MethodName: set_Interactable
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3948,7 +3948,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
 --- !u!114 &1037148952
 MonoBehaviour:
@@ -3963,6 +3963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 0}
+  <Interactable>k__BackingField: 0
 --- !u!114 &1037148953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7341,6 +7342,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerInventory, Assembly-CSharp
         m_MethodName: RemoveShape
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1037148957}
+        m_TargetAssemblyTypeName: PlayerInventory, Assembly-CSharp
+        m_MethodName: GainGetShape
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16335,6 +16348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 0}
+  <Interactable>k__BackingField: 0
 --- !u!114 &7121441562194724187
 MonoBehaviour:
   m_ObjectHideFlags: 0

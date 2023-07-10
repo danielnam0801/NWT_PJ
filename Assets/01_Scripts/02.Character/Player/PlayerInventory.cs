@@ -10,6 +10,7 @@ public class PlayerInventory : MonoBehaviour
     public List<ShapeType> HaveShapes = new List<ShapeType>();
 
     public UnityEvent FullCountShapeAction;
+    private ShapeType getShape;
 
     public void AddShape(ShapeType shape)
     {
@@ -20,8 +21,14 @@ public class PlayerInventory : MonoBehaviour
         else
         {
             FullCountShapeAction?.Invoke();
-            HaveShapes.Add(shape);
+            getShape = shape;
+            //HaveShapes.Add(shape);
         }
+    }
+
+    public void GainGetShape()
+    {
+        HaveShapes.Add(getShape);
     }
 
     public void RemoveShape(ShapeType type)
