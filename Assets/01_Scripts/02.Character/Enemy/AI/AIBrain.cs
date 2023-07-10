@@ -7,8 +7,6 @@ using UnityEngine.Events;
 public class AIBrain : MonoBehaviour
 {
     public UnityEvent<Vector2> OnMovementKeyPress;
-    public UnityEvent<Vector2> AttackAndChaseStateChanged;
-    public UnityEvent<Vector2, Vector2> IdleStateStateChanged;
     public UnityEvent OnFireButtonPress;
 
     [SerializeField]
@@ -49,6 +47,7 @@ public class AIBrain : MonoBehaviour
         enemy = transform.GetComponent<Enemy>();
         _enemyMovement = GetComponent<EnemyMovement>();
         _attackCoolController = GetComponent<AttackCoolController>();
+        _enemyAnim = transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
 
         Transform rootAI = transform.Find("AI").transform;
         AIActionData = rootAI.GetComponent<AIActionData>();
@@ -98,10 +97,6 @@ public class AIBrain : MonoBehaviour
     public void Move(Vector2 direction, Vector3 targetPos)
     {
         OnMovementKeyPress?.Invoke(direction);
-        if (!AIActionData.IsIdle)
-            AttackAndChaseStateChanged?.Invoke(targetPos);
-        else
-            IdleStateStateChanged?.Invoke(AIMovementData.direction, AIMovementData.beforeDirection);
     }
 
     public virtual bool Attack(SkillType skillName)

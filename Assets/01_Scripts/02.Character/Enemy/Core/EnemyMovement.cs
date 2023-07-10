@@ -5,16 +5,24 @@ using UnityEngine.Events;
 
 public class EnemyMovement : MonoBehaviour
 {
-    Enemy _enemy;
-
-    protected Rigidbody2D rb;
-    public UnityEvent<float> onVelocityChange;
-
-    protected float _currentVelocity = 0;
     [SerializeField] private float lerpTime = 0.5f;
-    protected Vector2 _movementdirection;
+    protected float _currentVelocity = 0;
+
+    protected Vector2 _movementdirection = Vector2.zero;
+    public Vector2 MovementDirection
+    {
+        get { return _movementdirection; }
+        set 
+        {
+            if (_movementdirection != value && _movementdirection != Vector2.zero)
+                _enemy.EnemyAnimator.Flip();
+            _movementdirection = value; 
+        }
+    }
 
     protected AIMovementData _data;
+    protected Enemy _enemy;
+    protected Rigidbody2D rb;
 
     protected virtual void Awake()
     {
@@ -23,9 +31,14 @@ public class EnemyMovement : MonoBehaviour
         _data = transform.Find("AI").GetComponent<AIMovementData>();
     }
 
+    private void Update()
+    {
+        _enemy.EnemyAnimator.SetSpeed(_currentVelocity);
+    }
+
     public void MoveAgent(Vector2 moveInput)
-    {   
-        _movementdirection = moveInput;
+    {
+        MovementDirection = moveInput;
     }
 
     public void SetSpeed(float speed)
@@ -40,12 +53,6 @@ public class EnemyMovement : MonoBehaviour
             StartCoroutine(MoveLerp(speed));
         }
     }
-
-    private void Update()
-    {
-        _enemy.EnemyAnimator.SetSpeed(_currentVelocity);
-    }
-
     public void StopImmediatelly()
     {
         StopAllCoroutines();
@@ -63,4 +70,6 @@ public class EnemyMovement : MonoBehaviour
             _currentVelocity = Mathf.Lerp(_currentVelocity, speed, t / lerpTime);
         }
     }
+
+
 }

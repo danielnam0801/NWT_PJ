@@ -15,7 +15,6 @@ public class IdleAction : AIAction
 
     public override void TakeAction()
     {
-        Debug.Log("IDle");
         if(_aiMovementData.direction.x == 0 && _aiMovementData.direction.y == 0)
         {
             _aiMovementData.Speed = 0;

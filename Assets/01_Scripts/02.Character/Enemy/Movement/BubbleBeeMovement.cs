@@ -32,10 +32,10 @@ public class BubbleBeeMovement : FlyingMovement
         float x = Time.time;
         float value = Wave(a1, f1, p1, x) + Wave(a2, f2, p2, x) + Wave(a3, f3, p3, x);
 
-        _movementdirection = new Vector2(_movementdirection.x, value * ySpeed).normalized;
-        _data.direction = _movementdirection;
+        MovementDirection = new Vector2(MovementDirection.x, value * ySpeed).normalized;
+        _data.direction = MovementDirection;
 
-        _brain.Move(_movementdirection, transform.position);
+        _brain.Move(MovementDirection, transform.position);
     }
 
     float Wave(float a, float f, float p, float x) => a * Mathf.Sin(f * x + p);

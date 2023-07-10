@@ -5540,7 +5540,7 @@ Transform:
   m_Children:
   - {fileID: 425339824}
   m_Father: {fileID: 4356950107337601781}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1713860555
 MonoBehaviour:
@@ -6011,6 +6011,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1235631542}
+  - {fileID: 4356950106737989537}
   m_Father: {fileID: 4356950107337601781}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8050,36 +8051,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  AttackAndChaseStateChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4356950106237391951}
-        m_TargetAssemblyTypeName: AgentRenderer, Assembly-CSharp
-        m_MethodName: ChaseAttackFaceDirection
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  IdleStateStateChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4356950106237391951}
-        m_TargetAssemblyTypeName: AgentRenderer, Assembly-CSharp
-        m_MethodName: IdleFaceDirection
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   OnFireButtonPress:
     m_PersistentCalls:
       m_Calls: []
@@ -8318,9 +8289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203738fc14620154d9c6a2dc9dc172ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onVelocityChange:
-    m_PersistentCalls:
-      m_Calls: []
   lerpTime: 0.5
 --- !u!114 &4356950106291052717
 MonoBehaviour:
@@ -8532,14 +8500,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4356950106737989536}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4356950106584664198}
-  m_Father: {fileID: 4356950107337601781}
-  m_RootOrder: 3
+  m_Father: {fileID: 1783774096}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4356950106737989542
 MonoBehaviour:
@@ -8735,7 +8703,6 @@ Transform:
   - {fileID: 4356950107859383246}
   - {fileID: 4356950106879080428}
   - {fileID: 1783774096}
-  - {fileID: 4356950106737989537}
   - {fileID: 4356950107706121592}
   - {fileID: 1713860554}
   m_Father: {fileID: 4356950106291052708}
@@ -8773,10 +8740,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
-  beforeDirection: {x: 0, y: 0}
   pointOfInterest: {x: 0, y: 0}
   canMove: 1
   thinkTime: 0
+  speed: 0
 --- !u!114 &4356950107337601787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8854,7 +8821,7 @@ Transform:
   m_Children:
   - {fileID: 4356950106597924770}
   m_Father: {fileID: 4356950107337601781}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4356950107706121593
 MonoBehaviour:

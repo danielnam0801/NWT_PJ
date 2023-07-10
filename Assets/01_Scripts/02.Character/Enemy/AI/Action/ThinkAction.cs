@@ -36,7 +36,6 @@ public class ThinkAction : AIAction
     {
         yield return new WaitForSeconds(thinkTime);
         _aiActionData.IsCanThinking = true;
-        _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
     }
 
     public override void ExitAction()
