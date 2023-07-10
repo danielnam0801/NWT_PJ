@@ -5,13 +5,23 @@ using UnityEngine.Events;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [SerializeField]
+    private int maxShape = 3;
     public List<ShapeType> HaveShapes = new List<ShapeType>();
-    public UnityEvent HaveShapesOnChanged;
+
+    public UnityEvent FullCountShapeAction;
 
     public void AddShape(ShapeType shape)
     {
-        HaveShapes.Add(shape);
-        HaveShapesOnChanged?.Invoke();
+        if(HaveShapes.Count < maxShape)
+        {
+            HaveShapes.Add(shape);
+        }
+        else
+        {
+            FullCountShapeAction?.Invoke();
+            HaveShapes.Add(shape);
+        }
     }
 
     public void RemoveShape(ShapeType type)
@@ -19,7 +29,6 @@ public class PlayerInventory : MonoBehaviour
         if(HaveShapes.Contains(type))
         {
             HaveShapes.Remove(type);
-            HaveShapesOnChanged?.Invoke();
         }
         else
         {

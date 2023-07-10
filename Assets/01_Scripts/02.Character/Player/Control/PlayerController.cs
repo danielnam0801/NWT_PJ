@@ -35,8 +35,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        input.AddInput(KeyCode.F, Interact);
-
         ChangeState(PlayerStateType.Movement);
     }
 
@@ -52,7 +50,7 @@ public class PlayerController : MonoBehaviour
         state.EnterState();
     }
 
-    private void Interact()
+    public void Interact()
     {
         Debug.Log("interact");
 
@@ -62,7 +60,7 @@ public class PlayerController : MonoBehaviour
         {
             if(col.TryGetComponent<IInteract>(out IInteract interact))
             {
-                interact.Interact();
+                interact.Interact(gameObject);
                 return;
             }
         }

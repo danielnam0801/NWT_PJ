@@ -1,7 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
+
+[Serializable]
+public enum InventoryClickEventType
+{
+    Create = 1,
+    Remove
+}
 
 public class InventoryUI : MonoBehaviour
 {
@@ -9,6 +18,11 @@ public class InventoryUI : MonoBehaviour
 
     private PlayerAttack attack;
     private PlayerInventory inventory;
+
+    private UnityEvent<ShapeType> clickAction;
+
+    public UnityEvent<ShapeType> CreateShapeEvent;
+    public UnityEvent<ShapeType> RemoveShapeEvent;
 
     private void Awake()
     {
@@ -33,6 +47,26 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public void SetClickEvent(int eventType)
+    {
+        switch (eventType)
+        {
+            case (int)InventoryClickEventType.Create:
+                clickAction = CreateShapeEvent;
+                break;
+            case (int)InventoryClickEventType.Remove:
+                clickAction= RemoveShapeEvent;
+                break;
+        }
+    }
+
+    public UnityEvent<ShapeType> SetClickAction(UnityEvent<ShapeType> action)
+    {
+        UnityEvent<ShapeType> beforeAction = clickAction;
+        clickAction = action;
+        return beforeAction;
+    }
+
     private void SetElementInfo()
     {
         VisualElement root = document.rootVisualElement;
@@ -45,17 +79,21 @@ public class InventoryUI : MonoBehaviour
             ShapeType shape = inventory.HaveShapes[i];
 
             if (shape == ShapeType.Default)
-                continue;
-
-            //item.Q<VisualElement>("image").style.backgroundImage.value.sprite = 
-
-                
-            items[i].RegisterCallback<ClickEvent>(e =>
             {
-                Debug.Log(shape);
-                attack.CreateShpae(shape);
-                SetActive(false);
-            });
+                VisualElement image = items[i].Q<VisualElement>("image");
+                StyleBackground background = new StyleBackground();
+                image.style.backgroundImage = background;
+            }
+            else
+            {
+                ///item.Q<VisualElement>("image").style.backgroundImage.value.sprite =
+
+                items[i].RegisterCallback<ClickEvent>(e =>
+                {
+                    clickAction?.Invoke(shape);
+                    SetActive(false);
+                });
+            }
         }
     }
 }
