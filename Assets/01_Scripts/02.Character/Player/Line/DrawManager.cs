@@ -35,6 +35,7 @@ public class DrawManager : MonoBehaviour
     LineRenderer lr;
     public List<Vector2> points = new List<Vector2>();
 
+    [SerializeField]
     private bool canDraw = true;
     public bool isDrawArea = false;
     public bool isMaxLength = false;
@@ -49,7 +50,6 @@ public class DrawManager : MonoBehaviour
     public GameObject player;
 
     private Camera mainCam;
-
     private bool startDraw;
     public bool IsDraw { get; set; }
 
@@ -73,8 +73,8 @@ public class DrawManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            StartDraw();
+        //if (Input.GetMouseButtonDown(0))
+        //    StartDraw();
 
         Draw();
     }
@@ -95,18 +95,36 @@ public class DrawManager : MonoBehaviour
             GuideLines.Remove(line);
     }
 
-    public void StartDraw()
+    public void ToggleStartDraw()
     {
-        startDraw = true;
+        if (!canDraw)
+            return;
+
+        startDraw = !startDraw;
     }
 
     private void Draw()
     {
+        if(IsDraw)
+        {
+            currentDrawTime += Time.unscaledDeltaTime;
+            if (currentDrawTime >= MaxDrawTime)
+            {
+                IsDraw = false;
+                isMaxLength = false;
+                //canDraw = true;
+                DrawEndEvent?.Invoke();
+                Destroy(go.gameObject);
+                currentDrawTime = 0;
+                SetDelayDraw(sword.Info.attackDelayTime);
+            }
+        }
+
         if (isUIMouse)
             return;
 
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
-        if (canDraw && Input.GetMouseButtonDown(0))
+        if (canDraw && startDraw)
         {
             Cursor.lockState = CursorLockMode.None;
 
@@ -117,37 +135,37 @@ public class DrawManager : MonoBehaviour
             points.Clear();
             go = Instantiate(linePrefab);
             lr = go.GetComponent<LineRenderer>();
-            points.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            lr.positionCount = 1;
-            lr.SetPosition(0, points[0]);
-
+            lr.positionCount = 0;
+            //points.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            //lr.positionCount = 1;
+            //lr.SetPosition(0, points[0]);
         }
         else if (IsDraw && Input.GetMouseButton(0))
         {
-            currentDrawTime += Time.unscaledDeltaTime;
-            if (currentDrawTime >= MaxDrawTime)
-            {
-                IsDraw = false;
-                isMaxLength = false;
-                canDraw = true;
-                DrawEndEvent?.Invoke();
-                Destroy(go.gameObject);
-                currentDrawTime = 0;
-            }
-
+            #region º® ¸¸³ª¸é ±×¸®±â ¸ØÃã
             //RaycastHit2D hit = Physics2D.Raycast(mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, WallLayer);
             //if (hit.collider != null)
             //{
             //    Debug.Log("On The Wall");
             //    OnTheWall = true;
             //}
-
+            #endregion
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (Vector2.Distance(points[points.Count - 1], pos) > pathPointInterval)
+
+            if(points.Count == 0)
             {
                 points.Add(pos);
                 lr.positionCount++;
-                lr.SetPosition(lr.positionCount - 1, pos);
+                lr.SetPosition(0, pos);
+            }
+            else
+            {
+                if (Vector2.Distance(points[points.Count - 1], pos) > pathPointInterval)
+                {
+                    points.Add(pos);
+                    lr.positionCount++;
+                    lr.SetPosition(lr.positionCount - 1, pos);
+                }
             }
 
             if (lr.positionCount > maxLienLength)
@@ -156,7 +174,7 @@ public class DrawManager : MonoBehaviour
         if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength /*|| OnTheWall*/)
         {
             Cursor.lockState = CursorLockMode.Locked;
-
+            currentDrawTime = 0;
             ShapeType _type = ShapeType.Default;
             isMaxLength = false;
             IsDraw = false;
