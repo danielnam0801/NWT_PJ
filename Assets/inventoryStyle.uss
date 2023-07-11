@@ -1,6 +1,6 @@
 .item {
     position: absolute;
-    width: 150px;
+    width: 250px;
     height: 250px;
     background-color: rgba(0, 0, 0, 0.59);
     align-items: center;
@@ -10,13 +10,17 @@
     border-right-color: rgba(207, 178, 178, 0);
     border-top-color: rgba(207, 178, 178, 0);
     border-bottom-color: rgba(207, 178, 178, 0);
+    border-top-left-radius: 250px;
+    border-bottom-left-radius: 250px;
+    border-top-right-radius: 250px;
+    border-bottom-right-radius: 250px;
 }
 
 .item:hover {
-    border-left-color: rgba(207, 178, 178, 255);
-    border-right-color: rgba(207, 178, 178, 255);
-    border-top-color: rgba(207, 178, 178, 255);
-    border-bottom-color: rgba(207, 178, 178, 255);
+    border-left-color: rgb(207, 178, 178);
+    border-right-color: rgb(207, 178, 178);
+    border-top-color: rgb(207, 178, 178);
+    border-bottom-color: rgb(207, 178, 178);
     border-left-width: 5px;
     border-right-width: 5px;
     border-top-width: 5px;

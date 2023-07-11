@@ -15,6 +15,9 @@ public class PlayerMovementState : PlayerState
 
     private float gravityScale = -9.81f;
 
+    [SerializeField]
+    private bool isJump = false;
+
     public override void EnterState()
     {
         input.OnMovementInput += Move;
@@ -35,7 +38,10 @@ public class PlayerMovementState : PlayerState
     public override void UpdateState()
     {
         if (movement.CheckGround() && movement.Velocity.y < 0)
+        {
             currentJumpCount = 0;
+            anim.PlayJumpAnimation(false);
+        }
     }
 
     private void Move(Vector2 inputVector)
@@ -78,7 +84,7 @@ public class PlayerMovementState : PlayerState
                 currentJumpCount++;
         }
 
-        anim.PlayJumpAnimation();
+        anim.PlayJumpAnimation(true);
         float jumpPower = Mathf.Sqrt(status.JumpHeight * 2 * -2f * gravityScale);
         movement.SetVerticalVelocity(jumpPower);
         currentJumpCount++;

@@ -7,7 +7,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator _animator;
 
     private int moveHash = Animator.StringToHash("Move");
-    private int jumpHash = Animator.StringToHash("Jump");
+    private int jumpHash = Animator.StringToHash("jump");
 
     private void Awake()
     {
@@ -19,11 +19,8 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetFloat(moveHash, value);
     }
 
-    public void PlayJumpAnimation()
+    public void PlayJumpAnimation(bool value)
     {
-        if(!_animator.GetAnimatorTransitionInfo(0).IsName("PlayerJump"))
-        {
-            _animator.SetTrigger(jumpHash);
-        }    
+        _animator.SetBool(jumpHash, value);  
     }
 }

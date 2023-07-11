@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 20
   stayTime: 5
-  pointUnitMoveTime: 0.003
+  pointUnitMoveTime: 0.001
   followSpeed: 5
   followMinDistance: 0.3
   attackDelayTime: 3.5

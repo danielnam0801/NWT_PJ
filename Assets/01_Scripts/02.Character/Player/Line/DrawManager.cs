@@ -209,6 +209,7 @@ public class DrawManager : MonoBehaviour
         Destroy(go.gameObject);
         Debug.Log("sword attack");
         Debug.Log(_type);
+        canDraw = true;
 
         if (points.Count > minDrawPoint)
         {
