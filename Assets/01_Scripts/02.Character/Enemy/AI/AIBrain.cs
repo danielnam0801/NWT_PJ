@@ -6,14 +6,12 @@ using UnityEngine.Events;
 
 public class AIBrain : MonoBehaviour
 {
+    #region º¯¼öµé   
     public UnityEvent<Vector2> OnMovementKeyPress;
-    public UnityEvent OnFireButtonPress;
 
     [SerializeField]
     private AIState _currentState;
-
     public AIState CurrentState => _currentState;
-
     [SerializeField]
     private Transform _target;
     public Transform Target => _target;
@@ -24,7 +22,8 @@ public class AIBrain : MonoBehaviour
     public Transform BasePos => _basePos;
     public AIActionData AIActionData { get; private set; }
     public AIMovementData AIMovementData { get; private set; }
-   
+    public AIStateInfo AIStateInfo { get; private set; }
+  
     private EnemyMovement _enemyMovement;
     public EnemyMovement EnemyMovement => _enemyMovement;
 
@@ -32,18 +31,14 @@ public class AIBrain : MonoBehaviour
     public AttackCoolController AttackCoolController => _attackCoolController;
     Enemy enemy;
     public Enemy Enemy => enemy;
-
     public EnemyAgentAnimator _enemyAnim { get; private set; }
-    //public GroundEnemyAnim GroundEnemyAnim { get => _groundEnemyAnim; }
-    private AIStateInfo _stateInfo;
-    AIState hitState;
 
     private List<AITransition> _anyTransitions = new List<AITransition>();
     public List<AITransition> AnyTransitions => _anyTransitions;
+    #endregion
 
     protected virtual void Awake()
     {
-        
         enemy = transform.GetComponent<Enemy>();
         _enemyMovement = GetComponent<EnemyMovement>();
         _attackCoolController = GetComponent<AttackCoolController>();
@@ -51,10 +46,8 @@ public class AIBrain : MonoBehaviour
 
         Transform rootAI = transform.Find("AI").transform;
         AIActionData = rootAI.GetComponent<AIActionData>();
-        Debug.Log(rootAI);
         AIMovementData = rootAI.GetComponent<AIMovementData>();
-        _stateInfo = rootAI.GetComponent<AIStateInfo>();
-        hitState = rootAI.Find("HitState").GetComponent<AIState>();
+        AIStateInfo = rootAI.GetComponent<AIStateInfo>();
 
         Transform anyTranTrm = transform.Find("AI/AnyTransitions");
         if (anyTranTrm != null)
@@ -67,7 +60,6 @@ public class AIBrain : MonoBehaviour
         _target = GameManager.instance.Target;
         _currentState.InitState();
     }
-
     protected void Update()
     {
         if (_target == null)
@@ -87,6 +79,7 @@ public class AIBrain : MonoBehaviour
         if (ray.collider != null) return ray.point;
         else return _target.position;
     }
+
     public void ChangeState(AIState state)
     {
         _currentState.ExitState();
@@ -102,13 +95,5 @@ public class AIBrain : MonoBehaviour
     public virtual bool Attack(SkillType skillName)
     {
         return _attackCoolController.Attack(skillName);
-    }
-    
-    public void ChangeToHitState()
-    {
-        if(_currentState != hitState && _stateInfo.IsAttack == false)
-        {
-            ChangeState(hitState);
-        }
     }
 }

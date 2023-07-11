@@ -9,12 +9,14 @@ public class AttackAction : AIAction
     //public bool isAnimTriggerOn = true; //적 공격 끝나는것을 애니메이션 트리거로 통제할지, 아니면 스크립트로 제어할지
     public override void InitAction()
     {
+        Debug.Log("isattacKin");
         _animator.SetAttackState(true);
         _animator.SetAttackTrigger(_aiActionData.nextSkill);
     }
     public override void TakeAction() { }
     public override void ExitAction()
     {
+        _stateInfo.Init();
         _animator.SetAttackState(false);
     }
 }

@@ -16,6 +16,7 @@ public class BubbleBeeHitAction : AIAction
         t = 0;
         _stateInfo.IsAttack = true;
         _animator.OnAnimaitionEndTrigger += EndAnim;
+        _animator.SetAttackState(true);
         _animator.SetDamageHash(_brain.Enemy.Health);
     }
 
@@ -51,6 +52,7 @@ public class BubbleBeeHitAction : AIAction
     {
         _animator.OnAnimaitionEndTrigger -= EndAnim;
         _animator.SetEndHit();
+        _animator.SetAttackState(false);
         _stateInfo.InitHitCount();
     }
 

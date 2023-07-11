@@ -11,5 +11,10 @@ public class AttackWaitAction : AIAction
 
     public override void TakeAction() {}
 
-    public override void ExitAction() {}
+    public override void ExitAction()
+    {
+        Vector3 dir = _brain.Target.position - transform.position;
+        _aiMovementData.direction.x = dir.x < 0 ? -1 : 1;
+        _brain._enemyAnim.Flip();
+    }
 }

@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
         get { return _movementdirection; }
         set 
         {
-            if (_movementdirection != value && _movementdirection != Vector2.zero)
+            if (_movementdirection != Vector2.zero)
                 _enemy.EnemyAnimator.Flip();
             _movementdirection = value; 
         }

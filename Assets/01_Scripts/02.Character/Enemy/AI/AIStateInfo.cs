@@ -29,6 +29,8 @@ public class AIStateInfo : MonoBehaviour
 
     public void PlusHitCount() => hitcnt++;
     public void InitHitCount() => hitcnt = 0;
+
+    public void Init() => IsAttack = IsNormal = IsSpecial = IsMelee = IsRange = false;
 }
 
 

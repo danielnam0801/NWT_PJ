@@ -33,6 +33,8 @@ public class EnemyAgentAnimator : MonoBehaviour
     [SerializeField]
     int currentSkillHash;
 
+    [SerializeField] Transform standard;
+
     private void Awake()
     {
         Transform Ai = transform.parent.Find("AI").transform;
@@ -45,9 +47,14 @@ public class EnemyAgentAnimator : MonoBehaviour
     public void Flip()
     {
         Vector3 value = (_movementData.direction.x < 0) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
-        value *= reverseValue;
-
+        value.x *= reverseValue;
         transform.parent.localScale = value; 
+
+        //Vector3 plusPosValue = new Vector3(0.78f, 0f, 0f);
+        //if (value.x == -1)
+        //    transform.parent.position -= plusPosValue;
+        //else
+        //    transform.parent.position += plusPosValue;
     }
 
     public void SetAttackState(bool value)

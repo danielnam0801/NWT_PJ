@@ -49,8 +49,6 @@ public class JumpAttack : EnemyAttack, INormalAttack
         Vector3 deltaPos = transform.position - _brain.BasePos.position;
         Vector3 targetPos = _brain.GetTargetUnderPosition(); //점프 지점
         Vector3 startControl = (targetPos - transform.position) / 4;
-        Debug.Log("DeltaPos + " + deltaPos);
-        Debug.Log("targetPOs + " + targetPos);
 
         float angle = targetPos.x - transform.position.x < 0 ? -45f : 45f;
 
@@ -81,9 +79,9 @@ public class JumpAttack : EnemyAttack, INormalAttack
         
         for (int i = 0; i < _bezierPoints.Length; i++)
         {
-            if (i < _bezeirResolution / 5) _changeFrameSpeed = _frameSpeed;
-            else if (i >= _bezeirResolution / 5 && i < _bezeirResolution / 10 * 7) _changeFrameSpeed = _frameSpeed /2;
-            else _changeFrameSpeed = _frameSpeed;
+            //if (i < _bezeirResolution / 5) _changeFrameSpeed = _frameSpeed;
+            //else if (i >= _bezeirResolution / 5 && i < _bezeirResolution / 10 * 7) _changeFrameSpeed = _frameSpeed /2;
+            //else _changeFrameSpeed = _frameSpeed;
 
             yield return new WaitForSeconds(_changeFrameSpeed);
             _brain.transform.position = _bezierPoints[i];

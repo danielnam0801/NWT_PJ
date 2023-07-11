@@ -178,15 +178,14 @@ public class AttackCoolController : MonoBehaviour
         EnemyAttackData atkData = null;
         if (_attackDictionary.TryGetValue(skillName, out atkData))
         {
+            _stateInfo.IsAttackWait = false;
+            _stateInfo.IsAttack = true;
+
             _movement.StopImmediatelly();
             atkData.atk.Attack(atkData.action);
             SetAttackValue(skillName);
             GotoEndQueue();
-
-            _stateInfo.IsAttack = true;
-            _stateInfo.IsAttackWait = false;
         }
-
     }
 
     void GotoEndQueue()
