@@ -12,6 +12,9 @@ public class FadeManager : MonoBehaviour
     private UIDocument document;
     private VisualElement fadeImage;
 
+    [SerializeField]
+    private float fadeTime;
+
     private void Awake()
     {
         if (Instance == null)
@@ -27,6 +30,8 @@ public class FadeManager : MonoBehaviour
     private void OnEnable()
     {
         fadeImage = document.rootVisualElement.Q<VisualElement>("FadeImage");
+
+        fadeTime = FadeManager
     }
 
     public void Fade(bool on)
@@ -36,4 +41,9 @@ public class FadeManager : MonoBehaviour
         else
             fadeImage.RemoveFromClassList("on");
     }
+
+    //private IEnumerator Delay()
+    //{
+
+    //}
 }

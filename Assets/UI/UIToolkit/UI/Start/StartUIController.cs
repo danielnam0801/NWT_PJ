@@ -17,6 +17,8 @@ public class StartUIController : MonoBehaviour
 
         startBtn.RegisterCallback<ClickEvent>(e =>
         {
+            FadeManager.Instance.Fade(true);
+
             SceneManager.LoadScene("MergeScene 2");
         });
         settingBtn.RegisterCallback<ClickEvent>(e =>

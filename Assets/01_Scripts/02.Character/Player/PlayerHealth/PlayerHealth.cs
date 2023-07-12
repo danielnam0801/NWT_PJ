@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour, IHitable
 {
@@ -12,6 +13,8 @@ public class PlayerHealth : MonoBehaviour, IHitable
 
     public float hp = 0;
     public float maxHp = 100;
+
+    public UnityEvent<float> GetHitEvent;
 
     private void Start()
     {
@@ -33,6 +36,8 @@ public class PlayerHealth : MonoBehaviour, IHitable
         {
             Die();
         }
+
+        GetHitEvent?.Invoke(hp);
     }
 
     private IEnumerator UnHitCoroutine(float time)
