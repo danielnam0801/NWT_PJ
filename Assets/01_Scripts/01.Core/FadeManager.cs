@@ -31,7 +31,7 @@ public class FadeManager : MonoBehaviour
     {
         fadeImage = document.rootVisualElement.Q<VisualElement>("FadeImage");
 
-        fadeTime = FadeManager
+        //fadeTime = FadeManager
     }
 
     public void Fade(bool on)
