@@ -7,10 +7,11 @@ public class HitAction : AIAction
     public override void InitAction()
     {
         Debug.Log("Hittt");
+        hitCnt = _stateInfo.HitCnt;
+        //PlayKnockBack();
+        _animator.SetDamageHash(_brain.Enemy.Health);
         _brain.EnemyMovement.StopImmediatelly();
         _animator.OnAnimaitionEndTrigger += EndAnim;
-        _animator.SetDamageHash(_brain.Enemy.Health);
-        hitCnt = _stateInfo.HitCnt;
     }
 
     int hitCnt = 0;
@@ -20,6 +21,7 @@ public class HitAction : AIAction
         {
             hitCnt++;
             _animator.SetDamageHash(_brain.Enemy.Health);
+            //PlayKnockBack();
         }
     }
 
@@ -34,5 +36,4 @@ public class HitAction : AIAction
         _animator.SetEndHit();
         _stateInfo.IsHit = false;
     }
-
 }

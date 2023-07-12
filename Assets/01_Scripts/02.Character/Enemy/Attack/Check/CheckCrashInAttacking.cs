@@ -22,7 +22,8 @@ public class CheckCrashInAttacking : MonoBehaviour
                 IHitable hitable;
                 if(collision.transform.TryGetComponent<IHitable>(out hitable))
                 {
-                    hitable.GetHit(damage, this.gameObject);
+                    hitable.GetHit(damage, this.gameObject,
+                        (collision.transform.position - transform.position).normalized);
                 }
                 _aiStateInfo.IsCrash = true;
             }

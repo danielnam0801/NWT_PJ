@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour, IHitable
         hp = maxHp;
     }
 
-    public void GetHit(float damage, GameObject damageDealer)
+    public void GetHit(float damage, GameObject damageDealer, Vector3 HitNormal)
     {
         if (unHit) 
             return;

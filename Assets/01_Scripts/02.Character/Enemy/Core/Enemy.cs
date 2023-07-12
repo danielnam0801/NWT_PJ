@@ -114,14 +114,15 @@ public class Enemy : PoolableObject, IHitable, IAgent
     }
 
 
-    public void GetHit(float damage, GameObject damageDealer)
+    public void GetHit(float damage, GameObject damageDealer, Vector3 HitNormal)
     {
         Debug.Log($"PlayerÇÑÅ× ¸Â¾ÒÂÇ¿° : {damageDealer.name}");
         if (_isDead == true) return;
 
         Health -= damage;
 
-        HitPoint = damageDealer.transform.position;
+        _brain.AIActionData.HitNormal = HitNormal;
+        this.HitPoint = damageDealer.transform.position;
 
         PoolManager.Instance.Pop("AttackEffect");
 

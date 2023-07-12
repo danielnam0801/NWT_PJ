@@ -6,7 +6,7 @@ public class FlyingMovement : EnemyMovement
 {
     private void FixedUpdate()
     {
-        if (!_data.canMove) return;
+        if (!_data.canMove || _isknockBack) return;
 
         rb.velocity = new Vector2(_movementdirection.x, _movementdirection.y) * _currentVelocity;
     }

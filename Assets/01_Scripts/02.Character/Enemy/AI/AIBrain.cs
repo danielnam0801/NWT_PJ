@@ -35,6 +35,8 @@ public class AIBrain : MonoBehaviour
 
     private List<AITransition> _anyTransitions = new List<AITransition>();
     public List<AITransition> AnyTransitions => _anyTransitions;
+
+    public bool UseBrain { get; set; } = true;
     #endregion
 
     protected virtual void Awake()
@@ -67,7 +69,7 @@ public class AIBrain : MonoBehaviour
             OnMovementKeyPress?.Invoke(Vector2.zero);
             return;
         }
-        else
+        else if(UseBrain)
         {
             _currentState.UpdateState();
         }

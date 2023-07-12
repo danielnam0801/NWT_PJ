@@ -88,7 +88,8 @@ public class PlayerWeapon : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<IHitable>(out IHitable hit))
         {
-            hit.GetHit(Info.power, gameObject);
+            hit.GetHit(Info.power, gameObject,
+                (collision.transform.position - transform.position).normalized);
             Debug.Log(collision.name);
         }
     }
@@ -148,7 +149,8 @@ public class PlayerWeapon : MonoBehaviour
                 if (col[i].TryGetComponent<IHitable>(out IHitable obj))
                 {
                     action?.Invoke();
-                    obj.GetHit(damage, gameObject);
+                    obj.GetHit(damage, gameObject,
+                        (col[i].transform.position - transform.position).normalized);
                 }
             }
         }
@@ -302,7 +304,8 @@ public class PlayerWeapon : MonoBehaviour
 
             if (cols[i].gameObject.TryGetComponent<IHitable>(out IHitable hit))
             {
-                hit.GetHit(Info.power, gameObject);
+                hit.GetHit(Info.power, gameObject,
+                    (cols[i].transform.position - transform.position).normalized);
                 Debug.Log(cols[i].name);
             }
             //

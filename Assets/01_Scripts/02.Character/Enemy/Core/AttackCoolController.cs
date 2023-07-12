@@ -161,7 +161,7 @@ public class AttackCoolController : MonoBehaviour
         if (attackQueue.Peek().AttackName != skillname) return false;
         if (_stateInfo.IsAttack || _stateInfo.IsAttackWait) return false;
         if (isCoolDown(skillname) == false) return false;
-
+        
         this.skillName = skillname;  
         _actionData.nextSkill = skillname;
         _stateInfo.IsAttackWait = true;

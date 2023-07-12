@@ -20,15 +20,15 @@ public class BubbleBeeMovement : FlyingMovement
     [Range(-5f, 5f)] public float p3 = 0;
 
     [SerializeField] float ySpeed = 0.5f;
-    AIBrain _brain;
     protected override void Awake()
     {
         base.Awake();
-        _brain = GetComponent<AIBrain>();
     }
 
-    protected void Update()
+    private void Update()
     {
+        if (_isknockBack == true) return;
+
         float x = Time.time;
         float value = Wave(a1, f1, p1, x) + Wave(a2, f2, p2, x) + Wave(a3, f3, p3, x);
 

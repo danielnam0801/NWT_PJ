@@ -19,7 +19,7 @@ public class JumpAndReturnAttack : EnemyAttack, IRangeAttack
 
     IEnumerator JumpAttackAndReturn()
     {
-        EnergyBall energyball = PoolManager.Instance.Pop(EnergyBallPrefab.name) as EnergyBall;
+        EnergyBall energyball = PoolManager.Instance.Pop(EnergyBallPrefab.gameObject.name) as EnergyBall;
         energyball.transform.position = spawnPos.position;
         energyball.SetValueAndPlay(damage, _brain.Target);
         while (energyball.gameObject.activeSelf)
