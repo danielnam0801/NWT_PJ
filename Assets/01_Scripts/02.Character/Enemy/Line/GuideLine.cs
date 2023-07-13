@@ -20,16 +20,21 @@ public abstract class GuideLine : PoolableObject
 
     [SerializeField]
     protected List<Vector2> shapePoints;
+    protected GameObject startPoint;
 
     protected virtual void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+
+        startPoint = transform.Find("DrawStartPoint").gameObject;
     }
 
     protected virtual void Start()
     {
         SetShapePoints();
         DrawShape();
+
+        startPoint.transform.position = shapePoints[0];
     }
 
     public override void Init()
