@@ -17,12 +17,10 @@ public class StartUIController : MonoBehaviour
 
         startBtn.RegisterCallback<ClickEvent>(e =>
         {
-            FadeManager.Instance.StartFade(0, 1, () =>
+            FadeManager.Instance.FadeOneShot(() =>
             {
                 SceneManager.LoadScene("MergeScene 2");
-
-                FadeManager.Instance.StartFade(1, 0);
-            });
+            }, 2, 1);
         });
         settingBtn.RegisterCallback<ClickEvent>(e =>
         {

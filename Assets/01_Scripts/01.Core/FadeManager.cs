@@ -1,20 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using UnityEngine.UI;
 using System;
+using UnityEngine.UIElements;
 
 public class FadeManager : MonoBehaviour
 {
     public static FadeManager Instance;
 
-    private Image fadeImage;
+    public Color FadeColor;
 
-    [SerializeField]
-    private float fadeTime;
-    [SerializeField]
-    private Color fadeColor;
+    private UIDocument document;
+    private VisualElement fade;
 
     private void Awake()
     {
@@ -24,43 +21,45 @@ public class FadeManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
+        document = GetComponent<UIDocument>();
+        fade = document.rootVisualElement.Q("fade");
+        fade.style.display = DisplayStyle.None;
     }
 
-    private void Start()
+    public void FadeOneShot(Action fadeOutAction = null, float time = 0, float maintainTime = 0)
     {
-        fadeImage = transform.Find("Image").GetComponent<Image>();
-    }
-
-    public void StartFade(float startValue, float endValue, Action completeAction = null, float duration = -1)
-    {
-        if (duration == -1)
-            duration = fadeTime;
-
-        StartCoroutine(Fade(startValue, endValue, completeAction, duration));
-    }
-
-    private IEnumerator Fade(float startValue, float endValue, Action completeAction = null, float duration = -1)
-    {
-        fadeImage.gameObject.SetActive(true);
-
-        fadeImage.color = new Color(fadeColor.r, fadeColor.g, fadeColor.b, startValue);
-
-        float current = 0;
-        float percent = 0;
-        float value = endValue - startValue;
-        while(percent <= 1)
+        Fade(0, 1, () =>
         {
-            current += Time.deltaTime;
-            percent = current / duration;
+            fadeOutAction?.Invoke();
 
-            fadeImage.color = new Color(fadeColor.r, fadeColor.g, fadeColor.b, Mathf.Lerp(startValue, endValue, percent));
+            StartCoroutine(Delay(maintainTime, () =>
+            {
+                Fade(1, 0, () =>
+                {
+                    fade.style.display = DisplayStyle.None;
+                }, time);
+            }));
+        }, time);
+    }
 
-            yield return null;  
-        }
+    public void Fade(float startValue, float endValue, Action completeAction = null, float time = 1)
+    {
+        fade.style.display = DisplayStyle.Flex;
 
-        if(completeAction == null)
-            fadeImage.gameObject.SetActive(false);
+        fade.style.backgroundColor = new Color(FadeColor.r, FadeColor.g, FadeColor.b, startValue);
 
-        completeAction?.Invoke();
+        fade.style.transitionDuration = new List<TimeValue>() { new TimeValue(time) };
+
+        fade.style.backgroundColor = new Color(FadeColor.r, FadeColor.g, FadeColor.b, endValue);
+
+        StartCoroutine(Delay(time, completeAction));
+    }
+
+    private IEnumerator Delay(float time, Action action)
+    {
+        yield return new WaitForSeconds(time);
+
+        action?.Invoke();
     }
 }
