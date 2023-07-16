@@ -41,6 +41,11 @@ public class EnemyMovement : MonoBehaviour
         _data = transform.Find("AI").GetComponent<AIMovementData>();
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     public void KnockBack()
     {
         _brain.UseBrain = false;

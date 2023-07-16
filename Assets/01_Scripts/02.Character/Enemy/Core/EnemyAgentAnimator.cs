@@ -140,6 +140,7 @@ public class EnemyAgentAnimator : MonoBehaviour
     {
         Debug.Log(OnAnimaitionEndTrigger.Method);
     }
+
     public void Init()
     {
         SetDeadHash(false);

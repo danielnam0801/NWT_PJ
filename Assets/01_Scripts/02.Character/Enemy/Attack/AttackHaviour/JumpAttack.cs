@@ -64,9 +64,9 @@ public class JumpAttack : EnemyAttack, INormalAttack
         StartCoroutine(JumpCoroutine());
 
         //디버그용
-        //LineRenderer lr = GetComponent<LineRenderer>();
-        //lr.positionCount = _bezierPoints.Length;
-        //lr.SetPositions(_bezierPoints);
+        LineRenderer lr = GetComponent<LineRenderer>();
+        lr.positionCount = _bezierPoints.Length;
+        lr.SetPositions(_bezierPoints);
 
     }
 
