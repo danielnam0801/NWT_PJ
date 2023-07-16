@@ -27,8 +27,8 @@ public class AIBrain : MonoBehaviour
     private EnemyMovement _enemyMovement;
     public EnemyMovement EnemyMovement => _enemyMovement;
 
-    protected AttackCoolController _attackCoolController;
-    public AttackCoolController AttackCoolController => _attackCoolController;
+    protected EnemyAttackController _attackCoolController;
+    public EnemyAttackController AttackCoolController => _attackCoolController;
     Enemy enemy;
     public Enemy Enemy => enemy;
     public EnemyAgentAnimator _enemyAnim { get; private set; }
@@ -43,7 +43,7 @@ public class AIBrain : MonoBehaviour
     {
         enemy = transform.GetComponent<Enemy>();
         _enemyMovement = GetComponent<EnemyMovement>();
-        _attackCoolController = GetComponent<AttackCoolController>();
+        _attackCoolController = GetComponent<EnemyAttackController>();
         _enemyAnim = transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
 
         Transform rootAI = transform.Find("AI").transform;

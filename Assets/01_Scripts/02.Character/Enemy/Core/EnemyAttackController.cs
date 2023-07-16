@@ -17,12 +17,13 @@ public enum EnemyType
     Armadilo,
 }
 
-public class AttackCoolController : MonoBehaviour
+public class EnemyAttackController : MonoBehaviour
 {
     public SkillType MySkills; //꼭 할당된 공격과 맞는것으로 체크해줘야함
     public EnemyType enemyType;
 
     Dictionary<SkillType, float> _attackCoolList;
+    Dictionary<SkillType, float> _damageList;
     Dictionary<SkillType, EnemyAttackData> _attackDictionary;
 
     Enemy _enemy;
@@ -64,6 +65,7 @@ public class AttackCoolController : MonoBehaviour
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
         _actionData = transform.Find("AI").GetComponent<AIActionData>();
         _attackCoolList = new Dictionary<SkillType, float>();
+        _damageList = new Dictionary<SkillType, float>();
         _attackDictionary = new Dictionary<SkillType, EnemyAttackData>();
         attackQueue = new Queue<EnemyAttackData>();
     }
@@ -151,6 +153,7 @@ public class AttackCoolController : MonoBehaviour
         foreach (var skill in _attackDictionary.Values)
         {
             _attackCoolList.Add(skill.AttackName, skill.coolTime);
+            _damageList.Add(skill.AttackName, skill.damage);
         }
     }
 
@@ -239,4 +242,6 @@ public class AttackCoolController : MonoBehaviour
             _attackCoolList.Add(key, coolDown);
         }
     }
+    
+    public float GetAtkDamage(SkillType key) => _damageList[key];
 }

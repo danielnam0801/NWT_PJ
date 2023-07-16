@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _Dissolve: 1
     - _MakeHit: 0
-    - _OutLine: 0.05
+    - _OutLine: 0.01
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColor: {r: 0, g: 3.0314329, b: 0.58251065, a: 0}

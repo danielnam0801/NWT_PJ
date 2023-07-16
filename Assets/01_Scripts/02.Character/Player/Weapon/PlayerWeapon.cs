@@ -89,7 +89,7 @@ public class PlayerWeapon : MonoBehaviour
         if (collision.gameObject.TryGetComponent<IHitable>(out IHitable hit))
         {
             hit.GetHit(Info.power, gameObject,
-                (collision.bounds.center - transform.position).normalized);
+                (collision.ClosestPoint(transform.position) - (Vector2)(collision.bounds.center)).normalized);
             Debug.Log(collision.name);
         }
     }
