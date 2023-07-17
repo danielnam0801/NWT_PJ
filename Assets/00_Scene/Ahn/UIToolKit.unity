@@ -705,6 +705,9 @@ MonoBehaviour:
   ManaBar: {fileID: 0}
   SettingUI: {fileID: 1204755211}
   TimerText: {fileID: 2071422520}
+  BGM: {fileID: 0}
+  SFX: {fileID: 0}
+  HUD: {fileID: 1759785737}
   isTimerTick: 0
 --- !u!4 &559992038
 Transform:

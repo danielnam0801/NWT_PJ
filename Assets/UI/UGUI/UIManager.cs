@@ -13,14 +13,18 @@ public class UIManager : MonoBehaviour
     public Slider ManaBar;
     public GameObject SettingUI;
     public TextMeshProUGUI TimerText;
+    public AudioSource BGM;
+    public AudioSource SFX;
+    public GameObject HUD;
 
     public bool isTimerTick;
+    //public bool SettingUIActive = true;
 
     int minute = 0;
     float second = 0;
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(Instance);
         }
@@ -57,7 +61,16 @@ public class UIManager : MonoBehaviour
     }
     public void SettingEnable()
     {
-        SettingUI.SetActive(!SettingUI.activeSelf);
+        //SettingUIActive = !SettingUIActive;
+        SettingUI.SetActive(isTimerTick);
         isTimerTick = !isTimerTick;
+    }
+    public void SetBGMVolume(float volume)
+    {
+        BGM.volume = volume;
+    }
+    public void SetSFXVolume(float volume)
+    {
+        SFX.volume = volume;
     }
 }

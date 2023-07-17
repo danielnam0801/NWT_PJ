@@ -5,6 +5,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum Display
+{
+    모두표시 = 0,
+    HUD숨기기,
+    모두숨기기,
+}
 public class Setting : MonoBehaviour
 {
     List<Resolution> resolutions = new List<Resolution>();
@@ -16,26 +22,33 @@ public class Setting : MonoBehaviour
 
     public GameObject Timer;
 
+
     private void OnEnable()
     {
         UIDocument ui = GetComponent<UIDocument>();
         VisualElement root = ui.rootVisualElement;
         Toggle fullScreenToggle = root.Q<Toggle>("fullScreen");
-        DropdownField dropdown = root.Q<DropdownField>();
-        Slider SoundSlider1 = root.Q<Slider>("SoundSlider1");
+        DropdownField ResolutionDropdown = root.Q<DropdownField>("ResolutionDropdown");
+        Toggle UIToggle = root.Q<Toggle>("UIToggle");
+        Slider BGMSlider = root.Q<Slider>("BGM");
+        Slider EffectSlider = root.Q<Slider>("Effect");
         Toggle TimerToggle = root.Q<Toggle>("TimerToggle");
+        Button ReturnBtn = root.Q<Button>("Return");
+        Button NewGameBtn = root.Q<Button>("NewGame");
+        Button ExitBtn = root.Q<Button>("Exit");
+
 
         resolutions.AddRange(Screen.resolutions);
-
         foreach (Resolution resolution in resolutions)
         {
             resolutionStringList.Add(resolution.width + "x" + resolution.height); // 들어감
         }
-        dropdown.choices = resolutionStringList;
-        dropdown.RegisterValueChangedCallback(v =>
+
+        ResolutionDropdown.choices = resolutionStringList;
+        ResolutionDropdown.RegisterValueChangedCallback(v =>
         {
-            resolutionWidth = resolutions[dropdown.index].width;
-            resolutionHeight = resolutions[dropdown.index].height;
+            resolutionWidth = resolutions[ResolutionDropdown.index].width;
+            resolutionHeight = resolutions[ResolutionDropdown.index].height;
             if (resolutionWidth != Screen.width || resolutionHeight != Screen.height)
             {
                 Screen.SetResolution(resolutionWidth, resolutionHeight, fullScreen);
@@ -44,14 +57,19 @@ public class Setting : MonoBehaviour
 
         fullScreenToggle.RegisterCallback<ClickEvent>(e =>
         {
-            Debug.Log("fullScreen토글클릭");
             fullScreen = fullScreenToggle.value;
             Screen.fullScreen = fullScreen;
-            Debug.Log(fullScreen);
         });
 
-        SoundSlider1.RegisterValueChangedCallback(v =>
+        BGMSlider.RegisterValueChangedCallback(v =>
         {
+            UIManager.Instance.SetBGMVolume(v.newValue);
+            Debug.Log(v.newValue);
+        });
+
+        EffectSlider.RegisterValueChangedCallback(v =>
+        {
+            UIManager.Instance.SetSFXVolume(v.newValue);
             Debug.Log(v.newValue);
         });
 
@@ -59,10 +77,26 @@ public class Setting : MonoBehaviour
         {
             Timer.SetActive(!Timer.activeSelf);
         });
-        //toggle.onValueChanged.AddListener(delegate
-        //{
-        //    ToggleValueChanged(m_Toggle);
-        //});
 
+        UIToggle.RegisterValueChangedCallback(v =>
+        {
+            UIManager.Instance.HUD.SetActive(!UIManager.Instance.HUD.activeSelf);
+            UIManager.Instance.isTimerTick = !UIManager.Instance.isTimerTick;
+        });
+
+        ReturnBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            UIManager.Instance.SettingEnable();
+        });
+
+        NewGameBtn.RegisterCallback<ClickEvent>(e =>
+        {
+
+        });
+
+        ExitBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            Application.Quit();
+        });
     }
 }
