@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyDeadMaterial(Brown)
+  m_Name: EnemyDeadMaterial(Yellow)
   m_Shader: {fileID: -6465566751694194690, guid: 877d7a8cd7f862f4dbb65ad8b38bf8ba, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -43,5 +43,5 @@ Material:
     - _OutLine: 0.01
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DissolveColor: {r: 0.7075472, g: 0.30655563, b: 0.12949444, a: 0}
+    - _DissolveColor: {r: 2.345984, g: 1.8221568, b: 0.28250068, a: 0}
   m_BuildTextureStacks: []

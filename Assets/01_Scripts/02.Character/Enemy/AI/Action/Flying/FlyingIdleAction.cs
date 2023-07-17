@@ -20,8 +20,6 @@ public class FlyingIdleAction : AIAction
         _brain.Move(_aiMovementData.direction, _aiMovementData.pointOfInterest);// flying movingø° ¿÷¿Ω
     }
 
-    public override void ExitAction()
-    {
-        _aiMovementData.beforeDirection = new Vector2(_aiMovementData.direction.x, _aiMovementData.direction.y);
-    }
+    public override void ExitAction() 
+    { }
 }

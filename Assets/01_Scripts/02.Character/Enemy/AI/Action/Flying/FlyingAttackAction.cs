@@ -10,12 +10,10 @@ public class FlyingAttackAction : AIAction
         
     }
 
-
     public override void TakeAction()
     {
         //_aiMovementData.direction = Vector2.zero;
         _aiActionData.IsIdle = false;
-        _brain.Attack(skillName);
         _aiMovementData.pointOfInterest = _brain.Target.position;
     }
 

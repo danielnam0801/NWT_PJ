@@ -6,5 +6,5 @@ public interface IHitable
 {
     public bool IsEnemy { get; }
     public Vector3 HitPoint { get; set; }
-    public void GetHit(float damage, GameObject damageDealer);
+    public void GetHit(float damage, GameObject damageDealer, Vector3 HitNormal);
 }

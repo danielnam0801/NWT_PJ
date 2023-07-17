@@ -17,18 +17,21 @@ public enum EnemyType
     Armadilo,
 }
 
-public class AttackCoolController : MonoBehaviour
+public class EnemyAttackController : MonoBehaviour
 {
     public SkillType MySkills; //꼭 할당된 공격과 맞는것으로 체크해줘야함
     public EnemyType enemyType;
 
     Dictionary<SkillType, float> _attackCoolList;
+    Dictionary<SkillType, float> _damageList;
     Dictionary<SkillType, EnemyAttackData> _attackDictionary;
-    Dictionary<SkillType, bool> _canAttackList;
 
     Enemy _enemy;
     EnemyMovement _movement;
     AIStateInfo _stateInfo;
+    AIActionData _actionData;   
+
+    SkillType skillName;
 
     [Header("CoolValue")]
     [SerializeField] private float rangeCool = 5f;    
@@ -44,8 +47,8 @@ public class AttackCoolController : MonoBehaviour
 
     [Tooltip("공격사이에 공격간격두기")]
     [Header("AttackTerm")]
-    public bool isUseAttackTerm = false;
-    [SerializeField] private float attackTerm = 4f;
+    //public bool isUseAttackTerm = false;
+    [SerializeField] private float attackWaitTime = 0;
 
     Queue<EnemyAttackData> attackQueue;
 
@@ -60,8 +63,9 @@ public class AttackCoolController : MonoBehaviour
         _enemy = GetComponent<Enemy>();
         _movement = GetComponent<EnemyMovement>();
         _stateInfo = transform.Find("AI").GetComponent<AIStateInfo>();
+        _actionData = transform.Find("AI").GetComponent<AIActionData>();
         _attackCoolList = new Dictionary<SkillType, float>();
-        _canAttackList = new Dictionary<SkillType, bool>();
+        _damageList = new Dictionary<SkillType, float>();
         _attackDictionary = new Dictionary<SkillType, EnemyAttackData>();
         attackQueue = new Queue<EnemyAttackData>();
     }
@@ -78,10 +82,8 @@ public class AttackCoolController : MonoBehaviour
                 AttackName = SkillType.Normal,
                 action = () =>
                 {
-                    isUseAttackTerm = true;
                     _stateInfo.IsNormal = false;
                     _stateInfo.IsAttack = false;
-                    _canAttackList[SkillType.Normal] = true;
                     SetCoolDown(SkillType.Normal, normalCool);
                 },
                 coolTime = normalCool,
@@ -101,7 +103,6 @@ public class AttackCoolController : MonoBehaviour
                 {
                     _stateInfo.IsSpecial = false;
                     _stateInfo.IsAttack = false;
-                    _canAttackList[SkillType.Special] = true;
                     SetCoolDown(SkillType.Special, specialCool);
                 },
                 coolTime = specialCool,
@@ -121,7 +122,6 @@ public class AttackCoolController : MonoBehaviour
                 {
                     _stateInfo.IsRange = false;
                     _stateInfo.IsAttack = false;
-                    _canAttackList[SkillType.Range] = true;
                     SetCoolDown(SkillType.Range, rangeCool);
                 },
                 coolTime = rangeCool,
@@ -141,7 +141,6 @@ public class AttackCoolController : MonoBehaviour
                 {
                     _stateInfo.IsMelee = false;
                     _stateInfo.IsAttack = false;
-                    _canAttackList[SkillType.Melee] = true;
                     SetCoolDown(SkillType.Melee, meleeCool);
                 },
                 coolTime = meleeCool,
@@ -154,32 +153,42 @@ public class AttackCoolController : MonoBehaviour
         foreach (var skill in _attackDictionary.Values)
         {
             _attackCoolList.Add(skill.AttackName, skill.coolTime);
-            _canAttackList.Add(skill.AttackName, true);
+            _damageList.Add(skill.AttackName, skill.damage);
         }
     }
 
     public virtual bool Attack(SkillType skillname)
     {
-        if (_stateInfo.IsAttack) return false;
         
-        if (attackQueue.Peek().AttackName != skillname) // 현재 들어온 공격이 우선순위 1순위가 아니라면
-            return false;
-
-        if (IsCanAttack(skillname) == false) return false;
+        // 현재 들어온 공격이 우선순위 1순위가 아니라면
+        if (attackQueue.Peek().AttackName != skillname) return false;
+        if (_stateInfo.IsAttack || _stateInfo.IsAttackWait) return false;
         if (isCoolDown(skillname) == false) return false;
+        
+        this.skillName = skillname;  
+        _actionData.nextSkill = skillname;
+        _stateInfo.IsAttackWait = true;
+        StartCoroutine(AttackWait());
 
+        return true;
+    }
 
+    private IEnumerator AttackWait()
+    {
+        yield return new WaitForSeconds(attackWaitTime);
+        yield return new WaitUntil(() => !_stateInfo.IsHit);
+        
         EnemyAttackData atkData = null;
-        if(_attackDictionary.TryGetValue(skillname, out atkData)){
-            _movement.StopImmediatelly();
-            SetAttackValue(skillname);
+        if (_attackDictionary.TryGetValue(skillName, out atkData))
+        {
+            _stateInfo.IsAttackWait = false;
             _stateInfo.IsAttack = true;
-            _canAttackList[skillname] = false;
-            //SetCoolDown(atkData.AttackName, atkData.coolTime);
+
+            _movement.StopImmediatelly();
             atkData.atk.Attack(atkData.action);
+            SetAttackValue(skillName);
             GotoEndQueue();
         }
-        return true;
     }
 
     void GotoEndQueue()
@@ -208,19 +217,6 @@ public class AttackCoolController : MonoBehaviour
         }
     }
 
-    public bool IsCanAttack(SkillType key)
-    {
-        bool value;
-        if(_canAttackList.TryGetValue(key, out value))
-        {
-            return value;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     public bool isCoolDown(SkillType key)
     {
         float coolDown;
@@ -246,4 +242,6 @@ public class AttackCoolController : MonoBehaviour
             _attackCoolList.Add(key, coolDown);
         }
     }
+    
+    public float GetAtkDamage(SkillType key) => _damageList[key];
 }

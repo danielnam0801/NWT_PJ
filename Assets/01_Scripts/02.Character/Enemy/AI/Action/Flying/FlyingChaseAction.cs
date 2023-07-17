@@ -14,6 +14,10 @@ public class FlyingChaseAction : AIAction
     {
         int dirX = (_brain.Target.position.x - transform.position.x > 0) ? 1 : -1;
         int dirY = (_brain.Target.position.y - transform.position.y > 0) ? 1 : -1;
+
+        int randMovePercent = Random.Range(0, 100);
+        if (randMovePercent > 70) dirY *= -1;
+
         _aiMovementData.direction = new Vector2(
             dirX,
             Mathf.Abs(_aiMovementData.direction.y) * dirY

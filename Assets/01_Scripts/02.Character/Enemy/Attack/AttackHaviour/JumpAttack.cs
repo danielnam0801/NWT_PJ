@@ -32,16 +32,16 @@ public class JumpAttack : EnemyAttack, INormalAttack
 
     public void Attack(Action CallBack)
     {
-        SetAnimAttack();
         this.callBack = CallBack;
-        JumpAct();
+        _animator.OnAnimaitionEventTrigger += OnAnimEventAction;
     }
 
-    void JumpAct()
+    public void OnAnimEventAction()
     {
         rb2d.gravityScale = 0f;
         //Debug.Log("JumpStart");
         Jump();
+
     }
 
     private void Jump()
@@ -49,8 +49,6 @@ public class JumpAttack : EnemyAttack, INormalAttack
         Vector3 deltaPos = transform.position - _brain.BasePos.position;
         Vector3 targetPos = _brain.GetTargetUnderPosition(); //점프 지점
         Vector3 startControl = (targetPos - transform.position) / 4;
-        //Debug.Log("DeltaPos + " + deltaPos);
-        //Debug.Log("targetPOs + " + targetPos);
 
         float angle = targetPos.x - transform.position.x < 0 ? -45f : 45f;
 
@@ -81,9 +79,9 @@ public class JumpAttack : EnemyAttack, INormalAttack
         
         for (int i = 0; i < _bezierPoints.Length; i++)
         {
-            if (i < _bezeirResolution / 5) _changeFrameSpeed = _frameSpeed;
-            else if (i >= _bezeirResolution / 5 && i < _bezeirResolution / 10 * 7) _changeFrameSpeed = _frameSpeed /2;
-            else _changeFrameSpeed = _frameSpeed;
+            //if (i < _bezeirResolution / 5) _changeFrameSpeed = _frameSpeed;
+            //else if (i >= _bezeirResolution / 5 && i < _bezeirResolution / 10 * 7) _changeFrameSpeed = _frameSpeed /2;
+            //else _changeFrameSpeed = _frameSpeed;
 
             yield return new WaitForSeconds(_changeFrameSpeed);
             _brain.transform.position = _bezierPoints[i];
@@ -95,7 +93,8 @@ public class JumpAttack : EnemyAttack, INormalAttack
     //점프가 끝나는 시점에서 호출될 코드
     public void JumpEnd()
     {
-        rb2d.gravityScale = 9.8f;
+        AttackEndFeedback?.Invoke();
+        
         //ImpactScript impact = PoolManager.Instance.Pop("ImpactShockwave") as ImpactScript;
         Vector3 basePos = _brain.BasePos.position; // 발바닥을 중심으로 충격파 발생
         float randomRot = UnityEngine.Random.Range(0, 360f);
@@ -108,7 +107,7 @@ public class JumpAttack : EnemyAttack, INormalAttack
         if (dir.sqrMagnitude <= _impactRadius * _impactRadius) //반경내에 들어왔다면
         {
             IHitable targetHit = _brain.Target.GetComponent<IHitable>();
-            //targetHit?.GetHit(_brain.Enemy.EnemyData.Damage, gameObject);
+            targetHit?.GetHit(idamage, gameObject, Vector3.zero);
 
             //if (dir.sqrMagnitude == 0)
             //{
@@ -117,12 +116,16 @@ public class JumpAttack : EnemyAttack, INormalAttack
             //IKnockBack targetKnockback = GetTarget().GetComponent<IKnockBack>();
             //targetKnockback?.KnockBack(dir.normalized, 5f, 1f);
         }
+
         StartCoroutine(DelayCoroutine(0.3f, () =>
         {
             Debug.Log("ISATTackINs");
             callBack?.Invoke();
+            _animator.OnAnimaitionEventTrigger -= OnAnimEventAction;
             //AttackEndFeedback?.Invoke();
         }));
+
+        rb2d.gravityScale = 9.8f;
     }
 
     private void OnDisable()

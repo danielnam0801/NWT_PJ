@@ -49,9 +49,8 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
 
     public void Attack(Action CallBack)
     {
-        SetAnimAttack();
-        this.callBack = CallBack;
         Init();
+        this.callBack = CallBack;
         _animator.OnAnimaitionEventTrigger += BoltAttack;
         _animator.OnAnimaitionEndTrigger += AnimationEnd;
 
@@ -128,6 +127,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
         currentAngle = 0f;
         for (int i = 0; i < boltSpawnCnt; i++)
         {
+            Debug.Log("BOltPrefab : " + boltPrefab.gameObject.name);
             EffectPlayer bolt = PoolManager.Instance.Pop(boltPrefab.gameObject.name) as EffectPlayer;
             bolt.SetPositionAndRotation(spawnPos.position, Quaternion.Euler(0, 0, currentAngle + randomAngleRotate));
             bolt.Shoot(AddForcePower);
@@ -145,6 +145,7 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
     {   
         for(int i = 0; i < boltSpawnCnt; i++)
         {
+            Debug.Log("BOltPrefab : " + boltPrefab.gameObject.name);
             EffectPlayer bolt = PoolManager.Instance.Pop(boltPrefab.gameObject.name) as EffectPlayer;
             bolt.SetPositionAndRotation(spawnPos.position, Quaternion.Euler(0, 0, currentAngle + randomAngleRotate));
             bolt.transform.position += bolt.transform.right * 2;
@@ -169,7 +170,8 @@ public class BoltEmissionAttack : EnemyAttack, ISpecialAttack
     private float destroyTime = 0.5f;
     private IEnumerator LineSpawn()
     {
-        EffectPlayer electro = PoolManager.Instance.Pop(electroSphere.gameObject.name) as EffectPlayer;
+        Debug.Log("electroPrefab : " + electroSphere.gameObject.name);
+        EffectPlayer electro = PoolManager.Instance.Pop("ElectricitySphere") as EffectPlayer;
         electro.SetPositionAndRotation(spawnPos.position, Quaternion.identity);
         electro.StartPlay(5f);
 

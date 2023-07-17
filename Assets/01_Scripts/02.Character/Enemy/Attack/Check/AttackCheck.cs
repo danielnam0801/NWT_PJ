@@ -80,7 +80,9 @@ public class AttackCheck : MonoBehaviour
         {
             IHitable hitable;
             if(collision.gameObject.TryGetComponent<IHitable>(out hitable)){
-                hitable.GetHit(damage, this.gameObject);
+
+                hitable.GetHit(damage, this.gameObject,
+                    (collision.transform.position - transform.position).normalized);
                 //PoolManager.Instance.Push(poolObj);
             }
         }
@@ -93,7 +95,8 @@ public class AttackCheck : MonoBehaviour
             IHitable hitable;
             if (collision.gameObject.TryGetComponent<IHitable>(out hitable))
             {
-                hitable.GetHit(damage, this.gameObject);
+                hitable.GetHit(damage, this.gameObject,
+                    (collision.transform.position - transform.position).normalized);
             }
             //PoolManager.Instance.Push(poolObj);
         }
@@ -115,7 +118,8 @@ public class AttackCheck : MonoBehaviour
                 IHitable hitable;
                 if (circleHits[i].TryGetComponent<IHitable>(out hitable))
                 {
-                    hitable.GetHit(damage, this.gameObject);
+                    hitable.GetHit(damage, this.gameObject,
+                        (circleHits[i].transform.position - transform.position).normalized);
                 }
             }
         }
@@ -127,7 +131,8 @@ public class AttackCheck : MonoBehaviour
                 IHitable hitable;
                 if (boxHits[i].TryGetComponent<IHitable>(out hitable))
                 {
-                    hitable.GetHit(damage, this.gameObject);
+                    hitable.GetHit(damage, this.gameObject,
+                        (boxHits[i].transform.position - transform.position).normalized);
                 }
             }
         }
@@ -143,7 +148,7 @@ public class AttackCheck : MonoBehaviour
                 {
                     IHitable hitable;
                     if(a.collider.TryGetComponent<IHitable>(out hitable)){
-                        hitable.GetHit(damage, this.gameObject);
+                        hitable.GetHit(damage, this.gameObject, a.normal);
                     }
                 }
             }
@@ -158,7 +163,7 @@ public class AttackCheck : MonoBehaviour
                     IHitable hitable;
                     if (a.collider.TryGetComponent<IHitable>(out hitable))
                     {
-                        hitable.GetHit(damage, this.gameObject);
+                        hitable.GetHit(damage, this.gameObject, a.normal);
                     }
                 }
             }
@@ -173,7 +178,7 @@ public class AttackCheck : MonoBehaviour
                     IHitable hitable;
                     if (a.collider.TryGetComponent<IHitable>(out hitable))
                     {
-                        hitable.GetHit(damage, this.gameObject);
+                        hitable.GetHit(damage, this.gameObject, a.normal);
                     }
                 }
             }

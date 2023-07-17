@@ -13,14 +13,13 @@ public class RollAttack : EnemyAttack, INormalAttack
 
     public UnityEvent FaintStateEvent;
     public UnityEvent FaintStateEndEvent;
+    public float cRS;
+   
     public void Attack(Action CallBack)
     {
-        SetAnimAttack();
         this.callBack = CallBack;
-
         StartCoroutine(Roll());
     }
-    public float cRS;
 
     public void StopThis()
     {
@@ -29,7 +28,7 @@ public class RollAttack : EnemyAttack, INormalAttack
 
     IEnumerator Roll()
     {
-
+        _brain.AIMovementData.Speed = _moveSpeed;
         Vector3 pos = _brain.transform.position;
         //DOTween.Shake(() => _brain.transform.rotation.eulerAngles, z =>
         //{
@@ -80,7 +79,7 @@ public class RollAttack : EnemyAttack, INormalAttack
         }
 
         float randomRotate = UnityEngine.Random.Range(-10f,5f);
-        _brain.transform.DORotate(new Vector3(0, 0, -170f +randomRotate), 0.3f).SetEase(Ease.InOutBack);
+        _brain.transform.DORotate(new Vector3(0, 0, -170f + randomRotate), 0.3f).SetEase(Ease.InOutBack);
         //_brain.transform.DOShakeRotation(0.2f);
         _brain.EnemyMovement.StopImmediatelly();
         _aiActionData.CreatePoint = this.transform.localPosition;

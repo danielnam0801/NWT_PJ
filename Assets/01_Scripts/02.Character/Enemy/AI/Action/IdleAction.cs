@@ -9,6 +9,7 @@ public class IdleAction : AIAction
     {
         _aiActionData.IsIdle = true;
         _aiMovementData.pointOfInterest = transform.position;
+        _aiMovementData.Speed = _brain.Enemy.EnemyData.GetBeforeSpeed;
         _animator.SetAnimatorSpeed(1);
     }
 

@@ -10,7 +10,7 @@ public abstract class EnemyAttack : MonoBehaviour
     protected AIActionData _aiActionData;
     protected EnemyAgentAnimator _animator;
     protected AIStateInfo _stateInfo;
-    protected AttackCoolController _CoolController;
+    protected EnemyAttackController _atkController;
 
     [SerializeField]
     protected SkillType _skillName;
@@ -18,13 +18,20 @@ public abstract class EnemyAttack : MonoBehaviour
     public UnityEvent AttackEndFeedback;
     protected Action callBack = null;
 
+    protected float idamage;
+
     protected virtual void Awake()
     {
         _brain = transform.parent.GetComponent<AIBrain>();
         _stateInfo = transform.parent.Find("AI").GetComponent<AIStateInfo>();
         _animator = _brain.transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
         _aiActionData = _brain.transform.Find("AI").GetComponent<AIActionData>();
-        _CoolController = _brain.GetComponent<AttackCoolController>();
+        _atkController = _brain.GetComponent<EnemyAttackController>();
+    }
+    
+    protected void Start()
+    {
+        idamage = _atkController.GetAtkDamage(_skillName);
     }
 
     protected IEnumerator DelayCoroutine(float afterAttackDelay, Action afterPlayAction)
@@ -33,14 +40,11 @@ public abstract class EnemyAttack : MonoBehaviour
         afterPlayAction();
     }
 
+    //public abstract void OnAnimEventAction();
+
     public void CallbackPlay()
     {
         callBack?.Invoke();
-    }
-
-    protected void SetAnimAttack()
-    {
-        _animator.SetAttackTrigger(true, _skillName);
     }
 
     public void StopAllAct()

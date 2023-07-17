@@ -10,7 +10,6 @@ public class JumpAndReturnAttack : EnemyAttack, IRangeAttack
     [SerializeField] Transform spawnPos;
     public void Attack(Action CallBack)
     {
-        SetAnimAttack();
         this.callBack = CallBack;
         StartCoroutine(JumpAttackAndReturn());
         Debug.LogError("점프앤드 리턴 실행중");
@@ -20,7 +19,7 @@ public class JumpAndReturnAttack : EnemyAttack, IRangeAttack
 
     IEnumerator JumpAttackAndReturn()
     {
-        EnergyBall energyball = PoolManager.Instance.Pop(EnergyBallPrefab.name) as EnergyBall;
+        EnergyBall energyball = PoolManager.Instance.Pop(EnergyBallPrefab.gameObject.name) as EnergyBall;
         energyball.transform.position = spawnPos.position;
         energyball.SetValueAndPlay(damage, _brain.Target);
         while (energyball.gameObject.activeSelf)

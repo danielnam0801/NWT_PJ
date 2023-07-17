@@ -27,6 +27,8 @@ public class Enemy : PoolableObject, IHitable, IAgent
     public UnityEvent OnDie { get; set; }
     [field: SerializeField]
     public UnityEvent OnGetHit { get; set; }
+    [field: SerializeField]
+    public UnityEvent HitFeedback { get; set; }
 
     protected bool _isDead = false;
     [SerializeField] protected bool _isActive = false;
@@ -50,7 +52,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
 
     [Header("Slice °ü·Ã")]
-    public SpriteRenderer[] ActiveVisual;
+    public List<SpriteRenderer> ActiveVisual = new List<SpriteRenderer>();
     public SpriteRenderer TestYong;
     [SerializeField] private float _addForcePower = 5f;
 
@@ -66,11 +68,14 @@ public class Enemy : PoolableObject, IHitable, IAgent
     void Awake()
     {
         _brain = GetComponent<AIBrain>();
-        _enemyAnim = transform.Find("Visual").GetComponent<EnemyAgentAnimator>();
         _bodyColider = GetComponent<Collider2D>();
         //TestYong = GameObject.Find("TestYong").GetComponent<SpriteRenderer>();
         _rayPoint = transform.Find("RayPoint").transform;
         rigidbody = GetComponent<Rigidbody2D>();
+        Transform visualTrm = transform.Find("Visual").transform;
+        _enemyAnim = visualTrm.GetComponent<EnemyAgentAnimator>();
+        visualTrm.GetComponentsInChildren<SpriteRenderer>(ActiveVisual);
+        
     }
 
     void Start()
@@ -95,7 +100,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     }
     private void SpriteMaterialInit()
     {
-        for (int i = 0; i < ActiveVisual.Length; i++)
+        for (int i = 0; i < ActiveVisual.Count; i++)
         {
             if (ActiveVisual[i] != null)
             {
@@ -109,17 +114,21 @@ public class Enemy : PoolableObject, IHitable, IAgent
     }
 
 
-    public void GetHit(float damage, GameObject damageDealer)
+    public void GetHit(float damage, GameObject damageDealer, Vector3 HitNormal)
     {
         Debug.Log($"PlayerÇÑÅ× ¸Â¾ÒÂÇ¿° : {damageDealer.name}");
         if (_isDead == true) return;
 
         Health -= damage;
 
-        HitPoint = damageDealer.transform.position;
+        _brain.AIActionData.HitNormal = HitNormal;
+        this.HitPoint = damageDealer.transform.position;
 
         PoolManager.Instance.Pop("AttackEffect");
-        OnGetHit?.Invoke();
+
+        if(!_brain.AIStateInfo.IsAttack && !_brain.AIStateInfo.IsAttackWait)
+            OnGetHit?.Invoke();
+        HitFeedback?.Invoke();
 
         if (Health <= 0)
         {
@@ -127,7 +136,6 @@ public class Enemy : PoolableObject, IHitable, IAgent
             return;
         }
     }
-
     private void DeadProcess()
     {
         Health = 0;

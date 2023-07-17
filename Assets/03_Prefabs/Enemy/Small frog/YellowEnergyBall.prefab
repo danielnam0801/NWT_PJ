@@ -295,11 +295,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f994a046c1369c347a71a778e968d78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 0
   chargeTime: 3
   strength: 0.1
   vibrato: 20
   randomness: 90
   shakeTime: 2
   shootPower: 10.5
+  ballBombEffect: {fileID: 4556480809052248927, guid: 4781009c5f407b54eb3a8c83362dcf92, type: 3}
   isShootReady: 0
   CanChaseMaxCnt: 3
