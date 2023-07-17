@@ -367,6 +367,14 @@ MonoBehaviour:
   - {fileID: 8401337354289679957, guid: c1fd26db10ccace40990efa5aaa851f1, type: 3}
   - {fileID: 5764554314202184742, guid: e1b6c374a393ad24ba96352ddcc8bf95, type: 3}
   - {fileID: -3704007138620531753, guid: 3b643158fd528cb4d8f718fe9c9cd9a1, type: 3}
+  - {fileID: 6954486387241841313, guid: 3492d0529590dde4085f2df05681e658, type: 3}
+  - {fileID: 756752654044507044, guid: 2feaa7e409f2eac4d86c59aa803364f0, type: 3}
+  - {fileID: 7350753759355885293, guid: 31c5190004d00cd4a8b4e8d1e711b8d0, type: 3}
+  - {fileID: 3990659496386882499, guid: eb6f11f3485a1544aa6ef170c4a0dbdf, type: 3}
+  - {fileID: 1042621902090199311, guid: 114e1ee8f285caa47a8309defeaff367, type: 3}
+  - {fileID: 1042621902090199311, guid: 48d23dfc64800724f9551fea9d7a8b3e, type: 3}
+  - {fileID: 2846920623613470572, guid: 0445fe807e3a7224db72afa7efab9895, type: 3}
+  - {fileID: 4901011192478050026, guid: f9c1bed6f24a5044da27031b5865efa4, type: 3}
 --- !u!1 &78788383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,7 +1364,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 100
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1037148948}
@@ -5138,6 +5146,7 @@ MonoBehaviour:
   <HitFeedback>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  IsDead: 0
   _isActive: 1
   _enemyLight: {fileID: 321654763}
   physicsMaterial2D: {fileID: 0}
@@ -10295,6 +10304,7 @@ MonoBehaviour:
   <HitFeedback>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  IsDead: 0
   _isActive: 1
   _enemyLight: {fileID: 3765746247420367264}
   physicsMaterial2D: {fileID: 0}
@@ -12370,6 +12380,7 @@ MonoBehaviour:
   <HitFeedback>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  IsDead: 0
   _isActive: 1
   _enemyLight: {fileID: 4356950105982865160}
   physicsMaterial2D: {fileID: 0}
@@ -17481,6 +17492,7 @@ MonoBehaviour:
   <HitFeedback>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  IsDead: 0
   _isActive: 1
   _enemyLight: {fileID: 0}
   physicsMaterial2D: {fileID: 6200000, guid: 0c0836dfe7227e842a4fcf4fa32d8374, type: 2}

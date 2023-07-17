@@ -30,7 +30,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     [field: SerializeField]
     public UnityEvent HitFeedback { get; set; }
 
-    protected bool _isDead = false;
+    public bool IsDead = false;
     [SerializeField] protected bool _isActive = false;
 
     protected AIBrain _brain;
@@ -75,7 +75,6 @@ public class Enemy : PoolableObject, IHitable, IAgent
         Transform visualTrm = transform.Find("Visual").transform;
         _enemyAnim = visualTrm.GetComponent<EnemyAgentAnimator>();
         visualTrm.GetComponentsInChildren<SpriteRenderer>(ActiveVisual);
-        
     }
 
     void Start()
@@ -117,7 +116,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     public void GetHit(float damage, GameObject damageDealer, Vector3 HitNormal)
     {
         Debug.Log($"Player한테 맞았쪄염 : {damageDealer.name}");
-        if (_isDead == true) return;
+        if (IsDead == true) return;
 
         Health -= damage;
 
@@ -139,7 +138,6 @@ public class Enemy : PoolableObject, IHitable, IAgent
     private void DeadProcess()
     {
         Health = 0;
-        _isDead = true;
         gameObject.layer = LayerMask.NameToLayer("EnemyDead");
         _enemyAnim.OnAnimaitionEndTrigger += DieAnimEvent; // 커팅 딜레이를 주고 싶다면 이걸 켜주
         // 커팅 딜레이를 주고 싶다면 이걸 켜주
@@ -214,8 +212,10 @@ public class Enemy : PoolableObject, IHitable, IAgent
         seq.OnComplete(() =>
         {
             _enemyAnim.OnAnimaitionEndTrigger -= DieAnimEvent;
+            PoolManager.Instance.Push(this);
+            IsDead = true;
             #region 풀링으로 바꿀부분
-            Destroy(gameObject);
+            //Destroy(gameObject);
             #endregion
         });
     }
@@ -235,7 +235,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
     public override void Init()
     {
-        _isDead = false;
+        IsDead = false;
         Health = _enemyDataSO.HP;
         _enemyAnim.Init();
         InitAction?.Invoke();

@@ -31,7 +31,6 @@ public class PlayerHealth : MonoBehaviour, IHitable
 
         hp = Mathf.Clamp(hp, 0, maxHp);
 
-        Debug.LogError("HITTTTTTTTTTTT");
         if(hp <= 0)
         {
             Die();
