@@ -884,6 +884,52 @@ Transform:
   m_Father: {fileID: 795471957399669126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1470669168945176496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 452480287652281892}
+  - component: {fileID: 5707677064700710213}
+  m_Layer: 8
+  m_Name: GuidePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &452480287652281892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470669168945176496}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.529999, y: -5.00416, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4901011192478050020}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5707677064700710213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470669168945176496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eef50e2fc65aac4bad3ea0aab872042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasPair: 0
+  guide: {fileID: 0}
 --- !u!1 &1572501034627790217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,6 +1758,7 @@ MonoBehaviour:
   IsIdle: 0
   IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
+  HitNormal: {x: 0, y: 0, z: 0}
   nextSkill: 0
 --- !u!114 &4901011191301616826
 MonoBehaviour:
@@ -1804,6 +1851,7 @@ Transform:
   - {fileID: 4901011190837021046}
   - {fileID: 4901011190382689625}
   - {fileID: 4901011191294150456}
+  - {fileID: 452480287652281892}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1819,6 +1867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203738fc14620154d9c6a2dc9dc172ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _knockBackSpeed: 4
+  _knockBackTime: 0.4
   lerpTime: 0.5
 --- !u!114 &4901011192478050021
 MonoBehaviour:

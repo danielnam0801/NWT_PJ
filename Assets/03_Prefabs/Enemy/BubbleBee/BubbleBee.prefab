@@ -337,6 +337,52 @@ MonoBehaviour:
   randF: 0
   randP: 0
   randY: 0
+--- !u!1 &2092602150328674479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2868256459706390650}
+  - component: {fileID: 7175485145837074228}
+  m_Layer: 8
+  m_Name: GuidePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2868256459706390650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092602150328674479}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.36, y: -8.444159, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2846920623613470562}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7175485145837074228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092602150328674479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eef50e2fc65aac4bad3ea0aab872042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasPair: 0
+  guide: {fileID: 0}
 --- !u!1 &2451557673765399236
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +454,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 766165865
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: -1
   m_Sprite: {fileID: 498193836, guid: 013ad2807c7966546bf5aef110bac88d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -498,7 +544,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 766165865
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 1004824581, guid: 013ad2807c7966546bf5aef110bac88d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -594,7 +640,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 766165865
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: -893830859, guid: 013ad2807c7966546bf5aef110bac88d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -678,7 +724,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 766165865
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 1497746446, guid: 013ad2807c7966546bf5aef110bac88d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -762,7 +808,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 766165865
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 3
   m_Sprite: {fileID: -893663873, guid: 013ad2807c7966546bf5aef110bac88d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -843,6 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reverseSprite: 0
   currentSkillHash: 0
+  standard: {fileID: 0}
 --- !u!1 &2451557674942116557
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +961,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 766165865
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: -1
   m_Sprite: {fileID: 479185358, guid: 013ad2807c7966546bf5aef110bac88d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1060,6 +1107,7 @@ Transform:
   - {fileID: 2846920624178645232}
   - {fileID: 2846920623829138655}
   - {fileID: 2846920624728016574}
+  - {fileID: 2868256459706390650}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1075,9 +1123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd83bb91ec1f214e96093dd5d505162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onVelocityChange:
-    m_PersistentCalls:
-      m_Calls: []
+  _knockBackSpeed: 4
+  _knockBackTime: 0.4
   lerpTime: 0.8
 --- !u!114 &2846920623613470563
 MonoBehaviour:
@@ -1106,39 +1153,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  AttackAndChaseStateChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2451557674939216856}
-        m_TargetAssemblyTypeName: EnemyAgentAnimator, Assembly-CSharp
-        m_MethodName: ChaseAttackFaceDirection
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  IdleStateStateChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2451557674939216856}
-        m_TargetAssemblyTypeName: EnemyAgentAnimator, Assembly-CSharp
-        m_MethodName: IdleFaceDirection
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnFireButtonPress:
-    m_PersistentCalls:
-      m_Calls: []
   _currentState: {fileID: 2846920624191583241}
   _target: {fileID: 0}
   _basePos: {fileID: 2846920624178645232}
@@ -1265,6 +1279,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  <HitFeedback>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   _isActive: 1
   _enemyLight: {fileID: 0}
   physicsMaterial2D: {fileID: 0}
@@ -1368,8 +1385,7 @@ MonoBehaviour:
   meleeDamage: 3
   normalDamage: 5
   specialDamage: 10
-  isUseAttackTerm: 0
-  attackTerm: 4
+  attackWaitTime: 0
 --- !u!1 &2846920623829138654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,8 +1726,8 @@ MonoBehaviour:
   IsSpecial: 0
   IsMelee: 0
   IsRange: 0
+  IsAttackWait: 0
   IsCrash: 0
-  hitCnt: 0
 --- !u!114 &2846920624722933053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1730,6 +1746,8 @@ MonoBehaviour:
   IsIdle: 0
   IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
+  HitNormal: {x: 0, y: 0, z: 0}
+  nextSkill: 0
 --- !u!114 &2846920624722933052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1743,10 +1761,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
-  beforeDirection: {x: 0, y: 0}
   pointOfInterest: {x: 0, y: 0}
   canMove: 1
   thinkTime: 0
+  speed: 0
 --- !u!1 &2846920624728016573
 GameObject:
   m_ObjectHideFlags: 0
