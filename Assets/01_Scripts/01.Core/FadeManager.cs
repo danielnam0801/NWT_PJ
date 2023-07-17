@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using UnityEngine.UI;
+using System;
 using UnityEngine.UIElements;
 
 public class FadeManager : MonoBehaviour
 {
     public static FadeManager Instance;
 
-    private UIDocument document;
-    private VisualElement fadeImage;
+    public Color FadeColor;
 
-    [SerializeField]
-    private float fadeTime;
+    private UIDocument document;
+    private VisualElement fade;
 
     private void Awake()
     {
@@ -25,25 +23,43 @@ public class FadeManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         document = GetComponent<UIDocument>();
+        fade = document.rootVisualElement.Q("fade");
+        fade.style.display = DisplayStyle.None;
     }
 
-    private void OnEnable()
+    public void FadeOneShot(Action fadeOutAction = null, float time = 0, float maintainTime = 0)
     {
-        fadeImage = document.rootVisualElement.Q<VisualElement>("FadeImage");
+        Fade(0, 1, () =>
+        {
+            fadeOutAction?.Invoke();
 
-        //fadeTime = FadeManager
+            StartCoroutine(Delay(maintainTime, () =>
+            {
+                Fade(1, 0, () =>
+                {
+                    fade.style.display = DisplayStyle.None;
+                }, time);
+            }));
+        }, time);
     }
 
-    public void Fade(bool on)
+    public void Fade(float startValue, float endValue, Action completeAction = null, float time = 1)
     {
-        if (on)
-            fadeImage.AddToClassList("on");
-        else
-            fadeImage.RemoveFromClassList("on");
+        fade.style.display = DisplayStyle.Flex;
+
+        fade.style.backgroundColor = new Color(FadeColor.r, FadeColor.g, FadeColor.b, startValue);
+
+        fade.style.transitionDuration = new List<TimeValue>() { new TimeValue(time) };
+
+        fade.style.backgroundColor = new Color(FadeColor.r, FadeColor.g, FadeColor.b, endValue);
+
+        StartCoroutine(Delay(time, completeAction));
     }
 
-    //private IEnumerator Delay()
-    //{
+    private IEnumerator Delay(float time, Action action)
+    {
+        yield return new WaitForSeconds(time);
 
-    //}
+        action?.Invoke();
+    }
 }
