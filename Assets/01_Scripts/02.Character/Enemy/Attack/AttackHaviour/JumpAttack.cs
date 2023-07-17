@@ -30,11 +30,6 @@ public class JumpAttack : EnemyAttack, INormalAttack
         rb2d = _brain.transform.GetComponent<Rigidbody2D>();
     }
 
-    protected void Start()
-    {
-        idamage = _atkController.GetAtkDamage(_skillName);
-    }
-
     public void Attack(Action CallBack)
     {
         this.callBack = CallBack;

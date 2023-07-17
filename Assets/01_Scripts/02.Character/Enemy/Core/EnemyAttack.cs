@@ -28,6 +28,11 @@ public abstract class EnemyAttack : MonoBehaviour
         _aiActionData = _brain.transform.Find("AI").GetComponent<AIActionData>();
         _atkController = _brain.GetComponent<EnemyAttackController>();
     }
+    
+    protected void Start()
+    {
+        idamage = _atkController.GetAtkDamage(_skillName);
+    }
 
     protected IEnumerator DelayCoroutine(float afterAttackDelay, Action afterPlayAction)
     {
