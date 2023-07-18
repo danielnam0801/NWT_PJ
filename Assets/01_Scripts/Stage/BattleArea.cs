@@ -80,11 +80,23 @@ public class BattleArea : MonoBehaviour
 
     private void SpawnEenmy()
     {
+        for(int i = 0; i < spawnEnemies.Count; i++)
+        {
+            PoolManager.Instance.Push(spawnEnemies[i]);
+        }
+
         spawnEnemies.Clear();
 
         for (int i = 0; i < enemies.Count;i++)
         {
             Enemy enemy = PoolManager.Instance.Pop(enemies[i].SpaenEnemy.name) as Enemy;
+
+            //if (enemy == spawnEnemies[Mathf.Max(0, i - 1)])
+            //{
+            //    i--;
+            //    continue;
+            //}
+
             enemy.Init();
             enemy.transform.position = enemies[i].SpawnPos.position;
             spawnEnemies.Add(enemy);

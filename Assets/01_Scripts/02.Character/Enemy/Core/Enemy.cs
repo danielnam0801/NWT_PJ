@@ -212,7 +212,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         seq.OnComplete(() =>
         {
             _enemyAnim.OnAnimaitionEndTrigger -= DieAnimEvent;
-            PoolManager.Instance.Push(this);
+            //PoolManager.Instance.Push(this);
             IsDead = true;
             #region 풀링으로 바꿀부분
             //Destroy(gameObject);
