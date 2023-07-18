@@ -18,11 +18,10 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        currentStage = ThemeList[0].StageList[0];
-        Instantiate(currentStage);
+        currentStage = Instantiate(ThemeList[0].StageList[0], transform);
     }
 
-    private void Awake()
+    private void Awake()    
     {
         if (Instance == null)
             Instance = this;
@@ -32,7 +31,7 @@ public class StageManager : MonoBehaviour
 
     public void ChangeStage()
     {
-        Destroy(currentStage);
+        Destroy(currentStage.gameObject);
 
         currentStageIndex++;
 
@@ -42,8 +41,6 @@ public class StageManager : MonoBehaviour
             currentThemeIndex++;
         }
 
-        currentStage = ThemeList[currentThemeIndex].StageList[currentStageIndex];
-
-        Instantiate(currentStage);
+        currentStage = Instantiate(ThemeList[currentThemeIndex].StageList[currentStageIndex], transform);
     }
 }

@@ -6,8 +6,6 @@ public class Portal : MonoBehaviour, IInteract
 {
     public void Interact(GameObject Sender)
     {
-        //스테이지 변경
-        //StageManager.Instance.ChangeStage();
-        Debug.Log("Change Stage");  
+        StageManager.Instance.ChangeStage();
     }
 }

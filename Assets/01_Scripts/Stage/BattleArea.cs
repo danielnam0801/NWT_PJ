@@ -19,7 +19,7 @@ public class BattleArea : MonoBehaviour
     private List<Enemy> spawnEnemies = new List<Enemy>();
     public int RespawnNumber;
     [SerializeField]
-    private int currentRespawnCount = 0;
+    private int currentRespawnCount = 1;
 
     [SerializeField]
     private bool isOverpast = false;
@@ -33,7 +33,8 @@ public class BattleArea : MonoBehaviour
 
         if(collision.CompareTag("Player"))
         {
-            StartBattle();
+            if(!collision.GetComponent<PlayerController>().IsBattle)
+                StartBattle();
         }
     }
 
@@ -51,7 +52,7 @@ public class BattleArea : MonoBehaviour
 
             currentRespawnCount++;
 
-            if (currentRespawnCount == RespawnNumber)
+            if (currentRespawnCount >= RespawnNumber)
             {
                 FinishBattle();
                 return;
@@ -63,6 +64,8 @@ public class BattleArea : MonoBehaviour
 
     private void StartBattle()
     {
+        GameManager.instance.Target.GetComponent<PlayerController>().IsBattle = true;
+
         Debug.Log("start battle");
         isBattle = true;
         isOverpast = true;
@@ -76,6 +79,7 @@ public class BattleArea : MonoBehaviour
         isBattle = false;
         DefineETC.VCam.Priority = 100;
         cam.Priority = 0;
+        GameManager.instance.Target.GetComponent<PlayerController>().IsBattle = false;
     }
 
     private void SpawnEenmy()
@@ -90,12 +94,6 @@ public class BattleArea : MonoBehaviour
         for (int i = 0; i < enemies.Count;i++)
         {
             Enemy enemy = PoolManager.Instance.Pop(enemies[i].SpaenEnemy.name) as Enemy;
-
-            //if (enemy == spawnEnemies[Mathf.Max(0, i - 1)])
-            //{
-            //    i--;
-            //    continue;
-            //}
 
             enemy.Init();
             enemy.transform.position = enemies[i].SpawnPos.position;

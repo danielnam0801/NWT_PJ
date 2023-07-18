@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     [field: SerializeField]
     public bool Interactable { get; set; }
+    [field: SerializeField]
+    public bool IsBattle { get; set; }
 
     private void Awake()
     {

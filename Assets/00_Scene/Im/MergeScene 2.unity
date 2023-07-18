@@ -1497,6 +1497,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThemeList:
   - {fileID: 11400000, guid: 748b3102ec93d8041ba54d1ff56c9bb8, type: 2}
+  - {fileID: 11400000, guid: bcc8e05cf2adf5d4fbfcf64dd9cfbdb2, type: 2}
+  - {fileID: 11400000, guid: c5e8fd9f0a601d343bfce2c2ffe45ded, type: 2}
   currentStageIndex: 0
   currentThemeIndex: 0
   currentStage: {fileID: 0}
@@ -3520,6 +3522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: {fileID: 0}
   <Interactable>k__BackingField: 0
+  <IsBattle>k__BackingField: 0
 --- !u!114 &1037148953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15731,6 +15734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: {fileID: 0}
   <Interactable>k__BackingField: 0
+  <IsBattle>k__BackingField: 0
 --- !u!114 &7121441562194724187
 MonoBehaviour:
   m_ObjectHideFlags: 0

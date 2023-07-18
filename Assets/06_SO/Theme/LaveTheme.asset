@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3480f3d3f19bb624d944001e83dc4058, type: 3}
-  m_Name: ForestTheme
+  m_Name: LaveTheme
   m_EditorClassIdentifier: 
-  ThemeName: Forest
+  ThemeName: Lave
   StageList:
-  - {fileID: 8617125619521801172, guid: 7d824962d4090794495d400865f37bc8, type: 3}
-  - {fileID: 6384532758970236688, guid: e899a1acf1d23904584b06273fa0b50b, type: 3}
-  - {fileID: 8018736924491819778, guid: c83e4515e98f8b34ebc7256cac70e9f9, type: 3}
-  - {fileID: 3181967662029972438, guid: e549fec5bb026334d919fb05480837fd, type: 3}
+  - {fileID: 3745470764490251249, guid: 84c092eb674aeab408fc62d2632e9e84, type: 3}
+  - {fileID: 9034886743628488319, guid: 43e3f2393cadec24b8757e10d5887dcc, type: 3}
