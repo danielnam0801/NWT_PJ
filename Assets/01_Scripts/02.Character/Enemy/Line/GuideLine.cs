@@ -12,7 +12,7 @@ public abstract class GuideLine : PoolableObject
     [SerializeField]
     protected float shapeSize = 1f;
     [SerializeField]
-    protected EnemyGuide pair;
+    public EnemyGuide pair;
 
     protected float pathPointInterval;
 
@@ -70,15 +70,11 @@ public abstract class GuideLine : PoolableObject
         }
     }
 
-    public bool CheckShape(List<Vector2> points, out ShapeType _type, out Vector2 pos)
+    public bool CheckShape(List<Vector2> points, out GuideLine line)
     {
-        Debug.Log("check");
-        pos = Vector2.zero;
-
         if ((float)points.Count / (float)shapePoints.Count < 0.7f)
         {
-            Debug.Log("return");
-            _type = ShapeType.Default;
+            line = this;
             return false;
         }
 
@@ -98,15 +94,14 @@ public abstract class GuideLine : PoolableObject
             Debug.Log((float)count / (float)repeat);
             Debug.Log("그리기 성공");
 
-            _type = type;
-            pos = transform.position;
-            PoolManager.Instance.Push(this);
+            line = this;
+            
             return true;
         }
         else
         {
             Debug.Log("그리기 실패");
-            _type = ShapeType.Default;
+            line = this;
             return false;
         }
     }

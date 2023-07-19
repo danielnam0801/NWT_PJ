@@ -106,12 +106,12 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     #region АјАн
-    public void Attack(List<Vector2> pathPoints, ShapeType _type)
+    public void Attack(List<Vector2> pathPoints, GuideLine guide)
     {
-        StartCoroutine(AttackCoroutine(pathPoints, _type));
+        StartCoroutine(AttackCoroutine(pathPoints, guide));
     }
 
-    private IEnumerator AttackCoroutine(List<Vector2> pathPoints, ShapeType _type)
+    private IEnumerator AttackCoroutine(List<Vector2> pathPoints, GuideLine guide)
     {
         IsAttack = true;
         IsFollow = false;
@@ -133,7 +133,7 @@ public class PlayerWeapon : MonoBehaviour
             }
         }
 
-        yield return StartCoroutine(ChooseAttackSkill(_type));
+        yield return StartCoroutine(ChooseAttackSkill(guide));
         IsAttack = false;
         StartCoroutine("Stay");
     }
@@ -156,11 +156,17 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
-    private IEnumerator ChooseAttackSkill(ShapeType shape)
+    private IEnumerator ChooseAttackSkill(GuideLine guide)
     {
         IsSkill = true;
 
-        switch (shape)
+        if (guide == null || guide.pair == null)
+        {
+            IsSkill = false;
+            yield break;
+        }
+
+        switch (guide.type)
         {
             case ShapeType.Circle:
                 yield return StartCoroutine(CircleSkill());
@@ -183,9 +189,25 @@ public class PlayerWeapon : MonoBehaviour
             case ShapeType.SixStar:
                 yield return StartCoroutine(StarShapeSkill(6));
                 break;
-        }       
+            case ShapeType.UpArraw:
+                yield return null;
+                ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), Vector2.up);
+                break;
+            case ShapeType.DownArraw:
+                yield return null;
+                ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), -Vector2.up);
+                break;
+            case ShapeType.RightArraw:
+                yield return null;
+                ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), new Vector2(1, 1));
+                break;
+            case ShapeType.LeftArraw:
+                yield return null;
+                ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), new Vector2(-1, 1));
+                break;
+        }
 
-
+        PoolManager.Instance.Push(guide);
         IsSkill = false;
     }
     #endregion
@@ -312,9 +334,9 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
-    private void ArrawSkill(Vector2 dir)
+    private void ArrawSkill(EnemyMovement enemy, Vector2 dir)
     {
-        //
+        enemy.KnockBack(dir.normalized);
     }
     #endregion
 

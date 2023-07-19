@@ -51,7 +51,6 @@ public class EnemyMovement : MonoBehaviour
         _brain.UseBrain = false;
         _brain.AIMovementData.canMove = false;
         _isknockBack = true;
-
         _knockBackStartTime = Time.time;
         //_movementdirection = _brain.AIActionData.HitNormal * -1 * _knockBackSpeed;
         _movementdirection = dir * _knockBackSpeed;

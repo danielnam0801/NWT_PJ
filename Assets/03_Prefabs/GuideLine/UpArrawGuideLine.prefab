@@ -48,11 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 0
   type: 7
-  checkOffset: 5
+  checkOffset: 50
   shapeSize: 1.5
   pair: {fileID: 0}
   shapePoints: []
-  startPoint: {fileID: 8625779907496182109, guid: ad1a0cdb49e47354c919405eb77dccc4, type: 3}
 --- !u!120 &4118976874383314117
 LineRenderer:
   m_ObjectHideFlags: 0

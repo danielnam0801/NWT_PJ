@@ -175,7 +175,7 @@ public class DrawManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             currentDrawTime = 0;
-            ShapeType _type = ShapeType.Default;
+            GuideLine guide = null;
             isMaxLength = false;
             IsDraw = false;
             //OnTheWall = false;
@@ -185,36 +185,33 @@ public class DrawManager : MonoBehaviour
 
             for (int i = 0; i < GuideLines.Count; i++)
             {
-                bool success = GuideLines[i].CheckShape(points, out _type, out Vector2 pos);
+                bool success = GuideLines[i].CheckShape(points, out guide);
 
-                if(_type != ShapeType.Default)
+                if(success)
                 {
-                    if(_type == ShapeType.Circle)
-                        points.Add(pos);
+                    if(guide.type == ShapeType.Circle)
+                        points.Add(guide.transform.position);
 
-                    Debug.Log(points.Count);
-                    SwordAttack(_type);
+                    SwordAttack(guide);
                     return;
                 }
             }
 
-            Debug.Log(points.Count);
-            SwordAttack(_type);
+            SwordAttack(guide);
         }
     }
 
-    private void SwordAttack(ShapeType _type)
+    private void SwordAttack(GuideLine guide)
     {
         isDrawArea = false;
         Destroy(go.gameObject);
         Debug.Log("sword attack");
-        Debug.Log(_type);
         canDraw = true;
 
         if (points.Count > minDrawPoint)
         {
             canDraw = false;
-            sword.Attack(points, _type);
+            sword.Attack(points, guide);
         }
     }
     private IEnumerator DelayDraw(float time)
