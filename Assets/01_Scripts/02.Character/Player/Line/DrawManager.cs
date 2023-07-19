@@ -185,7 +185,7 @@ public class DrawManager : MonoBehaviour
 
             for (int i = 0; i < GuideLines.Count; i++)
             {
-                GuideLines[i].CheckShape(points, out _type, out Vector2 pos);
+                bool success = GuideLines[i].CheckShape(points, out _type, out Vector2 pos);
 
                 if(_type != ShapeType.Default)
                 {

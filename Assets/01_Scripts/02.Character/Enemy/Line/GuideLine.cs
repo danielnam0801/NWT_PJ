@@ -70,7 +70,7 @@ public abstract class GuideLine : PoolableObject
         }
     }
 
-    public void CheckShape(List<Vector2> points, out ShapeType _type, out Vector2 pos)
+    public bool CheckShape(List<Vector2> points, out ShapeType _type, out Vector2 pos)
     {
         Debug.Log("check");
         pos = Vector2.zero;
@@ -79,7 +79,7 @@ public abstract class GuideLine : PoolableObject
         {
             Debug.Log("return");
             _type = ShapeType.Default;
-            return;
+            return false;
         }
 
         int count = 0;
@@ -101,13 +101,13 @@ public abstract class GuideLine : PoolableObject
             _type = type;
             pos = transform.position;
             PoolManager.Instance.Push(this);
-            return;
+            return true;
         }
         else
         {
             Debug.Log("그리기 실패");
             _type = ShapeType.Default;
-            return;
+            return false;
         }
     }
 

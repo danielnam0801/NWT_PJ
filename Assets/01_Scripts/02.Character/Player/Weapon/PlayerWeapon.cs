@@ -311,6 +311,11 @@ public class PlayerWeapon : MonoBehaviour
             //
         }
     }
+
+    private void ArrawSkill(Vector2 dir)
+    {
+        //
+    }
     #endregion
 
     private IEnumerator LerpMove(Vector2 start, Vector2 end, float time)
