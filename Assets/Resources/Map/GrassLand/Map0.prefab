@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2250927768621599718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enviroment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5565717719348666449}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PortalPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 499660014454761074}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: SpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941735817557805}
   - component: {fileID: 1497941735817557804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941735820594733}
   - component: {fileID: 1497941735820594732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941735872384175}
   - component: {fileID: 1497941735872384174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941735918506679}
   - component: {fileID: 1497941735918506678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941735976251642}
   - component: {fileID: 1497941735976251645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._38
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736074378371}
   - component: {fileID: 1497941736074378370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 1497941736104891032}
   - component: {fileID: 1497941736104891035}
   - component: {fileID: 1497941736104891034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Island ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1799,7 +1799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736109022830}
   - component: {fileID: 1497941736109022817}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1883,7 +1883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736114506271}
   - component: {fileID: 1497941736114506270}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._27 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1967,7 +1967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736139578991}
   - component: {fileID: 1497941736139578990}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._38 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2051,7 +2051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736158728767}
   - component: {fileID: 1497941736158728766}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2135,7 +2135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736168698172}
   - component: {fileID: 1497941736168698175}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: main water ferr_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2219,7 +2219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736210199260}
   - component: {fileID: 1497941736210199263}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2303,7 +2303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736265000836}
   - component: {fileID: 1497941736265000839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite3_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2387,7 +2387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736277408538}
   - component: {fileID: 1497941736277408541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2471,7 +2471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736280802795}
   - component: {fileID: 1497941736280802794}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2555,7 +2555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736283792878}
   - component: {fileID: 1497941736283792865}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2639,7 +2639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736314027290}
   - component: {fileID: 1497941736314027293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite4_11 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2723,7 +2723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736352247202}
   - component: {fileID: 1497941736352247205}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite4_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2807,7 +2807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736377368964}
   - component: {fileID: 1497941736377368967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: main water ferr_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2891,7 +2891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736387598678}
   - component: {fileID: 1497941736387598697}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._30 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2975,7 +2975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736414942231}
   - component: {fileID: 1497941736414942230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._35
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3200,7 +3200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736470996024}
   - component: {fileID: 1497941736470996027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3284,7 +3284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736542552779}
   - component: {fileID: 1497941736542552778}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3368,7 +3368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736557358806}
   - component: {fileID: 1497941736557358825}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3452,7 +3452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736585409461}
   - component: {fileID: 1497941736585409460}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._35 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3536,7 +3536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736609586622}
   - component: {fileID: 1497941736609586609}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3620,7 +3620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736632455243}
   - component: {fileID: 1497941736632455242}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3704,7 +3704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736690459772}
   - component: {fileID: 1497941736690459775}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite3_35
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3788,7 +3788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736714895050}
   - component: {fileID: 1497941736714895053}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite3_29
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3872,7 +3872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736728238542}
   - component: {fileID: 1497941736728238529}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3956,7 +3956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736755168474}
   - component: {fileID: 1497941736755168477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4040,7 +4040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736755327652}
   - component: {fileID: 1497941736755327655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4124,7 +4124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736781437731}
   - component: {fileID: 1497941736781437730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4208,7 +4208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736815889545}
   - component: {fileID: 1497941736815889544}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4292,7 +4292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736831272178}
   - component: {fileID: 1497941736831272181}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._35 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4376,7 +4376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736872488867}
   - component: {fileID: 1497941736872488866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4460,7 +4460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736911803724}
   - component: {fileID: 1497941736911803727}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4544,7 +4544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736975733110}
   - component: {fileID: 1497941736975733001}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4628,7 +4628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941736997921217}
   - component: {fileID: 1497941736997921216}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4712,7 +4712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737085201136}
   - component: {fileID: 1497941737085201139}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4796,7 +4796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737109462090}
   - component: {fileID: 1497941737109462093}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4880,7 +4880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737291737033}
   - component: {fileID: 1497941737291737032}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4964,7 +4964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737364304333}
   - component: {fileID: 1497941737364304332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite3_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5048,7 +5048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737373943381}
   - component: {fileID: 1497941737373943380}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5132,7 +5132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737382359572}
   - component: {fileID: 1497941737382359575}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5216,7 +5216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737446031385}
   - component: {fileID: 1497941737446031384}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5300,7 +5300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737467744672}
   - component: {fileID: 1497941737467744675}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5384,7 +5384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737481273455}
   - component: {fileID: 1497941737481273454}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._38 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5534,7 +5534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737530064568}
   - component: {fileID: 1497941737530064571}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite4_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5618,7 +5618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737546703818}
   - component: {fileID: 1497941737546703821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5702,7 +5702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737554224002}
   - component: {fileID: 1497941737554224005}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite3_32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5786,7 +5786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737581871179}
   - component: {fileID: 1497941737581871178}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: main water ferr_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5873,7 +5873,7 @@ GameObject:
   - component: {fileID: 1497941737598692291}
   - component: {fileID: 1497941737598692290}
   - component: {fileID: 1497941737598692293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Island ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6185,7 +6185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737683207067}
   - component: {fileID: 1497941737683207066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._38 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6269,7 +6269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737713992679}
   - component: {fileID: 1497941737713992678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._38 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6353,7 +6353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737735911634}
   - component: {fileID: 1497941737735911637}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6437,7 +6437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737749635306}
   - component: {fileID: 1497941737749635309}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6521,7 +6521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737786837093}
   - component: {fileID: 1497941737786837092}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6605,7 +6605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737787741176}
   - component: {fileID: 1497941737787741179}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6689,7 +6689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737796986502}
   - component: {fileID: 1497941737796986521}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6773,7 +6773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737799916176}
   - component: {fileID: 1497941737799916179}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass ferr_6 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6857,7 +6857,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737823605051}
   - component: {fileID: 1497941737823605050}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6941,7 +6941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737826235932}
   - component: {fileID: 1497941737826235935}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: main water ferr_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7025,7 +7025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737831995752}
   - component: {fileID: 1497941737831995755}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._38 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7109,7 +7109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737832456912}
   - component: {fileID: 1497941737832456915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7193,7 +7193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737840468411}
   - component: {fileID: 1497941737840468410}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._38 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7277,7 +7277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737853322920}
   - component: {fileID: 1497941737853322923}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: danger_4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7361,7 +7361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737874306650}
   - component: {fileID: 1497941737874306653}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: greens._19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7445,7 +7445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497941737912803088}
   - component: {fileID: 1497941737912803091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spikes_2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7528,7 +7528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602843681454491513}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Pos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7559,7 +7559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7436796592065421303}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Pos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7590,7 +7590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1750999130838726009}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Pos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7621,7 +7621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711828418557369756}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: pos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7652,7 +7652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8345557299584327674}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7685,7 +7685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3144862610900897379}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: pos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7716,7 +7716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8884575086990862877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7747,7 +7747,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7701172442083949705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerStartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7812,7 +7812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3861010639704671917}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: SpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7847,7 +7847,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5372348086817063674}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7878,7 +7878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4747894751763434039}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7909,7 +7909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6432620910783694521}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: pos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7941,6 +7941,22 @@ PrefabInstance:
     - target: {fileID: 1068424081289332, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
       propertyPath: m_Name
       value: black cristal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068424081289332, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857545716543746, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865360219598950, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964186305668906, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4609074360452852, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
       propertyPath: m_RootOrder
@@ -8003,6 +8019,22 @@ PrefabInstance:
     - target: {fileID: 1068424081289332, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
       propertyPath: m_Name
       value: black cristal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068424081289332, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857545716543746, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865360219598950, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964186305668906, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4609074360452852, guid: e70591426636bbc4bbf1c16254f43d21, type: 3}
       propertyPath: m_RootOrder
@@ -8086,6 +8118,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -1.645803
       objectReference: {fileID: 0}
+    - target: {fileID: 3349409494237232241, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4018157650770306306, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Lens.OrthographicSize
       value: 8
@@ -8101,6 +8137,10 @@ PrefabInstance:
     - target: {fileID: 4728006666696848655, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Name
       value: BattleArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728006666696848655, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5234551289216622423, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_RootOrder
@@ -8206,6 +8246,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8669913674876450257, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110941174718409544, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
 --- !u!4 &6093051216062682104 stripped
@@ -8236,9 +8284,17 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 2.8869505
       objectReference: {fileID: 0}
+    - target: {fileID: 3349409494237232241, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4728006666696848655, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Name
       value: BattleArea (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728006666696848655, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5234551289216622423, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_RootOrder
@@ -8308,6 +8364,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8669913674876450257, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110941174718409544, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
 --- !u!4 &2242938538758294766 stripped
@@ -8334,9 +8398,17 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.71736145
       objectReference: {fileID: 0}
+    - target: {fileID: 3349409494237232241, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4728006666696848655, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Name
       value: BattleArea (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728006666696848655, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5234551289216622423, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_RootOrder
@@ -8426,6 +8498,14 @@ PrefabInstance:
       propertyPath: enemies.Array.data[3].SpaenEnemy
       value: 
       objectReference: {fileID: 3990659496386882499, guid: eb6f11f3485a1544aa6ef170c4a0dbdf, type: 3}
+    - target: {fileID: 8669913674876450257, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110941174718409544, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
 --- !u!4 &1714865761041058399 stripped
