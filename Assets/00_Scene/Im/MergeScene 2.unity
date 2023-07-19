@@ -3614,7 +3614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxShape: 3
-  HaveShapes: 000000000800000006000000
+  HaveShapes: 000000000700000006000000
   FullCountShapeAction:
     m_PersistentCalls:
       m_Calls:
@@ -6819,6 +6819,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ShapeImages:
+  - {fileID: 21300000, guid: 45d9b559f2306fe45b4a33e851e570c1, type: 3}
+  - {fileID: 21300000, guid: 5acabf7fd85d8e04ba7d2e53232a3052, type: 3}
+  - {fileID: 21300000, guid: df532e18a6c6b3e4f8c31fe4e7ed921f, type: 3}
+  - {fileID: 21300000, guid: 782af5b89d8e5e14d815ca7bce258180, type: 3}
+  - {fileID: 21300000, guid: 5a4d0a6cd9c45e44893d481c4b4f511e, type: 3}
+  - {fileID: 21300000, guid: 0297385f3891c6345bde68a9a1c86a49, type: 3}
+  - {fileID: 21300000, guid: 4d912943cd567564692459a3fba9849f, type: 3}
+  - {fileID: 21300000, guid: 45d9b559f2306fe45b4a33e851e570c1, type: 3}
+  - {fileID: 21300000, guid: 45d9b559f2306fe45b4a33e851e570c1, type: 3}
+  - {fileID: 21300000, guid: 45d9b559f2306fe45b4a33e851e570c1, type: 3}
+  - {fileID: 21300000, guid: 45d9b559f2306fe45b4a33e851e570c1, type: 3}
 --- !u!1 &2078164238
 GameObject:
   m_ObjectHideFlags: 0

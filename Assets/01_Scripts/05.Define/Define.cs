@@ -15,7 +15,7 @@ public enum PlayerStateType
 [System.Serializable]
 public enum ShapeType
 {
-    Circle,
+    Circle = 0,
     Triangle,
     Square,
     Pentagon,

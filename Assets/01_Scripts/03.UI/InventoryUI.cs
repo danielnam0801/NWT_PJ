@@ -23,6 +23,7 @@ public class InventoryUI : MonoBehaviour
 
     public UnityEvent<ShapeType> CreateShapeEvent;
     public UnityEvent<ShapeType> RemoveShapeEvent;
+    public List<Sprite> ShapeImages = new List<Sprite>();
 
     private void Awake()
     {
@@ -88,7 +89,7 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
-                ///item.Q<VisualElement>("image").style.backgroundImage.value.sprite =
+                items[i].Q<VisualElement>("image").style.backgroundImage = new StyleBackground(ShapeImages[(int)shape]);    
 
                 items[i].RegisterCallback<ClickEvent>(e =>
                 {

@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class GroundMovement : EnemyMovement
 {
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            KnockBack(Vector2.up);
+        }
+    }
+
     private void FixedUpdate()
     {
         if (_isknockBack == true)
