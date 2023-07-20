@@ -72,7 +72,7 @@ public class BattleArea : MonoBehaviour
     {
         GameManager.instance.Target.GetComponent<PlayerController>().IsBattle = true;
 
-        SetWall(true, 1f);
+        StartCoroutine(SetWall(true, 1f));
 
         Debug.Log("start battle");
         isBattle = true;
@@ -86,7 +86,7 @@ public class BattleArea : MonoBehaviour
     private void FinishBattle()
     {
         isBattle = false;
-        SetWall(false, 0f);
+        StartCoroutine(SetWall(false, 0f));
         DefineETC.VCam.Priority = 100;
         if (cam != null)
             cam.Priority = 0;
@@ -114,6 +114,7 @@ public class BattleArea : MonoBehaviour
 
     private IEnumerator SetWall(bool value, float time)
     {
+        Debug.Log(1);
         yield return new WaitForSeconds(time);
 
         Wall.gameObject.SetActive(value);
