@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4548797845167126284}
   - component: {fileID: 700679050909988556}
+  - component: {fileID: 8324732272982835829}
   m_Layer: 0
   m_Name: sky BackGround
   m_TagString: Untagged
@@ -148,6 +149,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8324732272982835829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023848781999378214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c91637e4d346f44b15ac50de035897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parallaxRatio: {x: 1, y: 1}
 --- !u!1 &2749971345921268399
 GameObject:
   m_ObjectHideFlags: 0
@@ -15015,6 +15029,7 @@ MonoBehaviour:
   - "\uC88C\uD074\uB9AD \uB4DC\uB798\uADF8\uB85C \uACF5\uACA9"
   - "Q\uB97C \uB20C\uB7EC \uB3C4\uD615 \uC120\uD0DD"
   - "\uC2DC\uC791\uC810\uBD80\uD130 \uBC18\uC2DC\uACC4\uBC18\uD5A5\uC73C\uB85C \uADF8\uB9AC\uAE30"
+  - "\uACF5\uACA9 \uD6C4 \uC88C\uD074\uB9AD\uC73C\uB85C \uC21C\uAC04\uC774\uB3D9"
 --- !u!1 &7367747803819930138
 GameObject:
   m_ObjectHideFlags: 0

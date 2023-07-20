@@ -7,7 +7,7 @@ public class ShakeFeedback : Feedback
 {
     [SerializeField]
     [Range(0, 5f)]
-    private float _amplitude = 1, _intensity = 1;
+    private float _amplitude = 5, _intensity = 5;
     [SerializeField]
     [Range(0, 1f)]
     private float _duration = 0.1f;

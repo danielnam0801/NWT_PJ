@@ -50981,8 +50981,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fb9911207297f4b8823dddcc6864a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerStartPoint: {fileID: 0}
-  PortalPoint: {fileID: 0}
+  PlayerStartPoint: {fileID: 7333060449210461233}
+  PortalPoint: {fileID: 2568373593000921552}
 --- !u!1 &3739305862365047977
 GameObject:
   m_ObjectHideFlags: 0

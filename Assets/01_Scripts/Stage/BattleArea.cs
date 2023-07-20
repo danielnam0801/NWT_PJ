@@ -69,8 +69,9 @@ public class BattleArea : MonoBehaviour
         Debug.Log("start battle");
         isBattle = true;
         isOverpast = true;
-        DefineETC.VCam.Priority = 0;
-        cam.Priority = 100;
+        DefineETC.VCam.Priority = 50;
+        if(cam != null)
+            cam.Priority = 100;
         SpawnEenmy();
     }
 
@@ -78,7 +79,8 @@ public class BattleArea : MonoBehaviour
     {
         isBattle = false;
         DefineETC.VCam.Priority = 100;
-        cam.Priority = 0;
+        if (cam != null)
+            cam.Priority = 0;
         GameManager.instance.Target.GetComponent<PlayerController>().IsBattle = false;
     }
 

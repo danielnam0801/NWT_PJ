@@ -52,5 +52,14 @@ public class AttackTutorialText : MonoBehaviour
                 text.SetText(texts[textIndex]);
             }
         }
+        else if (textIndex == 3)
+        {
+            //스킬 설명
+            if (Input.GetMouseButtonUp(0))
+            {
+                textIndex++;
+                text.SetText(texts[textIndex]);
+            }
+        }
     }
 }

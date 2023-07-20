@@ -1519,6 +1519,7 @@ GameObject:
   - component: {fileID: 1042621903749495484}
   - component: {fileID: 1042621903749495483}
   - component: {fileID: 8102565591850622320}
+  - component: {fileID: 198083594486810130}
   m_Layer: 8
   m_Name: HitFeedback
   m_TagString: Untagged
@@ -1567,6 +1568,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderers: []
   _blinkTime: 0.2
+--- !u!114 &198083594486810130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042621903749495485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb19209972715b46b4d9df41855f279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amplitude: 5
+  _intensity: 5
+  _duration: 0.1
 --- !u!1 &1108379561317311728
 GameObject:
   m_ObjectHideFlags: 0

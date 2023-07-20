@@ -10,7 +10,8 @@ public class ParallaxEffect : MonoBehaviour
 
     private void Start()
     {
-        _mainCamTrm = Camera.main.transform;
+        _mainCamTrm = DefineETC.VCam.transform;
+        transform.position = _mainCamTrm.position + Vector3.forward;
         _lastCamPos = _mainCamTrm.position;
     }
 

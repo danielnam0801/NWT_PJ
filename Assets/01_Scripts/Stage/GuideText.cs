@@ -16,7 +16,6 @@ public class GuideText : MonoBehaviour
     {
         playerTrm = GameManager.instance.Target;
         text.text = guideText;  
-        text.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -25,7 +24,6 @@ public class GuideText : MonoBehaviour
         {
             if(!isActive)
             {
-                text.gameObject.SetActive(true);
                 isActive = true;
             }
         }
@@ -33,7 +31,6 @@ public class GuideText : MonoBehaviour
         {
             if(isActive)
             {
-                text.gameObject.SetActive(false);
                 isActive = false;
             }
         }
