@@ -20,6 +20,12 @@ public class Chest : MonoBehaviour, IInteract
     {
         animator = GetComponent<Animator>();    
     }
+
+    private void Start()
+    {
+        OpenAction.AddListener(GameManager.instance.Target.GetComponent<PlayerInventory>().AddShape);
+    }
+
     public void Interact(GameObject Sender)
     {
         if (IsOpen)

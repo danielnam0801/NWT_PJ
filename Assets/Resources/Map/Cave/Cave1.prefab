@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7838352863781355164}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7596919277175765834}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PortalPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788411843373}
   - component: {fileID: 6451846788411843372}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788470629700}
   - component: {fileID: 6451846788470629723}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background egg C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788506419045}
   - component: {fileID: 6451846788506419044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788516742495}
   - component: {fileID: 6451846788516742494}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788532791710}
   - component: {fileID: 7688746136914106207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cave1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 6451846788570824464}
   - component: {fileID: 6451846788570824471}
   - component: {fileID: 6451846788570824470}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,7 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788575663518}
   - component: {fileID: 6451846788575663517}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788579709653}
   - component: {fileID: 6451846788579709652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788597032103}
   - component: {fileID: 6451846788597032102}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals blue_2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 6451846788611084210}
   - component: {fileID: 6451846788611084209}
   - component: {fileID: 6451846788611084208}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1666,7 +1666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788629931891}
   - component: {fileID: 6451846788629931890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1750,7 +1750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788633510155}
   - component: {fileID: 6451846788633510154}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocks_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1834,7 +1834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788663693060}
   - component: {fileID: 6451846788663693083}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1918,7 +1918,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788664278539}
   - component: {fileID: 6451846788664278538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals blue_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2002,7 +2002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788682814056}
   - component: {fileID: 6451846788682814063}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2086,7 +2086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788692636957}
   - component: {fileID: 6451846788692636956}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2197,7 +2197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788710909765}
   - component: {fileID: 6451846788710909764}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_17 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2280,7 +2280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6451846788720435292}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2333,7 +2333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788732108218}
   - component: {fileID: 6451846788732108217}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_9 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2417,7 +2417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788746238752}
   - component: {fileID: 6451846788746238759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_10 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2501,7 +2501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788762596064}
   - component: {fileID: 6451846788762596071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_9 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2585,7 +2585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788766976670}
   - component: {fileID: 6451846788766976669}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2697,7 +2697,7 @@ GameObject:
   - component: {fileID: 6451846788793751500}
   - component: {fileID: 6451846788793751502}
   - component: {fileID: 6451846788793751501}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2836,7 +2836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788830299528}
   - component: {fileID: 6451846788830299535}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background egg A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2920,7 +2920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788839895451}
   - component: {fileID: 6451846788839895450}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_11 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3004,7 +3004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788839961149}
   - component: {fileID: 6451846788839961148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3115,7 +3115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788875168666}
   - component: {fileID: 6451846788875168665}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3199,7 +3199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788942025312}
   - component: {fileID: 6451846788942025319}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_9 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3283,7 +3283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788946691520}
   - component: {fileID: 6451846788946691527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_14 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3367,7 +3367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788947797961}
   - component: {fileID: 6451846788947797960}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_11 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3451,7 +3451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788955216252}
   - component: {fileID: 6451846788955216243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3535,7 +3535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788960625691}
   - component: {fileID: 6451846788960625690}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3619,7 +3619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788960901722}
   - component: {fileID: 6451846788960901721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_10 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3703,7 +3703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788973934213}
   - component: {fileID: 6451846788973934212}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3787,7 +3787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788981507231}
   - component: {fileID: 6451846788981507230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3871,7 +3871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846788998208831}
   - component: {fileID: 6451846788998208830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals blue_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3955,7 +3955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789018093975}
   - component: {fileID: 6451846789018093974}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4039,7 +4039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789045349330}
   - component: {fileID: 6451846789045349329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: green on stone2 _1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4123,7 +4123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789101784133}
   - component: {fileID: 6451846789101784132}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4207,7 +4207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789162688519}
   - component: {fileID: 6451846789162688518}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals blue_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4291,7 +4291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789192066454}
   - component: {fileID: 6451846789192066453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals blue_2 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4375,7 +4375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789202183304}
   - component: {fileID: 6451846789202183311}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4459,7 +4459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789212467808}
   - component: {fileID: 6451846789212467815}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background egg B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4543,7 +4543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789214899790}
   - component: {fileID: 6451846789214899789}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocks_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4627,7 +4627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789250369920}
   - component: {fileID: 6451846789250369927}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4738,7 +4738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789272730813}
   - component: {fileID: 6451846789272730812}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: green on stone2 _1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 6451846789291866400}
   - component: {fileID: 6451846789291866407}
   - component: {fileID: 6451846789291866406}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5441,7 +5441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789293960291}
   - component: {fileID: 6451846789293960290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5525,7 +5525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789319766701}
   - component: {fileID: 6451846789319766700}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_9 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5609,7 +5609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789326927314}
   - component: {fileID: 6451846789326927313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5693,7 +5693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789383266445}
   - component: {fileID: 6451846789383266444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5803,7 +5803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6451846789391397422}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LightingThing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5881,7 +5881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789410151931}
   - component: {fileID: 6451846789410151930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5965,7 +5965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789424986994}
   - component: {fileID: 6451846789424986993}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6076,7 +6076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789462182080}
   - component: {fileID: 6451846789462182087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6160,7 +6160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789465735227}
   - component: {fileID: 6451846789465735226}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6271,7 +6271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789471731504}
   - component: {fileID: 6451846789471731511}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals_1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6354,7 +6354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6451846789476172916}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6410,7 +6410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789491248869}
   - component: {fileID: 6451846789491248868}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_14 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6494,7 +6494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789532378540}
   - component: {fileID: 6451846789532378531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rocks_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6578,7 +6578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789547445415}
   - component: {fileID: 6451846789547445414}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6689,7 +6689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789595533034}
   - component: {fileID: 6451846789595533033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_9 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6773,7 +6773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789602800226}
   - component: {fileID: 6451846789602800225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_12 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6857,7 +6857,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789630877712}
   - component: {fileID: 6451846789630877719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: green on stone2 _3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6941,7 +6941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789637673929}
   - component: {fileID: 6451846789637673928}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7052,7 +7052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789645995641}
   - component: {fileID: 6451846789645995640}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_9 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7136,7 +7136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789682046699}
   - component: {fileID: 6451846789682046698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7220,7 +7220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789688076937}
   - component: {fileID: 6451846789688076936}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7304,7 +7304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789696015746}
   - component: {fileID: 6451846789696015745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7415,7 +7415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789696430709}
   - component: {fileID: 6451846789696430708}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocks_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7499,7 +7499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789715058166}
   - component: {fileID: 6451846789715058165}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7583,7 +7583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789721770075}
   - component: {fileID: 6451846789721770074}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7694,7 +7694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789740333930}
   - component: {fileID: 6451846789740333929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7778,7 +7778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789779527786}
   - component: {fileID: 6451846789779527785}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_11 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7862,7 +7862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789844517263}
   - component: {fileID: 6451846789844517262}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals blue_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7946,7 +7946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789847155226}
   - component: {fileID: 6451846789847155225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8057,7 +8057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789858481056}
   - component: {fileID: 6451846789858481063}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8168,7 +8168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789860095207}
   - component: {fileID: 6451846789860095206}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_9 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8252,7 +8252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789864332987}
   - component: {fileID: 6451846789864332986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_11 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8336,7 +8336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789873444192}
   - component: {fileID: 6451846789873444199}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_11 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8420,7 +8420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789892545077}
   - component: {fileID: 6451846789892545076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8531,7 +8531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789904832066}
   - component: {fileID: 6451846789904832065}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8615,7 +8615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789922160425}
   - component: {fileID: 6451846789922160424}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8726,7 +8726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789928202952}
   - component: {fileID: 6451846789928202959}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8837,7 +8837,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789943017307}
   - component: {fileID: 6451846789943017306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: green on stone2 _9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8922,7 +8922,7 @@ GameObject:
   - component: {fileID: 6451846789945865971}
   - component: {fileID: 6451846789945865970}
   - component: {fileID: 6451846789945865969}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9160,7 +9160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846789981922332}
   - component: {fileID: 6451846789981922323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9244,7 +9244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790028562032}
   - component: {fileID: 6451846790028562039}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9355,7 +9355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790121083560}
   - component: {fileID: 6451846790121083567}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9439,7 +9439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790146472647}
   - component: {fileID: 6451846790146472646}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: green on stone2 _9 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9523,7 +9523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790159695312}
   - component: {fileID: 6451846790159695319}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GlobalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9634,7 +9634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790204622363}
   - component: {fileID: 6451846790204622362}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light walls (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9718,7 +9718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790247811942}
   - component: {fileID: 6451846790247811941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_10 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9802,7 +9802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790316311534}
   - component: {fileID: 6451846790316311533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9913,7 +9913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790336419695}
   - component: {fileID: 6451846790336419694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10024,7 +10024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790363976436}
   - component: {fileID: 6451846790363976395}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10135,7 +10135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790364637533}
   - component: {fileID: 6451846790364637532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dungeon items_15 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10219,7 +10219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790374784146}
   - component: {fileID: 6451846790374784145}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals blue_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10303,7 +10303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790399995204}
   - component: {fileID: 6451846790399995227}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10414,7 +10414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790423254512}
   - component: {fileID: 6451846790423254519}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cristals blue_2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10498,7 +10498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451846790529778715}
   - component: {fileID: 6451846790529778714}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10608,7 +10608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2329380020355113229}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10696,6 +10696,10 @@ PrefabInstance:
       value: bandit
       objectReference: {fileID: 0}
     - target: {fileID: 9030354811173478674, guid: d9c85f7864ee0c644b03a19eafc560e5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030354811173478674, guid: d9c85f7864ee0c644b03a19eafc560e5, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -10721,6 +10725,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6451846788532791710}
     m_Modifications:
+    - target: {fileID: 1865203587141619024, guid: 885f671e1731d4140989eb1385226acc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2815639723662631216, guid: 885f671e1731d4140989eb1385226acc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10782,8 +10790,16 @@ PrefabInstance:
       value: SumperJumpObstacle
       objectReference: {fileID: 0}
     - target: {fileID: 2815639723662631219, guid: 885f671e1731d4140989eb1385226acc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815639723662631219, guid: 885f671e1731d4140989eb1385226acc, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815639724294955330, guid: 885f671e1731d4140989eb1385226acc, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885f671e1731d4140989eb1385226acc, type: 3}

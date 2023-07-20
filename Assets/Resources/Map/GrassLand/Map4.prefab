@@ -20573,7 +20573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4249817615622106130}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: BattleAreas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -123,7 +123,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         _brain.AIActionData.HitNormal = HitNormal;
         this.HitPoint = damageDealer.transform.position;
 
-        PoolManager.Instance.Pop("AttackEffect");
+        //PoolManager.Instance.Pop("AttackEffect");
 
         if(!_brain.AIStateInfo.IsAttack && !_brain.AIStateInfo.IsAttackWait)
             OnGetHit?.Invoke();

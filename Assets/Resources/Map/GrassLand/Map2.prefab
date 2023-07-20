@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1689034369281934297}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: BattleAreas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26793,7 +26793,7 @@ MonoBehaviour:
   - {x: 10.484962, y: -2.1727295, z: 0}
   m_ShapePathHash: 654910066
   m_Mesh: {fileID: 0}
-  m_InstanceId: 187050
+  m_InstanceId: 366038
 --- !u!1 &3702839778361019252
 GameObject:
   m_ObjectHideFlags: 0

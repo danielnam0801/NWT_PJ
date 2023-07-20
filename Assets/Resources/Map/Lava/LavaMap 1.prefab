@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3103709336442544193}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 3103709336528899105}
   - component: {fileID: 3103709336528899104}
   - component: {fileID: 3103709336528899111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 3103709336587444757}
   - component: {fileID: 3103709336587444759}
   - component: {fileID: 3103709336587444758}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3103709336648713401}
   - component: {fileID: 3103709336648713400}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava rock symple_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3103709336697219826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: -BACKGROUND-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 3103709336737229925}
   - component: {fileID: 3103709336737229924}
   - component: {fileID: 3103709336737229947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3103709336874636239}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +909,7 @@ GameObject:
   - component: {fileID: 3103709337048463423}
   - component: {fileID: 3103709337048463422}
   - component: {fileID: 3103709337048463421}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava ground (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1093,7 +1093,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3103709337077525068}
   - component: {fileID: 3103709337077525069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava gradient (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1178,7 +1178,7 @@ GameObject:
   - component: {fileID: 3103709337353876755}
   - component: {fileID: 3103709337353876754}
   - component: {fileID: 3103709337353876753}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava ground (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,7 +1363,7 @@ GameObject:
   - component: {fileID: 3103709337364230541}
   - component: {fileID: 3103709337364230540}
   - component: {fileID: 3103709337364230531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1957,7 +1957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3103709337565813856}
   - component: {fileID: 3103709337565813857}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava Background B blur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2042,7 +2042,7 @@ GameObject:
   - component: {fileID: 3103709337654956395}
   - component: {fileID: 3103709337654956373}
   - component: {fileID: 3103709337654956372}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2187,7 +2187,7 @@ GameObject:
   - component: {fileID: 3103709337675078114}
   - component: {fileID: 3103709337675078113}
   - component: {fileID: 3103709337675078112}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2322,7 +2322,7 @@ GameObject:
   - component: {fileID: 3103709337682234047}
   - component: {fileID: 3103709337682234046}
   - component: {fileID: 3103709337682234045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2457,7 +2457,7 @@ GameObject:
   - component: {fileID: 3103709337685983122}
   - component: {fileID: 3103709337685983121}
   - component: {fileID: 3103709337685983120}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2592,7 +2592,7 @@ GameObject:
   - component: {fileID: 3103709337873291416}
   - component: {fileID: 3103709337873291423}
   - component: {fileID: 3103709337873291422}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2843,7 +2843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3103709337979034811}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2882,7 +2882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3103709338021322483}
   - component: {fileID: 3103709338021322482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava rock symple_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2967,7 +2967,7 @@ GameObject:
   - component: {fileID: 3103709338048341763}
   - component: {fileID: 3103709338048341762}
   - component: {fileID: 3103709338048341761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3101,7 +3101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3103709338148133347}
   - component: {fileID: 3103709338148133346}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava rock symple_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3186,7 +3186,7 @@ GameObject:
   - component: {fileID: 3103709338185419253}
   - component: {fileID: 3103709338185419252}
   - component: {fileID: 3103709338185420299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3371,7 +3371,7 @@ GameObject:
   - component: {fileID: 3103709338258518167}
   - component: {fileID: 3103709338258518166}
   - component: {fileID: 3103709338258518165}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3506,7 +3506,7 @@ GameObject:
   - component: {fileID: 3103709338271749921}
   - component: {fileID: 3103709338271749920}
   - component: {fileID: 3103709338271749927}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3641,7 +3641,7 @@ GameObject:
   - component: {fileID: 3103709338286865846}
   - component: {fileID: 3103709338286865845}
   - component: {fileID: 3103709338286865844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava ground (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3836,7 +3836,7 @@ GameObject:
   - component: {fileID: 3103709338339541782}
   - component: {fileID: 3103709338339541781}
   - component: {fileID: 3103709338339541780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4019,7 +4019,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3103709338340431781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DownGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4051,7 +4051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3103709338347901328}
   - component: {fileID: 3103709338347901335}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava rock symple_5 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4136,7 +4136,7 @@ GameObject:
   - component: {fileID: 3103709338369192221}
   - component: {fileID: 3103709338369192220}
   - component: {fileID: 3103709338369192211}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4270,7 +4270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3103709338446148518}
   - component: {fileID: 3103709338446148519}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lava Background rock blur_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4355,7 +4355,7 @@ GameObject:
   - component: {fileID: 3103709338473374031}
   - component: {fileID: 3103709338473374025}
   - component: {fileID: 3103709338473374024}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4500,7 +4500,7 @@ GameObject:
   - component: {fileID: 3103709338507451737}
   - component: {fileID: 3103709338507451736}
   - component: {fileID: 3103709338507451743}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chain (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4757,7 +4757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 469070426274300286}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: BattleAreas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4821,6 +4821,10 @@ PrefabInstance:
     - target: {fileID: 9056042006687302474, guid: 1dac887780507a24094e1d173f07fd0e, type: 3}
       propertyPath: m_Name
       value: Spark particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056042006687302474, guid: 1dac887780507a24094e1d173f07fd0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9056042006687302519, guid: 1dac887780507a24094e1d173f07fd0e, type: 3}
       propertyPath: m_RootOrder
@@ -4892,6 +4896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lava tree foreground
       objectReference: {fileID: 0}
+    - target: {fileID: 2262339039064052779, guid: e78957201e8d3dc4ba13097637636391, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2262339039064052781, guid: e78957201e8d3dc4ba13097637636391, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4950,9 +4958,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 469070426274300286}
     m_Modifications:
+    - target: {fileID: 3349409494237232241, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4728006666696848655, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Name
       value: BattleArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728006666696848655, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5234551289216622423, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_RootOrder
@@ -5038,6 +5054,14 @@ PrefabInstance:
       propertyPath: enemies.Array.data[3].SpaenEnemy
       value: 
       objectReference: {fileID: 756752654044507044, guid: 2feaa7e409f2eac4d86c59aa803364f0, type: 3}
+    - target: {fileID: 8669913674876450257, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110941174718409544, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
 --- !u!4 &2115161677992390940 stripped

@@ -77,7 +77,7 @@ public class InventoryUI : MonoBehaviour
         Debug.Log(items.Count);
         Debug.Log(inventory.HaveShapes.Count);
 
-        for(int i = 0; i < items.Count; i++)
+        for(int i = 0; i < inventory.HaveShapes.Count; i++)
         {
             ShapeType shape = inventory.HaveShapes[i];
 
