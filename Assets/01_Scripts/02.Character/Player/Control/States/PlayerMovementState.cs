@@ -88,7 +88,6 @@ public class PlayerMovementState : PlayerState
         float jumpPower = Mathf.Sqrt(status.JumpHeight * 2 * -2f * gravityScale);
         movement.SetVerticalVelocity(jumpPower);
         currentJumpCount++;
-
     }
 
     private void DashHandle()

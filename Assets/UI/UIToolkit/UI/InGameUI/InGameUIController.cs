@@ -61,4 +61,9 @@ public class InGameUIController : MonoBehaviour
     {
         value = hpSlider.value;
     }
+
+    public void SetHPSlider(float value)
+    {
+        //
+    }
 }

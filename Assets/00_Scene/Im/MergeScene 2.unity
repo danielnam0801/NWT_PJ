@@ -3291,7 +3291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnHitTime: 0.5
   hp: 0
-  maxHp: 100
+  maxHp: 20
   GetHitEvent:
     m_PersistentCalls:
       m_Calls:
@@ -3299,6 +3299,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: FeedbackPlayer, Assembly-CSharp
         m_MethodName: PlayFeedback
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1430008240}
+        m_TargetAssemblyTypeName: InGameUIController, Assembly-CSharp
+        m_MethodName: SetHPSlider
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

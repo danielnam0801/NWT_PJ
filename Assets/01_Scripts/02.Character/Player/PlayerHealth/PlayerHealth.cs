@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour, IHitable
             Die();
         }
 
-        GetHitEvent?.Invoke(hp);
+        GetHitEvent?.Invoke(hp / maxHp);
     }
 
     private IEnumerator UnHitCoroutine(float time)
