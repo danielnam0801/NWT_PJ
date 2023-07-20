@@ -15073,9 +15073,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fd174d21d4f8047ba5646937facffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderers: []
+  _renderers:
+  - {fileID: 2226785445702447032}
   _blinkTime: 0.2
-  enemy: {fileID: 0}
 --- !u!114 &2334323543885272003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16587,6 +16587,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef2b6e3a0904d0a488fb7a1bd47ce073, type: 3}
+--- !u!212 &2226785445702447032 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2593891206015117075, guid: ef2b6e3a0904d0a488fb7a1bd47ce073, type: 3}
+  m_PrefabInstance: {fileID: 4402404835787327659}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2226785445702447033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2593891206015117074, guid: ef2b6e3a0904d0a488fb7a1bd47ce073, type: 3}

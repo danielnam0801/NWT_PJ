@@ -15,16 +15,18 @@ public class BlinkFeedback : Feedback
     // readonly 런타임
     // const 컴파일 타임
 
-    public Enemy enemy;
+    Enemy enemy;
     private int length;
 
     private void Awake()
     {
-        if(enemy == null)
+        if(transform.parent.TryGetComponent<Enemy>(out Enemy enemy))
+        {
             enemy = transform.parent.GetComponent<Enemy>();
-
-        //_renderers = new List<SpriteRenderer>();
-        _renderers = enemy.ActiveVisual;
+            _renderers = new List<SpriteRenderer>();
+            _renderers = enemy.ActiveVisual;
+        }
+        
         length = _renderers.Count;
         _matPropBlock = new MaterialPropertyBlock[length];
 
