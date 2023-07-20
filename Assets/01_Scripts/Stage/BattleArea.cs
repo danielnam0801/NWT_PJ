@@ -20,11 +20,17 @@ public class BattleArea : MonoBehaviour
     public int RespawnNumber;
     [SerializeField]
     private int currentRespawnCount = 1;
+    public Transform Wall;
 
     [SerializeField]
     private bool isOverpast = false;
     [SerializeField]
     private bool isBattle = false;
+
+    private void Start()
+    {
+        Wall.gameObject.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,6 +72,8 @@ public class BattleArea : MonoBehaviour
     {
         GameManager.instance.Target.GetComponent<PlayerController>().IsBattle = true;
 
+        SetWall(true, 1f);
+
         Debug.Log("start battle");
         isBattle = true;
         isOverpast = true;
@@ -78,6 +86,7 @@ public class BattleArea : MonoBehaviour
     private void FinishBattle()
     {
         isBattle = false;
+        SetWall(false, 0f);
         DefineETC.VCam.Priority = 100;
         if (cam != null)
             cam.Priority = 0;
@@ -101,5 +110,12 @@ public class BattleArea : MonoBehaviour
             enemy.transform.position = enemies[i].SpawnPos.position;
             spawnEnemies.Add(enemy);
         }
+    }
+
+    private IEnumerator SetWall(bool value, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        Wall.gameObject.SetActive(value);
     }
 }

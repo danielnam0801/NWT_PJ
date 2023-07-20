@@ -16859,7 +16859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2584545933149181495, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Size.y
-      value: 13.916668
+      value: 18.865517
       objectReference: {fileID: 0}
     - target: {fileID: 2584545933149181495, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Offset.x
@@ -16867,7 +16867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2584545933149181495, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Offset.y
-      value: -1.645628
+      value: 0.8287964
       objectReference: {fileID: 0}
     - target: {fileID: 3349409494237232241, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Layer
@@ -16925,6 +16925,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5653121458255771052, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653121458255771052, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.17
+      objectReference: {fileID: 0}
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: RespawnNumber
       value: 2
@@ -16957,6 +16965,14 @@ PrefabInstance:
       propertyPath: enemies.Array.data[2].SpaenEnemy
       value: 
       objectReference: {fileID: 6954486387241841313, guid: 3492d0529590dde4085f2df05681e658, type: 3}
+    - target: {fileID: 7620552289205178923, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620552289205178923, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8669913674876450257, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -16967,11 +16983,73 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+--- !u!1 &5173563996399507816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8710558663832651096, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+  m_PrefabInstance: {fileID: 4552629045796723760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &370841858297991699
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5173563996399507816}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 9.55}
+  m_EdgeRadius: 0
 --- !u!4 &6789404905024873348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6996025589884501940, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
   m_PrefabInstance: {fileID: 4552629045796723760}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6889518408725805876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6967723393945396996, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+  m_PrefabInstance: {fileID: 4552629045796723760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1941114377293083420
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889518408725805876}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 24.2, y: 1}
+  m_EdgeRadius: 0
 --- !u!4 &8613964791826285415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5234551289216622423, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
@@ -17088,6 +17166,14 @@ PrefabInstance:
       propertyPath: enemies.Array.data[2].SpaenEnemy
       value: 
       objectReference: {fileID: 6954486387241841313, guid: 3492d0529590dde4085f2df05681e658, type: 3}
+    - target: {fileID: 7620552289205178923, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620552289205178923, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.82
+      objectReference: {fileID: 0}
     - target: {fileID: 8669913674876450257, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -17108,3 +17194,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6996025589884501940, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
   m_PrefabInstance: {fileID: 4965133821568827806}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4325052218120144070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8710558663832651096, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+  m_PrefabInstance: {fileID: 4965133821568827806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &8357689049458563322
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4325052218120144070}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 17.01}
+  m_EdgeRadius: 0
