@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Dictionary<PlayerStateType, PlayerState> stateDictionary = new Dictionary<PlayerStateType, PlayerState>();
 
-
+    
     [field: SerializeField]
     public bool Interactable { get; set; }
     [field: SerializeField]

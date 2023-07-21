@@ -1,4 +1,4 @@
-using UnityEditor.UIElements;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,21 +12,41 @@ public class InGameUIController : MonoBehaviour
     TimeValue tv = new TimeValue();
     float timeValue;
     public float value = 50;
+        
+    private UIDocument document;
+    private VisualElement root;
 
+    private VisualElement hpBar;    
+    [SerializeField]
+    private float originHpBarWidth = 400;
 
+    private void Awake()
+    {
+        document = GetComponent<UIDocument>();
+        root = document.rootVisualElement;
+    }
+
+    private void OnEnable()
+    {
+        hpBar = root.Q<VisualElement>("HealthBar");
+        hpBar.style.width = new StyleLength(originHpBarWidth);
+        Debug.Log(hpBar.style.width.value.value);
+    }
 
     private void Start()
     {
-        UIDocument ui = GetComponent<UIDocument>();
-        VisualElement root = ui.rootVisualElement;
+        
 
-        Button setting = root.Q<Button>("settingBtn");
-        setting.RegisterCallback<ClickEvent>(e =>
-        {
-            settingUI.SetActive(true);
-        });
+        //UIDocument ui = GetComponent<UIDocument>();
+        //VisualElement root = ui.rootVisualElement;
 
-        Label timer = root.Q<Label>("Timer");
+        //Button setting = root.Q<Button>("settingBtn");
+        //setting.RegisterCallback<ClickEvent>(e =>
+        //{
+        //    settingUI.SetActive(true);
+        //});
+
+        //Label timer = root.Q<Label>("Timer");
         //timer.text = "Time: " + tv.ToString();
 
 
@@ -36,14 +56,14 @@ public class InGameUIController : MonoBehaviour
         //csharpField.AddToClassList("some-styled-field");
         //csharpField.value = uxmlField.value;
         //container.Add(csharpField);
-        VisualElement hpSlider = root.Q<VisualElement>("HealthBar");
-        hpSlider.RegisterCallback<ChangeEvent<int>>(e =>
-        {
-            value = e.newValue;
-            Debug.Log($"newvalue{e.newValue}");
-            Debug.Log(value);
-            hpSlider.style.width = value;
-        });
+        //VisualElement hpSlider = root.Q<VisualElement>("HealthBar");
+        //hpSlider.RegisterCallback<ChangeEvent<int>>(e =>
+        //{
+        //    value = e.newValue;
+        //    Debug.Log($"newvalue{e.newValue}");
+        //    Debug.Log(value);
+        //    hpSlider.style.width = value;
+        //});
         //slider.RegisterValueChangedCallback(v =>
         //{
 
@@ -57,13 +77,14 @@ public class InGameUIController : MonoBehaviour
     //    yield return ;
     //}
 
-    private void Update()
-    {
-        value = hpSlider.value;
-    }
+    //private void Update()
+    //{
+    //    value = hpSlider.value;
+    //}
 
-    public void SetHPSlider(float value)
+    public void SetHPSlider(float normal)
     {
-        //
+        hpBar.style.width = new StyleLength(originHpBarWidth * normal);
+        Debug.Log(hpBar.style.width.value.value);
     }
 }

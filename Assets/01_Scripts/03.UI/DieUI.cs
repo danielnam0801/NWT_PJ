@@ -14,7 +14,7 @@ public class DieUI : MonoBehaviour
         document = GetComponent<UIDocument>();
         document.enabled = false;
     }
-
+    
     public void Active()
     {
         document.enabled = true;
