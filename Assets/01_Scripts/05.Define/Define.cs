@@ -5,11 +5,13 @@ public enum PoolType
     VFX
 }
 
+[System.Serializable]
 public enum PlayerStateType
 {
     Movement = 0,
     Dash,
     Teleportation,
+    Die,
 }
 
 [System.Serializable]

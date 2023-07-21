@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour, IHitable
     public float maxHp = 100;
 
     public UnityEvent<float> GetHitEvent;
+    public UnityEvent DieEvent;
 
     private void Start()
     {
@@ -31,12 +32,12 @@ public class PlayerHealth : MonoBehaviour, IHitable
 
         hp = Mathf.Clamp(hp, 0, maxHp);
 
-        if(hp <= 0)
+        GetHitEvent?.Invoke(hp / maxHp);
+
+        if (hp <= 0)
         {
             Die();
         }
-
-        GetHitEvent?.Invoke(hp / maxHp);
     }
 
     private IEnumerator UnHitCoroutine(float time)
@@ -51,6 +52,9 @@ public class PlayerHealth : MonoBehaviour, IHitable
 
     private void Die()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        TimeManager.Instance.SetTimeScale(0.2f);
+        DieEvent?.Invoke();
     }
 }

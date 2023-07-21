@@ -1330,6 +1330,7 @@ MonoBehaviour:
   currentThemeIndex: 0
   currentStage: {fileID: 0}
   ProtalObj: {fileID: 1620734806}
+  activeCam: {fileID: 0}
 --- !u!1 &430021160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,6 +2688,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  DieEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1727845572}
+        m_TargetAssemblyTypeName: PlayerAnimation, Assembly-CSharp
+        m_MethodName: Fade
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1037148952}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1037148950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2837,6 +2865,7 @@ MonoBehaviour:
   state: {fileID: 0}
   <Interactable>k__BackingField: 0
   <IsBattle>k__BackingField: 0
+  <IsDie>k__BackingField: 0
 --- !u!114 &1037148953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4691,6 +4720,7 @@ GameObject:
   - component: {fileID: 1634374916}
   - component: {fileID: 1634374915}
   - component: {fileID: 1634374914}
+  - component: {fileID: 1634374917}
   m_Layer: 0
   m_Name: States
   m_TagString: Untagged
@@ -4751,6 +4781,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transDashTime: 0.2
   isJump: 0
+--- !u!114 &1634374917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634374912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa49511d71efa341bddd50ee71626d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTime: 1
+  isDisable: 0
 --- !u!1 &1670975465
 GameObject:
   m_ObjectHideFlags: 0
@@ -4957,6 +5001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915aa568fc368dc44b4907d29f36166d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mask: {fileID: 1872215710}
 --- !u!212 &1727845575 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8517658659353770002, guid: 047f2619ac1ceb547a0e587a85acf35b, type: 3}
@@ -5432,6 +5477,11 @@ Transform:
   m_Father: {fileID: 1605446021}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1872215710 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8517658660632229036, guid: 047f2619ac1ceb547a0e587a85acf35b, type: 3}
+  m_PrefabInstance: {fileID: 1880516040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1880516040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5439,6 +5489,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1037148948}
     m_Modifications:
+    - target: {fileID: 8517658659353770002, guid: 047f2619ac1ceb547a0e587a85acf35b, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8517658659353770004, guid: 047f2619ac1ceb547a0e587a85acf35b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5498,6 +5552,10 @@ PrefabInstance:
     - target: {fileID: 8517658659353770005, guid: 047f2619ac1ceb547a0e587a85acf35b, type: 3}
       propertyPath: m_Name
       value: Visual
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517658659353770005, guid: 047f2619ac1ceb547a0e587a85acf35b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8517658659353770000, guid: 047f2619ac1ceb547a0e587a85acf35b, type: 3}
@@ -9991,6 +10049,7 @@ MonoBehaviour:
   state: {fileID: 0}
   <Interactable>k__BackingField: 0
   <IsBattle>k__BackingField: 0
+  <IsDie>k__BackingField: 0
 --- !u!114 &7121441562194724187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10007,6 +10066,9 @@ MonoBehaviour:
   hp: 0
   maxHp: 100
   GetHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DieEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7121441562194724188

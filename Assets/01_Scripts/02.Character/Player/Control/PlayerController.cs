@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public bool Interactable { get; set; }
     [field: SerializeField]
     public bool IsBattle { get; set; }
+    [field: SerializeField]
+    public bool IsDie { get; set; }
 
     private void Awake()
     {
@@ -47,6 +49,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (IsDie)
+            return;
+
         state.UpdateState();
     }
 
@@ -73,5 +78,11 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void Die()
+    {
+        ChangeState(PlayerStateType.Die);
+        IsDie = true;
     }
 }

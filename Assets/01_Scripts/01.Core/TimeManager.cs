@@ -30,9 +30,9 @@ public class TimeManager : MonoBehaviour
         Time.timeScale = value;
     }
 
-    public void SetTimeScaleToLerp(float value)
+    public void SetTimeScaleToLerp(float value, float time = -1)
     {
-        StartCoroutine(SetTimeScaleToLerpCoroutine(value));
+        StartCoroutine(SetTimeScaleToLerpCoroutine(value, time));
     }
     
     public void ResetTimeScale()
@@ -40,16 +40,19 @@ public class TimeManager : MonoBehaviour
         Time.timeScale = defaultTimeScale;
     }
 
-    private IEnumerator SetTimeScaleToLerpCoroutine(float value)
+    private IEnumerator SetTimeScaleToLerpCoroutine(float value, float time = -1)
     {
         float currentTime = 0;
         float percent = 0;
         float originScale = Time.timeScale;
 
+        if (time < 0)
+            time = lerpTime;
+
         while(percent < 1)
         {
             currentTime += Time.unscaledDeltaTime;
-            percent = currentTime / lerpTime;
+            percent = currentTime / time;
 
             Time.timeScale = Mathf.Lerp(originScale, value, percent);
 
