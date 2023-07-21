@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/00_Scene/Im/MergeScene.unity
-    guid: eb8f6f22be80cc24681dad90206c29ae
   - enabled: 1
-    path: Assets/00_Scene/Ahn/UIToolKit.unity
-    guid: ec2457e343550e04ab63ee3aaf246280
+    path: Assets/00_Scene/Im/Intro.unity
+    guid: 377389767f9d65e458ce6392e16555f1
   - enabled: 1
     path: Assets/00_Scene/Im/MergeScene 2.unity
     guid: 6a51e1e3571341c4397c4595647895fa
