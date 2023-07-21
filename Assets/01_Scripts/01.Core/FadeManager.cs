@@ -12,6 +12,7 @@ public class FadeManager : MonoBehaviour
 
     private UIDocument document;
     private VisualElement fade;
+    public bool isFade = false;
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class FadeManager : MonoBehaviour
 
     public void Fade(float startValue, float endValue, Action completeAction = null, float time = 1)
     {
+        isFade = true;
         fade.style.display = DisplayStyle.Flex;
 
         fade.style.backgroundColor = new Color(FadeColor.r, FadeColor.g, FadeColor.b, startValue);
@@ -58,8 +60,10 @@ public class FadeManager : MonoBehaviour
 
     private IEnumerator Delay(float time, Action action)
     {
+        isFade = true;
         yield return new WaitForSeconds(time);
 
+        isFade = false;
         action?.Invoke();
     }
 }

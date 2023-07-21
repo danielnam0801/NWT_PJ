@@ -35,8 +35,8 @@ public class DrawManager : MonoBehaviour
     LineRenderer lr;
     public List<Vector2> points = new List<Vector2>();
 
-    [SerializeField]
-    private bool canDraw = true;
+    [field: SerializeField]
+    public bool canDraw { get; set; }
     public bool isDrawArea = false;
     public bool isMaxLength = false;
     //public bool OnTheWall = false;

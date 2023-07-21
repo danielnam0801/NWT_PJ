@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public enum Display
@@ -11,6 +12,7 @@ public enum Display
     HUD숨기기,
     모두숨기기,
 }
+
 public class Setting : MonoBehaviour
 {
     List<Resolution> resolutions = new List<Resolution>();
@@ -20,83 +22,117 @@ public class Setting : MonoBehaviour
     private int resolutionWidth;
     private int resolutionHeight;
 
-    public GameObject Timer;
+    private UIDocument document;
+    private VisualElement root;
 
+    private bool isActive = false;
 
-    private void OnEnable()
+    public UnityEvent EnableEvent;
+    public UnityEvent DisableEvent; 
+
+    //public GameObject Timer;
+
+    private void Awake()
     {
-        UIDocument ui = GetComponent<UIDocument>();
-        VisualElement root = ui.rootVisualElement;
-        Toggle fullScreenToggle = root.Q<Toggle>("fullScreen");
-        DropdownField ResolutionDropdown = root.Q<DropdownField>("ResolutionDropdown");
-        Toggle UIToggle = root.Q<Toggle>("UIToggle");
-        Slider BGMSlider = root.Q<Slider>("BGM");
-        Slider EffectSlider = root.Q<Slider>("Effect");
-        Toggle TimerToggle = root.Q<Toggle>("TimerToggle");
-        Button ReturnBtn = root.Q<Button>("Return");
-        Button NewGameBtn = root.Q<Button>("NewGame");
-        Button ExitBtn = root.Q<Button>("Exit");
+        document = GetComponent<UIDocument>();
+        root = document.rootVisualElement;
+    }
 
-
-        resolutions.AddRange(Screen.resolutions);
-        foreach (Resolution resolution in resolutions)
+    public void SetActive()
+    {
+        if(FadeManager.Instance.isFade)
         {
-            resolutionStringList.Add(resolution.width + "x" + resolution.height); // 들어감
+            return;
         }
 
-        ResolutionDropdown.choices = resolutionStringList;
-        ResolutionDropdown.RegisterValueChangedCallback(v =>
+        isActive = !isActive;
+        document.enabled = isActive;
+        UIManager.Instance.settingActive = isActive;
+        
+        if(isActive)
         {
-            resolutionWidth = resolutions[ResolutionDropdown.index].width;
-            resolutionHeight = resolutions[ResolutionDropdown.index].height;
-            if (resolutionWidth != Screen.width || resolutionHeight != Screen.height)
+            Toggle fullScreenToggle = root.Q<Toggle>("fullScreen");
+            DropdownField ResolutionDropdown = root.Q<DropdownField>("ResolutionDropdown");
+            Toggle UIToggle = root.Q<Toggle>("UIToggle");
+            Slider BGMSlider = root.Q<Slider>("BGM");
+            Slider EffectSlider = root.Q<Slider>("Effect");
+            Toggle TimerToggle = root.Q<Toggle>("TimerToggle");
+            Button ReturnBtn = root.Q<Button>("Return");
+            Button NewGameBtn = root.Q<Button>("NewGame");
+            Button ExitBtn = root.Q<Button>("Exit");
+
+
+            resolutions.AddRange(Screen.resolutions);
+            foreach (Resolution resolution in resolutions)
             {
-                Screen.SetResolution(resolutionWidth, resolutionHeight, fullScreen);
+                resolutionStringList.Add(resolution.width + "x" + resolution.height); // 들어감
             }
-        });
 
-        fullScreenToggle.RegisterCallback<ClickEvent>(e =>
+            ResolutionDropdown.choices = resolutionStringList;
+            ResolutionDropdown.RegisterValueChangedCallback(v =>
+            {
+                resolutionWidth = resolutions[ResolutionDropdown.index].width;
+                resolutionHeight = resolutions[ResolutionDropdown.index].height;
+                if (resolutionWidth != Screen.width || resolutionHeight != Screen.height)
+                {
+                    Screen.SetResolution(resolutionWidth, resolutionHeight, fullScreen);
+                }
+            });
+
+            fullScreenToggle.RegisterCallback<ClickEvent>(e =>
+            {
+                fullScreen = fullScreenToggle.value;
+                Screen.fullScreen = fullScreen;
+            });
+
+            BGMSlider.RegisterValueChangedCallback(v =>
+            {
+                //UIManager.Instance.SetBGMVolume(v.newValue);
+                Debug.Log(v.newValue);
+            });
+
+            EffectSlider.RegisterValueChangedCallback(v =>
+            {
+                //UIManager.Instance.SetSFXVolume(v.newValue);
+                Debug.Log(v.newValue);
+            });
+
+            //TimerToggle.RegisterCallback<ClickEvent>(e =>
+            //{
+            //    Timer.SetActive(!Timer.activeSelf);
+            //});
+
+            UIToggle.RegisterValueChangedCallback(v =>
+            {
+                UIManager.Instance.HUD.SetActive(!UIManager.Instance.HUD.activeSelf);
+                UIManager.Instance.isTimerTick = !UIManager.Instance.isTimerTick;
+            });
+
+            ReturnBtn.RegisterCallback<ClickEvent>(e =>
+            {
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UIManager.Instance.SettingEnable();
+            });
+
+            NewGameBtn.RegisterCallback<ClickEvent>(e =>
+            {
+
+            });
+
+            ExitBtn.RegisterCallback<ClickEvent>(e =>
+            {
+                Application.Quit();
+            });
+
+            EnableEvent?.Invoke();
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            TimeManager.Instance.SetTimeScale(0);
+        }
+        else
         {
-            fullScreen = fullScreenToggle.value;
-            Screen.fullScreen = fullScreen;
-        });
-
-        BGMSlider.RegisterValueChangedCallback(v =>
-        {
-            UIManager.Instance.SetBGMVolume(v.newValue);
-            Debug.Log(v.newValue);
-        });
-
-        EffectSlider.RegisterValueChangedCallback(v =>
-        {
-            UIManager.Instance.SetSFXVolume(v.newValue);
-            Debug.Log(v.newValue);
-        });
-
-        TimerToggle.RegisterCallback<ClickEvent>(e =>
-        {
-            Timer.SetActive(!Timer.activeSelf);
-        });
-
-        UIToggle.RegisterValueChangedCallback(v =>
-        {
-            UIManager.Instance.HUD.SetActive(!UIManager.Instance.HUD.activeSelf);
-            UIManager.Instance.isTimerTick = !UIManager.Instance.isTimerTick;
-        });
-
-        ReturnBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            UIManager.Instance.SettingEnable();
-        });
-
-        NewGameBtn.RegisterCallback<ClickEvent>(e =>
-        {
-
-        });
-
-        ExitBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            Application.Quit();
-        });
+            DisableEvent?.Invoke();
+            TimeManager.Instance.SetTimeScale(1);
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
