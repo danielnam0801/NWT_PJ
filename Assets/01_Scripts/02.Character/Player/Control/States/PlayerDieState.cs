@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerDieState : PlayerState
 {
@@ -12,6 +13,7 @@ public class PlayerDieState : PlayerState
     private bool isDisable = false;
     [SerializeField]
     private float fadeDelaytime = 1f;
+    public UnityEvent fadeOutEvent;
 
     public override void Init(Transform root)
     {
@@ -46,6 +48,10 @@ public class PlayerDieState : PlayerState
         yield return new WaitForSeconds(fadeDelaytime);
 
         Debug.Log("fade");
-        FadeManager.Instance.Fade(0, 1, null, 4f); //ui키는 액션 넣어야함
+        FadeManager.Instance.Fade(0, 1, () =>
+        {
+            Cursor.lockState = CursorLockMode.None;
+            fadeOutEvent?.Invoke();
+        }, 4f);
     }
 }
