@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class StageManager : MonoBehaviour
     private Stage currentStage;
 
     public Portal ProtalObj;
+    public CinemachineVirtualCamera activeCam;
 
     private void Start()
     {

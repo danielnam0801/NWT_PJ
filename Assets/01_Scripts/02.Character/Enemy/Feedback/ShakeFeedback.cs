@@ -21,6 +21,9 @@ public class ShakeFeedback : Feedback
 
     public override void CreateFeedBack()
     {
+        _noise = StageManager.Instance.activeCam == null ? DefineETC.VCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>()
+         : StageManager.Instance.activeCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
         _noise.m_AmplitudeGain = _amplitude;
         _noise.m_FrequencyGain = _intensity;
         Debug.Log("create feedback");

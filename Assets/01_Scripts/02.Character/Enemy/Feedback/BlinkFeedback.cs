@@ -20,7 +20,7 @@ public class BlinkFeedback : Feedback
 
     private void Awake()
     {
-        if(transform.parent.TryGetComponent<Enemy>(out Enemy enemy))
+        if(_renderers.Count == 0)
         {
             enemy = transform.parent.GetComponent<Enemy>();
             _renderers = new List<SpriteRenderer>();

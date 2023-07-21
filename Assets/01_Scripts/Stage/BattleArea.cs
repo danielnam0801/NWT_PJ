@@ -71,6 +71,7 @@ public class BattleArea : MonoBehaviour
     private void StartBattle()
     {
         GameManager.instance.Target.GetComponent<PlayerController>().IsBattle = true;
+        
 
         StartCoroutine(SetWall(true, 1f));
 
@@ -79,7 +80,10 @@ public class BattleArea : MonoBehaviour
         isOverpast = true;
         DefineETC.VCam.Priority = 50;
         if(cam != null)
+        {
+            StageManager.Instance.activeCam = cam;
             cam.Priority = 100;
+        }
         SpawnEenmy();
     }
 
@@ -89,7 +93,10 @@ public class BattleArea : MonoBehaviour
         StartCoroutine(SetWall(false, 0f));
         DefineETC.VCam.Priority = 100;
         if (cam != null)
+        {
+            StageManager.Instance.activeCam = null;
             cam.Priority = 0;
+        }
         GameManager.instance.Target.GetComponent<PlayerController>().IsBattle = false;
     }
 
