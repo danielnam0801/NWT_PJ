@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/inventoryStyle.uss?fileID=7433441132597879392&amp;guid=d32e8d73f1d4c3846967685ce6f83d22&amp;type=3#inventoryStyle" />
+    <ui:VisualElement name="item" class="Item item" style="top: 415px; left: 555px; rotate: 0; position: absolute;">
+        <ui:VisualElement name="image" />
+    </ui:VisualElement>
+    <ui:VisualElement name="item" class="Item item" style="top: 415px; left: 855px; rotate: 0;">
+        <ui:VisualElement name="image" />
+    </ui:VisualElement>
+    <ui:VisualElement name="item" class="Item item" style="top: 415px; left: 1155px; rotate: 0;">
+        <ui:VisualElement name="image" />
+    </ui:VisualElement>
+</ui:UXML>

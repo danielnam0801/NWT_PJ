@@ -7,9 +7,13 @@ public class Stage : MonoBehaviour
 {
     public Transform PlayerStartPoint;
     public Transform PortalPoint;
+    public string BGMName;
 
     private void Start()
     {
+        AudioManager.Instance.PlayBGM(BGMName);
+        AudioManager.Instance.SetBGMVolume(0, 1, 2);
+
         GameManager.instance.Target.position = PlayerStartPoint.position;
         StageManager.Instance.ProtalObj.transform.position = PortalPoint.position;
 

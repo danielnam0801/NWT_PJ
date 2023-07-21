@@ -23,14 +23,24 @@ public class AudioManager : MonoBehaviour
     Dictionary<string, Sound> bgmSounds = new Dictionary<string, Sound>();
     Dictionary<string, Sound> sfxSounds = new Dictionary<string, Sound>();
 
+    public int sfxPlayerCount = 50;
+
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void Start()
-    {
+        DontDestroyOnLoad(gameObject);
         CreateAudioDic();
+
+        sfxPlayer = new AudioSource[sfxPlayerCount];
+
+        for(int i = 0; i < sfxPlayerCount; i++)
+        {
+            Debug.Log(i);
+            GameObject obj = new GameObject();
+            obj.transform.SetParent(transform);
+            AudioSource source = obj.AddComponent<AudioSource>();
+            sfxPlayer[i] = source;
+        }
     }
 
     private void CreateAudioDic()
@@ -48,7 +58,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBGM(string p_bgmName)
     {
-        if (sfxSounds.TryGetValue(p_bgmName, out Sound sound) == false)
+        if (bgmSounds.TryGetValue(p_bgmName, out Sound sound) == false)
         {
             Debug.Log(p_bgmName + " 이름의 배경음악이 없습니다.");
             return;
@@ -78,5 +88,36 @@ public class AudioManager : MonoBehaviour
         }
         Debug.Log("모든 오디오 플레이어가 재생중입니다.");
         return;
+    }
+
+    public void SetBGMVolume(float startValue, float endValue, float time)
+    {
+        StartCoroutine(SetBGMVolume_Coroutine(startValue, endValue, time));
+    }
+
+    private IEnumerator SetBGMVolume_Coroutine(float startValue, float endValue, float time)
+    {
+        Debug.Log(1);
+        bgmPlayer.volume = startValue;
+
+        if(time <= 0)
+        {
+            bgmPlayer.volume = endValue;
+            yield break;    
+        }
+
+        float current = 0;
+        float percent = 0;
+
+
+        while(percent <= 1)
+        {
+            current += Time.deltaTime;
+            percent = current / time;
+
+            bgmPlayer.volume = Mathf.Lerp(startValue, endValue, percent);
+
+            yield return null;
+        }
     }
 }

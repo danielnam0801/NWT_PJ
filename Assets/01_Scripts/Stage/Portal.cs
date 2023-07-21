@@ -23,6 +23,8 @@ public class Portal : MonoBehaviour, IInteract
 
     public void Interact(GameObject Sender)
     {
+        AudioManager.Instance.SetBGMVolume(1, 0, 2);
+
         FadeManager.Instance.FadeOneShot(() =>
         {
             StageManager.Instance.ChangeStage();

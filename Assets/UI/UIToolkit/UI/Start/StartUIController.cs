@@ -17,6 +17,10 @@ public class StartUIController : MonoBehaviour
 
         startBtn.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
+
+            AudioManager.Instance.SetBGMVolume(1, 0, 2);
+
             FadeManager.Instance.FadeOneShot(() =>
             {
                 SceneManager.LoadScene("MergeScene 2");
@@ -24,11 +28,18 @@ public class StartUIController : MonoBehaviour
         });
         settingBtn.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
             //세팅만들면
         });
         exitBtn.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
             Application.Quit();
         });
+    }
+
+    private void Start()
+    {
+        AudioManager.Instance.PlayBGM("IntroBGM");
     }
 }

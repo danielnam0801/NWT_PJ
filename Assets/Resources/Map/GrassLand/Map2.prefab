@@ -13976,6 +13976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerStartPoint: {fileID: 1500760630215024795}
   PortalPoint: {fileID: 3007693685415321590}
+  BGMName: IngameBGM
 --- !u!1 &3702839777542991389
 GameObject:
   m_ObjectHideFlags: 0
@@ -26826,7 +26827,7 @@ MonoBehaviour:
   - {x: 10.484962, y: -2.1727295, z: 0}
   m_ShapePathHash: 654910066
   m_Mesh: {fileID: 0}
-  m_InstanceId: 693644
+  m_InstanceId: 209508
 --- !u!1 &3702839778361019252
 GameObject:
   m_ObjectHideFlags: 0

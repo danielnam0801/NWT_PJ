@@ -1923,6 +1923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerStartPoint: {fileID: 961593946164497358}
   PortalPoint: {fileID: 4121015718418359909}
+  BGMName: IngameBGM
 --- !u!1 &1069653260869022172
 GameObject:
   m_ObjectHideFlags: 0
