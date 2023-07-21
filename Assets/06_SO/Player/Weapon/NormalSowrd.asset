@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad475763b15ff5e489ad58d6d4f3f6a7, type: 3}
   m_Name: NormalSowrd
   m_EditorClassIdentifier: 
-  power: 20
-  stayTime: 5
+  power: 30
+  stayTime: 3
   pointUnitMoveTime: 0.001
   followSpeed: 5
   followMinDistance: 0.3
-  attackDelayTime: 3.5
+  attackDelayTime: 1.5
   maxDrawTime: 7.5
