@@ -26862,7 +26862,7 @@ MonoBehaviour:
   - {x: 10.484962, y: -2.1727295, z: 0}
   m_ShapePathHash: 654910066
   m_Mesh: {fileID: 0}
-  m_InstanceId: 181076
+  m_InstanceId: 83420
 --- !u!1 &3702839778361019252
 GameObject:
   m_ObjectHideFlags: 0
@@ -28198,7 +28198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: enemies.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: enemies.Array.data[0].SpawnPos
@@ -28211,11 +28211,11 @@ PrefabInstance:
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: enemies.Array.data[2].SpawnPos
       value: 
-      objectReference: {fileID: 3081027249809829032}
+      objectReference: {fileID: 6803862404002908231}
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: enemies.Array.data[3].SpawnPos
       value: 
-      objectReference: {fileID: 6803862404002908231}
+      objectReference: {fileID: 3990680420081671862}
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: enemies.Array.data[4].SpawnPos
       value: 
@@ -28231,11 +28231,11 @@ PrefabInstance:
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: enemies.Array.data[2].SpaenEnemy
       value: 
-      objectReference: {fileID: 4901011192478050026, guid: f9c1bed6f24a5044da27031b5865efa4, type: 3}
+      objectReference: {fileID: 3990659496386882499, guid: eb6f11f3485a1544aa6ef170c4a0dbdf, type: 3}
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: enemies.Array.data[3].SpaenEnemy
       value: 
-      objectReference: {fileID: 3990659496386882499, guid: eb6f11f3485a1544aa6ef170c4a0dbdf, type: 3}
+      objectReference: {fileID: 2846920623613470572, guid: 0445fe807e3a7224db72afa7efab9895, type: 3}
     - target: {fileID: 6424250725398424330, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: enemies.Array.data[4].SpaenEnemy
       value: 

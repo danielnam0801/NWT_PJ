@@ -13,7 +13,6 @@ public class DieUI : MonoBehaviour
     private void Awake()
     {
         document = GetComponent<UIDocument>();
-        document.enabled = false;
         root = document.rootVisualElement;
         group = root.Q<VisualElement>("group");
     }
