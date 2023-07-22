@@ -19,7 +19,7 @@ public class MouseDamage : MonoBehaviour
                 IHitable hitable;
                 if (col.TryGetComponent<IHitable>(out hitable))
                 {
-                    hitable.GetHit(3, this.gameObject,
+                    hitable.GetHit(100, this.gameObject,
                         (hitPoint - col.bounds.center).normalized);
                 }
             }

@@ -120,6 +120,12 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
         Health -= damage;
 
+        if (Health <= 0)
+        {
+            DeadProcess();
+            return;
+        }
+
         _brain.AIActionData.HitNormal = HitNormal;
         this.HitPoint = damageDealer.transform.position;
 
@@ -129,15 +135,11 @@ public class Enemy : PoolableObject, IHitable, IAgent
             OnGetHit?.Invoke();
         HitFeedback?.Invoke();
 
-        if (Health <= 0)
-        {
-            DeadProcess();
-            return;
-        }
     }
     private void DeadProcess()
     {
         Health = 0;
+        IsDead = true;
         gameObject.layer = LayerMask.NameToLayer("EnemyDead");
         _enemyAnim.OnAnimaitionEndTrigger += DieAnimEvent; // 커팅 딜레이를 주고 싶다면 이걸 켜주
         // 커팅 딜레이를 주고 싶다면 이걸 켜주
@@ -213,7 +215,6 @@ public class Enemy : PoolableObject, IHitable, IAgent
         {
             _enemyAnim.OnAnimaitionEndTrigger -= DieAnimEvent;
             //PoolManager.Instance.Push(this);
-            IsDead = true;
             #region 풀링으로 바꿀부분
             //Destroy(gameObject);
             #endregion
