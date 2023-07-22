@@ -67,7 +67,7 @@ public class DrawManager : MonoBehaviour
     {
         startDraw = false;
         IsDraw = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         mainCam = Camera.main;
         ui = FindObjectOfType<InGameUIController>();
@@ -128,7 +128,7 @@ public class DrawManager : MonoBehaviour
         //±×¸®´Â µµÁß ±×¸®¸é ¸ØÃã
         if (canDraw && startDraw)
         {
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.lockState = CursorLockMode.None;
 
             startDraw = false;
             DrawStartEvent?.Invoke();
@@ -176,7 +176,7 @@ public class DrawManager : MonoBehaviour
         if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength /*|| OnTheWall*/)
         {
             ui.SetCoolSlider(0);
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
             currentDrawTime = 0;
             GuideLine guide = null;
             isMaxLength = false;

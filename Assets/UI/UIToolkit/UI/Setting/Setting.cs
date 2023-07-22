@@ -45,7 +45,7 @@ public class Setting : MonoBehaviour
     {
         group.style.display = DisplayStyle.None;
         DisableEvent?.Invoke();
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         TimeManager.Instance.SetTimeScale(1);
     }
 
@@ -62,7 +62,7 @@ public class Setting : MonoBehaviour
         Button ExitBtn = root.Q<Button>("Exit");
 
         EnableEvent?.Invoke();
-        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        //UnityEngine.Cursor.lockState = CursorLockMode.None;
 
         resolutions.AddRange(Screen.resolutions);
         foreach (Resolution resolution in resolutions)
@@ -146,14 +146,14 @@ public class Setting : MonoBehaviour
         {
             group.style.display = DisplayStyle.Flex;
             EnableEvent?.Invoke();
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            //UnityEngine.Cursor.lockState = CursorLockMode.None;
             TimeManager.Instance.SetTimeScale(0);
         }
         else
         {
             group.style.display = DisplayStyle.None;
             DisableEvent?.Invoke();
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             TimeManager.Instance.SetTimeScale(1);
         }
     }
