@@ -23,6 +23,9 @@ public class AudioManager : MonoBehaviour
     Dictionary<string, Sound> bgmSounds = new Dictionary<string, Sound>();
     Dictionary<string, Sound> sfxSounds = new Dictionary<string, Sound>();
 
+    private float bgmVolumeOffset = 1;
+    private float sfxVolumeOffset = 1;
+
     public int sfxPlayerCount = 50;
 
     private void Awake()
@@ -98,6 +101,19 @@ public class AudioManager : MonoBehaviour
         return source;
     }
 
+    public void SetBGMVolume(float value)
+    {
+        bgmPlayer.volume = value;
+    }
+
+    public void SetSFXVlume(float value)
+    {
+        for(int i = 0; i < sfxPlayer.Length; i++)
+        {
+            sfxPlayer[i].volume = value;
+        }
+    }
+
     public void SetBGMVolume(float startValue, float endValue, float time)
     {
         StartCoroutine(SetBGMVolume_Coroutine(startValue, endValue, time));
@@ -105,6 +121,9 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator SetBGMVolume_Coroutine(float startValue, float endValue, float time)
     {
+        startValue *= bgmVolumeOffset;
+        endValue *= bgmVolumeOffset;
+
         Debug.Log(1);
         bgmPlayer.volume = startValue;
 
@@ -116,7 +135,6 @@ public class AudioManager : MonoBehaviour
 
         float current = 0;
         float percent = 0;
-
 
         while(percent <= 1)
         {
