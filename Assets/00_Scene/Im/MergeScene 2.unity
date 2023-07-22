@@ -3091,7 +3091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxShape: 3
-  HaveShapes: 0000000007000000
+  HaveShapes: 00000000
   FullCountShapeAction:
     m_PersistentCalls:
       m_Calls:
@@ -3914,6 +3914,7 @@ MonoBehaviour:
   hpTestSlider: {fileID: 0}
   value: 50
   originHpBarWidth: 400
+  originCoolBarWidth: 368
 --- !u!1 &1436507318
 GameObject:
   m_ObjectHideFlags: 0

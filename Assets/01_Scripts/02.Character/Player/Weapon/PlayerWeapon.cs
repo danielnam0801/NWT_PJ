@@ -189,22 +189,22 @@ public class PlayerWeapon : MonoBehaviour
             case ShapeType.SixStar:
                 yield return StartCoroutine(StarShapeSkill(6));
                 break;
-            case ShapeType.UpArraw:
-                yield return null;
-                ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), Vector2.up);
-                break;
-            case ShapeType.DownArraw:
-                yield return null;
-                ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), -Vector2.up);
-                break;
-            case ShapeType.RightArraw:
-                yield return null;
-                ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), new Vector2(1, 1));
-                break;
-            case ShapeType.LeftArraw:
-                yield return null;
-                ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), new Vector2(-1, 1));
-                break;
+            //case ShapeType.UpArraw:
+            //    yield return null;
+            //    ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), Vector2.up);
+            //    break;
+            //case ShapeType.DownArraw:
+            //    yield return null;
+            //    ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), -Vector2.up);
+            //    break;
+            //case ShapeType.RightArraw:
+            //    yield return null;
+            //    ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), new Vector2(1, 1));
+            //    break;
+            //case ShapeType.LeftArraw:
+            //    yield return null;
+            //    ArrawSkill(guide.pair.transform.parent.GetComponent<EnemyMovement>(), new Vector2(-1, 1));
+            //    break;
         }
 
         PoolManager.Instance.Push(guide);
