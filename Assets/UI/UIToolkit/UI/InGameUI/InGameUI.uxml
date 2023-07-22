@@ -12,6 +12,6 @@
                 <ui:VisualElement name="coolBar" style="width: 368px; height: 12px; position: absolute; top: 43%; left: 26%; background-color: rgb(0, 44, 255);" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Label text="timer" display-tooltip-when-elided="true" name="Timer" style="position: absolute; top: 0; margin-left: 1.5%; margin-right: 1.5%; margin-top: 1.5%; margin-bottom: 1.5%; font-size: 127%; -unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); left: 40%; right: 40%;" />
+        <ui:Label text="timer" display-tooltip-when-elided="true" name="Timer" style="position: absolute; top: 0; margin-left: 1.5%; margin-right: 1.5%; margin-top: 1.5%; margin-bottom: 1.5%; font-size: 127%; -unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&amp;guid=800cdf45943e5ca45be120af27b43a39&amp;type=3#MapoDacapo&apos;); left: 40%; right: 40%; display: none;" />
     </ui:VisualElement>
 </ui:UXML>
