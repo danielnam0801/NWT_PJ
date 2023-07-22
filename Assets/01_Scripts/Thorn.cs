@@ -8,7 +8,7 @@ public class Thorn : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")
+        if (other.gameObject.CompareTag("Player"))
             other.GetComponent<PlayerHealth>().GetHit(damage, gameObject, Vector3.zero);
     }
 }
