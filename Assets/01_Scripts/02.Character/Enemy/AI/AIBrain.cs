@@ -59,7 +59,7 @@ public class AIBrain : MonoBehaviour
             anyTranTrm.GetComponentsInChildren<AITransition>(_anyTransitions);
         }
     }
-    private void OnEnable()
+    private void Start()
     {
         _target = GameManager.instance.Target;
         _currentState.InitState();

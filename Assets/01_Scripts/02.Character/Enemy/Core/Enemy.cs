@@ -116,7 +116,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     public void GetHit(float damage, GameObject damageDealer, Vector3 HitNormal)
     {
         Debug.Log($"Player한테 맞았쪄염 : {damageDealer.name}");
-        if (IsDead == true) return;
+        if (IsDead == true || !_isActive) return;
 
         Health -= damage;
 
@@ -139,7 +139,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     private void DeadProcess()
     {
         Health = 0;
-        IsDead = true;
+        _isActive = false;
         gameObject.layer = LayerMask.NameToLayer("EnemyDead");
         _enemyAnim.OnAnimaitionEndTrigger += DieAnimEvent; // 커팅 딜레이를 주고 싶다면 이걸 켜주
         // 커팅 딜레이를 주고 싶다면 이걸 켜주
@@ -214,10 +214,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
         seq.OnComplete(() =>
         {
             _enemyAnim.OnAnimaitionEndTrigger -= DieAnimEvent;
-            //PoolManager.Instance.Push(this);
-            #region 풀링으로 바꿀부분
-            //Destroy(gameObject);
-            #endregion
+            IsDead = true;
         });
     }
 
@@ -237,6 +234,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     public override void Init()
     {
         IsDead = false;
+        _isActive = true;
         Health = _enemyDataSO.HP;
         _brain.Init();
         _enemyAnim.Init();
