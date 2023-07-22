@@ -37,6 +37,7 @@ public class AIBrain : MonoBehaviour
     public List<AITransition> AnyTransitions => _anyTransitions;
 
     public bool UseBrain { get; set; } = true;
+    AIState firstState;
     #endregion
 
     protected virtual void Awake()
@@ -50,6 +51,7 @@ public class AIBrain : MonoBehaviour
         AIActionData = rootAI.GetComponent<AIActionData>();
         AIMovementData = rootAI.GetComponent<AIMovementData>();
         AIStateInfo = rootAI.GetComponent<AIStateInfo>();
+        firstState = rootAI.Find("IdleState").GetComponent<AIState>();
 
         Transform anyTranTrm = transform.Find("AI/AnyTransitions");
         if (anyTranTrm != null)
@@ -57,7 +59,7 @@ public class AIBrain : MonoBehaviour
             anyTranTrm.GetComponentsInChildren<AITransition>(_anyTransitions);
         }
     }
-    private void Start()
+    private void OnEnable()
     {
         _target = GameManager.instance.Target;
         _currentState.InitState();
@@ -97,5 +99,10 @@ public class AIBrain : MonoBehaviour
     public virtual bool Attack(SkillType skillName)
     {
         return _attackCoolController.Attack(skillName);
+    }
+
+    public void Init()
+    {
+        _currentState = firstState;
     }
 }

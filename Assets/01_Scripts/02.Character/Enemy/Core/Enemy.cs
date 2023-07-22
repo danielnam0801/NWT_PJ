@@ -238,6 +238,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
     {
         IsDead = false;
         Health = _enemyDataSO.HP;
+        _brain.Init();
         _enemyAnim.Init();
         InitAction?.Invoke();
         foreach(EnemyChildSprite eP in _enemyChildSlicedSprites)
