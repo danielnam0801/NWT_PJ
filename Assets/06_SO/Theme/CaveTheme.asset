@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThemeName: Cave
   StageList:
-  - {fileID: 7688746136914106207, guid: 7bf06852a6ee9b444b0e9a23e4d42c4d, type: 3}
   - {fileID: 7252206135344012224, guid: 36cb6d121b305d143a09c56ab2089f0f, type: 3}

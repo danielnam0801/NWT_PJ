@@ -28,6 +28,8 @@ public class Setting : MonoBehaviour
 
     [SerializeField]
     private bool isActive = false;
+    [SerializeField]
+    private bool isIntro = false;
 
     public UnityEvent EnableEvent;
     public UnityEvent DisableEvent; 
@@ -47,6 +49,7 @@ public class Setting : MonoBehaviour
         DisableEvent?.Invoke();
         //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         TimeManager.Instance.SetTimeScale(1);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
@@ -146,7 +149,8 @@ public class Setting : MonoBehaviour
         }
 
         isActive = !isActive;
-        UIManager.Instance.settingActive = isActive;
+        if(!isIntro)
+            UIManager.Instance.settingActive = isActive;
         
         if(isActive)
         {
@@ -154,14 +158,16 @@ public class Setting : MonoBehaviour
             group.style.display = DisplayStyle.Flex;
             EnableEvent?.Invoke();
             //UnityEngine.Cursor.lockState = CursorLockMode.None;
-            TimeManager.Instance.SetTimeScale(0);
+            if (!isIntro)
+                TimeManager.Instance.SetTimeScale(0);
         }
         else
         {
             group.style.display = DisplayStyle.None;
             DisableEvent?.Invoke();
             //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            TimeManager.Instance.SetTimeScale(1);
+            if (!isIntro)
+                TimeManager.Instance.SetTimeScale(1);
         }
     }
 }

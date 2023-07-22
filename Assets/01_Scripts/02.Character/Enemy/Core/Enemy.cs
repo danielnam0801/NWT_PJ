@@ -120,6 +120,8 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
         Health -= damage;
 
+        HitFeedback?.Invoke();
+
         if (Health <= 0)
         {
             DeadProcess();
@@ -133,7 +135,7 @@ public class Enemy : PoolableObject, IHitable, IAgent
 
         if(!_brain.AIStateInfo.IsAttack && !_brain.AIStateInfo.IsAttackWait)
             OnGetHit?.Invoke();
-        HitFeedback?.Invoke();
+        
 
     }
     private void DeadProcess()

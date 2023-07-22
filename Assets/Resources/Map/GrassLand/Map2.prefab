@@ -26862,7 +26862,7 @@ MonoBehaviour:
   - {x: 10.484962, y: -2.1727295, z: 0}
   m_ShapePathHash: 654910066
   m_Mesh: {fileID: 0}
-  m_InstanceId: 83420
+  m_InstanceId: 123178
 --- !u!1 &3702839778361019252
 GameObject:
   m_ObjectHideFlags: 0
@@ -27891,7 +27891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 441730202843394285, guid: 1024b5c73888f62468422dd8d2cc0c5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 94.86989
+      value: 88.29
       objectReference: {fileID: 0}
     - target: {fileID: 441730202843394285, guid: 1024b5c73888f62468422dd8d2cc0c5e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27928,6 +27928,10 @@ PrefabInstance:
     - target: {fileID: 441730202843394285, guid: 1024b5c73888f62468422dd8d2cc0c5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353791708750371566, guid: 1024b5c73888f62468422dd8d2cc0c5e, type: 3}
+      propertyPath: HoldShape
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1024b5c73888f62468422dd8d2cc0c5e, type: 3}

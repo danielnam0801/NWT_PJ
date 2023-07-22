@@ -15494,7 +15494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9011230053242807665, guid: a837cb0fd2693004e8d7b83c0b928178, type: 3}
       propertyPath: guideText
-      value: "F\uB85C \uC0C1\uD638\uC791\uC6A9"
+      value: "F\uB85C \uB3C4\uD615 \uD68D\uB4DD"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a837cb0fd2693004e8d7b83c0b928178, type: 3}
@@ -16498,8 +16498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9011230053242807665, guid: a837cb0fd2693004e8d7b83c0b928178, type: 3}
       propertyPath: guideText
-      value: "\uC6B0\uD074\uB9AD \uD6C4 \uC88C\uD074\uB9AD \uB4DC\uB798\uADF8\uB85C
-        \uACF5\uACA9"
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a837cb0fd2693004e8d7b83c0b928178, type: 3}
@@ -16667,6 +16666,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 441730202843394285, guid: 1024b5c73888f62468422dd8d2cc0c5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353791708750371566, guid: 1024b5c73888f62468422dd8d2cc0c5e, type: 3}
+      propertyPath: HoldShape
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
