@@ -20,6 +20,10 @@ public class InGameUIController : MonoBehaviour
     [SerializeField]
     private float originHpBarWidth = 400;
 
+    private VisualElement coolBar;
+    [SerializeField]
+    private float originCoolBarWidth = 368;
+
     private void Awake()
     {
         document = GetComponent<UIDocument>();
@@ -30,7 +34,9 @@ public class InGameUIController : MonoBehaviour
     {
         hpBar = root.Q<VisualElement>("HealthBar");
         hpBar.style.width = new StyleLength(originHpBarWidth);
-        Debug.Log(hpBar.style.width.value.value);
+
+        coolBar = root.Q<VisualElement>("coolBar");
+        coolBar.style.width = new StyleLength(originCoolBarWidth);
     }
 
     private void Start()
@@ -85,6 +91,10 @@ public class InGameUIController : MonoBehaviour
     public void SetHPSlider(float normal)
     {
         hpBar.style.width = new StyleLength(originHpBarWidth * normal);
-        Debug.Log(hpBar.style.width.value.value);
+    }
+
+    public void SetCoolSlider(float normal)
+    {
+        coolBar.style.width = new StyleLength(originCoolBarWidth * normal);
     }
 }

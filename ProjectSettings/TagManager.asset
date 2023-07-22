@@ -19,14 +19,14 @@ TagManager:
   - Enemy
   - EnemyDead
   - BattleArea
-  - 
+  - Thorn
   - 
   - Weapon
   - CanCutted
   - Can'tCutting
   - UnderFloor
   - 
-  - 
+  - OnlyPlayerBG
   - Wall
   - Floor
   - EnemyWeapon

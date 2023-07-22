@@ -29,7 +29,7 @@ public class StartUIController : MonoBehaviour
         settingBtn.RegisterCallback<ClickEvent>(e =>
         {
             AudioManager.Instance.PlaySFX("BtnClickSound");
-            //세팅만들면
+            FindObjectOfType<IntroSetting>().SetActive();
         });
         exitBtn.RegisterCallback<ClickEvent>(e =>
         {

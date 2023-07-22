@@ -8,6 +8,8 @@
     margin-right: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
+    -unity-font-definition: none;
+    -unity-font: url('project://database/Assets/02_Assets/Font/MapoDacapo.ttf?fileID=12800000&guid=800cdf45943e5ca45be120af27b43a39&type=3#MapoDacapo');
 }
 
 .btn:hover {
@@ -17,9 +19,9 @@
 .btn > #text {
     font-size: 33px;
     -unity-text-align: middle-center;
-    color: rgba(212, 207, 207, 255);
+    color: rgb(212, 207, 207);
 }
 
 .btn:hover > #text {
-    color: rgba(0, 0, 0, 255);
+    color: rgb(0, 0, 0);
 }

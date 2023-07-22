@@ -2554,6 +2554,7 @@ GameObject:
   - component: {fileID: 7350753760347491673}
   - component: {fileID: 7350753760347491674}
   - component: {fileID: 7371371636609109699}
+  - component: {fileID: 2402672757557154245}
   m_Layer: 8
   m_Name: HitFeedback
   m_TagString: Untagged
@@ -2617,6 +2618,19 @@ MonoBehaviour:
   _amplitude: 5
   _intensity: 5
   _duration: 0.1
+--- !u!114 &2402672757557154245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7350753760347491679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f24b8f7295955468ff66b95ba55063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioName: BloodSound
 --- !u!1 &7350753760522876732
 GameObject:
   m_ObjectHideFlags: 0

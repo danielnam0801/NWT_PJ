@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeColor: {r: 0, g: 0, b: 0, a: 0}
+  isFade: 0
 --- !u!4 &208692287
 Transform:
   m_ObjectHideFlags: 0
@@ -219,9 +220,13 @@ MonoBehaviour:
   - name: BloodSound
     clip: {fileID: 8300000, guid: 27a59b7da3c1d4e44a27f7c08dfd7bfd, type: 3}
   - name: BtnClickSound
-    clip: {fileID: 8300000, guid: 07b6eb25efc1f464fb70e08bc5699645, type: 3}
-  - name: SwordRollingSound
+    clip: {fileID: 8300000, guid: f06ff66e0bfde674da354532a4baa5e9, type: 3}
+  - name: SowrdRollingSound
     clip: {fileID: 8300000, guid: 79ba1471b3e5dae42acc2d083a4dee61, type: 3}
+  - name: ChestOpenSound
+    clip: {fileID: 8300000, guid: 006e405321af9034281bcbc47bc1abe7, type: 3}
+  - name: ExplosionSound
+    clip: {fileID: 8300000, guid: 0de36f2809fd38743952a209acb4a24d, type: 3}
   bgm:
   - name: IntroBGM
     clip: {fileID: 8300000, guid: 3aa8f1d7601a19d4c88dcaaa262c2e06, type: 3}
@@ -231,6 +236,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: fb273957e7edc6a4fb4bc7a4449bd241, type: 3}
   bgmPlayer: {fileID: 767476132}
   sfxPlayer: []
+  sfxPlayerCount: 50
 --- !u!4 &767476131
 Transform:
   m_ObjectHideFlags: 0
@@ -342,6 +348,74 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &861366423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861366425}
+  - component: {fileID: 861366424}
+  - component: {fileID: 861366426}
+  m_Layer: 0
+  m_Name: SettingUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &861366424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861366423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 26d6f1f46fc0c5242ab3ab6137b99dbd, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: bd7e8e7187fb5e4449a2c20900e733bf, type: 3}
+  m_SortingOrder: 100
+--- !u!4 &861366425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861366423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &861366426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861366423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921467704fb365a47974a0307f2521da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  EnableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DisableEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1151444712
 GameObject:
   m_ObjectHideFlags: 0
