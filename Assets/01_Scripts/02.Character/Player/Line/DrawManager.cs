@@ -53,6 +53,8 @@ public class DrawManager : MonoBehaviour
     private bool startDraw;
     public bool IsDraw { get; set; }
 
+    private InGameUIController ui;
+
     private void Awake()
     {
         if (Instance == null)
@@ -68,7 +70,7 @@ public class DrawManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         mainCam = Camera.main;
-
+        ui = FindObjectOfType<InGameUIController>();
     }
 
     private void Update()
@@ -173,6 +175,7 @@ public class DrawManager : MonoBehaviour
         }
         if (IsDraw && Input.GetMouseButtonUp(0) || isMaxLength /*|| OnTheWall*/)
         {
+            ui.SetCoolSlider(0);
             Cursor.lockState = CursorLockMode.Locked;
             currentDrawTime = 0;
             GuideLine guide = null;
@@ -216,7 +219,18 @@ public class DrawManager : MonoBehaviour
     }
     private IEnumerator DelayDraw(float time)
     {
-        yield return new WaitForSeconds(time);
+        float percent = 0;
+        float current = 0;
+
+        while (percent < 1)
+        {
+            current += Time.deltaTime;
+            percent = current / time;
+
+            ui.SetCoolSlider(percent);
+
+            yield return null;
+        }
 
         canDraw = true;
     }
