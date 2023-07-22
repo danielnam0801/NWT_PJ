@@ -49,7 +49,7 @@ MonoBehaviour:
   poolType: 0
   type: 3
   checkOffset: 0.5
-  shapeSize: 1
+  shapeSize: 3
   pair: {fileID: 0}
   shapePoints: []
 --- !u!120 &4118976874383314117

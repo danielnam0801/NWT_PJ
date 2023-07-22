@@ -67,12 +67,12 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.Play();
     }
 
-    public void PlaySFX(string p_sfxName)
+    public AudioSource PlaySFX(string p_sfxName)
     {
         if(sfxSounds.TryGetValue(p_sfxName, out Sound sound) == false)
         {
             Debug.Log(p_sfxName + " 이름의 효과음이 없습니다.");
-            return;
+            return null;
         }
 
         for (int i = 0; i < sfxPlayer.Length; i++)
@@ -82,11 +82,20 @@ public class AudioManager : MonoBehaviour
             {
                 sfxPlayer[i].clip = sfxSounds[p_sfxName].clip;
                 sfxPlayer[i].Play();
-                return;
+                return sfxPlayer[i];
             }
         }
+
+        GameObject obj = new GameObject();
+        obj.transform.SetParent(transform);
+        AudioSource source = obj.AddComponent<AudioSource>();
+        sfxPlayer[sfxPlayer.Length] = source;
+        source.clip = sfxSounds[p_sfxName].clip;
+        source.Play();
+
         Debug.Log("모든 오디오 플레이어가 재생중입니다.");
-        return;
+
+        return source;
     }
 
     public void SetBGMVolume(float startValue, float endValue, float time)

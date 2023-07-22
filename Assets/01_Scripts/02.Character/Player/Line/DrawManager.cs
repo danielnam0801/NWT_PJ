@@ -14,7 +14,7 @@ public class DrawManager : MonoBehaviour
     public List<GuideLine> GuideLines;
 
     public GameObject linePrefab;
-
+    
     [SerializeField]
     private float pathPointInterval = 0.3f;
     [SerializeField]
@@ -68,7 +68,6 @@ public class DrawManager : MonoBehaviour
         startDraw = false;
         IsDraw = false;
         //Cursor.lockState = CursorLockMode.Locked;
-
         mainCam = Camera.main;
         ui = FindObjectOfType<InGameUIController>();
     }

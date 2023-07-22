@@ -31,6 +31,7 @@ public class Chest : MonoBehaviour, IInteract
         if (IsOpen)
             return;
 
+        AudioManager.Instance.PlaySFX("ChestOpenSound");
         OpenAction?.Invoke(HoldShape);
     }   
 

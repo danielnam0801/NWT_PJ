@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/UIToolkit/DieUIStyle.uss?fileID=7433441132597879392&amp;guid=7a438510be14c914b997ef98a034da34&amp;type=3#DieUIStyle" />
-    <ui:VisualElement name="root" style="align-items: center; justify-content: center; flex-grow: 1;">
+    <ui:VisualElement name="group" style="align-items: center; justify-content: center; flex-grow: 1; display: none;">
         <ui:Label text="죽었습니다" display-tooltip-when-elided="true" style="font-size: 120px; color: rgb(136, 0, 0); -unity-text-align: middle-center; flex-shrink: 1; flex-grow: 5;" />
         <ui:VisualElement name="btns" style="flex-grow: 6; justify-content: center; padding-bottom: 80px;">
             <ui:VisualElement name="restartBtn" class="btn">

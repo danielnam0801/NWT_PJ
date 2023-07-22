@@ -215,6 +215,7 @@ public class PlayerWeapon : MonoBehaviour
     #region ½ºÅ³
     private IEnumerator CircleSkill()
     {
+
         Debug.Log("start cir");
         float current = 0f;
         float percent = 0f;
@@ -224,6 +225,7 @@ public class PlayerWeapon : MonoBehaviour
         Vector2 dir = transform.up;
         float angle = Mathf.Atan2(dir.y, dir.x);
 
+        AudioSource source = AudioManager.Instance.PlaySFX("SowrdRollingSound");
         while (percent < 1)
         {
             current += Time.deltaTime;
@@ -242,6 +244,8 @@ public class PlayerWeapon : MonoBehaviour
 
             yield return null;
         }
+
+        source.Pause();
     }
 
     private IEnumerator TriangleSkill()
@@ -304,6 +308,9 @@ public class PlayerWeapon : MonoBehaviour
 
     private void PentagonSkill()
     {
+        AudioManager.Instance.PlaySFX("ExplosionSound");
+        PoolableObject obj = PoolManager.Instance.Pop("explosion");
+        obj.transform.position = transform.position;
         RangeAttack(2, 5, () => ExplosionEvent?.Invoke());
     }
 

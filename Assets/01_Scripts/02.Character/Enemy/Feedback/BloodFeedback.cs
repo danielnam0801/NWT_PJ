@@ -9,7 +9,7 @@ public class BloodFeedback : Feedback
     private PoolableObject effect;
     public override void CreateFeedBack()
     {
-        effect = PoolManager.Instance.Pop("BloodEffect");
+        effect = PoolManager.Instance.Pop("blood");
         effect.transform.position = playTrm.position;
         effect.transform.right = transform.parent.right;
     }

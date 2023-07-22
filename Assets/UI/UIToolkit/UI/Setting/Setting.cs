@@ -73,6 +73,7 @@ public class Setting : MonoBehaviour
         ResolutionDropdown.choices = resolutionStringList;
         ResolutionDropdown.RegisterValueChangedCallback(v =>
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
             resolutionWidth = resolutions[ResolutionDropdown.index].width;
             resolutionHeight = resolutions[ResolutionDropdown.index].height;
             if (resolutionWidth != Screen.width || resolutionHeight != Screen.height)
@@ -83,6 +84,7 @@ public class Setting : MonoBehaviour
 
         fullScreenToggle.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
             fullScreen = fullScreenToggle.value;
             Screen.fullScreen = fullScreen;
         });
@@ -99,19 +101,22 @@ public class Setting : MonoBehaviour
             Debug.Log(v.newValue);
         });
 
-        //TimerToggle.RegisterCallback<ClickEvent>(e =>
-        //{
-        //    Timer.SetActive(!Timer.activeSelf);
-        //});
+        TimerToggle.RegisterCallback<ClickEvent>(e =>
+        {
+            //Timer.SetActive(!Timer.activeSelf);
+            AudioManager.Instance.PlaySFX("BtnClickSound");
+        });
 
         UIToggle.RegisterValueChangedCallback(v =>
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
             UIManager.Instance.HUD.SetActive(!UIManager.Instance.HUD.activeSelf);
             UIManager.Instance.isTimerTick = !UIManager.Instance.isTimerTick;
         });
 
         ReturnBtn.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
             Debug.Log(2);
             SetActive();
 
@@ -120,11 +125,12 @@ public class Setting : MonoBehaviour
 
         NewGameBtn.RegisterCallback<ClickEvent>(e =>
         {
-
+            AudioManager.Instance.PlaySFX("BtnClickSound");
         });
 
         ExitBtn.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
             Application.Quit();
         });
 
@@ -144,6 +150,7 @@ public class Setting : MonoBehaviour
         
         if(isActive)
         {
+            AudioManager.Instance.PlaySFX("BtnClickSound");
             group.style.display = DisplayStyle.Flex;
             EnableEvent?.Invoke();
             //UnityEngine.Cursor.lockState = CursorLockMode.None;

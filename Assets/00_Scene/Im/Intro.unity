@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeColor: {r: 0, g: 0, b: 0, a: 0}
+  isFade: 0
 --- !u!4 &208692287
 Transform:
   m_ObjectHideFlags: 0
@@ -219,9 +220,13 @@ MonoBehaviour:
   - name: BloodSound
     clip: {fileID: 8300000, guid: 27a59b7da3c1d4e44a27f7c08dfd7bfd, type: 3}
   - name: BtnClickSound
-    clip: {fileID: 8300000, guid: 07b6eb25efc1f464fb70e08bc5699645, type: 3}
-  - name: SwordRollingSound
+    clip: {fileID: 8300000, guid: f06ff66e0bfde674da354532a4baa5e9, type: 3}
+  - name: SowrdRollingSound
     clip: {fileID: 8300000, guid: 79ba1471b3e5dae42acc2d083a4dee61, type: 3}
+  - name: ChestOpenSound
+    clip: {fileID: 8300000, guid: 006e405321af9034281bcbc47bc1abe7, type: 3}
+  - name: ExplosionSound
+    clip: {fileID: 8300000, guid: 0de36f2809fd38743952a209acb4a24d, type: 3}
   bgm:
   - name: IntroBGM
     clip: {fileID: 8300000, guid: 3aa8f1d7601a19d4c88dcaaa262c2e06, type: 3}
@@ -231,6 +236,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: fb273957e7edc6a4fb4bc7a4449bd241, type: 3}
   bgmPlayer: {fileID: 767476132}
   sfxPlayer: []
+  sfxPlayerCount: 50
 --- !u!4 &767476131
 Transform:
   m_ObjectHideFlags: 0

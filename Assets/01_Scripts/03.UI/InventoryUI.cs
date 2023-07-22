@@ -39,13 +39,13 @@ public class InventoryUI : MonoBehaviour
 
         if(value)
         {
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            //UnityEngine.Cursor.lockState = CursorLockMode.None;
             SetElementInfo();
             DrawManager.Instance.isUIMouse = true;
         }
         else
         {
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             DrawManager.Instance.isUIMouse = false;
         }
     }
@@ -93,6 +93,7 @@ public class InventoryUI : MonoBehaviour
 
                 items[i].RegisterCallback<ClickEvent>(e =>
                 {
+                    AudioManager.Instance.PlaySFX("BtnClickSound");
                     clickAction?.Invoke(shape);
                     SetActive(false);
                 });
