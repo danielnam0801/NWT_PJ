@@ -31,8 +31,6 @@ public class EnemyAttackController : MonoBehaviour
     AIStateInfo _stateInfo;
     AIActionData _actionData;   
 
-    SkillType skillName;
-
     [Header("CoolValue")]
     [SerializeField] private float rangeCool = 5f;    
     [SerializeField] private float meleeCool = 3f;    
@@ -157,37 +155,41 @@ public class EnemyAttackController : MonoBehaviour
         }
     }
 
-    public virtual bool Attack(SkillType skillname)
+    public void Attack()
     {
-        
-        // 현재 들어온 공격이 우선순위 1순위가 아니라면
-        if (attackQueue.Peek().AttackName != skillname) return false;
-        if (_stateInfo.IsAttack || _stateInfo.IsAttackWait) return false;
-        if (isCoolDown(skillname) == false) return false;
-        
-        this.skillName = skillname;  
-        _actionData.nextSkill = skillname;
-        _stateInfo.IsAttackWait = true;
-        StartCoroutine(AttackWait());
+        if(_actionData.currentSkill == SkillType.None)
+        {
+            return;
+        }
 
-        return true;
-    }
-
-    private IEnumerator AttackWait()
-    {
-        yield return new WaitForSeconds(attackWaitTime);
-        yield return new WaitUntil(() => !_stateInfo.IsHit);
-        
         EnemyAttackData atkData = null;
-        if (_attackDictionary.TryGetValue(skillName, out atkData))
+        if (_attackDictionary.TryGetValue(_actionData.currentSkill, out atkData))
         {
             _stateInfo.IsAttackWait = false;
             _stateInfo.IsAttack = true;
 
             _movement.StopImmediatelly();
             atkData.atk.Attack(atkData.action);
-            SetAttackValue(skillName);
+            SetAttackValue(_actionData.currentSkill);
             GotoEndQueue();
+        }
+        _actionData.currentSkill = SkillType.None;
+    }
+
+    public virtual bool FindAttack(SkillType skillname)
+    {
+        
+        if (_actionData.currentSkill != SkillType.None) return true;// 이미 찾음 
+        else //현재 스킬이 없을 때
+        {
+            if (attackQueue.Peek().AttackName != skillname) return false;
+            if (_stateInfo.IsAttack || _stateInfo.IsAttackWait) return false;
+            if (isCoolDown(skillname) == false) return false;
+            
+            _actionData.currentSkill = skillname;
+            _actionData.attackWaitTime = attackWaitTime;
+
+            return true;
         }
     }
 
@@ -213,6 +215,9 @@ public class EnemyAttackController : MonoBehaviour
                 break;
             case SkillType.Melee:
                 _stateInfo.IsMelee = true;
+                break;
+            default:
+                _stateInfo.Init();
                 break;
         }
     }

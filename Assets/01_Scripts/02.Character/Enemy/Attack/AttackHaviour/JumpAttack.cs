@@ -59,7 +59,7 @@ public class JumpAttack : EnemyAttack, INormalAttack
 
         _bezierPoints = DOCurve.CubicBezier.GetSegmentPointCloud(transform.position,
             transform.position + cp1, targetPos, transform.position + cp2, _bezeirResolution);
-        _frameSpeed = _jumpSpeed / _bezeirResolution / distacne;
+        _frameSpeed = _jumpSpeed / _bezeirResolution * distacne;
 
         StartCoroutine(JumpCoroutine());
 

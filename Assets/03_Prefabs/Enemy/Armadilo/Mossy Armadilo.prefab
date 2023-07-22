@@ -2755,7 +2755,8 @@ MonoBehaviour:
   IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
   HitNormal: {x: 0, y: 0, z: 0}
-  nextSkill: 0
+  currentSkill: 0
+  attackWaitTime: 0
 --- !u!114 &7350753760528254141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2783,7 +2784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7350753760780315087}
   - component: {fileID: 7350753760780315081}
-  - component: {fileID: 7350753760780315082}
+  - component: {fileID: 1291322064717846147}
   m_Layer: 0
   m_Name: TransAttackWait
   m_TagString: Untagged
@@ -2820,7 +2821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions: []
   nextState: {fileID: 1328807988879031382}
---- !u!114 &7350753760780315082
+--- !u!114 &1291322064717846147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2829,7 +2830,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7350753760780315084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 440d57e6e01c0cc43b6bc12363839cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5744b53258263f6439fc5b7f642ebde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
@@ -2844,7 +2845,6 @@ GameObject:
   - component: {fileID: 7350753760885522859}
   - component: {fileID: 7350753760885522858}
   - component: {fileID: 7350753760885522869}
-  - component: {fileID: 7350753760885522870}
   m_Layer: 0
   m_Name: ChaseState
   m_TagString: Untagged
@@ -2893,18 +2893,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e545bb20edc0bbd46a754f0ba23799fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7350753760885522870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7350753760885522856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b36aa51c90005b747b4080b0806e4524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7826245446696462183

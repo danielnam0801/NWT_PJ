@@ -1433,7 +1433,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4901011190756734350}
   - component: {fileID: 4901011190756734351}
-  - component: {fileID: 4901011190756734346}
   m_Layer: 0
   m_Name: IdleState
   m_TagString: Untagged
@@ -1471,18 +1470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actions: []
   _transition: []
---- !u!114 &4901011190756734346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901011190756734345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b36aa51c90005b747b4080b0806e4524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4901011190829202103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,7 +1649,7 @@ GameObject:
   - component: {fileID: 4901011191015741896}
   - component: {fileID: 4901011191015741902}
   - component: {fileID: 4901011191015741897}
-  - component: {fileID: 4901011191015741903}
+  - component: {fileID: 7874779536357726159}
   m_Layer: 0
   m_Name: TransAttackWait
   m_TagString: Untagged
@@ -1715,7 +1702,7 @@ MonoBehaviour:
   RayPoint: {fileID: 4901011191944988615}
   _distance: 9
   boxCastUse: 0
---- !u!114 &4901011191015741903
+--- !u!114 &7874779536357726159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1724,7 +1711,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4901011191015741899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa73040baea95784699994cd1549c4a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 5744b53258263f6439fc5b7f642ebde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
@@ -1865,7 +1852,8 @@ MonoBehaviour:
   IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
   HitNormal: {x: 0, y: 0, z: 0}
-  nextSkill: 0
+  currentSkill: 0
+  attackWaitTime: 0
 --- !u!114 &4901011191301616826
 MonoBehaviour:
   m_ObjectHideFlags: 0

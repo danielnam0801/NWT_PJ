@@ -7,6 +7,16 @@ public class AttackWaitAction : AIAction
     public override void InitAction()
     {
         _brain.EnemyMovement.StopImmediatelly();
+        _stateInfo.IsAttackWait = true;
+        StartCoroutine(AttackWait());
+    }
+
+    private IEnumerator AttackWait()
+    {
+        yield return new WaitForSeconds(_aiActionData.attackWaitTime);
+        yield return new WaitUntil(() => !_stateInfo.IsHit);
+        _stateInfo.IsAttack = true;
+        _stateInfo.IsAttackWait = false;
     }
 
     public override void TakeAction() {}

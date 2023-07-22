@@ -1759,7 +1759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6954486385948347779}
   - component: {fileID: 6954486385948347781}
-  - component: {fileID: 6954486385948347782}
+  - component: {fileID: 4802370471022610982}
   m_Layer: 0
   m_Name: TransAttackWait
   m_TagString: Untagged
@@ -1796,7 +1796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions: []
   nextState: {fileID: 1508860698619631642}
---- !u!114 &6954486385948347782
+--- !u!114 &4802370471022610982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6954486385948347776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 440d57e6e01c0cc43b6bc12363839cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5744b53258263f6439fc5b7f642ebde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isReverse: 0
@@ -1820,7 +1820,6 @@ GameObject:
   - component: {fileID: 6954486386118518247}
   - component: {fileID: 6954486386118518246}
   - component: {fileID: 6954486386118518265}
-  - component: {fileID: 6954486386118518266}
   m_Layer: 0
   m_Name: ChaseState
   m_TagString: Untagged
@@ -1869,18 +1868,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e545bb20edc0bbd46a754f0ba23799fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6954486386118518266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954486386118518244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b36aa51c90005b747b4080b0806e4524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6954486386192126832
@@ -2021,7 +2008,8 @@ MonoBehaviour:
   IsMoving: 0
   CreatePoint: {x: 0, y: 0, z: 0}
   HitNormal: {x: 0, y: 0, z: 0}
-  nextSkill: 0
+  currentSkill: 0
+  attackWaitTime: 0
 --- !u!114 &6954486386199617777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2666,7 +2654,7 @@ MonoBehaviour:
   meleeDamage: 3
   normalDamage: 5
   specialDamage: 10
-  attackWaitTime: 0.1
+  attackWaitTime: 0.3
 --- !u!114 &6954486387241841314
 MonoBehaviour:
   m_ObjectHideFlags: 0

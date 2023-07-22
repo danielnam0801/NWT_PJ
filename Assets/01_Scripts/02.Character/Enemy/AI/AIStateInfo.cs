@@ -6,6 +6,7 @@ using UnityEngine;
 [Flags]
 public enum SkillType
 {
+    None = 0,
     Normal = 1,
     Special = 2,
     Melee = 4,

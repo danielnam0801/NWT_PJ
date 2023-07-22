@@ -3,15 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FindAttackAbleAction : AIAction
+public class FindAttackDecision : AIDecision
 {
     List<SkillType> skills = new List<SkillType>();
-    
     private void Start()
     {
         SetSkills(_brain.AttackCoolController.MySkills);
     }
-
     private void SetSkills(SkillType skilltype)
     {
         foreach (SkillType r in Enum.GetValues(typeof(SkillType)))
@@ -19,18 +17,15 @@ public class FindAttackAbleAction : AIAction
             if ((skilltype & r) != 0) skills.Add(r);
         }
     }
-
-    public override void ExitAction() { }
-    public override void InitAction() { }
-
-    public override void TakeAction()
+    public override bool MakeADecision()
     {
         for (int i = 0; i < skills.Count; i++)
         {
-            if (!_stateInfo.IsAttack)
+            if (_brain.FindAttack(skills[i]))
             {
-                _brain.Attack(skills[i]);
+                return true;
             }
         }
+        return false;
     }
 }

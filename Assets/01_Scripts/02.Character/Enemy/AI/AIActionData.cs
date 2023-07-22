@@ -13,5 +13,6 @@ public class AIActionData : MonoBehaviour
 
     public Vector3 CreatePoint;
     public Vector3 HitNormal;
-    public SkillType nextSkill;
+    public SkillType currentSkill;
+    public float attackWaitTime = 0;
 }

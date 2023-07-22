@@ -96,9 +96,14 @@ public class AIBrain : MonoBehaviour
         OnMovementKeyPress?.Invoke(direction);
     }
 
-    public virtual bool Attack(SkillType skillName)
+    public void Attack()
     {
-        return _attackCoolController.Attack(skillName);
+        _attackCoolController.Attack();
+    }
+
+    public bool FindAttack(SkillType skillName)
+    {
+        return _attackCoolController.FindAttack(skillName);
     }
 
     public void Init()

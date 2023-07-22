@@ -8,7 +8,8 @@ public class AttackAction : AIAction
     public override void InitAction()
     {
         _animator.SetAttackState(true);
-        _animator.SetAttackTrigger(_aiActionData.nextSkill);
+        _animator.SetAttackTrigger(_aiActionData.currentSkill);
+        _brain.Attack();
     }
     public override void TakeAction() { }
     public override void ExitAction()
