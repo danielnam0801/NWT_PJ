@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/UI/UIToolkit/UI/Setting/idontknow.uss?fileID=7433441132597879392&amp;guid=196417bcc2bc5574b85141c669072b4e&amp;type=3#idontknow" />
-    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.47);">
+    <ui:VisualElement name="group" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.47); display: none;">
         <ui:VisualElement name="BackGround" style="flex-grow: 1; margin-left: 6%; margin-right: 6%; margin-top: 6%; margin-bottom: 6%;">
             <ui:VisualElement style="flex-grow: 1; background-color: rgb(113, 113, 113);">
                 <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">

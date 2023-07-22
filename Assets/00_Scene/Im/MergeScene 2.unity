@@ -5626,6 +5626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9b449bdac3cbc40afb2bc410045673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   EnableEvent:
     m_PersistentCalls:
       m_Calls:
@@ -5687,7 +5688,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845229491}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
