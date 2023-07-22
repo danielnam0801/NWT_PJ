@@ -60,11 +60,11 @@ public class UIManager : MonoBehaviour
     {
         HealthBar.value = health;
     }
-    public void SettingEnable()
+    public void SettingEnable(bool value)
     {
         //SettingUIActive = !SettingUIActive;
-        SettingUI.SetActive(isTimerTick);
-        isTimerTick = !isTimerTick;
+        SettingUI.SetActive(value);
+        isTimerTick = value;
     }
     public void SetBGMVolume(float volume)
     {

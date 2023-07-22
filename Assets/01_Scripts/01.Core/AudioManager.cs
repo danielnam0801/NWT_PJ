@@ -35,7 +35,6 @@ public class AudioManager : MonoBehaviour
 
         for(int i = 0; i < sfxPlayerCount; i++)
         {
-            Debug.Log(i);
             GameObject obj = new GameObject();
             obj.transform.SetParent(transform);
             AudioSource source = obj.AddComponent<AudioSource>();

@@ -46,8 +46,8 @@ public class Setting : MonoBehaviour
         }
 
         isActive = !isActive;
-        document.enabled = isActive;
         UIManager.Instance.settingActive = isActive;
+        document.enabled = isActive;
         
         if(isActive)
         {
@@ -110,8 +110,10 @@ public class Setting : MonoBehaviour
 
             ReturnBtn.RegisterCallback<ClickEvent>(e =>
             {
+                Debug.Log(2);
+                DisableEvent?.Invoke();
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-                UIManager.Instance.SettingEnable();
+                UIManager.Instance.SettingEnable(false);
             });
 
             NewGameBtn.RegisterCallback<ClickEvent>(e =>
