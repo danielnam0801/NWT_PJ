@@ -96148,6 +96148,10 @@ PrefabInstance:
       propertyPath: enemies.Array.data[4].SpaenEnemy
       value: 
       objectReference: {fileID: 756752654044507044, guid: 2feaa7e409f2eac4d86c59aa803364f0, type: 3}
+    - target: {fileID: 7620552289205178923, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.18
+      objectReference: {fileID: 0}
     - target: {fileID: 8669913674876450257, guid: 0c8a11473d1ac82409195ac9110f1572, type: 3}
       propertyPath: m_Layer
       value: 10
