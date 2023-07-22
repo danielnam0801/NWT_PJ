@@ -23,6 +23,7 @@ public class RollAttack : EnemyAttack, INormalAttack
 
     public void StopThis()
     {
+        FaintStateEndEvent.Invoke();
         StopAllCoroutines();
     }
 
@@ -30,12 +31,6 @@ public class RollAttack : EnemyAttack, INormalAttack
     {
         _brain.AIMovementData.Speed = _moveSpeed;
         Vector3 pos = _brain.transform.position;
-        //DOTween.Shake(() => _brain.transform.rotation.eulerAngles, z =>
-        //{
-        //    var rotation = _brain.transform.rotation;
-        //    rotation.eulerAngles = Vector3.forward * z.z;
-        //    _brain.transform.rotation = rotation;
-        //}, 1f, 30, 8, 0);
         _brain.transform.DOJump(pos + new Vector3(0, 1, 0), 3, 1, 1f);
 
         yield return new WaitForSeconds(0.8f);
@@ -59,16 +54,17 @@ public class RollAttack : EnemyAttack, INormalAttack
                 t = rollStartAccerleration + rollPlayTime; // 감속으로 넘어감
                 break;
             }
-            
+
             if (t < rollStartAccerleration) // 가속
             {
-                if(move == false)
+                if (move == false)
                 {
                     move = true;
                 }
                 currentRotateSpeed += Time.deltaTime;
             }
-            else if(rollStartAccerleration + rollPlayTime < t || t < rollEndDecelerationTime){ //감속
+            else if (rollStartAccerleration + rollPlayTime < t || t < rollEndDecelerationTime)
+            { //감속
                 currentRotateSpeed -= Time.deltaTime * 2;
                 if (currentRotateSpeed <= 0f) break;
             }
@@ -78,12 +74,11 @@ public class RollAttack : EnemyAttack, INormalAttack
             yield return null;
         }
 
-        float randomRotate = UnityEngine.Random.Range(-10f,5f);
+        float randomRotate = UnityEngine.Random.Range(-10f, 5f);
         _brain.transform.DORotate(new Vector3(0, 0, -170f + randomRotate), 0.3f).SetEase(Ease.InOutBack);
-        //_brain.transform.DOShakeRotation(0.2f);
         _brain.EnemyMovement.StopImmediatelly();
         _aiActionData.CreatePoint = this.transform.localPosition;
-        
+
         AttackEndFeedback?.Invoke();
         FaintStateEvent?.Invoke();
 
@@ -99,13 +94,19 @@ public class RollAttack : EnemyAttack, INormalAttack
                 // 파티클 지우기
                 break;
             }
-            t+= Time.deltaTime;
+            t += Time.deltaTime;
             yield return null;
         }
-        if(!isIn)
+        if (!isIn)
             FaintStateEndEvent?.Invoke();
 
         //기절끝나고 실행할 애니메이션
+        ReAble();
+
+    }
+
+    private void ReAble()
+    {
         Sequence sequence = DOTween.Sequence();
         Tween tween1 = _brain.transform.DOShakeRotation(0.2f);
         Tween tween2 =
@@ -121,6 +122,5 @@ public class RollAttack : EnemyAttack, INormalAttack
             _stateInfo.IsCrash = false;
             callBack();
         });
-
     }
 }

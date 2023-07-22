@@ -53,14 +53,14 @@ public class JumpAttack : EnemyAttack, INormalAttack
         float angle = targetPos.x - transform.position.x < 0 ? -45f : 45f;
 
         Vector3 cp1 = Quaternion.Euler(0, 0, angle) * startControl;
-        Vector3 cp2 = Quaternion.Euler(0, 0, angle) * (startControl * 4); 
+        Vector3 cp2 = Quaternion.Euler(0, 0, angle) * (startControl * 4);
 
+        float distacne = Vector3.Distance(transform.position, _brain.BasePos.position);
 
         _bezierPoints = DOCurve.CubicBezier.GetSegmentPointCloud(transform.position,
             transform.position + cp1, targetPos, transform.position + cp2, _bezeirResolution);
-        _frameSpeed = _jumpSpeed / _bezeirResolution;
+        _frameSpeed = _jumpSpeed / _bezeirResolution / distacne;
 
-        //Debug.Log(_frameSpeed);
         StartCoroutine(JumpCoroutine());
 
         //디버그용

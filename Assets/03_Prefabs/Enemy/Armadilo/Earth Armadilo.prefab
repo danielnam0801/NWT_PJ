@@ -2172,7 +2172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978f97eb3e9638b4d9ad8e89eaac546f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillName: 0
+  _skillName: 1
   AttackStartFeedback:
     m_PersistentCalls:
       m_Calls:
@@ -2514,6 +2514,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 6954486386199617779}
+        m_TargetAssemblyTypeName: AIStateInfo, Assembly-CSharp
+        m_MethodName: Init
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   <OnDie>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -2584,18 +2596,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AIStateInfo, Assembly-CSharp
         m_MethodName: set_IsHit
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6954486387241841319}
-        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
-        m_MethodName: KnockBack
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

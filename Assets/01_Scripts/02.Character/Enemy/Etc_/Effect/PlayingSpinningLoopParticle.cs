@@ -31,6 +31,10 @@ public class PlayingSpinningLoopParticle : Feedback
         
     }
 
-    public void StopFeedback() => Destroy(effect.gameObject);
+    public void StopFeedback()
+    {
+        if(effect != null)
+            Destroy(effect.gameObject);
+    }
     //public void StopFeedback() => effect.StopPlay();
 }
