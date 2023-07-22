@@ -38,7 +38,7 @@ public class IntroSetting : MonoBehaviour
         group.style.display = DisplayStyle.None;
         DisableEvent?.Invoke();
         //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        TimeManager.Instance.SetTimeScale(1);
+        //TimeManager.Instance.SetTimeScale(1);
     }
 
     private void OnEnable()
@@ -129,7 +129,7 @@ public class IntroSetting : MonoBehaviour
         });
 
 
-        TimeManager.Instance.SetTimeScale(0);
+        //TimeManager.Instance.SetTimeScale(0);
     }
 
     public void SetActive()

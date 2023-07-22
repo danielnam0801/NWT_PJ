@@ -23,8 +23,8 @@ public class AudioManager : MonoBehaviour
     Dictionary<string, Sound> bgmSounds = new Dictionary<string, Sound>();
     Dictionary<string, Sound> sfxSounds = new Dictionary<string, Sound>();
 
-    private float bgmVolumeOffset = 1;
-    private float sfxVolumeOffset = 1;
+    public float bgmVolumeOffset = 1;
+    public float sfxVolumeOffset = 1;
 
     public int sfxPlayerCount = 50;
 
@@ -103,11 +103,14 @@ public class AudioManager : MonoBehaviour
 
     public void SetBGMVolume(float value)
     {
+        bgmVolumeOffset = value;
         bgmPlayer.volume = value;
     }
 
     public void SetSFXVlume(float value)
     {
+        sfxVolumeOffset = value;
+
         for(int i = 0; i < sfxPlayer.Length; i++)
         {
             sfxPlayer[i].volume = value;

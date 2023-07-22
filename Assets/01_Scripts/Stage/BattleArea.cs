@@ -30,6 +30,7 @@ public class BattleArea : MonoBehaviour
     private void Start()
     {
         Wall.gameObject.SetActive(false);
+        cam.Follow = GameManager.instance.Target;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

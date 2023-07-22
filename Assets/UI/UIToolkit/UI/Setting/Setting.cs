@@ -30,7 +30,10 @@ public class Setting : MonoBehaviour
     private bool isActive = false;
 
     public UnityEvent EnableEvent;
-    public UnityEvent DisableEvent; 
+    public UnityEvent DisableEvent;
+
+    Slider BGMSlider;
+    Slider EffectSlider;
 
     //public GameObject Timer;
 
@@ -47,6 +50,8 @@ public class Setting : MonoBehaviour
         DisableEvent?.Invoke();
         //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         TimeManager.Instance.SetTimeScale(1);
+
+        
     }
 
     private void OnEnable()
@@ -54,8 +59,8 @@ public class Setting : MonoBehaviour
         Toggle fullScreenToggle = root.Q<Toggle>("fullScreen");
         DropdownField ResolutionDropdown = root.Q<DropdownField>("ResolutionDropdown");
         Toggle UIToggle = root.Q<Toggle>("UIToggle");
-        Slider BGMSlider = root.Q<Slider>("BGM");
-        Slider EffectSlider = root.Q<Slider>("Effect");
+        BGMSlider = root.Q<Slider>("BGM");
+        EffectSlider = root.Q<Slider>("Effect");
         Toggle TimerToggle = root.Q<Toggle>("TimerToggle");
         Button ReturnBtn = root.Q<Button>("Return");
         Button NewGameBtn = root.Q<Button>("NewGame");
@@ -165,5 +170,8 @@ public class Setting : MonoBehaviour
             //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             TimeManager.Instance.SetTimeScale(1);
         }
+
+        BGMSlider.value = AudioManager.Instance.bgmVolumeOffset;
+        EffectSlider.value = AudioManager.Instance.sfxVolumeOffset;
     }
 }

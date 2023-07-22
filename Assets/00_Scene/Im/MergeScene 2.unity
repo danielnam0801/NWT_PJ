@@ -3115,7 +3115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxShape: 3
-  HaveShapes: 00000000
+  HaveShapes: 
   FullCountShapeAction:
     m_PersistentCalls:
       m_Calls:
